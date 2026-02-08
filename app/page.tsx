@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
       <div className="stars-overlay" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_14%,rgba(125,211,252,0.12),transparent_36%),radial-gradient(circle_at_84%_10%,rgba(96,165,250,0.1),transparent_42%),radial-gradient(circle_at_50%_58%,rgba(255,255,255,0.04),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_14%,rgba(125,211,252,0.06),transparent_36%),radial-gradient(circle_at_84%_10%,rgba(96,165,250,0.05),transparent_42%),radial-gradient(circle_at_50%_58%,rgba(255,255,255,0.02),transparent_55%)]" />
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-7">
         <a href="#" className="flex items-center gap-2 text-sm font-semibold tracking-[0.18em] text-foreground/95">
@@ -54,10 +54,20 @@ export default function Home() {
           <span>DIM0</span>
         </a>
         <a
-          href="#product"
-          className="rounded-full border border-secondary/70 bg-secondary/20 px-4 py-2 text-xs font-medium text-secondary backdrop-blur-md transition hover:bg-secondary/30"
+          href="https://github.com/pxtio/topix"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub repository"
+          title="GitHub repository"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-transparent text-foreground backdrop-blur-md transition hover:border-secondary/70 hover:bg-secondary/10"
         >
-          Product
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="h-4 w-4 fill-current"
+          >
+            <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.21 1.83 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.48-1.31-5.48-5.85 0-1.29.47-2.34 1.23-3.17-.12-.3-.53-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.56 11.56 0 0 1 6.02 0c2.29-1.53 3.3-1.21 3.3-1.21.65 1.64.24 2.86.12 3.16.76.83 1.23 1.88 1.23 3.17 0 4.55-2.82 5.54-5.5 5.84.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .5Z" />
+          </svg>
         </a>
       </header>
 
@@ -105,7 +115,7 @@ export default function Home() {
             <div className="font-informal pointer-events-none absolute left-10 top-10 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:left-14 sm:top-14">
               Graph Canvas
             </div>
-            <div className="font-informal pointer-events-none absolute right-10 top-12 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-16">
+            <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
               Board Copilot
             </div>
             <div className="font-informal pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:bottom-14 sm:text-sm">
