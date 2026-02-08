@@ -1,29 +1,43 @@
 import Image from "next/image";
+import { GitHubIcon } from "./components/github-icon";
 
-const features = [
+type ProofCard = {
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  supportImage?: string;
+  supportAlt?: string;
+};
+
+const proofCards: ProofCard[] = [
   {
-    title: "Runs On Your Machine",
-    description: "Private-by-default execution with full local control.",
+    title: "Powerful Whiteboard Foundation",
+    description:
+      "Build on a flexible canvas with rich-text nodes, math, code snippets, shapes, and connected visual structure.",
+    image: "/richgraph.png",
+    alt: "dim0 rich graph canvas with formatted text nodes and diagram shapes",
   },
   {
-    title: "Chat-Driven Workflows",
-    description: "Trigger actions from any chat app your users already use.",
+    title: "Text to Visual, Instantly",
+    description:
+      "Turn raw text into visual structures like mindmaps and schemas, then refine with AI actions in place.",
+    image: "/drawify.png",
+    alt: "dim0 AI action menu with drawify, mapify, and schemify options",
   },
   {
-    title: "Persistent Memory",
-    description: "Remembers user context to keep every action relevant.",
+    title: "First-Class Agent Assistant",
+    description:
+      "Chat, search the web, and reason with memory directly in your workspace without switching tools.",
+    image: "/assistant.png",
+    alt: "dim0 AI assistant panel with web search and reasoning steps",
   },
   {
-    title: "Browser Actions",
-    description: "Automate repetitive web tasks with reliable guardrails.",
-  },
-  {
-    title: "System Access",
-    description: "Read, write, and run commands when your app needs it.",
-  },
-  {
-    title: "Extensible Skills",
-    description: "Add custom skills and integrations without redesigning UI.",
+    title: "Upload a Document, Then Work With It",
+    description:
+      "Drop in a document, let dim0 analyze it, auto-generate a mindmap, then chat with that document using built-in RAG.",
+    image: "/document-mindmap.png",
+    alt: "dim0 document map with generated summary and linked concepts",
   },
 ];
 
@@ -59,45 +73,43 @@ export default function Home() {
           rel="noopener noreferrer"
           aria-label="GitHub repository"
           title="GitHub repository"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-transparent text-foreground backdrop-blur-md transition hover:border-secondary/70 hover:bg-secondary/10"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-transparent text-foreground backdrop-blur-md transition hover:border-border hover:bg-accent/10"
         >
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            className="h-4 w-4 fill-current"
-          >
-            <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.21 1.83 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.48-1.31-5.48-5.85 0-1.29.47-2.34 1.23-3.17-.12-.3-.53-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.56 11.56 0 0 1 6.02 0c2.29-1.53 3.3-1.21 3.3-1.21.65 1.64.24 2.86.12 3.16.76.83 1.23 1.88 1.23 3.17 0 4.55-2.82 5.54-5.5 5.84.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .5Z" />
-          </svg>
+          <GitHubIcon />
         </a>
       </header>
 
       <main className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-24 pt-6">
         <section className="text-center">
           <p className="mx-auto inline-flex items-center rounded-full border border-accent bg-accent/70 px-3 py-1 text-xs font-semibold tracking-wide text-accent-foreground">
-            BUILT FOR AUTOMATION APPS
+            AGENT-NATIVE WORKSPACE
           </p>
           <h1 className="mx-auto mt-5 max-w-4xl font-serif text-4xl font-semibold tracking-tight sm:text-6xl">
-            Ship your dim0 landing page
+            Your thoughts, your docs,
             <span className="font-informal block bg-gradient-to-r from-secondary via-foreground/95 to-secondary bg-clip-text text-transparent">
-              with a bold neon style
+              your agents. One workspace.
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Clean sections, strong visual hierarchy, and easy editing with React
-            + Next.js + Tailwind v4.
+            dim0 unifies rich canvas thinking, document understanding, and
+            first-class AI agents so you can move from insight to results in
+            minutes, not hours.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#cta"
               className="rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
-              Launch Beta
+              Try dim0 Cloud
             </a>
             <a
-              href="#product"
-              className="rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
+              href="https://github.com/pxtio/topix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
             >
-              See Product
+              <GitHubIcon className="h-4 w-4 fill-current" />
+              Explore Open Source
             </a>
           </div>
         </section>
@@ -123,46 +135,78 @@ export default function Home() {
             </div>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Live dim0 workspace: graph canvas, context panel, and copilots.
+            Sketch ideas, think visually, and act in one workspace.
           </p>
         </section>
 
-        <section id="quickstart" className="mx-auto mt-14 max-w-3xl">
-          <h2 className="mb-3 font-serif text-2xl font-semibold tracking-tight text-foreground">
-            Quick Start
+        <section className="mx-auto mt-14 max-w-4xl text-center">
+          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
+            Knowledge work is fragmented today
           </h2>
-          <div className="rounded-2xl border border-border bg-card/85 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_80px_-40px_rgba(6,182,212,0.45)]">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-              <span className="ml-2 text-xs text-muted-foreground">One-liner install</span>
-            </div>
-            <code className="block overflow-x-auto rounded-lg bg-background p-4 font-mono text-sm text-secondary">
-              npm create dim0@latest
-            </code>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Works on macOS, Windows, and Linux.
-            </p>
+          <p className="mt-4 text-base leading-7 text-muted-foreground">
+            Research happens in chat apps and search engines. Notes live in
+            docs. Visual thinking in whiteboards. dim0 brings it all together
+            into one continuous flow, with AI helping at every step.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground sm:text-sm">
+            <span className="rounded-full border border-border bg-card/70 px-3 py-1.5">
+              Search + reasoning
+            </span>
+            <span className="rounded-full border border-border bg-card/70 px-3 py-1.5">
+              Rich notes + docs
+            </span>
+            <span className="rounded-full border border-border bg-card/70 px-3 py-1.5">
+              Visual mapping + execution
+            </span>
           </div>
         </section>
 
         <section id="features" className="mt-16">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
-            What It Does
+            From Idea to Execution
           </h2>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <article
-                key={feature.title}
-                className="rounded-2xl border border-border bg-card/70 p-5 backdrop-blur-sm transition hover:border-secondary/60"
-              >
-                <h3 className="text-base font-semibold text-card-foreground">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {feature.description}
-                </p>
-              </article>
-            ))}
+          <div className="mt-6 space-y-5">
+            {proofCards.map((card, index) => {
+              const reverse = index % 2 === 1;
+
+              return (
+                <article
+                  key={card.title}
+                  className="grid gap-5 py-2 md:grid-cols-2 md:items-center"
+                >
+                  <div className={reverse ? "md:order-2" : ""}>
+                    <h3 className="text-lg font-semibold text-card-foreground">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {card.description}
+                    </p>
+                    {card.supportImage ? (
+                      <div className="mt-4 overflow-hidden rounded-lg">
+                        <Image
+                          src={card.supportImage}
+                          alt={card.supportAlt || ""}
+                          width={1200}
+                          height={700}
+                          className="h-auto w-full"
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={reverse ? "md:order-1" : ""}>
+                    <div className="overflow-hidden rounded-lg">
+                      <Image
+                        src={card.image}
+                        alt={card.alt}
+                        width={1400}
+                        height={900}
+                        className="h-auto w-full"
+                      />
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -185,11 +229,11 @@ export default function Home() {
         <section id="cta" className="mt-16">
           <div className="rounded-3xl border border-border bg-gradient-to-r from-card via-accent/80 to-card px-6 py-10 sm:px-9">
             <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
-              Build your own AI app experience
+              Build in one agent-native workspace
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-              This starter gives you a strong base. Replace copy, add screenshots,
-              and connect your waitlist form.
+              Stop moving between tools to complete one thought. Start in dim0
+              and keep the entire workflow connected from question to action.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
