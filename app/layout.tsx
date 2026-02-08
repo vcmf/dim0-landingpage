@@ -1,16 +1,39 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Gochi_Hand,
+  Instrument_Sans,
+  Shantell_Sans,
+  Source_Serif_4,
+  Ubuntu_Mono,
+} from "next/font/google";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
   subsets: ["latin"],
+});
+
+const ubuntuMono = Ubuntu_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const shantellSans = Shantell_Sans({
+  variable: "--font-handwriting",
+  subsets: ["latin"],
+});
+
+const gochiHand = Gochi_Hand({
+  variable: "--font-informal",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${instrumentSans.variable} ${sourceSerif.variable} ${ubuntuMono.variable} ${shantellSans.variable} ${gochiHand.variable} antialiased`}
       >
         {children}
       </body>

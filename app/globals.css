@@ -1,36 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030712;
-  --foreground: #e4e4e7;
+  --background: oklch(0.22 0.012 260);
+  --foreground: oklch(0.94 0.02 270);
+  --card: oklch(0.25 0.012 260);
+  --card-foreground: oklch(0.94 0.02 270);
+  --popover: oklch(0.25 0.012 260);
+  --popover-foreground: oklch(0.94 0.02 270);
+  --primary: #ffffff;
+  --primary-foreground: #0c0a09;
+  --secondary: oklch(78.968% 0.07472 215.87);
+  --secondary-foreground: oklch(0.22 0.012 260);
+  --muted: oklch(0.30 0.020 260);
+  --muted-foreground: oklch(0.78 0.02 270);
+  --accent: oklch(0.28 0.010 260);
+  --accent-foreground: oklch(0.94 0.02 270);
+  --border: oklch(0.34 0.010 260);
+  --input: oklch(0.30 0.012 260);
+  --ring: oklch(0.30 0.010 260);
+  --radius: 0.75rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+  --font-handwriting: var(--font-handwriting);
+  --font-informal: var(--font-informal);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.font-informal {
+  font-size-adjust: 0.45;
+  line-height: 1.5;
 }
 
 .stars-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.45;
+  opacity: 0.32;
   background-image:
-    radial-gradient(1px 1px at 8% 10%, rgba(255, 255, 255, 0.7), transparent 60%),
-    radial-gradient(1px 1px at 20% 75%, rgba(103, 232, 249, 0.6), transparent 60%),
-    radial-gradient(1px 1px at 30% 35%, rgba(255, 255, 255, 0.45), transparent 60%),
-    radial-gradient(1px 1px at 45% 82%, rgba(255, 255, 255, 0.65), transparent 60%),
-    radial-gradient(1px 1px at 56% 24%, rgba(244, 114, 182, 0.55), transparent 60%),
-    radial-gradient(1px 1px at 68% 66%, rgba(255, 255, 255, 0.35), transparent 60%),
-    radial-gradient(1px 1px at 79% 18%, rgba(255, 255, 255, 0.55), transparent 60%),
-    radial-gradient(1px 1px at 92% 58%, rgba(103, 232, 249, 0.45), transparent 60%);
+    radial-gradient(1px 1px at 8% 10%, rgba(255, 255, 255, 0.52), transparent 60%),
+    radial-gradient(1px 1px at 20% 75%, rgba(148, 163, 184, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 30% 35%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1px 1px at 45% 82%, rgba(226, 232, 240, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 56% 24%, rgba(125, 211, 252, 0.38), transparent 60%),
+    radial-gradient(1px 1px at 68% 66%, rgba(255, 255, 255, 0.28), transparent 60%),
+    radial-gradient(1px 1px at 79% 18%, rgba(255, 255, 255, 0.42), transparent 60%),
+    radial-gradient(1px 1px at 92% 58%, rgba(148, 163, 184, 0.4), transparent 60%);
   animation: drift 40s linear infinite alternate;
 }
 
