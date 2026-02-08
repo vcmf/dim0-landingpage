@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030712;
+  --foreground: #e4e4e7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.stars-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image:
+    radial-gradient(1px 1px at 8% 10%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 20% 75%, rgba(103, 232, 249, 0.6), transparent 60%),
+    radial-gradient(1px 1px at 30% 35%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 45% 82%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1px 1px at 56% 24%, rgba(244, 114, 182, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 68% 66%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1px 1px at 79% 18%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 92% 58%, rgba(103, 232, 249, 0.45), transparent 60%);
+  animation: drift 40s linear infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-24px);
+  }
+}
