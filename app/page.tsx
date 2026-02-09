@@ -3,7 +3,14 @@
 import Image from "next/image";
 import { type ComponentType, useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowRight01Icon,
+  ChatBotIcon,
+  CloudIcon,
+  File01Icon,
+  PaintBoardIcon,
+  SparklesIcon,
+} from "@hugeicons/core-free-icons";
 import {
   Claude,
   DeepSeek,
@@ -19,6 +26,7 @@ type ProofCard = {
   title: string;
   image: string;
   alt: string;
+  markerIcon: unknown;
   bullets: string[];
   supportImage?: string;
   supportAlt?: string;
@@ -40,6 +48,7 @@ const proofCards: ProofCard[] = [
     title: "Powerful Whiteboard Foundation",
     image: "/richgraph-light.png",
     alt: "dim0 rich graph canvas with formatted text nodes and diagram shapes",
+    markerIcon: PaintBoardIcon,
     bullets: [
       "Infinite canvas for non-linear thinking and large visual maps.",
       "Rough-style shapes and rich text blocks in every node.",
@@ -51,17 +60,19 @@ const proofCards: ProofCard[] = [
     title: "Text to Visual, Instantly",
     image: "/drawify-light.png",
     alt: "dim0 AI action menu with drawify, mapify, and schemify options",
+    markerIcon: SparklesIcon,
     bullets: [
-      "Convert notes into mindmaps and schemas in one step.",
-      "Keep editing generated visuals directly on the canvas.",
-      "Use AI actions to expand, regroup, and improve structure.",
-      "Spend less time diagramming by hand.",
+      "Turn notes into mindmaps and schemas with AI, in one click.",
+      "Refine AI-generated visuals directly on the same canvas.",
+      "Ask AI to expand, regroup, or simplify structure as your ideas evolve.",
+      "Go from raw notes to presentation-ready diagrams in minutes.",
     ],
   },
   {
     title: "First-Class Agent Assistant",
     image: "/assistant-light.png",
     alt: "dim0 AI assistant panel with web search and reasoning steps",
+    markerIcon: ChatBotIcon,
     bullets: [
       "ReAct-style multi-step reasoning with visible tool steps.",
       "Strong tool calling for search and context-aware workflows.",
@@ -73,6 +84,7 @@ const proofCards: ProofCard[] = [
     title: "Document Intelligence",
     image: "/document-mindmap-light.png",
     alt: "dim0 document map with generated summary and linked concepts",
+    markerIcon: File01Icon,
     bullets: [
       "Upload documents directly into your working board.",
       "AI analyzes content and builds a visual mindmap automatically.",
@@ -90,6 +102,64 @@ const modelBadges: ModelBadge[] = [
   { name: "Kimi", provider: "Moonshot", Icon: Kimi },
   { name: "DeepSeek", provider: "DeepSeek", Icon: DeepSeek },
   { name: "Qwen", provider: "Alibaba", Icon: Qwen },
+];
+
+const faqItems = [
+  {
+    question: "What is dim0, exactly?",
+    answer:
+      "dim0 is an agent-native workspace where whiteboards, documents, and AI assistance work together in one place.",
+  },
+  {
+    question: "Is dim0 open source?",
+    answer:
+      "Yes. dim0 has an open-source codebase so you can inspect, fork, and contribute to the product.",
+  },
+  {
+    question: "Can I self-host dim0?",
+    answer:
+      "Yes. You can run dim0 in your own environment for more control over infrastructure and data handling.",
+  },
+  {
+    question: "Which AI models can I use?",
+    answer:
+      "dim0 supports multiple providers, including OpenAI, Anthropic, Google, Mistral, Moonshot (Kimi), DeepSeek, and Qwen, with more coming.",
+  },
+  {
+    question: "How does text-to-visual work?",
+    answer:
+      "dim0 can transform notes into mindmaps and schemas with AI, then you can keep editing the generated visuals directly on the same canvas.",
+  },
+  {
+    question: "How does document chat work?",
+    answer:
+      "Upload a document to your board, then dim0 indexes it for retrieval so the assistant can answer with document-aware context.",
+  },
+  {
+    question: "How is this different from using separate chat, docs, and whiteboard tools?",
+    answer:
+      "dim0 keeps reasoning, visual mapping, and outputs connected in one continuous flow, so you do not lose context switching between disconnected tools.",
+  },
+  {
+    question: "Who is dim0 for right now?",
+    answer:
+      "dim0 is built for researchers, founders, students, and teams who handle complex thinking workflows and want to move from ideas to outcomes faster.",
+  },
+  {
+    question: "Can I export my work?",
+    answer:
+      "Yes. Your boards and outputs are portable, so you are not locked into one workflow forever.",
+  },
+  {
+    question: "How does dim0 use my data?",
+    answer:
+      "dim0 does not sell your data and does not use your content for ads or model training. Your content is processed only to provide the features you explicitly request.",
+  },
+  {
+    question: "What about model providers in cloud mode?",
+    answer:
+      "In cloud mode, prompts and relevant context are sent to model providers to generate responses. Provider handling is governed by their own terms and policies.",
+  },
 ];
 
 export default function Home() {
@@ -156,8 +226,9 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#cta"
-              className="rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
+              className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
+              <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
               Try <strong>dim0</strong> Cloud
             </a>
             <a
@@ -237,16 +308,24 @@ export default function Home() {
               Core Features
             </span>
           </h2>
-          <div className="mt-6 space-y-5">
+          <div className="mt-6 space-y-14">
             {proofCards.map((card, index) => {
               const reverse = index % 2 === 1;
 
               return (
                 <article
                   key={card.title}
-                  className="grid gap-5 py-2 md:grid-cols-2 md:items-center"
+                  className="grid gap-8 py-2 md:grid-cols-2 md:items-center md:gap-20"
                 >
                   <div className={reverse ? "md:order-2" : ""}>
+                    <div className="mb-1 inline-flex items-center text-secondary">
+                      <HugeiconsIcon
+                        icon={card.markerIcon as never}
+                        size={42}
+                        strokeWidth={2}
+                        color="var(--secondary)"
+                      />
+                    </div>
                     <h3 className="text-lg font-semibold text-card-foreground">
                       {card.title}
                     </h3>
@@ -340,6 +419,89 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mt-16">
+          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
+            <span className="inline-flex items-center gap-2">
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={24}
+                color="var(--secondary)"
+                strokeWidth={2}
+              />
+              Open Source by Design
+            </span>
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            <strong>dim0</strong> is built to be transparent and portable. Choose cloud for speed and simplicity, or self-host for full control.
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
+              <p className="text-sm font-semibold text-card-foreground">Transparent code</p>
+              <p className="mt-1 text-sm text-muted-foreground">Inspect implementation details and contribute directly.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
+              <p className="text-sm font-semibold text-card-foreground">Cloud or self-host</p>
+              <p className="mt-1 text-sm text-muted-foreground">Choose the deployment model that matches your team.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
+              <p className="text-sm font-semibold text-card-foreground">No lock-in</p>
+              <p className="mt-1 text-sm text-muted-foreground">Keep your workflows portable as your stack evolves.</p>
+            </div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href="https://github.com/pxtio/topix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-5 py-2.5 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
+            >
+              <GitHubIcon className="h-4 w-4 fill-current" />
+              View Open Source Repo
+            </a>
+            <a
+              href="#cta"
+              className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-5 py-2.5 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
+            >
+              <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
+              Start with <strong>dim0</strong> Cloud
+            </a>
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
+            <span className="inline-flex items-center gap-2">
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={24}
+                color="var(--secondary)"
+                strokeWidth={2}
+              />
+              FAQ
+            </span>
+          </h2>
+          <div className="mt-5 space-y-3">
+            {faqItems.map((item) => (
+              <details
+                key={item.question}
+                className="group rounded-2xl border border-border bg-card/60 px-5 py-4 backdrop-blur-sm"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-2 pr-2 text-sm font-semibold text-card-foreground sm:text-base">
+                  <HugeiconsIcon
+                    icon={ArrowRight01Icon}
+                    size={18}
+                    color="var(--secondary)"
+                    strokeWidth={2}
+                    className="shrink-0 transition-transform duration-200 group-open:rotate-90"
+                  />
+                  <span>{item.question}</span>
+                </summary>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
         <section id="cta" className="mt-16">
           <div className="rounded-3xl border border-border bg-gradient-to-r from-card via-accent/80 to-card px-6 py-10 sm:px-9">
             <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
@@ -350,26 +512,29 @@ export default function Home() {
                   color="var(--secondary)"
                   strokeWidth={2}
                 />
-                Build in one agent-native workspace
+                Get Started
               </span>
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-              Stop moving between tools to complete one thought. Start in{" "}
-              <strong>dim0</strong> and keep the entire workflow connected from
-              question to action.
+              Try the cloud version as a live demo, or read the open-source
+              guide in the GitHub README.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href="#"
-                className="rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
+                className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
               >
-                Join Waitlist
+                <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
+                Try <strong>dim0</strong> Cloud
               </a>
               <a
-                href="#"
-                className="rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
+                href="https://github.com/pxtio/topix#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
               >
-                Read Docs
+                <GitHubIcon className="h-4 w-4 fill-current" />
+                Read GitHub README
               </a>
             </div>
           </div>
@@ -402,8 +567,43 @@ export default function Home() {
         </div>
       ) : null}
 
-      <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-8 text-xs text-muted-foreground">
-        © {new Date().getFullYear()} <strong>dim0</strong>
+      <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-8 pt-6">
+        <div className="flex flex-col gap-3 border-t border-border/70 pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} <strong>dim0</strong> · Open-source agent-native workspace
+          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <a href="#cta" className="transition hover:text-foreground">
+              Cloud Demo
+            </a>
+            <a
+              href="https://github.com/pxtio/topix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-foreground"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://github.com/pxtio/topix#readme"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-foreground"
+            >
+              README
+            </a>
+            <a
+              href="https://github.com/pxtio/topix/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-foreground"
+            >
+              Contact
+            </a>
+            <span className="text-muted-foreground/70">Privacy (soon)</span>
+            <span className="text-muted-foreground/70">Terms (soon)</span>
+          </div>
+        </div>
       </footer>
     </div>
   );
