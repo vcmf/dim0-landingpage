@@ -82,3 +82,32 @@ body {
     transform: translateY(-24px);
   }
 }
+
+.model-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.model-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.5rem;
+  animation: model-marquee-scroll 24s linear infinite;
+}
+
+@keyframes model-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model-marquee-track {
+    animation: none;
+  }
+}

@@ -1,9 +1,18 @@
  "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { type ComponentType, useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  Claude,
+  DeepSeek,
+  Gemini,
+  Kimi,
+  Mistral,
+  OpenAI,
+  Qwen,
+} from "@lobehub/icons";
 import { GitHubIcon } from "./components/github-icon";
 
 type ProofCard = {
@@ -18,6 +27,12 @@ type ProofCard = {
 type PreviewImage = {
   src: string;
   alt: string;
+};
+
+type ModelBadge = {
+  name: string;
+  provider: string;
+  Icon: ComponentType<{ size?: number | string; className?: string }>;
 };
 
 const proofCards: ProofCard[] = [
@@ -67,19 +82,14 @@ const proofCards: ProofCard[] = [
   },
 ];
 
-const integrations = [
-  "WhatsApp",
-  "Telegram",
-  "Discord",
-  "Slack",
-  "Gmail",
-  "GitHub",
-  "Notion",
-  "Google Drive",
-  "Calendar",
-  "Zapier",
-  "Stripe",
-  "HubSpot",
+const modelBadges: ModelBadge[] = [
+  { name: "GPT", provider: "OpenAI", Icon: OpenAI },
+  { name: "Claude", provider: "Anthropic", Icon: Claude },
+  { name: "Gemini", provider: "Google", Icon: Gemini },
+  { name: "Mistral", provider: "Mistral", Icon: Mistral },
+  { name: "Kimi", provider: "Moonshot", Icon: Kimi },
+  { name: "DeepSeek", provider: "DeepSeek", Icon: DeepSeek },
+  { name: "Qwen", provider: "Alibaba", Icon: Qwen },
 ];
 
 export default function Home() {
@@ -118,17 +128,20 @@ export default function Home() {
           rel="noopener noreferrer"
           aria-label="GitHub repository"
           title="GitHub repository"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-transparent text-foreground backdrop-blur-md transition hover:border-border hover:bg-accent/10"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent bg-transparent text-foreground backdrop-blur-md transition hover:border-border hover:bg-accent/10"
         >
-          <GitHubIcon />
+          <GitHubIcon className="h-5 w-5 fill-current" />
         </a>
       </header>
 
       <main className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-24 pt-6">
         <section className="text-center">
-          <p className="mx-auto inline-flex items-center rounded-full border border-accent bg-accent/70 px-3 py-1 text-xs font-semibold tracking-wide text-accent-foreground">
-            AGENT-NATIVE WORKSPACE
-          </p>
+          <div className="mx-auto mb-4 inline-flex items-center gap-3 px-1 py-1">
+            <Image src="/dim0.svg" alt="dim0 icon" width={56} height={56} />
+            <span className="bg-gradient-to-r from-[#e6c5a8] via-[#f7a936] to-white bg-clip-text font-sans text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
+              <strong>DIM0</strong>
+            </span>
+          </div>
           <h1 className="mx-auto mt-5 max-w-4xl font-serif text-4xl font-semibold tracking-tight sm:text-6xl">
             Your thoughts, your docs,
             <span className="font-informal block bg-gradient-to-r from-secondary via-foreground/95 to-secondary bg-clip-text text-transparent">
@@ -136,10 +149,9 @@ export default function Home() {
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            <strong>dim0</strong> unifies rich canvas thinking, document
-            understanding, and
-            first-class AI agents so you can move from insight to results in
-            minutes, not hours.
+            <strong>dim0</strong> (read &quot;dee-moh&quot;) unifies rich canvas
+            thinking, document understanding, and first-class AI agents so you
+            can move from insight to results in minutes, not hours.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
@@ -256,7 +268,7 @@ export default function Home() {
                             alt: card.supportAlt || card.title,
                           })
                         }
-                        className="mt-4 aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-border/70 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_0_34px_-10px_rgba(125,211,252,0.45)] transition-colors duration-300 hover:border-border"
+                        className="mt-4 aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-border transition-colors duration-300"
                       >
                         <Image
                           src={card.supportImage}
@@ -273,7 +285,7 @@ export default function Home() {
                       type="button"
                       aria-label={`Open full image: ${card.title}`}
                       onClick={() => setPreview({ src: card.image, alt: card.alt })}
-                      className="aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-border/70 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_0_34px_-10px_rgba(125,211,252,0.45)] transition-colors duration-300 hover:border-border"
+                      className="aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-border/70 transition-colors duration-300 hover:border-border"
                     >
                       <Image
                         src={card.image}
@@ -302,15 +314,29 @@ export default function Home() {
               Works With Everything
             </span>
           </h2>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {integrations.map((name) => (
-              <span
-                key={name}
-                className="rounded-full border border-border bg-card/80 px-4 py-2 text-xs text-muted-foreground"
-              >
-                {name}
-              </span>
-            ))}
+          <p className="mt-3 text-sm text-muted-foreground">
+            Choose the right model for each task: GPTs, Claudes, Google models,
+            Mistral, Kimi, DeepSeek, and more.
+          </p>
+          <div className="model-marquee group mt-5">
+            <div className="model-marquee-track group-hover:[animation-play-state:paused]">
+              {[...modelBadges, ...modelBadges].map((model, index) => {
+                const Icon = (model.Icon as ComponentType<{ size?: number | string; className?: string }> & {
+                  Color?: ComponentType<{ size?: number | string; className?: string }>;
+                }).Color || model.Icon;
+
+                return (
+                  <span
+                    key={`${model.name}-${index}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-secondary/55 bg-secondary/8 px-4 py-2.5 text-sm text-muted-foreground backdrop-blur-sm"
+                  >
+                    <Icon size={18} />
+                    <span className="font-semibold text-foreground/95">{model.name}</span>
+                    <span className="text-muted-foreground/90">· {model.provider}</span>
+                  </span>
+                );
+              })}
+            </div>
           </div>
         </section>
 
