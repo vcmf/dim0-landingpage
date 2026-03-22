@@ -156,42 +156,62 @@ body {
 
 @media (max-width: 640px) {
   .convergence-diagram {
-    min-height: 28rem;
+    min-height: auto;
+    padding: 1.5rem 1rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .convergence-diagram-lines {
+    display: none;
   }
 
   .convergence-center {
-    min-width: 0;
+    position: static;
+    order: 1;
+    transform: none;
     padding: 0;
+    min-width: 0;
   }
 
   .convergence-node {
+    position: static;
+    transform: none;
+    justify-content: center;
     font-size: 1rem;
     padding: 0;
+    width: 100%;
   }
 
   .convergence-node-notes {
-    left: 22%;
-    top: 22%;
+    order: 2;
   }
 
   .convergence-node-documents {
-    left: 72%;
-    top: 20%;
+    order: 3;
   }
 
   .convergence-node-code {
-    left: 80%;
-    top: 48%;
+    order: 4;
   }
 
   .convergence-node-charts {
-    left: 68%;
-    top: 76%;
+    order: 5;
   }
 
   .convergence-node-agents {
-    left: 22%;
-    top: 72%;
+    order: 6;
+  }
+
+  .convergence-center .font-informal {
+    font-size: 0.9rem;
+  }
+
+  .convergence-center > div:last-child {
+    margin-top: 0.35rem;
+    font-size: 2.2rem;
   }
 }
 

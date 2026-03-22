@@ -423,7 +423,7 @@ export default function Home() {
             </p>
             <div className="convergence-diagram mt-8">
               <svg
-                className="pointer-events-none absolute inset-0 h-full w-full"
+                className="convergence-diagram-lines pointer-events-none absolute inset-0 h-full w-full"
                 viewBox="0 0 900 360"
                 preserveAspectRatio="none"
                 aria-hidden="true"
