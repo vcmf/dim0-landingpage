@@ -428,7 +428,7 @@ export default function Home() {
               Board Canvas
             </div>
             <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
-              Board Copilot
+              Board Agent
             </div>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
