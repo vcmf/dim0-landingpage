@@ -37,9 +37,9 @@ const gochiHand = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "dim0 | The Agent-Native Thinking Canvas",
+  title: "Dim0 | The Agent-Native Thinking Canvas",
   description:
-    "dim0 is an agent-native thinking canvas that unifies visual reasoning, documents, code, widgets, and AI agents on one board.",
+    "Dim0 is an agent-native thinking canvas that unifies visual reasoning, documents, code, widgets, and AI agents on one board.",
   icons: {
     icon: "/dim0.svg",
   },

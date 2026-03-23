@@ -207,39 +207,39 @@ const convergenceNodes: ConvergenceNode[] = [
 
 const faqItems = [
   {
-    question: "What is dim0, exactly?",
+    question: "What is Dim0, exactly?",
     answer:
-      "dim0 is an agent-native thinking canvas where documents, code, widgets, and AI agents work together on one board.",
+      "Dim0 is an agent-native thinking canvas where documents, code, widgets, and AI agents work together on one board.",
   },
   {
-    question: "Is dim0 open source?",
+    question: "Is Dim0 open source?",
     answer:
-      "Yes. dim0 has an open-source codebase so you can inspect, fork, and contribute to the product.",
+      "Yes. Dim0 has an open-source codebase so you can inspect, fork, and contribute to the product.",
   },
   {
-    question: "Can I self-host dim0?",
+    question: "Can I self-host Dim0?",
     answer:
-      "Yes. You can run dim0 in your own environment for more control over infrastructure and data handling.",
+      "Yes. You can run Dim0 in your own environment for more control over infrastructure and data handling.",
   },
   {
     question: "Which AI models can I use?",
     answer:
-      "dim0 supports multiple providers, including OpenAI, Anthropic, Google, Mistral, Moonshot (Kimi), DeepSeek, and Qwen, with more coming.",
+      "Dim0 supports multiple providers, including OpenAI, Anthropic, Google, Mistral, Moonshot (Kimi), DeepSeek, and Qwen, with more coming.",
   },
   {
     question: "How does text-to-visual work?",
     answer:
-      "dim0 can transform notes into mind maps and visual structures with AI, then you can keep refining the generated output directly on the same canvas.",
+      "Dim0 can transform notes into mind maps and visual structures with AI, then you can keep refining the generated output directly on the same canvas.",
   },
   {
     question: "How does document chat work?",
     answer:
-      "Upload a document to your board, then dim0 indexes it for retrieval so the assistant can answer with document-aware context and place outputs back onto the board.",
+      "Upload a document to your board, then Dim0 indexes it for retrieval so the assistant can answer with document-aware context and place outputs back onto the board.",
   },
   {
     question: "How is this different from using separate chat, docs, and whiteboard tools?",
     answer:
-      "Most tools bolt AI onto a doc or whiteboard. dim0 is built so the canvas itself is the interface, and the agent can read and write directly inside that surface.",
+      "Most tools bolt AI onto a doc or whiteboard. Dim0 is built so the canvas itself is the interface, and the agent can read and write directly inside that surface.",
   },
   {
     question: "Why canvas-first instead of chat-first?",
@@ -252,9 +252,9 @@ const faqItems = [
       "The agent can search, read selected context, synthesize information, create and edit nodes, run code when needed, and generate widgets that appear directly on the board.",
   },
   {
-    question: "Who is dim0 for right now?",
+    question: "Who is Dim0 for right now?",
     answer:
-      "dim0 is built for researchers, founders, students, and teams who work through complex problems and want one canvas for thinking, synthesis, and execution.",
+      "Dim0 is built for researchers, founders, students, and teams who work through complex problems and want one canvas for thinking, synthesis, and execution.",
   },
   {
     question: "Can I export my work?",
@@ -262,9 +262,9 @@ const faqItems = [
       "Yes. Your boards and outputs are portable, so you are not locked into one workflow forever.",
   },
   {
-    question: "How does dim0 use my data?",
+    question: "How does Dim0 use my data?",
     answer:
-      "dim0 does not sell your data and does not use your content for ads or model training. Your content is processed only to provide the features you explicitly request.",
+      "Dim0 does not sell your data and does not use your content for ads or model training. Your content is processed only to provide the features you explicitly request.",
   },
   {
     question: "What about model providers in cloud mode?",
@@ -324,13 +324,13 @@ export default function Home() {
             </span>
           </div>
           <h1 className="mx-auto mt-5 max-w-4xl font-serif text-4xl font-semibold tracking-tight sm:text-6xl">
-            Your thoughts, your docs,
+            Your thoughts, your notes,
             <span className="font-informal block bg-gradient-to-r from-secondary via-foreground/95 to-secondary bg-clip-text text-transparent">
               your agents. One canvas.
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            <strong>dim0</strong> (read &quot;dee-moh&quot;) is an agent-native
+            <strong>Dim0</strong> (read &quot;dee-moh&quot;) is an agent-native
             thinking canvas where visual reasoning, documents, code, and AI
             agents work together on one board, so insight can become execution
             in minutes.
@@ -351,7 +351,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
               <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
-              Try <strong>dim0</strong> Cloud
+              Try <strong>Dim0</strong> Cloud
             </a>
             <a
               href="https://github.com/pxtio/topix"
@@ -417,7 +417,7 @@ export default function Home() {
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
               <strong>This is not just a productivity problem.</strong> It is
-              an architectural problem. <strong>dim0</strong> collapses
+              an architectural problem. <strong>Dim0</strong> collapses
               research, documents, visual reasoning, code, and agents into one
               continuous canvas.
             </p>
@@ -498,7 +498,7 @@ export default function Home() {
                   One Canvas
                 </span>
                 <div className="mt-2 text-2xl font-semibold tracking-tight text-card-foreground sm:text-3xl">
-                  dim0
+                  Dim0
                 </div>
               </div>
             </div>
@@ -547,8 +547,8 @@ export default function Home() {
                       {card.title}
                     </h3>
                     <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                      {card.bullets.map((bullet) => (
-                        <li key={bullet} className="flex items-start gap-2 leading-7">
+                      {card.bullets.map((bullet, bulletIndex) => (
+                        <li key={`${card.title}-${bulletIndex}`} className="flex items-start gap-2 leading-7">
                           <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary" />
                           <span>{bullet}</span>
                         </li>
@@ -710,7 +710,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            <strong>dim0</strong> is built to be transparent and portable.
+            <strong>Dim0</strong> is built to be transparent and portable.
             Choose cloud for speed and simplicity, or self-host for full
             control over infrastructure and data handling.
           </p>
@@ -743,7 +743,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-5 py-2.5 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
               <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
-              Start with <strong>dim0</strong> Cloud
+              Start with <strong>Dim0</strong> Cloud
             </a>
           </div>
         </section>
@@ -784,8 +784,11 @@ export default function Home() {
 
         <section id="cta" className="mt-16">
           <div className="rounded-3xl border border-border bg-gradient-to-r from-card via-accent/80 to-card px-6 py-10 sm:px-9">
+            <p className="font-informal text-sm tracking-[0.18em] text-secondary/85 sm:text-base">
+              Dim0 · The Thinking Canvas
+            </p>
             <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
-              <span className="inline-flex items-center gap-2">
+              <span className="mt-3 inline-flex items-center gap-2">
                 <HugeiconsIcon
                   icon={ArrowRight01Icon}
                   size={24}
@@ -805,7 +808,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
               >
                 <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
-                Join <strong>dim0</strong> Cloud
+                Join <strong>Dim0</strong> Cloud
               </a>
               <a
                 href="https://github.com/pxtio/topix#readme"
@@ -850,7 +853,7 @@ export default function Home() {
       <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-8 pt-6">
         <div className="flex flex-col gap-3 border-t border-border/70 pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} <strong>dim0</strong> · Open-source agent-native thinking canvas
+            © {new Date().getFullYear()} <strong>Dim0</strong> · Open-source agent-native thinking canvas
           </p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <a href="#cta" className="transition hover:text-foreground">
