@@ -365,7 +365,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="product" className="mx-auto mt-14 max-w-6xl">
+        <section id="product" className="mx-auto mt-18 max-w-6xl">
           <div className="relative overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_35px_90px_-45px_rgba(34,211,238,0.8)] backdrop-blur-sm">
             <Image
               src="/app-main-screen.png"
@@ -387,7 +387,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="mx-auto mt-14 max-w-4xl text-center">
+        <section className="mx-auto mt-20 max-w-4xl text-center">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -505,7 +505,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="mt-16">
+        <section id="features" className="mt-20">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -606,7 +606,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16">
+        <section className="mt-20">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -659,7 +659,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16">
+        <section className="mt-20">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -685,11 +685,11 @@ export default function Home() {
                 return (
                   <span
                     key={`${model.name}-${index}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-secondary/55 bg-secondary/8 px-4 py-2.5 text-sm text-muted-foreground backdrop-blur-sm"
+                    className="inline-flex items-center gap-2.5 px-2 py-1 text-base text-muted-foreground/82 transition duration-300 hover:-translate-y-0.5 hover:text-foreground"
                   >
-                    <Icon size={18} />
+                    <Icon size={22} />
                     <span className="font-semibold text-foreground/95">{model.name}</span>
-                    <span className="text-muted-foreground/90">· {model.provider}</span>
+                    <span className="text-muted-foreground/80">· {model.provider}</span>
                   </span>
                 );
               })}
@@ -697,7 +697,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16">
+        <section className="mt-20">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -748,7 +748,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16">
+        <section className="mt-20">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
               <HugeiconsIcon
@@ -782,7 +782,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="cta" className="mt-16">
+        <section id="cta" className="mt-20">
           <div className="rounded-3xl border border-border bg-gradient-to-r from-card via-accent/80 to-card px-6 py-10 sm:px-9">
             <p className="font-informal text-sm tracking-[0.18em] text-secondary/85 sm:text-base">
               Dim0 · The Thinking Canvas
