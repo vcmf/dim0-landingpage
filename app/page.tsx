@@ -478,36 +478,6 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="mx-auto mt-20 max-w-5xl text-center">
-          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
-            <span className="inline-flex items-center gap-2">
-              <HugeiconsIcon
-                icon={ArrowRight01Icon}
-                size={24}
-                color="var(--secondary)"
-                strokeWidth={2}
-              />
-              How It Works
-            </span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Start with a thought, work with the agent, keep the output on the board, and present from the same surface.
-          </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {workflowSteps.map((step, index) => (
-              <div
-                key={step.title}
-                className="rounded-2xl border border-border bg-card/55 px-4 py-4 text-left backdrop-blur-sm"
-              >
-                <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-2 text-sm leading-7 text-card-foreground">{step.title}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="mx-auto mt-20 max-w-4xl text-center">
           <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
             <span className="inline-flex items-center gap-2">
@@ -537,14 +507,14 @@ export default function Home() {
               One idea, five context switches.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong>Too many tools fragment the work.</strong> Chat-first
-              tools bury it across conversations. <strong>Dim0</strong> keeps
-              research, documents, visual reasoning, code, and agents on one
-              continuous canvas.
+              <strong>Too many tools fragment the work.</strong>
             </p>
-            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              Generated work stays centralized, editable, and presentable instead
-              of disappearing into chat history.
+            <p className="mx-auto mt-1 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              <strong>Chat-first tools bury it across conversations.</strong>
+            </p>
+            <p className="mx-auto mt-1 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              <strong>Dim0</strong> keeps research, documents, visual reasoning,
+              code, and agents on one continuous, presentable canvas.
             </p>
             <div className="convergence-diagram mt-8">
               <svg
@@ -627,6 +597,36 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-5xl text-center">
+          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
+            <span className="inline-flex items-center gap-2">
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={24}
+                color="var(--secondary)"
+                strokeWidth={2}
+              />
+              From Thought to Output
+            </span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            Start with a thought, work with the agent, keep the output on the board, and present from the same surface.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {workflowSteps.map((step, index) => (
+              <div
+                key={step.title}
+                className="rounded-2xl border border-border bg-card/55 px-4 py-4 text-left backdrop-blur-sm"
+              >
+                <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-card-foreground">{step.title}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -846,7 +846,7 @@ export default function Home() {
             </div>
             <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
               <p className="text-sm font-semibold text-card-foreground">Cloud or self-host</p>
-              <p className="mt-1 text-sm text-muted-foreground">Choose the deployment model that matches your team.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Choose the deployment model that matches how you want to use Dim0.</p>
             </div>
             <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
               <p className="text-sm font-semibold text-card-foreground">No lock-in</p>
