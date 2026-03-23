@@ -80,6 +80,7 @@ const proofCards: ProofCard[] = [
     markerIcon: PaintBoardIcon,
     bullets: [
       "Shape nodes and rich notes live together on one infinite canvas.",
+      "Use nested boards to keep large canvases structured and navigable.",
       "Sketch relationships, structure ideas, and keep context visible as the board grows.",
       "Rich text nodes support slash commands, math, code blocks, and checklists.",
       "Move from rough visual thinking to clear structure without changing tools.",
@@ -112,14 +113,25 @@ const proofCards: ProofCard[] = [
   },
   {
     title: "Documents, Code, And Widgets On One Surface",
-    image: "/document-mindmap-light.png",
-    alt: "dim0 document map with generated summary and linked concepts",
+    image: "/doc-code-widget.png",
+    alt: "dim0 board with documents, code, and live widgets on one surface",
     markerIcon: File01Icon,
     bullets: [
       "Upload documents directly into the board and keep their context connected.",
       "Run code inside graph nodes with sandboxed execution when needed.",
       "Generate live HTML and JS widgets as part of the canvas itself.",
       "Keep documents, outputs, code, and interactive views together in one working surface.",
+    ],
+  },
+  {
+    title: "Present Directly From The Canvas",
+    image: "/present-mode.png",
+    alt: "dim0 presentation mode with framed board content",
+    markerIcon: File01Icon,
+    bullets: [
+      "Use frame nodes to guide attention across the board.",
+      "Present notes, widgets, code, and visuals without rebuilding them in slides.",
+      "Turn the same board you think on into the board you present from.",
     ],
   },
 ];
@@ -136,10 +148,10 @@ const modelBadges: ModelBadge[] = [
 ];
 
 const heroSignals: SignalItem[] = [
-  { label: "Docs" },
+  { label: "Nested Boards" },
   { label: "Code Nodes", accentClass: "rough-underline-cyan" },
   { label: "Widgets", accentClass: "rough-underline-violet" },
-  { label: "Semantic Search" },
+  { label: "Presentation Mode" },
   { label: "Board-Native Agent", accentClass: "rough-underline-pink" },
 ];
 
@@ -186,6 +198,17 @@ const architectureItems: ArchitectureItem[] = [
       "Search across notes, documents, and relationships",
       "Keep spatial and relational context attached to retrieved results",
       "Support deeper multi-step agent workflows on top of the board graph",
+    ],
+  },
+  {
+    title: "Built For Structure And Communication",
+    icon: File01Icon,
+    description:
+      "Dim0 is not just where ideas are explored. It is also where they stay organized and become presentable.",
+    bullets: [
+      "Folder nodes keep complex boards hierarchical and navigable",
+      "Frame-based presentation turns the canvas into a communication surface",
+      "Work does not need to be rebuilt in another tool to be shared clearly",
     ],
   },
 ];
@@ -469,6 +492,10 @@ export default function Home() {
               an architectural problem. <strong>Dim0</strong> collapses
               research, documents, visual reasoning, code, and agents into one
               continuous canvas.
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              And in chat-first tools, work gets buried across conversations
+              instead of staying centralized and presentable.
             </p>
             <div className="convergence-diagram mt-8">
               <svg
