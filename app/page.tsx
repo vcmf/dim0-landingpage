@@ -72,6 +72,10 @@ type ConvergenceNode = {
   icon: unknown;
 };
 
+type WorkflowStep = {
+  title: string;
+};
+
 const proofCards: ProofCard[] = [
   {
     title: "Spatial Thinking, Native To The Board",
@@ -227,6 +231,14 @@ const convergenceNodes: ConvergenceNode[] = [
   { label: "Code", className: "convergence-node-code", icon: CodeIcon },
   { label: "Charts", className: "convergence-node-charts", icon: Chart01Icon },
   { label: "Agents", className: "convergence-node-agents", icon: ChatBotIcon },
+];
+
+const workflowSteps: WorkflowStep[] = [
+  { title: "Capture ideas on the board" },
+  { title: "Explore with the agent" },
+  { title: "Save outputs back to the canvas" },
+  { title: "Turn them into visuals, code, or widgets" },
+  { title: "Present directly from frames" },
 ];
 
 const faqItems = [
@@ -405,6 +417,13 @@ export default function Home() {
             agents work together on one board, so insight can become execution
             in minutes.
           </p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+            Built for <strong className="text-foreground">researchers</strong>,{" "}
+            <strong className="text-foreground">founders</strong>,{" "}
+            <strong className="text-foreground">developers</strong>, and{" "}
+            <strong className="text-foreground">visual thinkers</strong> who want
+            AI, notes, and structure on one canvas.
+          </p>
           <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground sm:text-base">
             {heroSignals.map((item, index) => (
               <span key={item.label} className="inline-flex items-center gap-3">
@@ -455,8 +474,38 @@ export default function Home() {
             </div>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Think visually, reason semantically, and let the board become executable.
+            Think, generate, and present from the same canvas.
           </p>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-5xl text-center">
+          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
+            <span className="inline-flex items-center gap-2">
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={24}
+                color="var(--secondary)"
+                strokeWidth={2}
+              />
+              How It Works
+            </span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            Start with a thought, work with the agent, keep the output on the board, and present from the same surface.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {workflowSteps.map((step, index) => (
+              <div
+                key={step.title}
+                className="rounded-2xl border border-border bg-card/55 px-4 py-4 text-left backdrop-blur-sm"
+              >
+                <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-card-foreground">{step.title}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="mx-auto mt-20 max-w-4xl text-center">
@@ -488,14 +537,14 @@ export default function Home() {
               One idea, five context switches.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong>This is not just a productivity problem.</strong> It is
-              an architectural problem. <strong>Dim0</strong> collapses
-              research, documents, visual reasoning, code, and agents into one
+              <strong>Too many tools fragment the work.</strong> Chat-first
+              tools bury it across conversations. <strong>Dim0</strong> keeps
+              research, documents, visual reasoning, code, and agents on one
               continuous canvas.
             </p>
             <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              And in chat-first tools, work gets buried across conversations
-              instead of staying centralized and presentable.
+              Generated work stays centralized, editable, and presentable instead
+              of disappearing into chat history.
             </p>
             <div className="convergence-diagram mt-8">
               <svg
