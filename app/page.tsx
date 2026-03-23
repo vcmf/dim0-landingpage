@@ -1,6 +1,7 @@
- "use client";
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { type ComponentType, useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -273,6 +274,48 @@ const faqItems = [
   },
 ];
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dim0.net/#organization",
+      name: "Dim0",
+      url: "https://dim0.net",
+      logo: "https://dim0.net/dim0.svg",
+      sameAs: ["https://github.com/vcmf/dim0"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dim0.net/#website",
+      url: "https://dim0.net",
+      name: "Dim0",
+      publisher: {
+        "@id": "https://dim0.net/#organization",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://dim0.net/#software",
+      name: "Dim0",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: "https://dim0.net",
+      description:
+        "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+      publisher: {
+        "@id": "https://dim0.net/#organization",
+      },
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      softwareHelp: "https://github.com/vcmf/dim0#readme",
+    },
+  ],
+};
+
 export default function Home() {
   const [preview, setPreview] = useState<PreviewImage | null>(null);
 
@@ -293,18 +336,22 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="stars-overlay" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_14%,rgba(125,211,252,0.06),transparent_36%),radial-gradient(circle_at_84%_10%,rgba(96,165,250,0.05),transparent_42%),radial-gradient(circle_at_50%_58%,rgba(255,255,255,0.02),transparent_55%)] [mask-image:linear-gradient(to_bottom,black_0%,transparent_25%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,transparent_25%)]" />
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-7">
-        <a href="#" className="flex items-center gap-2 text-sm font-semibold tracking-[0.18em] text-foreground/95">
+        <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-[0.18em] text-foreground/95">
           <Image src="/dim0.svg" alt="dim0 logo" width={24} height={24} />
           <span>
             <strong>DIM0</strong>
           </span>
-        </a>
+        </Link>
         <a
-          href="https://github.com/pxtio/topix"
+          href="https://github.com/vcmf/dim0"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub repository"
@@ -347,14 +394,16 @@ export default function Home() {
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
-              href="#cta"
+              href="https://app.dim0.net"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
               <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
               Try <strong>Dim0</strong> Cloud
             </a>
             <a
-              href="https://github.com/pxtio/topix"
+              href="https://github.com/vcmf/dim0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
@@ -730,7 +779,7 @@ export default function Home() {
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="https://github.com/pxtio/topix"
+              href="https://github.com/vcmf/dim0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-5 py-2.5 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
@@ -739,7 +788,9 @@ export default function Home() {
               View Open Source Repo
             </a>
             <a
-              href="#cta"
+              href="https://app.dim0.net"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-5 py-2.5 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
             >
               <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
@@ -804,14 +855,16 @@ export default function Home() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="#cta"
+                href="https://app.dim0.net"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
               >
                 <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
                 Join <strong>Dim0</strong> Cloud
               </a>
               <a
-                href="https://github.com/pxtio/topix#readme"
+                href="https://github.com/vcmf/dim0#readme"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
@@ -856,11 +909,16 @@ export default function Home() {
             © {new Date().getFullYear()} <strong>Dim0</strong> · Open-source agent-native thinking canvas
           </p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <a href="#cta" className="transition hover:text-foreground">
+            <a
+              href="https://app.dim0.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-foreground"
+            >
               Cloud Demo
             </a>
             <a
-              href="https://github.com/pxtio/topix"
+              href="https://github.com/vcmf/dim0"
               target="_blank"
               rel="noopener noreferrer"
               className="transition hover:text-foreground"
@@ -868,7 +926,7 @@ export default function Home() {
               GitHub
             </a>
             <a
-              href="https://github.com/pxtio/topix#readme"
+              href="https://github.com/vcmf/dim0#readme"
               target="_blank"
               rel="noopener noreferrer"
               className="transition hover:text-foreground"
@@ -876,7 +934,7 @@ export default function Home() {
               README
             </a>
             <a
-              href="https://github.com/pxtio/topix/issues"
+              href="https://github.com/vcmf/dim0/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="transition hover:text-foreground"
