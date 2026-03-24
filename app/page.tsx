@@ -732,12 +732,12 @@ export default function Home() {
                 color="var(--secondary)"
                 strokeWidth={2}
               />
-              Bring The Models You Already Use
+              Your models, your choice.
             </span>
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Dim0 is architecture-first, not model-locked. Choose the right
-            model for each task and keep the canvas workflow consistent.
+          <p className="mt-3 text-base text-muted-foreground">
+            Dim0 works with the models you already trust. Switch anytime as the
+            landscape evolves and keep the canvas workflow the same.
           </p>
           <div className="model-marquee group mt-5">
             <div className="model-marquee-track group-hover:[animation-play-state:paused]">
@@ -770,26 +770,26 @@ export default function Home() {
                 color="var(--secondary)"
                 strokeWidth={2}
               />
-              Open Source By Design
+              Open source, no strings attached.
             </span>
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            <strong>Dim0</strong> is built to be transparent and portable.
-            Choose cloud for speed and simplicity, or self-host for full
-            control over infrastructure and data handling.
+            The codebase is public because you should be able to see what you
+            are building on. Cloud for convenience, self-hosted for full
+            control.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-card-foreground">Transparent code</p>
-              <p className="mt-1 text-sm text-muted-foreground">Inspect implementation details and contribute directly.</p>
+              <p className="text-sm font-semibold text-card-foreground">See how it works</p>
+              <p className="mt-1 text-sm text-muted-foreground">The full codebase is public. No black boxes.</p>
             </div>
             <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-card-foreground">Cloud or self-host</p>
-              <p className="mt-1 text-sm text-muted-foreground">Choose the deployment model that matches how you want to use Dim0.</p>
+              <p className="text-sm font-semibold text-card-foreground">Run it yourself</p>
+              <p className="mt-1 text-sm text-muted-foreground">Self-host on your own infrastructure if you need full control over your data.</p>
             </div>
             <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-card-foreground">No lock-in</p>
-              <p className="mt-1 text-sm text-muted-foreground">Keep your workflows portable as your stack evolves.</p>
+              <p className="text-sm font-semibold text-card-foreground">Nothing is trapped</p>
+              <p className="mt-1 text-sm text-muted-foreground">Your boards and outputs are portable. Walk away anytime.</p>
             </div>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
