@@ -230,7 +230,7 @@ const faqItems = [
   {
     question: "Why canvas-first instead of chat-first?",
     answer:
-      "Complex work is spatial. A canvas keeps structure, relationships, and partial ideas visible at once, while the agent helps transform that context into new nodes, summaries, code, and widgets.",
+      "Complex work is spatial. A canvas keeps structure, relationships, and partial ideas visible at once, while the agent helps transform that context into new nodes, summaries, code, and widgets. Chat buries context. Canvas keeps it.",
   },
   {
     question: "What can the agent actually do on the board?",
@@ -919,7 +919,7 @@ export default function Home() {
       <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-8 pt-6">
         <div className="flex flex-col gap-3 border-t border-border/70 pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} <strong>Dim0</strong> · Open-source agent-native thinking canvas
+            © {new Date().getFullYear()} <strong>Dim0</strong> · The Thinking Canvas
           </p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <a
