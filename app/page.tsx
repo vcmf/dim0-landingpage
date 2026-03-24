@@ -14,7 +14,6 @@ import {
   NoteIcon,
   PaintBoardIcon,
   SparklesIcon,
-  SearchVisualIcon,
 } from "@hugeicons/core-free-icons";
 import {
   Claude,
@@ -54,13 +53,6 @@ type SignalItem = {
   accentClass?: string;
 };
 
-type ArchitectureItem = {
-  title: string;
-  description: string;
-  bullets: string[];
-  icon: unknown;
-};
-
 type FragmentStep = {
   label: string;
   accentClass?: string;
@@ -73,7 +65,9 @@ type ConvergenceNode = {
 };
 
 type WorkflowStep = {
+  label: string;
   title: string;
+  description: string;
 };
 
 const proofCards: ProofCard[] = [
@@ -159,64 +153,6 @@ const heroSignals: SignalItem[] = [
   { label: "Board-Native Agent", accentClass: "rough-underline-pink" },
 ];
 
-const architectureItems: ArchitectureItem[] = [
-  {
-    title: "A Canvas That Thinks Spatially",
-    icon: PaintBoardIcon,
-    description:
-      "Dim0 is built around the board as the unit of work, not a chat sidebar or disconnected document stack.",
-    bullets: [
-      "Shape nodes for sketching and mapping ideas",
-      "Sticky notes with rich text, slash commands, math, code blocks, and checklists",
-      "A spatial graph where relationships stay visible while you work",
-    ],
-  },
-  {
-    title: "A Board-Native Agent That Can Act",
-    icon: ChatBotIcon,
-    description:
-      "The assistant reads live board context, reasons across tools, and writes results directly back onto the canvas.",
-    bullets: [
-      "Memory and context tools grounded in your actual board state",
-      "Create and edit tools that place and modify nodes directly",
-      "Web search, code execution, and widget generation in one workflow",
-    ],
-  },
-  {
-    title: "Documents, Code, and Widgets on One Surface",
-    icon: CodeIcon,
-    description:
-      "Thinking and execution happen together, so insight does not get trapped in separate tools.",
-    bullets: [
-      "Upload documents and keep summaries connected to the board",
-      "Run code inside graph nodes with sandboxed execution",
-      "Generate live HTML and JS widgets as part of the board itself",
-    ],
-  },
-  {
-    title: "Semantic Search Across the Knowledge Graph",
-    icon: SearchVisualIcon,
-    description:
-      "Retrieval is meaning-based across nodes and links, not just keyword search inside isolated files.",
-    bullets: [
-      "Search across notes, documents, and relationships",
-      "Keep spatial and relational context attached to retrieved results",
-      "Support deeper multi-step agent workflows on top of the board graph",
-    ],
-  },
-  {
-    title: "Built For Structure And Communication",
-    icon: File01Icon,
-    description:
-      "Dim0 is not just where ideas are explored. It is also where they stay organized and become presentable.",
-    bullets: [
-      "Folder nodes keep complex boards hierarchical and navigable",
-      "Frame-based presentation turns the canvas into a communication surface",
-      "Work does not need to be rebuilt in another tool to be shared clearly",
-    ],
-  },
-];
-
 const fragmentedWorkflow: FragmentStep[] = [
   { label: "Browse" },
   { label: "Notes", accentClass: "rough-underline-cyan" },
@@ -234,11 +170,31 @@ const convergenceNodes: ConvergenceNode[] = [
 ];
 
 const workflowSteps: WorkflowStep[] = [
-  { title: "Capture ideas on the board" },
-  { title: "Explore with the agent" },
-  { title: "Save outputs back to the canvas" },
-  { title: "Turn them into visuals, code, or widgets" },
-  { title: "Present directly from frames" },
+  {
+    label: "Agent reads the board",
+    title: "It knows what is already there before it acts.",
+    description: "Board context comes first, so the agent starts from your actual workspace instead of a blank chat thread.",
+  },
+  {
+    label: "Searches the web",
+    title: "Pulls current information without you switching tabs.",
+    description: "Research happens inside the same flow, so you do not have to break context to gather sources.",
+  },
+  {
+    label: "Synthesizes findings",
+    title: "Reasons across sources in multiple steps, in parallel.",
+    description: "The agent can compare, connect, and organize findings before turning them into something usable.",
+  },
+  {
+    label: "Builds on the canvas",
+    title: "Generates a widget, diagram, or summary directly on your board.",
+    description: "The result appears where you are already working, ready to edit, connect, or expand.",
+  },
+  {
+    label: "You keep going",
+    title: "Edit, connect, frame, and present from the same surface.",
+    description: "The work stays live on the canvas, so there is no handoff to another tool just to move forward.",
+  },
 ];
 
 const faqItems = [
@@ -286,6 +242,11 @@ const faqItems = [
     question: "What can the agent actually do on the board?",
     answer:
       "The agent can search, read selected context, synthesize information, create and edit nodes, run code when needed, and generate widgets that appear directly on the board.",
+  },
+  {
+    question: "How does the canvas handle larger boards?",
+    answer:
+      "Dim0 is built to stay smooth with 300+ active nodes in view, while supporting boards with 1,000+ total nodes.",
   },
   {
     question: "Who is Dim0 for right now?",
@@ -406,23 +367,18 @@ export default function Home() {
             </span>
           </div>
           <h1 className="mx-auto mt-5 max-w-4xl font-serif text-4xl font-semibold tracking-tight sm:text-6xl">
-            Your thoughts, your notes,
-            <span className="font-informal block bg-gradient-to-r from-secondary via-foreground/95 to-secondary bg-clip-text text-transparent">
-              your agents. One canvas.
-            </span>
+            Your canvas thinks back.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            <strong>Dim0</strong> (read &quot;dee-moh&quot;) is an agent-native
-            thinking canvas where visual reasoning, documents, code, and AI
-            agents work together on one board, so insight can become execution
-            in minutes.
+            <strong>Dim0</strong> (read &quot;dee-moh&quot;) is where you map
+            ideas, let AI work directly on the canvas, and turn the result into
+            documents, diagrams, or code without switching tools.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
             Built for <strong className="text-foreground">researchers</strong>,{" "}
             <strong className="text-foreground">founders</strong>,{" "}
-            <strong className="text-foreground">developers</strong>, and{" "}
-            <strong className="text-foreground">visual thinkers</strong> who want
-            AI, notes, and structure on one canvas.
+            and <strong className="text-foreground">builders</strong> who think
+            visually and move fast.
           </p>
           <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground sm:text-base">
             {heroSignals.map((item, index) => (
@@ -491,7 +447,17 @@ export default function Home() {
             </span>
           </h2>
           <div className="mt-7 rounded-[2rem] border border-border/70 bg-card/45 px-5 py-6 backdrop-blur-sm sm:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-base text-foreground/88 sm:text-[1.1rem]">
+            <p className="mx-auto max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              A single line of thinking gets scattered fast. You open tabs to
+              research, switch tools to sketch, jump into chat to ask for help,
+              then paste the result back somewhere else and try to reconnect the
+              context.
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              By the time you are ready to move forward, the idea is split
+              across tabs, threads, notes, and screenshots.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-base text-foreground/88 sm:text-[1.1rem]">
               {fragmentedWorkflow.map((step, index) => (
                 <span key={step.label} className="inline-flex items-center gap-3">
                   <span className={step.accentClass ? `rough-underline ${step.accentClass}` : undefined}>
@@ -507,14 +473,10 @@ export default function Home() {
               One idea, five context switches.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong>Too many tools fragment the work.</strong>
-            </p>
-            <p className="mx-auto mt-1 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong>Chat-first tools bury it across conversations.</strong>
-            </p>
-            <p className="mx-auto mt-1 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              <strong>Dim0</strong> keeps research, documents, visual reasoning,
-              code, and agents on one continuous, presentable canvas.
+              The problem is not the tools. It is that none of them share a
+              surface. <strong>Dim0</strong> keeps research, documents, visual
+              reasoning, code, and agents on one continuous, presentable
+              canvas.
             </p>
             <div className="convergence-diagram mt-8">
               <svg
@@ -609,22 +571,40 @@ export default function Home() {
                 color="var(--secondary)"
                 strokeWidth={2}
               />
-              From Thought to Output
+              See It Work
             </span>
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Start with a thought, work with the agent, keep the output on the board, and present from the same surface.
+            One prompt. The agent searches, synthesizes, and builds directly on
+            your board.
           </p>
+          <div className="mt-6 rounded-3xl border border-border bg-card/60 px-5 py-5 text-left backdrop-blur-sm sm:px-7">
+            <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
+              EXAMPLE PROMPT
+            </p>
+            <p className="mt-3 font-serif text-xl leading-8 text-card-foreground sm:text-2xl">
+              &quot;Research the latest on fusion energy and create a visual
+              summary on my board.&quot;
+            </p>
+          </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {workflowSteps.map((step, index) => (
               <div
-                key={step.title}
+                key={step.label}
                 className="rounded-2xl border border-border bg-card/55 px-4 py-4 text-left backdrop-blur-sm"
               >
                 <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <p className="mt-2 text-sm leading-7 text-card-foreground">{step.title}</p>
+                <p className="mt-2 text-sm font-semibold leading-7 text-card-foreground">
+                  {step.label}
+                </p>
+                <p className="mt-1 text-sm leading-7 text-card-foreground/92">
+                  {step.title}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -639,14 +619,26 @@ export default function Home() {
                 color="var(--secondary)"
                 strokeWidth={2}
               />
-              What Lives On The Canvas
+              What Makes Dim0 Different
             </span>
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            The board is the unit of work. Dim0 combines the pieces that are
-            usually spread across separate tools and makes them usable by both
-            you and the agent in the same surface.
+            Most tools bolt AI onto a canvas. <strong>Dim0</strong> is built
+            the other way around: the canvas is designed for an agent that can
+            read context, use tools, and write results directly back into the
+            workspace.
           </p>
+          <div className="mt-6 rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-sm">
+            <p className="text-xs font-semibold tracking-[0.18em] text-secondary/85">
+              REAL WORKFLOW
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              Ask Dim0 to research a topic, compare sources, generate a chart
+              or widget, and place the result on the board beside your notes.
+              The output stays connected to the thinking that produced it,
+              instead of disappearing into a chat thread.
+            </p>
+          </div>
           <div className="mt-6 space-y-14">
             {proofCards.map((card, index) => {
               const reverse = index % 2 === 1;
@@ -728,59 +720,6 @@ export default function Home() {
                 </article>
               );
             })}
-          </div>
-        </section>
-
-        <section className="mt-20">
-          <h2 className="font-serif text-3xl font-semibold tracking-tight text-foreground">
-            <span className="inline-flex items-center gap-2">
-              <HugeiconsIcon
-                icon={ArrowRight01Icon}
-                size={24}
-                color="var(--secondary)"
-                strokeWidth={2}
-              />
-              Why Dim0 Is Different
-            </span>
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            The point is not adding a chatbot to a whiteboard. The point is
-            building the board itself as an agent-native system.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {architectureItems.map((item) => (
-              <article
-                key={item.title}
-                className="group rounded-3xl border border-border bg-card/65 p-5 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-secondary/45 hover:bg-card/85 hover:shadow-[0_20px_55px_-40px_rgba(34,211,238,0.32)]"
-              >
-                <h3 className="flex items-center gap-3 text-lg font-semibold text-card-foreground">
-                  <HugeiconsIcon
-                    icon={item.icon as never}
-                    size={22}
-                    strokeWidth={2}
-                    color="var(--secondary)"
-                    className="transition duration-300 group-hover:scale-110 group-hover:-rotate-3"
-                  />
-                  <span className="transition duration-300 group-hover:text-foreground">
-                    {item.title}
-                  </span>
-                </h3>
-                <p className="mt-2 text-sm leading-7 text-muted-foreground transition duration-300 group-hover:text-muted-foreground/95">
-                  {item.description}
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {item.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="flex items-start gap-2 leading-7 transition duration-300 group-hover:translate-x-1"
-                    >
-                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary transition duration-300 group-hover:scale-125 group-hover:bg-[#8fe6ff]" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
           </div>
         </section>
 
@@ -922,12 +861,12 @@ export default function Home() {
                   color="var(--secondary)"
                   strokeWidth={2}
                 />
-                Get Started
+                Your canvas is waiting.
               </span>
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-              Explore the open-source repo today, then try the cloud experience
-              as the launch path expands.
+              Try Dim0 Cloud now, or explore the open-source repo and run it
+              your way.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
@@ -937,16 +876,16 @@ export default function Home() {
                 className="inline-flex items-center gap-2 rounded-full border border-secondary/70 bg-secondary/20 px-6 py-3 text-sm font-semibold text-secondary backdrop-blur-md transition hover:bg-secondary/30"
               >
                 <HugeiconsIcon icon={CloudIcon} size={17} color="currentColor" strokeWidth={2} />
-                Join <strong>Dim0</strong> Cloud
+                Try <strong>Dim0</strong> Cloud
               </a>
               <a
-                href="https://github.com/vcmf/dim0#readme"
+                href="https://github.com/vcmf/dim0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition hover:bg-card"
               >
                 <GitHubIcon className="h-4 w-4 fill-current" />
-                Read GitHub README
+                View on GitHub
               </a>
             </div>
           </div>
