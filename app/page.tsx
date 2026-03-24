@@ -13,6 +13,7 @@ import {
   File01Icon,
   NoteIcon,
   PaintBoardIcon,
+  PresentationBarChart01Icon,
   SparklesIcon,
 } from "@hugeicons/core-free-icons";
 import {
@@ -119,7 +120,7 @@ const proofCards: ProofCard[] = [
     title: "Present Directly From The Canvas",
     image: "/present-mode.png",
     alt: "dim0 presentation mode with framed board content",
-    markerIcon: File01Icon,
+    markerIcon: PresentationBarChart01Icon,
     bullets: [
       "Frame the parts that matter and present without rebuilding anything in slides.",
       "Notes, widgets, code, and visuals all present from the same surface you worked on.",
