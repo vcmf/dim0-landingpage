@@ -77,23 +77,20 @@ const proofCards: ProofCard[] = [
     alt: "dim0 rich graph canvas with formatted text nodes and diagram shapes",
     markerIcon: PaintBoardIcon,
     bullets: [
-      "Shape nodes and rich notes live together on one infinite canvas.",
-      "Use nested boards to keep large canvases structured and navigable.",
-      "Sketch relationships, structure ideas, and keep context visible as the board grows.",
-      "Rich text nodes support slash commands, math, code blocks, and checklists.",
-      "Move from rough visual thinking to clear structure without changing tools.",
+      "Everything lives together: shapes, rich notes, code blocks, and math on one infinite canvas.",
+      "Nested boards keep large projects structured without losing the spatial view.",
+      "Relationships stay visible as the board grows, so context never gets buried.",
     ],
   },
   {
-    title: "From Notes To Structure In One Step",
+    title: "Notes Become Structure In One Gesture",
     image: "/drawify-light.png",
     alt: "dim0 AI action menu with drawify, mapify, and schemify options",
     markerIcon: SparklesIcon,
     bullets: [
-      "Turn notes into diagrams, maps, and structured visuals with AI.",
-      "Refine generated output directly on the same canvas instead of exporting elsewhere.",
-      "Ask the board to expand, regroup, or simplify as ideas evolve.",
-      "Keep the visual result editable, spatial, and connected to surrounding context.",
+      "Select any notes and turn them into mind maps, schemas, or diagrams with a single action.",
+      "Generated output lands on the same canvas, editable, connected, and ready to extend.",
+      "Drawify, Mapify, and Schemify let you reshape thinking without leaving the board.",
     ],
   },
   {
@@ -102,23 +99,20 @@ const proofCards: ProofCard[] = [
     alt: "dim0 AI assistant panel with web search and reasoning steps",
     markerIcon: ChatBotIcon,
     bullets: [
-      "Not a chatbot, but a board-native agent that reasons in multiple steps and uses tools in parallel.",
-      "Reads live board context and selected nodes instead of working blind.",
-      "Uses tools like web search, code execution, and canvas editing in one workflow.",
-      "Places results back onto the board as usable outputs, not just chat text.",
-      "Helps research, synthesize, generate widgets, and act directly inside the canvas.",
+      "Reads your actual board state before it acts, not a blank chat thread.",
+      "Searches the web, runs code, and writes results directly back onto the canvas in one workflow.",
+      "Outputs are nodes, not messages: live on the board, ready to edit and connect.",
     ],
   },
   {
-    title: "Documents, Code, And Widgets On One Surface",
+    title: "Documents, Code, And Widgets In One Surface",
     image: "/doc-code-widget.png",
     alt: "dim0 board with documents, code, and live widgets on one surface",
     markerIcon: File01Icon,
     bullets: [
-      "Upload documents directly into the board and keep their context connected.",
-      "Run code inside graph nodes with sandboxed execution when needed.",
-      "Generate live HTML and JS widgets as part of the canvas itself.",
-      "Keep documents, outputs, code, and interactive views together in one working surface.",
+      "Upload documents directly onto the board and keep their context connected to your thinking.",
+      "Run code inside graph nodes with sandboxed execution, no external environment needed.",
+      "Generate live HTML and JS widgets that sit on the canvas alongside everything else.",
     ],
   },
   {
@@ -127,9 +121,9 @@ const proofCards: ProofCard[] = [
     alt: "dim0 presentation mode with framed board content",
     markerIcon: File01Icon,
     bullets: [
-      "Use frame nodes to guide attention across the board.",
-      "Present notes, widgets, code, and visuals without rebuilding them in slides.",
-      "Turn the same board you think on into the board you present from.",
+      "Frame the parts that matter and present without rebuilding anything in slides.",
+      "Notes, widgets, code, and visuals all present from the same surface you worked on.",
+      "The board you think on is the board you present from.",
     ],
   },
 ];
@@ -201,12 +195,12 @@ const faqItems = [
   {
     question: "What is Dim0, exactly?",
     answer:
-      "Dim0 is an agent-native thinking canvas where documents, code, widgets, and AI agents work together on one board.",
+      "Dim0 is a thinking canvas where documents, code, widgets, and AI agents work together on one board.",
   },
   {
     question: "Is Dim0 open source?",
     answer:
-      "Yes. Dim0 has an open-source codebase so you can inspect, fork, and contribute to the product.",
+      "Yes. Dim0 has an open-source codebase so you can inspect it, fork it, and run it yourself.",
   },
   {
     question: "Can I self-host Dim0?",
@@ -221,7 +215,7 @@ const faqItems = [
   {
     question: "How does text-to-visual work?",
     answer:
-      "Dim0 can transform notes into mind maps and visual structures with AI, then you can keep refining the generated output directly on the same canvas.",
+      "Dim0 can turn notes into visual structures with tools like Drawify, Mapify, and Schemify, then let you keep refining the result directly on the same canvas.",
   },
   {
     question: "How does document chat work?",
@@ -256,7 +250,7 @@ const faqItems = [
   {
     question: "Can I export my work?",
     answer:
-      "Yes. Your boards and outputs are portable, so you are not locked into one workflow forever.",
+      "Yes. Your boards and outputs are portable, so you can take your work with you whenever you need to.",
   },
   {
     question: "How does Dim0 use my data?",
@@ -639,6 +633,10 @@ export default function Home() {
               instead of disappearing into a chat thread.
             </p>
           </div>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            Dim0 is built to stay smooth with 300+ active nodes in view, while
+            supporting boards with 1,000+ total nodes.
+          </p>
           <div className="mt-6 space-y-14">
             {proofCards.map((card, index) => {
               const reverse = index % 2 === 1;
