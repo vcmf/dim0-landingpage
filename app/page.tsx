@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ComponentType, useEffect, useState } from "react";
+import { type ComponentType, useEffect, useRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowRight01Icon,
@@ -309,6 +309,8 @@ const structuredData = {
 
 export default function Home() {
   const [preview, setPreview] = useState<PreviewImage | null>(null);
+  const [isMainDemoPlaying, setIsMainDemoPlaying] = useState(false);
+  const mainDemoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (!preview) {
@@ -324,6 +326,27 @@ export default function Home() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [preview]);
+
+  const toggleMainDemoPlayback = () => {
+    const video = mainDemoRef.current;
+    if (!video) {
+      return;
+    }
+
+    if (video.paused || video.ended) {
+      if (video.ended) {
+        video.currentTime = 0;
+      }
+      void video.play();
+      setIsMainDemoPlaying(true);
+      return;
+    }
+
+    video.pause();
+    video.currentTime = 0;
+    video.load();
+    setIsMainDemoPlaying(false);
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
@@ -409,20 +432,46 @@ export default function Home() {
 
         <section id="product" className="mx-auto mt-18 max-w-6xl">
           <div className="relative overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_35px_90px_-45px_rgba(34,211,238,0.8)] backdrop-blur-sm">
-            <Image
-              src="/app-main-screen.png"
-              alt="dim0 application main screen"
-              width={1920}
-              height={1080}
-              priority
-              className="block h-auto w-full"
-            />
-            <div className="font-informal pointer-events-none absolute left-10 top-10 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:left-14 sm:top-14">
-              Board Canvas
-            </div>
-            <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
-              Board Agent
-            </div>
+            <button
+              type="button"
+              onClick={toggleMainDemoPlayback}
+              className="group relative block aspect-[16/9] w-full cursor-pointer overflow-hidden"
+              aria-label={isMainDemoPlaying ? "Pause main demo video" : "Play main demo video"}
+            >
+              <video
+                ref={mainDemoRef}
+                poster="/app-main-screen.png"
+                preload="metadata"
+                playsInline
+                onPlay={() => setIsMainDemoPlaying(true)}
+                onPause={() => setIsMainDemoPlaying(false)}
+                onEnded={(event) => {
+                  event.currentTarget.currentTime = 0;
+                  event.currentTarget.load();
+                  setIsMainDemoPlaying(false);
+                }}
+                className="absolute left-1/2 top-1/2 block h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] -translate-x-1/2 -translate-y-1/2 object-cover"
+              >
+                <source src="/demo.mp4" type="video/mp4" />
+              </video>
+              {!isMainDemoPlaying ? (
+                <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 group-hover:scale-105 group-hover:bg-black/55 sm:h-24 sm:w-24">
+                    <span className="ml-1 h-0 w-0 border-b-[12px] border-l-[18px] border-t-[12px] border-b-transparent border-l-current border-t-transparent sm:border-b-[14px] sm:border-l-[22px] sm:border-t-[14px]" />
+                  </span>
+                </span>
+              ) : null}
+            </button>
+            {!isMainDemoPlaying ? (
+              <>
+                <div className="font-informal pointer-events-none absolute left-10 top-10 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:left-14 sm:top-14">
+                  Board Canvas
+                </div>
+                <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
+                  Board Agent
+                </div>
+              </>
+            ) : null}
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Think, generate, and present from the same canvas.
