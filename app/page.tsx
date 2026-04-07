@@ -296,7 +296,7 @@ const structuredData = {
       operatingSystem: "Web",
       url: "https://dim0.net",
       description:
-        "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+        "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
       publisher: {
         "@id": "https://dim0.net/#organization",
       },
@@ -306,6 +306,18 @@ const structuredData = {
         priceCurrency: "USD",
       },
       softwareHelp: "https://github.com/vcmf/dim0#readme",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://dim0.net/#faq",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
     },
   ],
 };
