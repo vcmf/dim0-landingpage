@@ -1060,10 +1060,20 @@ export default function Home() {
               rel="noopener noreferrer"
               className="transition hover:text-foreground"
             >
+              Issues
+            </a>
+            <a
+              href="mailto:contact@dim0.net"
+              className="transition hover:text-foreground"
+            >
               Contact
             </a>
-            <span className="text-muted-foreground/70">Privacy (soon)</span>
-            <span className="text-muted-foreground/70">Terms (soon)</span>
+            <Link href="/privacy" className="transition hover:text-foreground">
+              Privacy
+            </Link>
+            <Link href="/terms" className="transition hover:text-foreground">
+              Terms
+            </Link>
           </div>
         </div>
       </footer>
