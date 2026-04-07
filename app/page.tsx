@@ -108,14 +108,14 @@ const proofCards: ProofCard[] = [
     ],
   },
   {
-    title: "Documents, Code, And Widgets In One Surface",
+    title: "Code, Charts, Widgets, And Documents On One Surface",
     image: "/doc-code-widget.png",
     alt: "dim0 board with documents, code, and live widgets on one surface",
     markerIcon: File01Icon,
     bullets: [
-      "Upload documents directly onto the board and keep their context connected to your thinking.",
       "Run code inside graph nodes with sandboxed execution, no external environment needed.",
-      "Generate live HTML and JS widgets that sit on the canvas alongside everything else.",
+      "Generate charts, visual explainers, and live widgets that sit directly on the canvas.",
+      "Upload documents onto the board and keep their context connected to your thinking.",
     ],
   },
   {
@@ -446,13 +446,13 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
             <strong>Dim0</strong> (read &quot;dee-moh&quot;) is where you map
             ideas, let AI work directly on the canvas, and turn the result into
-            documents, diagrams, or code without switching tools.
+            notes, diagrams, charts, visual explainers, and code without
+            switching tools.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Built for <strong className="text-foreground">researchers</strong>,{" "}
-            <strong className="text-foreground">founders</strong>,{" "}
-            and <strong className="text-foreground">builders</strong> who think
-            visually and move fast.
+            For the ones who think in{" "}
+            <span className="rough-highlight">connections</span>
+            , not bullet points.
           </p>
           <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground sm:text-base">
             {heroSignals.map((item, index) => (
@@ -702,8 +702,9 @@ export default function Home() {
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
             Most tools bolt AI onto a canvas. <strong>Dim0</strong> is built
-            the other way around: the canvas is designed for an agent that can
-            read context, use tools, and write results directly back into the
+            the other way around: the canvas itself, with notes, code,
+            widgets, and nested boards, is built for an agent that can read
+            context, use tools, and write results directly back into the
             workspace.
           </p>
           <div className="mt-6 rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-sm">

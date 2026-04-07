@@ -159,6 +159,16 @@ body::-webkit-scrollbar-corner {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 18' preserveAspectRatio='none'%3E%3Cpath d='M3 10 C 27 8, 52 14, 74 10 S 119 7, 145 10 S 191 12, 217 9' fill='none' stroke='%23f472b6' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M6 14 C 31 11, 58 16, 85 12 S 138 12, 167 14 S 196 13, 213 12' fill='none' stroke='%23f472b6' stroke-width='2.4' stroke-linecap='round' opacity='0.82'/%3E%3C/svg%3E");
 }
 
+.rough-highlight {
+  display: inline-block;
+  padding: 0.08rem 0.45rem 0.12rem;
+  font-weight: 700;
+  color: var(--foreground);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 44' preserveAspectRatio='none'%3E%3Cpath d='M9 13 C 34 7, 65 10, 95 12 S 154 8, 182 11 S 206 14, 212 13 L 211 31 C 188 37, 157 35, 129 33 S 72 36, 42 34 S 16 30, 8 31 Z' fill='%23f7a936' fill-opacity='0.2'/%3E%3C/svg%3E");
+}
+
 .convergence-diagram {
   position: relative;
   min-height: 22rem;
