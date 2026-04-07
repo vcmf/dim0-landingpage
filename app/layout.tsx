@@ -39,28 +39,27 @@ const gochiHand = Gochi_Hand({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dim0.net"),
   title: {
-    default: "Dim0 | AI Thinking Canvas for Notes, Code, Widgets, and Agents",
+    default: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
     template: "%s | Dim0",
   },
   description:
-    "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+    "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
   alternates: {
     canonical: "/",
   },
   keywords: [
+    "AI canvas",
+    "visual workspace",
     "AI thinking canvas",
-    "agent-native canvas",
     "visual reasoning workspace",
-    "board-native AI agent",
-    "knowledge graph canvas",
-    "spatial workspace",
     "AI whiteboard",
-    "notes code widgets",
+    "infinite canvas for notes and AI",
+    "notes diagrams code",
   ],
   openGraph: {
-    title: "Dim0 | AI Thinking Canvas for Notes, Code, Widgets, and Agents",
+    title: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
     description:
-      "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+      "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
     url: "https://dim0.net",
     siteName: "Dim0",
     type: "website",
@@ -69,15 +68,15 @@ export const metadata: Metadata = {
         url: "/app-main-screen.png",
         width: 1920,
         height: 1080,
-        alt: "Dim0 agent-native thinking canvas",
+        alt: "Dim0 AI canvas for notes, diagrams, code, and visual thinking",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dim0 | AI Thinking Canvas for Notes, Code, Widgets, and Agents",
+    title: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
     description:
-      "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+      "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
     images: ["/app-main-screen.png"],
   },
   robots: {

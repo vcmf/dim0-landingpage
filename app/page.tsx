@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ComponentType, useEffect, useState } from "react";
+import { type ComponentType, type ReactNode, useEffect, useRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowRight01Icon,
@@ -31,6 +31,7 @@ import { GitHubIcon } from "./components/github-icon";
 type ProofCard = {
   title: string;
   image: string;
+  video?: string;
   alt: string;
   markerIcon: unknown;
   bullets: string[];
@@ -75,6 +76,7 @@ const proofCards: ProofCard[] = [
   {
     title: "Spatial Thinking, Native To The Board",
     image: "/richgraph-light.png",
+    video: "/note-shapes.mp4",
     alt: "dim0 rich graph canvas with formatted text nodes and diagram shapes",
     markerIcon: PaintBoardIcon,
     bullets: [
@@ -106,19 +108,20 @@ const proofCards: ProofCard[] = [
     ],
   },
   {
-    title: "Documents, Code, And Widgets In One Surface",
+    title: "Code, Charts, Widgets, And Documents On One Surface",
     image: "/doc-code-widget.png",
     alt: "dim0 board with documents, code, and live widgets on one surface",
     markerIcon: File01Icon,
     bullets: [
-      "Upload documents directly onto the board and keep their context connected to your thinking.",
       "Run code inside graph nodes with sandboxed execution, no external environment needed.",
-      "Generate live HTML and JS widgets that sit on the canvas alongside everything else.",
+      "Generate charts, visual explainers, and live widgets that sit directly on the canvas.",
+      "Upload documents onto the board and keep their context connected to your thinking.",
     ],
   },
   {
     title: "Present Directly From The Canvas",
     image: "/present-mode.png",
+    video: "/present-mode.mp4",
     alt: "dim0 presentation mode with framed board content",
     markerIcon: PresentationBarChart01Icon,
     bullets: [
@@ -293,7 +296,7 @@ const structuredData = {
       operatingSystem: "Web",
       url: "https://dim0.net",
       description:
-        "Dim0 is an agent-native AI thinking canvas for visual reasoning, notes, documents, code, widgets, and board-aware agents working together on one surface.",
+        "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
       publisher: {
         "@id": "https://dim0.net/#organization",
       },
@@ -304,8 +307,96 @@ const structuredData = {
       },
       softwareHelp: "https://github.com/vcmf/dim0#readme",
     },
+    {
+      "@type": "FAQPage",
+      "@id": "https://dim0.net/#faq",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
   ],
 };
+
+function InteractiveVideoPoster({
+  poster,
+  videoSrc,
+  alt,
+  containerClassName,
+  videoClassName,
+  playButtonClassName,
+  overlay,
+}: {
+  poster: string;
+  videoSrc: string;
+  alt: string;
+  containerClassName: string;
+  videoClassName: string;
+  playButtonClassName: string;
+  overlay?: ReactNode;
+}) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    if (video.paused || video.ended) {
+      if (video.ended) {
+        video.currentTime = 0;
+      }
+      void video.play();
+      setIsPlaying(true);
+      return;
+    }
+
+    video.pause();
+    video.currentTime = 0;
+    video.load();
+    setIsPlaying(false);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={togglePlayback}
+      className={containerClassName}
+      aria-label={isPlaying ? `Pause video: ${alt}` : `Play video: ${alt}`}
+    >
+      <video
+        ref={videoRef}
+        poster={poster}
+        preload="metadata"
+        playsInline
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={(event) => {
+          event.currentTarget.currentTime = 0;
+          event.currentTarget.load();
+          setIsPlaying(false);
+        }}
+        className={videoClassName}
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      {!isPlaying ? (
+        <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <span className={playButtonClassName}>
+            <span className="ml-1 h-0 w-0 border-b-[12px] border-l-[18px] border-t-[12px] border-b-transparent border-l-current border-t-transparent sm:border-b-[14px] sm:border-l-[22px] sm:border-t-[14px]" />
+          </span>
+        </span>
+      ) : null}
+      {!isPlaying && overlay ? overlay : null}
+    </button>
+  );
+}
 
 export default function Home() {
   const [preview, setPreview] = useState<PreviewImage | null>(null);
@@ -367,13 +458,13 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
             <strong>Dim0</strong> (read &quot;dee-moh&quot;) is where you map
             ideas, let AI work directly on the canvas, and turn the result into
-            documents, diagrams, or code without switching tools.
+            notes, diagrams, charts, visual explainers, and code without
+            switching tools.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Built for <strong className="text-foreground">researchers</strong>,{" "}
-            <strong className="text-foreground">founders</strong>,{" "}
-            and <strong className="text-foreground">builders</strong> who think
-            visually and move fast.
+            For the ones who think in{" "}
+            <span className="rough-highlight">connections</span>
+            , not bullet points.
           </p>
           <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground sm:text-base">
             {heroSignals.map((item, index) => (
@@ -409,20 +500,24 @@ export default function Home() {
 
         <section id="product" className="mx-auto mt-18 max-w-6xl">
           <div className="relative overflow-hidden rounded-xl border border-border/70 bg-card/70 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_35px_90px_-45px_rgba(34,211,238,0.8)] backdrop-blur-sm">
-            <Image
-              src="/app-main-screen.png"
-              alt="dim0 application main screen"
-              width={1920}
-              height={1080}
-              priority
-              className="block h-auto w-full"
+            <InteractiveVideoPoster
+              poster="/app-main-screen.png"
+              videoSrc="/demo.mp4"
+              alt="dim0 application main demo"
+              containerClassName="group relative block aspect-[16/9] w-full cursor-pointer overflow-hidden"
+              videoClassName="absolute left-1/2 top-1/2 block h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] -translate-x-1/2 -translate-y-1/2 object-cover"
+              playButtonClassName="flex h-20 w-20 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 group-hover:scale-105 group-hover:bg-black/55 sm:h-24 sm:w-24"
+              overlay={
+                <>
+                  <div className="font-informal pointer-events-none absolute left-10 top-10 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:left-14 sm:top-14">
+                    Board Canvas
+                  </div>
+                  <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
+                    Board Agent
+                  </div>
+                </>
+              }
             />
-            <div className="font-informal pointer-events-none absolute left-10 top-10 rounded-full border border-secondary/80 bg-secondary/20 px-3 py-1.5 text-xs font-medium text-secondary backdrop-blur-md sm:left-14 sm:top-14">
-              Board Canvas
-            </div>
-            <div className="font-informal pointer-events-none absolute right-10 top-8 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:right-14 sm:top-12">
-              Board Agent
-            </div>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Think, generate, and present from the same canvas.
@@ -619,8 +714,9 @@ export default function Home() {
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
             Most tools bolt AI onto a canvas. <strong>Dim0</strong> is built
-            the other way around: the canvas is designed for an agent that can
-            read context, use tools, and write results directly back into the
+            the other way around: the canvas itself, with notes, code,
+            widgets, and nested boards, is built for an agent that can read
+            context, use tools, and write results directly back into the
             workspace.
           </p>
           <div className="mt-6 rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-sm">
@@ -700,20 +796,31 @@ export default function Home() {
                     <div
                       className={`rounded-3xl border border-border/80 bg-card/45 p-2 shadow-[0_18px_40px_-32px_rgba(0,0,0,0.55)] transition duration-300 hover:border-border ${imageTiltClass}`}
                     >
-                      <button
-                        type="button"
-                        aria-label={`Open full image: ${card.title}`}
-                        onClick={() => setPreview({ src: card.image, alt: card.alt })}
-                        className="block aspect-[16/10] w-full overflow-hidden rounded-2xl"
-                      >
-                        <Image
-                          src={card.image}
+                      {card.video ? (
+                        <InteractiveVideoPoster
+                          poster={card.image}
+                          videoSrc={card.video}
                           alt={card.alt}
-                          width={1400}
-                          height={900}
-                          className="block h-full w-full rounded-2xl object-cover transition-transform duration-300 ease-out md:hover:scale-[1.05]"
+                          containerClassName="group relative block aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-2xl"
+                          videoClassName="absolute left-1/2 top-1/2 block h-[calc(100%+0.35rem)] w-[calc(100%+0.35rem)] -translate-x-1/2 -translate-y-1/2 rounded-2xl object-cover"
+                          playButtonClassName="flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white shadow-[0_18px_40px_-20px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 group-hover:scale-105 group-hover:bg-black/55"
                         />
-                      </button>
+                      ) : (
+                        <button
+                          type="button"
+                          aria-label={`Open full image: ${card.title}`}
+                          onClick={() => setPreview({ src: card.image, alt: card.alt })}
+                          className="block aspect-[16/10] w-full overflow-hidden rounded-2xl"
+                        >
+                          <Image
+                            src={card.image}
+                            alt={card.alt}
+                            width={1400}
+                            height={900}
+                            className="block h-full w-full rounded-2xl object-cover transition-transform duration-300 ease-out md:hover:scale-[1.05]"
+                          />
+                        </button>
+                      )}
                     </div>
                   </div>
                 </article>
