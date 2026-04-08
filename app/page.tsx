@@ -97,7 +97,7 @@ const proofCards: ProofCard[] = [
     ],
   },
   {
-    title: "A Board-Aware Agent, Not A Sidebar Bot",
+    title: "A Board-Aware Agent, Not An Add-On",
     image: "/assistant-light.png",
     alt: "dim0 AI assistant panel with web search and reasoning steps",
     markerIcon: ChatBotIcon,
