@@ -1,83 +1,82 @@
 import {
-  Gochi_Hand,
-  Instrument_Sans,
+  Architects_Daughter,
+  Atkinson_Hyperlegible_Next,
+  Inconsolata,
+  Lora,
   Shantell_Sans,
-  Source_Serif_4,
-  Ubuntu_Mono,
 } from "next/font/google";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const instrumentSans = Instrument_Sans({
+const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const sourceSerif = Source_Serif_4({
+const lora = Lora({
   variable: "--font-serif",
   subsets: ["latin"],
 });
 
-const ubuntuMono = Ubuntu_Mono({
+const inconsolata = Inconsolata({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
+});
+
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-handwriting",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const shantellSans = Shantell_Sans({
-  variable: "--font-handwriting",
-  subsets: ["latin"],
-});
-
-const gochiHand = Gochi_Hand({
   variable: "--font-informal",
   subsets: ["latin"],
-  weight: "400",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dim0.net"),
   title: {
-    default: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
+    default: "Dim0 — Your canvas thinks back.",
     template: "%s | Dim0",
   },
   description:
-    "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
+    "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "AI canvas",
+    "thinking canvas",
     "visual workspace",
-    "AI thinking canvas",
-    "visual reasoning workspace",
     "AI whiteboard",
-    "infinite canvas for notes and AI",
+    "infinite canvas",
+    "agent canvas",
     "notes diagrams code",
   ],
   openGraph: {
-    title: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
+    title: "Dim0 — Your canvas thinks back.",
     description:
-      "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
+      "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
     url: "https://dim0.net",
     siteName: "Dim0",
     type: "website",
     images: [
       {
-        url: "/app-main-screen.png",
+        url: "/app-screenshot.png",
         width: 1920,
         height: 1080,
-        alt: "Dim0 AI canvas for notes, diagrams, code, and visual thinking",
+        alt: "A Dim0 board showing nested research, sticky notes, code widgets, charts, and the AI agent panel",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dim0 | AI Canvas for Notes, Diagrams, Code, and Visual Thinking",
+    title: "Dim0 — Your canvas thinks back.",
     description:
-      "Dim0 is an AI canvas where you map ideas, work with agents directly on the board, and turn the result into notes, diagrams, charts, visual explainers, and code.",
-    images: ["/app-main-screen.png"],
+      "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
+    images: ["/app-screenshot.png"],
   },
   robots: {
     index: true,
@@ -92,7 +91,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${instrumentSans.variable} ${sourceSerif.variable} ${ubuntuMono.variable} ${shantellSans.variable} ${gochiHand.variable} antialiased`}
+        className={`${atkinson.variable} ${lora.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
       >
         {children}
       </body>
