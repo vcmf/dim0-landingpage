@@ -36,6 +36,15 @@ export function SiteFooter() {
   return (
     <div className="foot">
       <span>© 2026 Dim0 · The thinking canvas</span>
+      <a className="foot-badge" href="https://softwareontheweb.com" rel="dofollow">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://softwareontheweb.com/images/badge.webp?v=1778309154"
+          alt="Featured on Software on the Web"
+          width={160}
+          height={56}
+        />
+      </a>
       <div className="foot-links">
         <a href="https://app.dim0.net">Cloud</a>
         <a href="https://github.com/vcmf/dim0">GitHub</a>

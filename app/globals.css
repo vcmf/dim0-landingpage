@@ -827,6 +827,17 @@ a.composer.composer-cta:hover .composer-tooltip {
 }
 .foot-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
 .foot-links a:hover { color: var(--sienna); }
+.foot-badge {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.foot-badge:hover { opacity: 0.82; transform: translateY(-1px); }
+.foot-badge img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
 
 /* ============================================================
    LEGAL PAGES (Privacy, Terms)
