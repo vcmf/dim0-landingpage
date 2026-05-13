@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     template: "%s | Dim0",
   },
   description:
-    "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
+    "An infinite canvas where notes, sketches, code, and AI agents work together on one board. Open source, multi-model.",
   alternates: {
     canonical: "/",
   },
@@ -58,16 +58,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dim0 — Your canvas thinks back.",
     description:
-      "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
+      "An infinite canvas where notes, sketches, code, and AI agents work together on one board. Open source, multi-model.",
     url: "https://dim0.net",
     siteName: "Dim0",
     type: "website",
     images: [
       {
-        url: "/app-screenshot.png",
+        url: "/board-mindmap-deaging.png",
         width: 1920,
         height: 1080,
-        alt: "A Dim0 board showing nested research, sticky notes, code widgets, charts, and the AI agent panel",
+        alt: "A Dim0 board showing a mindmap generated from a question, with sticky notes, code, charts, and an AI agent panel",
       },
     ],
   },
@@ -75,8 +75,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dim0 — Your canvas thinks back.",
     description:
-      "Dim0 is a thinking canvas where notes, docs, code, widgets, and AI agents live on one board. Research visually, think spatially, build with AI.",
-    images: ["/app-screenshot.png"],
+      "An infinite canvas where notes, sketches, code, and AI agents work together on one board.",
+    images: ["/board-mindmap-deaging.png"],
   },
   robots: {
     index: true,
