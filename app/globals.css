@@ -1107,18 +1107,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   aspect-ratio: 5 / 3;
-  position: relative;
 }
-.theme-preview::after {
-  content: "";
-  position: absolute;
-  top: 8%; bottom: 8%;
-  left: 50%;
-  width: 1px;
-  background: color-mix(in oklab, var(--foreground) 8%, transparent);
-  pointer-events: none;
-}
-
 .theme-half {
   position: relative;
   background: var(--th-bg);
@@ -1126,6 +1115,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 12px 12px 12px 22px;
   display: flex;
   flex-direction: column;
+}
+.theme-half + .theme-half {
+  border-left: 1px solid color-mix(in oklab, black 10%, transparent);
 }
 .theme-mock-sidebar {
   position: absolute;
