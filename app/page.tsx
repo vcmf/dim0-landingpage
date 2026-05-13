@@ -501,22 +501,105 @@ function UseCasesSection() {
   );
 }
 
+type ThemePalette = {
+  bg: string;
+  surface: string;
+  text: string;
+  accent: string;
+  border: string;
+};
+
+type Theme = {
+  name: string;
+  light: ThemePalette;
+  dark: ThemePalette;
+};
+
+const THEMES: Theme[] = [
+  {
+    name: "Parchment",
+    light: { bg: "#f5efe6", surface: "#fff9ef", text: "#3a2e23", accent: "#c66b3a", border: "#e2d5c0" },
+    dark:  { bg: "#2b231b", surface: "#3b2f25", text: "#efe0c8", accent: "#d97548", border: "#4a3c30" },
+  },
+  {
+    name: "Catppuccin",
+    light: { bg: "#eff1f5", surface: "#e6e9ef", text: "#4c4f69", accent: "#8839ef", border: "#dce0e8" },
+    dark:  { bg: "#1e1e2e", surface: "#313244", text: "#cdd6f4", accent: "#cba6f7", border: "#45475a" },
+  },
+  {
+    name: "Tokyo Night",
+    light: { bg: "#d5d6db", surface: "#cbccd1", text: "#343b58", accent: "#34548a", border: "#b7c5d3" },
+    dark:  { bg: "#1a1b26", surface: "#24283b", text: "#c0caf5", accent: "#7aa2f7", border: "#414868" },
+  },
+  {
+    name: "Gruvbox",
+    light: { bg: "#fbf1c7", surface: "#ebdbb2", text: "#3c3836", accent: "#d65d0e", border: "#d5c4a1" },
+    dark:  { bg: "#282828", surface: "#3c3836", text: "#ebdbb2", accent: "#fe8019", border: "#504945" },
+  },
+  {
+    name: "Monokai Pro",
+    light: { bg: "#fafafa", surface: "#f0eee6", text: "#2c292d", accent: "#ff6188", border: "#dfdbd2" },
+    dark:  { bg: "#2d2a2e", surface: "#403e41", text: "#fcfcfa", accent: "#ff6188", border: "#5b595c" },
+  },
+  {
+    name: "Rosé Pine",
+    light: { bg: "#faf4ed", surface: "#f2e9e1", text: "#575279", accent: "#b4637a", border: "#dfdad9" },
+    dark:  { bg: "#232136", surface: "#2a273f", text: "#e0def4", accent: "#ea9a97", border: "#393552" },
+  },
+];
+
+function ThemeMockup({ palette }: { palette: ThemePalette }) {
+  const style = {
+    "--th-bg": palette.bg,
+    "--th-surface": palette.surface,
+    "--th-text": palette.text,
+    "--th-accent": palette.accent,
+    "--th-border": palette.border,
+  } as React.CSSProperties;
+  return (
+    <div className="theme-half" style={style}>
+      <div className="theme-mock-sidebar">
+        <span className="theme-mock-sidebar-line" />
+        <span className="theme-mock-sidebar-line" />
+        <span className="theme-mock-sidebar-line" />
+      </div>
+      <div className="theme-mock-board">
+        <div className="theme-mock-title" />
+        <div className="theme-mock-line" />
+        <div className="theme-mock-note">
+          <span className="theme-mock-note-dot" />
+          <span className="theme-mock-note-line" />
+          <span className="theme-mock-note-line theme-mock-note-line-short" />
+        </div>
+        <div className="theme-mock-pill">
+          <span className="theme-mock-pill-dot" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ThemesSection() {
   return (
-    <section className="section section-narrow" id="themes">
+    <section className="section" id="themes">
       <div className="section-eyebrow">— Themes</div>
-      <h2 className="section-title">Twelve themes. Pick your aesthetic.</h2>
+      <h2 className="section-title">Six themes. Light and dark.</h2>
       <p className="section-lede">
-        Parchment, cappuccino, bengali, bayoux. Whatever makes you want to open the app.
+        Parchment, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine — pick the one that makes you want to open the app.
       </p>
-      <div className="themes-frame">
-        <Image
-          src="/themes-grid.png"
-          alt="A grid of twelve themes available in Dim0"
-          width={2400}
-          height={1500}
-          sizes="(max-width: 1120px) 100vw, 1120px"
-        />
+      <div className="themes-grid">
+        {THEMES.map((t) => (
+          <article className="theme-card" key={t.name}>
+            <div className="theme-preview">
+              <ThemeMockup palette={t.light} />
+              <ThemeMockup palette={t.dark} />
+            </div>
+            <div className="theme-card-meta">
+              <span className="theme-card-name">{t.name}</span>
+              <span className="theme-card-modes">light · dark</span>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
