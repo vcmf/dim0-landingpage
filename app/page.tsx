@@ -579,7 +579,7 @@ function OssSection() {
         <div className="trio-card">
           <div className="trio-icon"><ArrowSquareOutIcon size={22} /></div>
           <h4 className="trio-title">Take it with you</h4>
-          <p className="trio-body">Boards and outputs export cleanly. Portable by default.</p>
+          <p className="trio-body">Notes are pure Markdown. Boards export cleanly. No proprietary format.</p>
         </div>
       </div>
 
@@ -625,7 +625,7 @@ function PrivacySection() {
         <div className="trio-card">
           <div className="trio-icon"><HouseIcon size={22} /></div>
           <h4 className="trio-title">Self-host for total control</h4>
-          <p className="trio-body">Open source, MIT licensed. One-command Docker. Local databases. Bring your own model keys if you want.</p>
+          <p className="trio-body">Open source, MIT licensed. Notes in pure Markdown. One-command Docker. Bring your own model keys if you want.</p>
         </div>
       </div>
 
@@ -688,6 +688,10 @@ const FAQS = [
   {
     q: "How is my data used?",
     a: "On the cloud at app.dim0.net: prompts and board context are sent only to the model provider that produces the answer (Anthropic, OpenAI, Google, etc.) under their terms. We don’t train on your content, we don’t sell data, we don’t profile you for ads, and we run no behavioral telemetry on your boards. Self-host: everything stays on your infrastructure — local Postgres and vector DB, your own model keys, no calls back to us.",
+  },
+  {
+    q: "What format are my notes stored in?",
+    a: "Pure Markdown. Download any note and paste it into any other editor — Obsidian, VS Code, plain text. Boards export cleanly too. No proprietary blocks, no vendor format you can’t walk away from.",
   },
 ];
 

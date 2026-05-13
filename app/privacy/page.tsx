@@ -21,7 +21,7 @@ const sections: LegalSection[] = [
       "We will never train models on your boards, notes, prompts, or uploads. Not ours, not anyone else’s.",
       "We will never sell your data, share it for advertising, or use it to profile you.",
       "We will never run session replay, behavioral analytics, or telemetry that watches what you do inside the canvas.",
-      "We will never hold your work hostage. Boards and outputs export cleanly, the codebase is MIT licensed, and self-hosting is supported.",
+      "We will never hold your work hostage. Notes are stored as plain Markdown, boards export cleanly, the codebase is MIT licensed, and self-hosting is supported.",
     ],
   },
   {
