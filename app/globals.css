@@ -257,9 +257,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---------- HERO VIDEO ---------- */
 .hero-video-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
   margin: 8px auto 0;
   max-width: 1080px;
 }
+.hero-video-wrap > .hero-video-frame { width: 100%; }
 .hero-video-frame {
   position: relative;
   border-radius: var(--radius-xl);
@@ -286,7 +291,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero-video-caption {
   display: inline-flex; align-items: center; gap: 8px;
-  margin: 16px auto 0;
+  margin: 0;
   padding: 6px 12px 6px 10px;
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--card) 88%, transparent);
@@ -311,7 +316,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 720px) {
   .hero-video-caption {
     font-size: 10.5px;
-    bottom: 10px;
     padding: 5px 10px 5px 8px;
   }
 }
