@@ -1098,7 +1098,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: auto;
 }
 
-/* ---------- PRIVACY "WHAT WE NEVER DO" STRIP ---------- */
+/* ---------- PRIVACY NEVER-DO STRIP ---------- */
 .never-strip {
   margin-top: 36px;
   padding: 24px 28px;
