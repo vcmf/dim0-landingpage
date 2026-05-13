@@ -21,10 +21,13 @@ import {
   GithubLogoIcon,
   GraphIcon,
   HouseIcon,
+  LockKeyIcon,
   MagnifyingGlassIcon,
   PaperclipIcon,
   PenNibIcon,
+  ShieldCheckIcon,
   SparkleIcon,
+  XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { GraphBackground } from "./components/graph-background";
 import {
@@ -199,7 +202,7 @@ function Hero() {
             className="hero-eyebrow-link"
           >
             <GithubLogoIcon size={11} />
-            <span className="mono">open source · v0.9</span>
+            <span className="mono">MIT · v0.3 · privacy-first</span>
           </a>
         </div>
         <h1 className="hero-headline">
@@ -212,6 +215,8 @@ function Hero() {
         <div className="hero-microcopy">
           <span className="hero-microcopy-dot" />
           <span>Free to start</span>
+          <span className="hero-microcopy-sep">·</span>
+          <span>No training on your work</span>
           <span className="hero-microcopy-sep">·</span>
           <span>Open source</span>
           <span className="hero-microcopy-sep">·</span>
@@ -590,6 +595,55 @@ function OssSection() {
   );
 }
 
+const NEVERS = [
+  "Train on your content",
+  "Sell your data",
+  "Profile you for ads",
+  "Lock your boards in",
+];
+
+function PrivacySection() {
+  return (
+    <section className="section section-narrow" id="privacy">
+      <div className="section-eyebrow">— Privacy</div>
+      <h2 className="section-title">Your work is yours.</h2>
+      <p className="section-lede">
+        Use the cloud with nothing to configure, or run it yourself. Either way, your content stays yours.
+      </p>
+
+      <div className="trio">
+        <div className="trio-card">
+          <div className="trio-icon"><LockKeyIcon size={22} /></div>
+          <h4 className="trio-title">No training on your boards</h4>
+          <p className="trio-body">Your prompts, notes, and content are never used to train models — ours or anyone else&apos;s.</p>
+        </div>
+        <div className="trio-card">
+          <div className="trio-icon"><ShieldCheckIcon size={22} /></div>
+          <h4 className="trio-title">No ads. No profiling. No telemetry.</h4>
+          <p className="trio-body">We don&apos;t sell data, we don&apos;t track your activity, we don&apos;t mine your work to target you. We make a thinking tool, not an ad business.</p>
+        </div>
+        <div className="trio-card">
+          <div className="trio-icon"><HouseIcon size={22} /></div>
+          <h4 className="trio-title">Self-host for total control</h4>
+          <p className="trio-body">Open source, MIT licensed. One-command Docker. Local databases. Bring your own model keys if you want.</p>
+        </div>
+      </div>
+
+      <div className="never-strip">
+        <div className="never-strip-eyebrow">— What Dim0 will never do</div>
+        <ul className="never-strip-list">
+          {NEVERS.map((n) => (
+            <li key={n}>
+              <span className="never-icon"><XIcon size={11} weight="bold" /></span>
+              <span>{n}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 const FAQS = [
   {
     q: "What is Dim0, exactly?",
@@ -633,7 +687,7 @@ const FAQS = [
   },
   {
     q: "How is my data used?",
-    a: "We don’t sell data or train on your content. Prompts go only to the model provider you choose, per their terms.",
+    a: "On the cloud at app.dim0.net: prompts and board context are sent only to the model provider that produces the answer (Anthropic, OpenAI, Google, etc.) under their terms. We don’t train on your content, we don’t sell data, we don’t profile you for ads, and we run no behavioral telemetry on your boards. Self-host: everything stays on your infrastructure — local Postgres and vector DB, your own model keys, no calls back to us.",
   },
 ];
 
@@ -688,6 +742,8 @@ function CTA() {
             <span className="cta-canvas-sep">·</span>
             <span>Open source</span>
             <span className="cta-canvas-sep">·</span>
+            <span>Your data stays yours</span>
+            <span className="cta-canvas-sep">·</span>
             <span className="mono">app.dim0.net</span>
           </div>
         </div>
@@ -711,6 +767,7 @@ export default function Page() {
       <ThemesSection />
       <ModelsSection />
       <OssSection />
+      <PrivacySection />
       <FAQ />
       <CTA />
     </>

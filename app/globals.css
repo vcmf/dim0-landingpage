@@ -1098,6 +1098,54 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: auto;
 }
 
+/* ---------- PRIVACY "WHAT WE NEVER DO" STRIP ---------- */
+.never-strip {
+  margin-top: 36px;
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+}
+.never-strip-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sienna);
+  margin-bottom: 16px;
+}
+.never-strip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 28px;
+}
+.never-strip-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  color: var(--foreground);
+  letter-spacing: -0.005em;
+}
+.never-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--sienna) 14%, transparent);
+  color: var(--sienna);
+}
+@media (max-width: 600px) {
+  .never-strip-list { grid-template-columns: 1fr; }
+  .never-strip { padding: 20px 18px; }
+}
+
 /* ---------- OSS ACTIONS ---------- */
 .oss-actions {
   margin-top: 40px;
