@@ -4,55 +4,71 @@ import { LegalPage, type LegalSection } from "../components/legal-page";
 export const metadata: Metadata = {
   title: "Privacy",
   description:
-    "Privacy policy for Dim0, the thinking canvas. Learn what we collect, what we do not do with your data, and how cloud and self-hosted usage differ.",
+    "Privacy policy for Dim0, the thinking canvas. We don't train on your content, we don't sell data, and we run no behavioral telemetry. Self-host for total control.",
 };
 
 const sections: LegalSection[] = [
   {
     heading: "Our approach",
     body: [
-      "We believe your work should belong to you. Dim0 is built to help you think, create, and explore ideas, not to exploit your data.",
-      "We do not sell your data. We do not use your content for ads. We do not use your content to train models for our own benefit.",
+      "Your work is yours. Dim0 is built to help you think, not to mine what you create.",
+      "We don’t train on your content. We don’t sell data. We don’t profile you for ads. We don’t run behavioral telemetry on your boards. If you’d rather not trust a hosted service at all, the same code we run is open source — you can self-host it.",
+    ],
+  },
+  {
+    heading: "What Dim0 will never do",
+    body: [
+      "We will never train models on your boards, notes, prompts, or uploads. Not ours, not anyone else’s.",
+      "We will never sell your data, share it for advertising, or use it to profile you.",
+      "We will never run session replay, behavioral analytics, or telemetry that watches what you do inside the canvas.",
+      "We will never hold your work hostage. Notes are stored as plain Markdown, boards export cleanly, the codebase is MIT licensed, and self-hosting is supported.",
     ],
   },
   {
     heading: "What we collect",
     body: [
-      "We try to collect the minimum information needed to run the product. Depending on how you use Dim0, that may include account information, content you upload or create, and basic technical logs needed for security and reliability.",
-      "If you contact us directly, we will also receive the information you choose to send us, such as your email address and message.",
+      "We collect the minimum needed to run the product: account information, the content you create or upload, and basic technical logs needed for security, reliability, and abuse prevention.",
+      "If you contact us directly, we also receive whatever you choose to send us, such as your email address and message.",
     ],
   },
   {
     heading: "How we use data",
     body: [
-      "We use data only to provide the features you ask for, keep the service working, improve reliability, respond to support requests, and protect the product from abuse.",
-      "We do not use your content for advertising or profiling. We do not treat your work as a resource to mine.",
+      "Only to provide the features you asked for, keep the service running, fix things when they break, respond to support requests, and protect against abuse.",
+      "Your content is not a resource we mine. It is not training data. It is not material for advertising or profiling.",
     ],
   },
   {
     heading: "AI and model providers",
     body: [
-      "When you use cloud features that require AI models, relevant prompts, board context, and uploaded content may be sent to model providers in order to generate the response you requested.",
-      "Those providers process data under their own terms and policies. We aim to send only what is needed for the requested feature to work.",
+      "When you use cloud features that need an AI model, the prompts, board context, and uploaded content relevant to your request are sent to the model provider that produces the response (Anthropic, OpenAI, Google, Mistral, DeepSeek, Qwen, Moonshot, or Z.ai, depending on the model you pick). We aim to send only what is needed for the requested feature to work.",
+      "Model providers process that data under their own terms and policies. We do not pass your content to providers for any purpose other than answering the request you made, and we do not retain copies of your prompts to train models.",
     ],
   },
   {
     heading: "Self-hosting",
     body: [
-      "If you self-host Dim0, you control your own infrastructure and data handling. In that setup, your privacy and retention practices depend on how you deploy and configure the system.",
+      "If you self-host Dim0, your content stays on your infrastructure. Local Postgres, a local vector database, and your own model keys — no calls back to us. Privacy and retention in that mode depend entirely on how you deploy and configure the system.",
+    ],
+  },
+  {
+    heading: "Telemetry",
+    body: [
+      "We do not run behavioral analytics, session replay, or activity tracking inside the canvas. We do not build a profile of how you use Dim0.",
+      "We do operate the minimum logging needed to keep the service running and secure — for example, error reports and basic request logs. Those logs are not used for advertising or profiling.",
     ],
   },
   {
     heading: "Security and retention",
     body: [
-      "We take reasonable steps to protect data and keep systems secure, but no service can promise perfect security.",
-      "We retain data only as long as needed to operate the service, meet legal obligations, resolve disputes, and prevent abuse.",
+      "We take reasonable steps to protect data and keep systems secure, though no service can promise perfect security.",
+      "We retain data only as long as needed to operate the service, meet legal obligations, resolve disputes, and prevent abuse. You can request deletion at any time.",
     ],
   },
   {
     heading: "Your choices",
     body: [
-      "You can contact us if you have questions about your data, want to request deletion, or need help understanding how your information is handled.",
+      "You can contact us about your data, request deletion, or get help understanding how your information is handled. Email contact@dim0.net.",
     ],
   },
   {
@@ -68,7 +84,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Dim0 · Privacy"
       title="Privacy Policy"
-      effective="April 7, 2026"
+      effective="May 13, 2026"
       sections={sections}
     />
   );
