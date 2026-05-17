@@ -106,6 +106,19 @@ export function SiteFooter() {
           height={56}
         />
       </a>
+      <a
+        className="foot-badge"
+        href="https://startupfa.me/s/dim0?utm_source=www.dim0.net"
+        target="_blank"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://startupfa.me/badges/featured-badge-small.webp"
+          alt="Dim0 - Featured on Startup Fame"
+          width={224}
+          height={36}
+        />
+      </a>
       <div className="foot-links">
         <a href={APP_URL}>Cloud</a>
         <a href={GH_URL}>GitHub</a>
