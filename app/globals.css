@@ -884,10 +884,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 1120px; margin: 80px auto 0;
   padding: 24px 32px;
   border-top: 1px solid var(--border);
-  display: flex; align-items: center; gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   font-size: 12px;
   color: var(--muted-foreground);
   font-family: var(--font-mono);
+}
+.foot-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.foot-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .foot-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
@@ -1470,8 +1484,10 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 
   .foot {
     margin-top: 56px;
-    justify-content: center;
     text-align: center;
+  }
+  .foot-meta {
+    justify-content: center;
   }
   .foot-links {
     margin-left: 0;

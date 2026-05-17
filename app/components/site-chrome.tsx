@@ -96,23 +96,40 @@ export function SiteNav() {
 export function SiteFooter() {
   return (
     <div className="foot">
-      <span>© 2026 Dim0 · The thinking canvas</span>
-      <a className="foot-badge" href="https://softwareontheweb.com" rel="dofollow">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://softwareontheweb.com/images/badge.webp?v=1778309154"
-          alt="Featured on Software on the Web"
-          width={160}
-          height={56}
-        />
-      </a>
-      <div className="foot-links">
-        <a href={APP_URL}>Cloud</a>
-        <a href={GH_URL}>GitHub</a>
-        <a href={`${GH_URL}#readme`}>README</a>
-        <a href="mailto:contact@dim0.net">Contact</a>
-        <Link href="/privacy">Privacy</Link>
-        <Link href="/terms">Terms</Link>
+      <div className="foot-meta">
+        <span>© 2026 Dim0 · The thinking canvas · Paris, France</span>
+        <div className="foot-links">
+          <a href={APP_URL}>Cloud</a>
+          <a href={GH_URL}>GitHub</a>
+          <a href={`${GH_URL}#readme`}>README</a>
+          <a href="mailto:contact@dim0.net">Contact</a>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+        </div>
+      </div>
+      <div className="foot-badges">
+        <a className="foot-badge" href="https://softwareontheweb.com" rel="dofollow">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://softwareontheweb.com/images/badge.webp?v=1778309154"
+            alt="Featured on Software on the Web"
+            width={200}
+            height={56}
+          />
+        </a>
+        <a
+          className="foot-badge"
+          href="https://startupfa.me/s/dim0?utm_source=www.dim0.net"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://startupfa.me/badges/featured-badge-small.webp"
+            alt="Dim0 - Featured on Startup Fame"
+            width={224}
+            height={36}
+          />
+        </a>
       </div>
     </div>
   );
