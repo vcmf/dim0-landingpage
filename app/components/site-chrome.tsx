@@ -130,6 +130,19 @@ export function SiteFooter() {
             height={36}
           />
         </a>
+        <a
+          className="foot-badge"
+          href="https://fazier.com/launches/www.dim0.net"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light"
+            alt="Fazier badge"
+            width={120}
+            height={40}
+          />
+        </a>
       </div>
     </div>
   );
