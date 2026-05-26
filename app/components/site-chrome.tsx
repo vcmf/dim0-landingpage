@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { href: "/#why", label: "Why" },
   { href: "/#how", label: "How it works" },
   { href: "/#features", label: "Features" },
+  { href: "/engine", label: "Engine" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#themes", label: "Themes" },
   { href: "/#faq", label: "FAQ" },
@@ -102,24 +103,33 @@ export function SiteFooter() {
           <a href={APP_URL}>Cloud</a>
           <a href={GH_URL}>GitHub</a>
           <a href={`${GH_URL}#readme`}>README</a>
+          <Link href="/engine">Engine</Link>
           <a href="mailto:contact@dim0.net">Contact</a>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
         </div>
       </div>
       <div className="foot-badges">
-        <a className="foot-badge" href="https://softwareontheweb.com" rel="dofollow">
+        <a
+          className="foot-badge"
+          href="https://softwareontheweb.com"
+          rel="nofollow sponsored noopener"
+          target="_blank"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://softwareontheweb.com/images/badge.webp?v=1778309154"
             alt="Featured on Software on the Web"
             width={200}
             height={56}
+            loading="lazy"
+            decoding="async"
           />
         </a>
         <a
           className="foot-badge"
           href="https://startupfa.me/s/dim0?utm_source=www.dim0.net"
+          rel="nofollow sponsored noopener"
           target="_blank"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -128,19 +138,24 @@ export function SiteFooter() {
             alt="Dim0 - Featured on Startup Fame"
             width={224}
             height={36}
+            loading="lazy"
+            decoding="async"
           />
         </a>
         <a
           className="foot-badge"
           href="https://fazier.com/launches/www.dim0.net"
+          rel="nofollow sponsored noopener"
           target="_blank"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light"
-            alt="Fazier badge"
+            alt="Fazier badge — Dim0 launch"
             width={120}
             height={40}
+            loading="lazy"
+            decoding="async"
           />
         </a>
       </div>

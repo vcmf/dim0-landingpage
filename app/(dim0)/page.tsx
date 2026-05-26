@@ -18,6 +18,7 @@ import {
   CheckIcon,
   CommandIcon,
   EyeIcon,
+  EyeSlashIcon,
   GithubLogoIcon,
   GraphIcon,
   HouseIcon,
@@ -29,15 +30,16 @@ import {
   SparkleIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { GraphBackground } from "./components/graph-background";
+import Link from "next/link";
+import { GraphBackground } from "../components/graph-background";
 import {
   ArtAgent,
   ArtFragmentation,
   ArtGesture,
   ArtMedia,
   ArtSpatial,
-} from "./components/illustrations";
-import { SiteFooter, SiteNav } from "./components/site-chrome";
+} from "../components/illustrations";
+import { SiteFooter, SiteNav } from "../components/site-chrome";
 
 const APP_URL = "https://app.dim0.net";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -209,7 +211,7 @@ function Hero() {
           Your canvas <em>thinks back.</em>
         </h1>
         <p className="hero-subtitle">
-          An infinite canvas where notes, sketches, code, and AI agents work together on one board.
+          The open-source AI canvas where notes, sketches, code, and agents work together on one infinite board.
         </p>
         <Composer />
         <div className="hero-microcopy">
@@ -257,6 +259,9 @@ function ProductShot() {
       </a>
       <p className="product-shot-caption">
         Sticky notes, code, math, charts, sketches, and an AI agent — all on one board.
+      </p>
+      <p className="product-shot-engine">
+        Rendered with <a href="/engine">canvas-harness</a> — our open-source canvas engine.
       </p>
     </section>
   );
@@ -447,7 +452,7 @@ function UseCasesSection() {
     {
       tag: "Learn",
       title: "Turn a question into a map you can walk.",
-      body: "Ask anything. Get a structured mindmap on your canvas. Follow threads, keep your map, never lose where you were.",
+      body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
       img: "/board-mindmap-deaging.png",
     },
     {
@@ -642,10 +647,10 @@ function ModelsSection() {
 function OssSection() {
   return (
     <section className="section section-narrow">
-      <div className="section-eyebrow">— Open source</div>
+      <div className="section-eyebrow">— Open source · MIT · self-hostable</div>
       <h2 className="section-title">Nothing is trapped.</h2>
       <p className="section-lede">
-        The codebase is public. Run it yourself. Walk away anytime with everything you made.
+        An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
       </p>
 
       <div className="trio">
@@ -682,6 +687,7 @@ const NEVERS = [
   "Train on your content",
   "Sell your data",
   "Profile you for ads",
+  "Run session replay on your canvas",
   "Lock your boards in",
 ];
 
@@ -689,28 +695,48 @@ function PrivacySection() {
   return (
     <section className="section section-narrow" id="privacy">
       <div className="section-eyebrow">— Privacy</div>
-      <h2 className="section-title">Your work is yours.</h2>
+      <h2 className="section-title">
+        Your data <em>stays yours.</em>
+      </h2>
       <p className="section-lede">
-        Use the cloud with nothing to configure, or run it yourself. Either way, your content stays yours.
+        Cloud Dim0 is private by design — not just because you can self-host. Encrypted in
+        transit and at rest, never trained on, no behavioral telemetry. The hosted product
+        respects you the same way the open-source code does.
       </p>
 
       <div className="trio">
         <div className="trio-card">
           <div className="trio-icon"><LockKeyIcon size={22} /></div>
-          <h4 className="trio-title">No training on your boards</h4>
-          <p className="trio-body">Your prompts, notes, and content are never used to train models — ours or anyone else&apos;s.</p>
+          <h4 className="trio-title">Encrypted in transit and at rest</h4>
+          <p className="trio-body">
+            TLS for everything on the wire. At-rest encryption on the database and uploads.
+            No plaintext on the network, no plaintext on disk.
+          </p>
         </div>
         <div className="trio-card">
           <div className="trio-icon"><ShieldCheckIcon size={22} /></div>
-          <h4 className="trio-title">No ads. No profiling. No telemetry.</h4>
-          <p className="trio-body">We don&apos;t sell data, we don&apos;t track your activity, we don&apos;t mine your work to target you. We make a thinking tool, not an ad business.</p>
+          <h4 className="trio-title">Never trained on</h4>
+          <p className="trio-body">
+            Your boards are not training data. We don&apos;t use your content to train
+            models — ours or anyone else&apos;s. Prompts go only to the provider you pick,
+            for the request you sent.
+          </p>
         </div>
         <div className="trio-card">
-          <div className="trio-icon"><HouseIcon size={22} /></div>
-          <h4 className="trio-title">Self-host for total control</h4>
-          <p className="trio-body">Open source, MIT licensed. Notes in pure Markdown. One-command Docker. Bring your own model keys if you want.</p>
+          <div className="trio-icon"><EyeSlashIcon size={22} /></div>
+          <h4 className="trio-title">No telemetry, no profile</h4>
+          <p className="trio-body">
+            No session replay, no behavioral analytics inside the canvas, no record of what
+            you click or where you linger. We make a thinking tool, not an ad business.
+          </p>
         </div>
       </div>
+
+      <p className="privacy-footnote">
+        Want absolute custody? Dim0 is MIT and self-hostable — local Postgres, local vector
+        DB, your own model keys, nothing leaves your infrastructure.{" "}
+        <Link className="faq-link" href="/privacy">Read the full policy →</Link>
+      </p>
 
       <div className="never-strip">
         <div className="never-strip-eyebrow">— What Dim0 will never do</div>
@@ -733,8 +759,8 @@ const FAQS = [
     a: "A thinking canvas where notes, docs, code, widgets, and AI agents live on one board together. Rich notes like Notion, freehand shapes like Excalidraw, agents that act on the board — same surface.",
   },
   {
-    q: "How is this different from Notion, Excalidraw, or ChatGPT Canvas?",
-    a: "Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT has AI but no spatial workspace. Dim0 has all three on one board — and the agent is board-aware, so it reads the surrounding context before it acts.",
+    q: "Is Dim0 a Notion or Excalidraw alternative?",
+    a: "Yes — Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board — and the agent reads the surrounding context before it acts.",
   },
   {
     q: "Is it free?",
@@ -766,7 +792,15 @@ const FAQS = [
   },
   {
     q: "How big can boards get?",
-    a: "300+ active nodes in view stay smooth, with 1,000+ total supported per board.",
+    a: (
+      <>
+        Thousands. We built our own canvas engine —{" "}
+        <a className="faq-link" href="/engine">canvas-harness</a> — 10k
+        visible nodes pan at ~80 fps on an M1, idle stays at ~120 fps. Same league as
+        Excalidraw and tldraw. Most boards live in the hundreds; the ceiling is there
+        if you need it.
+      </>
+    ),
   },
   {
     q: "How is my data used?",
@@ -853,8 +887,8 @@ export default function Page() {
       <UseCasesSection />
       <ThemesSection />
       <ModelsSection />
-      <OssSection />
       <PrivacySection />
+      <OssSection />
       <FAQ />
       <CTA />
     </>
