@@ -55,7 +55,11 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body {
+
+/* .dim0-page is the wrapper applied by app/(dim0)/layout.tsx.
+   All Dim0 theme styles hang off it instead of <body> so the engine
+   route segment (which never wraps with this class) stays untouched. */
+.dim0-page {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -64,9 +68,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-::selection {
+.dim0-page ::selection {
   background: var(--sienna-tint);
   color: var(--sienna-deep);
 }
@@ -553,6 +558,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
   font-family: var(--font-sans);
 }
+.product-shot-engine {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+}
+.product-shot-engine a {
+  color: var(--sienna);
+  border-bottom: 1px solid color-mix(in oklab, var(--sienna) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.product-shot-engine a:hover {
+  color: var(--sienna-deep);
+  border-bottom-color: var(--sienna-deep);
+}
 @media (max-width: 720px) {
   .product-shot-section { padding: 40px 16px 60px; }
   .product-shot-frame { border-radius: var(--radius-lg); }
@@ -785,6 +806,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
   font-size: 14.5px; line-height: 1.6;
   padding: 0 4px;
+}
+.faq-link {
+  color: var(--sienna);
+  border-bottom: 1px solid color-mix(in oklab, var(--sienna) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.faq-link:hover {
+  color: var(--sienna-deep);
+  border-bottom-color: var(--sienna-deep);
 }
 .faq-item.open .faq-a {
   max-height: 220px;
@@ -1253,7 +1283,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
 }
 
-/* ---------- PRIVACY NEVER-DO STRIP ---------- */
+/* ---------- PRIVACY SECTION ---------- */
+.privacy-footnote {
+  margin-top: 28px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  max-width: 720px;
+}
+
 .never-strip {
   margin-top: 36px;
   padding: 24px 28px;
