@@ -261,7 +261,7 @@ function ProductShot() {
         Sticky notes, code, math, charts, sketches, and an AI agent — all on one board.
       </p>
       <p className="product-shot-engine">
-        Rendered with <a href="/engine">canvas-harness</a> — our open-source canvas engine.
+        Rendered with <a href="/canvas-harness">canvas-harness</a> — our open-source canvas engine.
       </p>
     </section>
   );
@@ -795,7 +795,7 @@ const FAQS = [
     a: (
       <>
         Thousands. We built our own canvas engine —{" "}
-        <a className="faq-link" href="/engine">canvas-harness</a> — 10k
+        <a className="faq-link" href="/canvas-harness">canvas-harness</a> — 10k
         visible nodes pan at ~80 fps on an M1, idle stays at ~120 fps. Same league as
         Excalidraw and tldraw. Most boards live in the hundreds; the ceiling is there
         if you need it.
