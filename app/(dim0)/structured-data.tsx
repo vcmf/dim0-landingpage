@@ -51,10 +51,10 @@ const faqPage = {
     },
     {
       "@type": "Question",
-      name: "How is this different from Notion, Excalidraw, or ChatGPT Canvas?",
+      name: "Is Dim0 a Notion or Excalidraw alternative?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT has AI but no spatial workspace. Dim0 has all three on one board — and the agent is board-aware, so it reads the surrounding context before it acts.",
+        text: "Yes — Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board — and the agent reads the surrounding context before it acts.",
       },
     },
     {

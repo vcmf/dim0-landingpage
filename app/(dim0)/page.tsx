@@ -211,7 +211,7 @@ function Hero() {
           Your canvas <em>thinks back.</em>
         </h1>
         <p className="hero-subtitle">
-          An infinite canvas where notes, sketches, code, and AI agents work together on one board.
+          The open-source AI canvas where notes, sketches, code, and agents work together on one infinite board.
         </p>
         <Composer />
         <div className="hero-microcopy">
@@ -452,7 +452,7 @@ function UseCasesSection() {
     {
       tag: "Learn",
       title: "Turn a question into a map you can walk.",
-      body: "Ask anything. Get a structured mindmap on your canvas. Follow threads, keep your map, never lose where you were.",
+      body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
       img: "/board-mindmap-deaging.png",
     },
     {
@@ -647,10 +647,10 @@ function ModelsSection() {
 function OssSection() {
   return (
     <section className="section section-narrow">
-      <div className="section-eyebrow">— Open source</div>
+      <div className="section-eyebrow">— Open source · MIT · self-hostable</div>
       <h2 className="section-title">Nothing is trapped.</h2>
       <p className="section-lede">
-        The codebase is public. Run it yourself. Walk away anytime with everything you made.
+        An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
       </p>
 
       <div className="trio">
@@ -759,8 +759,8 @@ const FAQS = [
     a: "A thinking canvas where notes, docs, code, widgets, and AI agents live on one board together. Rich notes like Notion, freehand shapes like Excalidraw, agents that act on the board — same surface.",
   },
   {
-    q: "How is this different from Notion, Excalidraw, or ChatGPT Canvas?",
-    a: "Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT has AI but no spatial workspace. Dim0 has all three on one board — and the agent is board-aware, so it reads the surrounding context before it acts.",
+    q: "Is Dim0 a Notion or Excalidraw alternative?",
+    a: "Yes — Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board — and the agent reads the surrounding context before it acts.",
   },
   {
     q: "Is it free?",

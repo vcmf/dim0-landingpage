@@ -52,11 +52,14 @@ export const metadata: Metadata = {
   keywords: [
     "AI canvas",
     "thinking canvas",
-    "visual workspace",
-    "AI whiteboard",
     "infinite canvas",
-    "agent canvas",
-    "notes diagrams code",
+    "AI whiteboard",
+    "open source whiteboard",
+    "AI agent workspace",
+    "AI mindmap generator",
+    "Notion alternative",
+    "Excalidraw alternative",
+    "self-hosted AI canvas",
   ],
   openGraph: {
     title: TITLE,
