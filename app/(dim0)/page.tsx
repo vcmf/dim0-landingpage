@@ -683,6 +683,120 @@ function OssSection() {
   );
 }
 
+type PlanFeature = string;
+type Plan = {
+  name: string;
+  tagline: string;
+  price: string;
+  period: string;
+  features: PlanFeature[];
+  cta: { label: string; href: string; variant: "ghost" | "primary" | "sienna"; external?: boolean };
+  note?: string;
+  featured?: boolean;
+};
+
+const PLANS: Plan[] = [
+  {
+    name: "Self-host",
+    tagline: "Run it yourself, own everything",
+    price: "Free",
+    period: "MIT licensed",
+    features: [
+      "Full source on GitHub",
+      "Your infrastructure, your data",
+      "Bring your own model keys",
+      "Notes in plain Markdown",
+      "No limits, no lock-in",
+    ],
+    cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
+  },
+  {
+    name: "Free",
+    tagline: "For personal exploration",
+    price: "€0",
+    period: "forever",
+    features: [
+      "40 AI requests / day",
+      "5 boards",
+      "1 document upload / board",
+      "Basic AI actions",
+      "Community support",
+    ],
+    cta: { label: "Start free", href: APP_URL, variant: "primary" },
+    note: "Free is limited while we run on a small budget — we’re making it more usable over time.",
+    featured: true,
+  },
+  {
+    name: "Plus",
+    tagline: "For active daily workflows",
+    price: "€11.99",
+    period: "/ month",
+    features: [
+      "Unlimited AI requests",
+      "Unlimited boards",
+      "Unlimited document uploads",
+      "Advanced AI actions",
+      "Priority support",
+    ],
+    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
+    note: "Upgrade any time from your account — no card needed to start.",
+  },
+];
+
+function PricingSection() {
+  return (
+    <section className="section section-narrow" id="pricing">
+      <div className="section-eyebrow">— Pricing</div>
+      <h2 className="section-title">
+        Start free. <em>Upgrade if you love it.</em>
+      </h2>
+      <p className="section-lede">
+        Run it yourself for free, or use the cloud with nothing to set up. No card
+        required to start — upgrade any time from your account.
+      </p>
+
+      <div className="pricing-grid">
+        {PLANS.map((plan) => (
+          <div
+            key={plan.name}
+            className={`price-card ${plan.featured ? "price-card-featured" : ""}`}
+          >
+            {plan.featured && <div className="price-card-tag">Start here</div>}
+            <div className="price-card-head">
+              <h3 className="price-card-name">{plan.name}</h3>
+              <p className="price-card-tagline">{plan.tagline}</p>
+            </div>
+            <div className="price-card-price">
+              <span className="price-amount">{plan.price}</span>
+              <span className="price-period">{plan.period}</span>
+            </div>
+            <ul className="price-features">
+              {plan.features.map((f) => (
+                <li key={f}>
+                  <CheckIcon className="price-check" size={14} weight="bold" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              className={`btn btn-${plan.cta.variant} price-cta`}
+              href={plan.cta.href}
+              {...(plan.cta.external
+                ? { target: "_blank", rel: "noreferrer" }
+                : {})}
+            >
+              {plan.cta.variant === "ghost" && <GithubLogoIcon size={15} />}
+              {plan.cta.label}
+              {plan.cta.variant !== "ghost" && <ArrowRightIcon size={14} />}
+            </a>
+            {plan.note && <p className="price-note">{plan.note}</p>}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 const NEVERS = [
   "Train on your content",
   "Sell your data",
@@ -889,6 +1003,7 @@ export default function Page() {
       <ModelsSection />
       <PrivacySection />
       <OssSection />
+      <PricingSection />
       <FAQ />
       <CTA />
     </>

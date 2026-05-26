@@ -1283,6 +1283,110 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
 }
 
+/* ---------- PRICING ---------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: color-mix(in oklab, var(--card) 60%, transparent);
+}
+.price-card-featured {
+  border-color: color-mix(in oklab, var(--sienna) 45%, var(--border));
+  background: var(--card);
+  box-shadow:
+    var(--shadow-lg),
+    0 24px 56px -30px color-mix(in oklab, var(--sienna) 30%, transparent);
+}
+.price-card-tag {
+  position: absolute;
+  top: -10px;
+  left: 26px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--sienna);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.price-card-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.price-card-tagline {
+  font-size: 13.5px;
+  color: var(--muted-foreground);
+  margin: 0 0 20px;
+}
+.price-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.price-amount {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.price-period {
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+.price-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+.price-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+.price-check {
+  color: var(--sienna);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.price-cta {
+  width: 100%;
+  justify-content: center;
+}
+.price-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  margin: 12px 0 0;
+}
+
 /* ---------- PRIVACY SECTION ---------- */
 .privacy-footnote {
   margin-top: 28px;

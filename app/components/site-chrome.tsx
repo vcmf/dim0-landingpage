@@ -14,12 +14,9 @@ const APP_URL = "https://app.dim0.net";
 const GH_URL = "https://github.com/vcmf/dim0";
 
 const NAV_LINKS = [
-  { href: "/#why", label: "Why" },
-  { href: "/#how", label: "How it works" },
   { href: "/#features", label: "Features" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/canvas-harness", label: "Engine" },
-  { href: "/#use-cases", label: "Use cases" },
-  { href: "/#themes", label: "Themes" },
   { href: "/#faq", label: "FAQ" },
 ];
 
