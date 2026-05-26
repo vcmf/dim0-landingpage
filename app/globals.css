@@ -57,7 +57,7 @@
 html, body { margin: 0; padding: 0; }
 
 /* .dim0-page is the wrapper applied by app/(dim0)/layout.tsx.
-   All Dim0 theme styles hang off it instead of <body> so the engine
+   All Dim0 theme styles hang off it instead of <body> so the canvas-harness
    route segment (which never wraps with this class) stays untouched. */
 .dim0-page {
   background: var(--background);

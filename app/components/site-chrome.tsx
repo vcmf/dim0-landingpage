@@ -17,7 +17,7 @@ const NAV_LINKS = [
   { href: "/#why", label: "Why" },
   { href: "/#how", label: "How it works" },
   { href: "/#features", label: "Features" },
-  { href: "/engine", label: "Engine" },
+  { href: "/canvas-harness", label: "Engine" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#themes", label: "Themes" },
   { href: "/#faq", label: "FAQ" },
@@ -103,7 +103,7 @@ export function SiteFooter() {
           <a href={APP_URL}>Cloud</a>
           <a href={GH_URL}>GitHub</a>
           <a href={`${GH_URL}#readme`}>README</a>
-          <Link href="/engine">Engine</Link>
+          <Link href="/canvas-harness">Engine</Link>
           <a href="mailto:contact@dim0.net">Contact</a>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>

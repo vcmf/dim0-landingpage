@@ -22,7 +22,7 @@ function CHNav() {
       <div>
         <a href="#top" className="ch-brand">
           <Image
-            src="/canvas-harness-tree.png"
+            src="/canvas-harness-icon.png"
             alt=""
             width={26}
             height={26}
@@ -340,7 +340,7 @@ function CHFooter() {
       <div className="ch-footer-grid">
         <div className="ch-footer-brand">
           <Image
-            src="/canvas-harness-tree.png"
+            src="/canvas-harness-icon.png"
             alt=""
             width={44}
             height={44}
