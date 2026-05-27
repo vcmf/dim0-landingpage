@@ -97,7 +97,7 @@ function CHHero() {
 function CHWhy() {
   const rows = [
     { n: "01", h: "Coordinate spaces", b: "Screen, world, and node-local coordinates, converted correctly at any zoom or pan." },
-    { n: "02", h: "Hit testing", b: "An rbush spatial index backs querySpatial — point, rect, and marquee hits without walking the node list." },
+    { n: "02", h: "Hit testing", b: "A uniform-grid spatial index backs querySpatial — point, rect, and marquee hits without walking the node list." },
     { n: "03", h: "Render virtualization", b: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps on an M1." },
     { n: "04", h: "Gesture choreography", b: "Pan, zoom, marquee-select, and drag-to-move come wired, switchable through the canvas tool prop." },
     { n: "05", h: "History", b: "Undo and redo over a typed operation log — the same log that drives collaboration through a SyncAdapter." },
@@ -129,8 +129,8 @@ function CHWhy() {
 
 function CHWhat() {
   const cards: { tag: string; title: string; body: string; mini: ReactNode }[] = [
-    { tag: "camera", title: "The camera, as a value.", body: "A 3-number state — x, y, zoom — with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
-    { tag: "hit", title: "Hit-test anything.", body: "A spatial index built on rbush. Point, rect, and marquee queries run through querySpatial without walking the node list.", mini: <MiniHit /> },
+    { tag: "camera", title: "The camera, as a value.", body: "A 3-number state — x, y, z — with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
+    { tag: "hit", title: "Hit-test anything.", body: "A uniform-grid spatial index. Point, rect, and marquee queries run through querySpatial without walking the node list.", mini: <MiniHit /> },
     { tag: "virtual", title: "Render only what's visible.", body: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps. The same index powers the Minimap.", mini: <MiniVirtual /> },
     { tag: "select", title: "Selection, the boring parts done.", body: "Multi-select, shift-add, marquee, group-bounds, transform handles, keyboard nudging, and clipboard — all driven from the store and surfaced through React hooks.", mini: <MiniSelect /> },
     { tag: "history", title: "History that doesn't bite.", body: "Undo and redo over a typed operation log, with coalescing. The same log syncs to collaborators through a SyncAdapter.", mini: <MiniHistory /> },
@@ -211,7 +211,7 @@ export function Board() {
           <CodeBlock>{`import { useSelection, useCamera, useCanUndo } from "@canvas-harness/react";
 
 const selection = useSelection();  // selected node ids
-const camera    = useCamera();     // { x, y, zoom }
+const camera    = useCamera();     // { x, y, z }  z = zoom factor
 const canUndo   = useCanUndo();    // store.undo() / store.redo() to step`}</CodeBlock>
         </div>
       </div>
@@ -228,7 +228,7 @@ function CHApi() {
     ["useCamera()", "Camera", "the live camera — position and zoom"],
     ["useCanUndo() / useCanRedo()", "boolean", "whether undo / redo is currently available"],
     ["store.undo() / store.redo()", "void", "step history backward or forward"],
-    ["store.querySpatial(rect)", "Node[]", "spatial query against the rbush index"],
+    ["store.querySpatial(rect)", "Node[]", "spatial query against the uniform-grid index"],
   ];
   return (
     <section className="ch-band ch-band-paper" id="api">
