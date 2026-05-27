@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { HeroCanvas } from "./hero-canvas";
 import {
   MiniHistory,
@@ -89,6 +89,68 @@ function CHHero() {
         <div className="ch-hero-visual-caption">
           live · the same engine behind dim0.net — painted on a canvas, not the DOM
         </div>
+      </div>
+    </section>
+  );
+}
+
+function LazyVideo({
+  src,
+  poster,
+  ariaLabel,
+}: {
+  src: string;
+  poster: string;
+  ariaLabel: string;
+}) {
+  const ref = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (!("IntersectionObserver" in window)) {
+      v.play().catch(() => {});
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    obs.observe(v);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <video ref={ref} muted loop playsInline preload="metadata" poster={poster} aria-label={ariaLabel}>
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
+
+function CHProof() {
+  return (
+    <section className="ch-band" id="proof">
+      <div className="ch-band-head">
+        <div className="ch-eyebrow">— see for yourself</div>
+        <h2>10k nodes, <em>panning live.</em></h2>
+      </div>
+      <div className="ch-proof">
+        <div className="ch-proof-frame">
+          <LazyVideo
+            src="/perf-vs-excalidraw.mp4"
+            poster="/perf-vs-excalidraw.jpg"
+            ariaLabel="canvas-harness panning 10,000 rects on top, smooth; Excalidraw with 8,000 below, laggy"
+          />
+        </div>
+        <p className="ch-proof-caption">
+          <strong>canvas-harness, 10,000 plain rects</strong> (top) vs{" "}
+          <strong>Excalidraw, 8,000</strong> (bottom) — live pan and zoom on a MacBook M1.
+          Excalidraw is canvas-rendered and excellent; this is just where bitmap caching and
+          viewport culling pull ahead at scale. Numbers vary on other hardware.
+        </p>
       </div>
     </section>
   );
@@ -474,6 +536,7 @@ export default function EnginePage() {
       <CHNav />
       <main>
         <CHHero />
+        <CHProof />
         <CHWhy />
         <CHWhat />
         <CHBeyond />
