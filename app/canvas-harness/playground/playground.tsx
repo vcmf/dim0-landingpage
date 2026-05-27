@@ -85,8 +85,16 @@ export function Playground() {
           <Stage tool={tool} setTool={setTool} />
           <StylePanel />
           <div className="ch-pg-hint">
-            pick a shape and drag on the canvas · scroll to zoom · space-drag to pan
+            drag to add · scroll to zoom · space-drag to pan
           </div>
+          <a
+            className="ch-pg-credit"
+            href="https://dim0.net"
+            target="_blank"
+            rel="noreferrer"
+          >
+            engine behind <span>dim0.net ↗</span>
+          </a>
         </div>
       </div>
     </CanvasProvider>

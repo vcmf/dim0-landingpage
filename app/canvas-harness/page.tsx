@@ -5,7 +5,6 @@ import Link from "next/link";
 import { type ReactNode, useState } from "react";
 import { HeroCanvas } from "./hero-canvas";
 import {
-  BuiltOnDim0,
   MiniHistory,
   MiniHit,
   MiniRender,
@@ -88,7 +87,7 @@ function CHHero() {
       <div>
         <HeroCanvas />
         <div className="ch-hero-visual-caption">
-          live · real canvas rendering — every node painted, none in the DOM
+          live · the same engine behind dim0.net — painted on a canvas, not the DOM
         </div>
       </div>
     </section>
@@ -157,6 +156,83 @@ function CHWhat() {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function CHBeyond() {
+  return (
+    <section className="ch-band" id="beyond">
+      <div className="ch-band-head">
+        <div className="ch-eyebrow">— beyond rendering</div>
+        <h2>Made for <em>agents and multiplayer.</em></h2>
+      </div>
+      <div className="ch-beyond-grid">
+        <div className="ch-beyond-col">
+          <div className="ch-beyond-kicker">ai-ready</div>
+          <h3>A canvas your agent can see, read, and write.</h3>
+          <ul className="ch-beyond-list">
+            <li>
+              <strong>See</strong> — <code>exportSelection()</code> /{" "}
+              <code>exportViewport()</code> return a PNG of the board for a vision model.
+            </li>
+            <li>
+              <strong>Read</strong> — <code>{'getContext(store, { format: "markdown" })'}</code>{" "}
+              serializes the scene straight into a prompt.
+            </li>
+            <li>
+              <strong>Write</strong> — <code>opSchemasAsAnthropicTools()</code> hands the
+              agent the op log as tool definitions; it mutates the board through tool calls.
+            </li>
+          </ul>
+          <CodeBlock>{`import {
+  exportSelection,
+  getContext,
+  opSchemasAsAnthropicTools,
+} from "@canvas-harness/core";
+
+const png     = await exportSelection(store);              // PNG for a vision model
+const context = getContext(store, { format: "markdown" }); // scene → prompt
+const tools   = opSchemasAsAnthropicTools();               // the agent's write API`}</CodeBlock>
+          <p className="ch-beyond-foot">
+            It&apos;s how{" "}
+            <a href="https://dim0.net" target="_blank" rel="noreferrer">dim0.net</a>&apos;s
+            board-aware agent reads your board before it acts.
+          </p>
+        </div>
+
+        <div className="ch-beyond-col">
+          <div className="ch-beyond-kicker">collab-ready</div>
+          <h3>Multiplayer-shaped from the core.</h3>
+          <ul className="ch-beyond-list">
+            <li>
+              Every mutation is a typed <code>Op</code>. The <code>change</code> event carries
+              an <code>OpBatch</code> with previous-value slices — already shaped for
+              CRDT-style sync.
+            </li>
+            <li>
+              <code>attachSync(store, adapter)</code> wires any transport behind a{" "}
+              <code>SyncAdapter</code>. Ships none — bring Yjs, WebSocket, or BroadcastChannel.
+            </li>
+            <li>
+              Presence is built in: <code>store.presence</code>, <code>useLocalPresence()</code>{" "}
+              / <code>usePresence()</code> for live cursors and selections.
+            </li>
+          </ul>
+          <CodeBlock>{`import { attachSync } from "@canvas-harness/core";
+import { createBroadcastSyncAdapter } from "@canvas-harness/sync-broadcast";
+
+// every mutation is a typed op — wire any transport behind a SyncAdapter
+const detach = attachSync(
+  store,
+  createBroadcastSyncAdapter({ channelName: "board-42", clientId: store.clientId }),
+);`}</CodeBlock>
+          <p className="ch-beyond-foot">
+            A ready BroadcastChannel adapter ships as{" "}
+            <code>@canvas-harness/sync-broadcast</code> — multiplayer across tabs in three lines.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -259,18 +335,25 @@ function CHBuiltOn() {
     <section className="ch-band" id="built-on">
       <div className="ch-band-head">
         <div className="ch-eyebrow">— built on it</div>
-        <h2>You&apos;ve probably already used canvas-harness.</h2>
+        <h2>Built to power a real product.</h2>
       </div>
       <div className="ch-built-on-row">
         <a className="ch-built-card" href="https://dim0.net" target="_blank" rel="noreferrer">
-          <div className="ch-built-card-tile">
-            <BuiltOnDim0 />
+          <div className="ch-built-card-tile ch-built-card-tile-shot">
+            <Image
+              src="/board-worldmodel-light.png"
+              alt="A dim0 board — notes, code, charts, and an AI agent on one canvas"
+              fill
+              sizes="(max-width: 940px) 100vw, 560px"
+              className="ch-built-shot"
+            />
           </div>
           <div className="ch-built-card-meta">
             <div className="ch-built-card-name">dim0.net</div>
             <div className="ch-built-card-blurb">
-              an infinite canvas where notes, sketches, and references gather into one
-              room — and the canvas <em>thinks back</em>.
+              An AI thinking canvas — notes, code, sketches, and agents on one infinite
+              board. It&apos;s the product canvas-harness was built for, and{" "}
+              <em>the reason it exists</em>.
             </div>
             <div className="ch-built-card-link">dim0.net ↗</div>
           </div>
@@ -295,6 +378,10 @@ function CHFaq() {
     {
       q: "How does it differ from React Flow / tldraw / Excalidraw?",
       a: "React Flow is headless and styleless too — but it renders nodes as DOM elements, so it gets sluggish around 1–2k. tldraw and Excalidraw render to a canvas and stay fast, but they hand you their UI and node types: you take their look or fight it. canvas-harness fills the corner that was empty — a canvas renderer that is also headless and styleless. 10k nodes pan at ~80fps, and there's no built-in UI to override. tldraw's performance ceiling, React Flow's freedom.",
+    },
+    {
+      q: "Is anyone using it in production?",
+      a: "Yes — dim0.net, an AI thinking canvas, is built on it: notes, code, sketches, and agents on one board. canvas-harness is the engine extracted from that product.",
     },
     {
       q: "Does it ship a renderer?",
@@ -389,6 +476,7 @@ export default function EnginePage() {
         <CHHero />
         <CHWhy />
         <CHWhat />
+        <CHBeyond />
         <CHQuickStart />
         <CHApi />
         <CHBuiltOn />
