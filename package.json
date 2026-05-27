@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@canvas-harness/core": "^0.1.4",
+    "@canvas-harness/react": "^0.1.4",
     "@phosphor-icons/react": "^2.1.10",
     "next": "16.1.6",
     "react": "19.2.3",

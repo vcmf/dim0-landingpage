@@ -37,6 +37,7 @@ function CHNav() {
         <a href="#start">quick start</a>
         <a href="#api">api</a>
         <a href="#built-on">built on it</a>
+        <Link href="/canvas-harness/playground">playground</Link>
         <Link href="/" className="ch-nav-back">← dim0</Link>
         <a
           className="ch-nav-cta"

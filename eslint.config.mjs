@@ -10,6 +10,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local reference clone of the canvas-harness library — not part of this app.
+    "canvas-harness/**",
   ]),
 ]);
 
