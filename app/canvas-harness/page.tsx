@@ -56,14 +56,15 @@ function CHHero() {
   return (
     <section className="ch-hero" id="top">
       <div>
-        <div className="ch-eyebrow">— a tiny engine</div>
+        <div className="ch-eyebrow">— a canvas engine for React</div>
         <h1 className="ch-hero-title">
-          The infinite canvas, <em>without the canvas.</em>
+          Canvas performance, <em>zero style opinions.</em>
         </h1>
         <p className="ch-hero-lede">
-          <strong>canvas-harness</strong> is a headless scaffold for building pannable,
-          zoomable, node-graph interfaces. It owns the math — viewport, hit-testing,
-          virtualization, undo — and stays out of your way for everything else.
+          <strong>canvas-harness</strong> is a node-graph library for React that renders
+          on a canvas instead of the DOM — so 10k nodes pan at ~80fps. It owns the hard
+          parts — camera, hit-testing, history, spatial queries — and ships no UI and no
+          styles. Every color, font, and corner radius is yours.
         </p>
         <div className="ch-hero-cta-row">
           <a className="ch-btn ch-btn-ink" href="#start">read the quick start</a>
@@ -78,15 +79,15 @@ function CHHero() {
         </div>
         <div className="ch-hero-meta">
           <span><i className="ch-dot" /> MIT</span>
-          <span><i className="ch-dot" /> 11 kB gzipped</span>
-          <span><i className="ch-dot" /> zero deps</span>
+          <span><i className="ch-dot" /> canvas-rendered</span>
+          <span><i className="ch-dot" /> headless + styleless</span>
           <span><i className="ch-dot" /> ts-first</span>
         </div>
       </div>
       <div>
         <HeroCanvas />
         <div className="ch-hero-visual-caption">
-          live · this is the engine running, no React renderer attached
+          live · real canvas rendering — every node painted, none in the DOM
         </div>
       </div>
     </section>
@@ -95,12 +96,12 @@ function CHHero() {
 
 function CHWhy() {
   const rows = [
-    { n: "01", h: "Coordinate spaces", b: "Screen, world, and node-local — translated correctly under any zoom and any pan." },
-    { n: "02", h: "Hit testing", b: "R-tree index, sub-pixel correct, with marquee, lasso, and rotated-bounds support." },
-    { n: "03", h: "Render virtualization", b: "Only the nodes intersecting the viewport ever mount. 5,000-node graphs stay at 60fps." },
-    { n: "04", h: "Gesture choreography", b: "Pinch, wheel-zoom, trackpad pan, drag-to-select, drag-to-move — already detangled." },
-    { n: "05", h: "History", b: "Operational, not snapshot. Coalesces, branches, and survives concurrent edits." },
-    { n: "06", h: "Renderer-agnostic", b: "Mount nodes as DOM, SVG, Canvas2D, or WebGL. The harness doesn't paint anything." },
+    { n: "01", h: "Coordinate spaces", b: "Screen, world, and node-local coordinates, converted correctly at any zoom or pan." },
+    { n: "02", h: "Hit testing", b: "An rbush spatial index backs querySpatial — point, rect, and marquee hits without walking the node list." },
+    { n: "03", h: "Render virtualization", b: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps on an M1." },
+    { n: "04", h: "Gesture choreography", b: "Pan, zoom, marquee-select, and drag-to-move come wired, switchable through the canvas tool prop." },
+    { n: "05", h: "History", b: "Undo and redo over a typed operation log — the same log that drives collaboration through a SyncAdapter." },
+    { n: "06", h: "Canvas-rendered, styleless", b: "It paints every node to a canvas — bitmap-cached, with motion-based LOD — and ships zero styles, so the look is entirely yours." },
   ];
   return (
     <section className="ch-band" id="why">
@@ -128,12 +129,12 @@ function CHWhy() {
 
 function CHWhat() {
   const cards: { tag: string; title: string; body: string; mini: ReactNode }[] = [
-    { tag: "viewport", title: "The viewport, as a value.", body: "A 3-number state — x, y, k — with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
-    { tag: "hit", title: "Hit-test anything.", body: "Spatial index built on rbush. Point, ray, marquee, and lasso queries all return in sub-millisecond on 10k nodes.", mini: <MiniHit /> },
-    { tag: "virtual", title: "Render only what's visible.", body: "Subscribe to the visible-set stream and mount components on demand. The same primitive powers minimaps.", mini: <MiniVirtual /> },
-    { tag: "select", title: "Selection, the boring parts done.", body: "Multi-select, shift-add, marquee, group-bounds, transform handles, keyboard nudging, and clipboard — all framework-agnostic.", mini: <MiniSelect /> },
-    { tag: "history", title: "History that doesn't bite.", body: "Operational transforms, automatic coalescing, named checkpoints, branch and replay. Wire your own persistence at either end.", mini: <MiniHistory /> },
-    { tag: "render", title: "Pick your paint.", body: "Reference renderers for DOM, SVG, Canvas2D, and a Pixi-flavored WebGL one for the day you actually need it.", mini: <MiniRender /> },
+    { tag: "camera", title: "The camera, as a value.", body: "A 3-number state — x, y, zoom — with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
+    { tag: "hit", title: "Hit-test anything.", body: "A spatial index built on rbush. Point, rect, and marquee queries run through querySpatial without walking the node list.", mini: <MiniHit /> },
+    { tag: "virtual", title: "Render only what's visible.", body: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps. The same index powers the Minimap.", mini: <MiniVirtual /> },
+    { tag: "select", title: "Selection, the boring parts done.", body: "Multi-select, shift-add, marquee, group-bounds, transform handles, keyboard nudging, and clipboard — all driven from the store and surfaced through React hooks.", mini: <MiniSelect /> },
+    { tag: "history", title: "History that doesn't bite.", body: "Undo and redo over a typed operation log, with coalescing. The same log syncs to collaborators through a SyncAdapter.", mini: <MiniHistory /> },
+    { tag: "styleless", title: "Bring your own look.", body: "Nodes paint to a canvas with bitmap caching and LOD. Styling is theme tokens you define — there's no bundled UI to fight.", mini: <MiniRender /> },
   ];
   return (
     <section className="ch-band ch-band-paper" id="what">
@@ -182,35 +183,36 @@ function CHQuickStart() {
       <div className="ch-qs">
         <div className="ch-qs-step">
           <div className="ch-qs-step-num">01 · INSTALL</div>
-          <CodeBlock lang="bash">{`npm i canvas-harness
-# or  pnpm add canvas-harness`}</CodeBlock>
+          <CodeBlock lang="bash">{`pnpm add @canvas-harness/core @canvas-harness/react
+# or  npm i @canvas-harness/core @canvas-harness/react`}</CodeBlock>
         </div>
         <div className="ch-qs-step">
-          <div className="ch-qs-step-num">02 · MOUNT</div>
-          <CodeBlock>{`import { createHarness } from "canvas-harness";
+          <div className="ch-qs-step-num">02 · CREATE A STORE</div>
+          <CodeBlock>{`import { createCanvasStore } from "@canvas-harness/core";
 
-const harness = createHarness({
-  container: document.querySelector("#stage"),
-  nodes: [
-    { id: "a", x: 0,   y: 0,   w: 180, h: 100, type: "note" },
-    { id: "b", x: 240, y: 60,  w: 200, h: 120, type: "note" },
-  ],
-});`}</CodeBlock>
+const store = createCanvasStore();
+store.addNode({ id: "a", x: 0,   y: 0,  w: 180, h: 100, type: "note" });
+store.addNode({ id: "b", x: 240, y: 60, w: 200, h: 120, type: "note" });`}</CodeBlock>
         </div>
         <div className="ch-qs-step">
-          <div className="ch-qs-step-num">03 · PAINT</div>
-          <CodeBlock>{`harness.onVisible((nodes, viewport) => {
-  // mount however you like — React, Svelte, vanilla
-  for (const n of nodes) renderNode(n, viewport);
-});
+          <div className="ch-qs-step-num">03 · RENDER</div>
+          <CodeBlock>{`import { CanvasProvider, Canvas } from "@canvas-harness/react";
 
-harness.viewport.zoomToFit();`}</CodeBlock>
+export function Board() {
+  return (
+    <CanvasProvider store={store}>
+      <Canvas tool="select" />
+    </CanvasProvider>
+  );
+}`}</CodeBlock>
         </div>
         <div className="ch-qs-step">
-          <div className="ch-qs-step-num">04 · INTERACT</div>
-          <CodeBlock>{`harness.on("select", ({ ids }) => store.set("selection", ids));
-harness.on("commit", (op)  => history.push(op));
-harness.gesture.bind("space+drag", "pan");`}</CodeBlock>
+          <div className="ch-qs-step-num">04 · REACT TO IT</div>
+          <CodeBlock>{`import { useSelection, useCamera, useCanUndo } from "@canvas-harness/react";
+
+const selection = useSelection();  // selected node ids
+const camera    = useCamera();     // { x, y, zoom }
+const canUndo   = useCanUndo();    // store.undo() / store.redo() to step`}</CodeBlock>
         </div>
       </div>
     </section>
@@ -219,14 +221,14 @@ harness.gesture.bind("space+drag", "pan");`}</CodeBlock>
 
 function CHApi() {
   const rows: [string, string, string][] = [
-    ["createHarness(opts)", "Harness", "construct an instance bound to a container"],
-    ["harness.viewport", "Viewport", "{ x, y, k }, plus pan / zoom / fit / animate"],
-    ["harness.nodes", "NodeStore", "crud, query, batch ops, observable diffs"],
-    ["harness.hit(point | rect)", "Node[]", "spatial query — point, rect, lasso"],
-    ["harness.onVisible(fn)", "Unsub", "subscribe to the visible-node stream"],
-    ["harness.gesture.bind(combo, op)", "void", "remap pan / zoom / select / draw"],
-    ["harness.history", "History", "undo, redo, checkpoint, branch"],
-    ["harness.destroy()", "void", "tear down listeners, observers, raf"],
+    ["createCanvasStore(opts?)", "CanvasStore", "create the store holding nodes, edges, camera, and selection"],
+    ["<CanvasProvider store={...}>", "JSX", "put a store in context for the canvas and hooks below it"],
+    ["<Canvas tool=\"select\" />", "JSX", "the canvas surface — paints nodes, handles pan / zoom / tools"],
+    ["useSelection()", "string[]", "the selected node ids, reactive"],
+    ["useCamera()", "Camera", "the live camera — position and zoom"],
+    ["useCanUndo() / useCanRedo()", "boolean", "whether undo / redo is currently available"],
+    ["store.undo() / store.redo()", "void", "step history backward or forward"],
+    ["store.querySpatial(rect)", "Node[]", "spatial query against the rbush index"],
   ];
   return (
     <section className="ch-band ch-band-paper" id="api">
@@ -287,19 +289,19 @@ function CHFaq() {
   const items = [
     {
       q: "Is canvas-harness a React library?",
-      a: "No. The core is plain TypeScript with zero dependencies. Adapters for React, Svelte, and Vue ship as separate packages — they're each ~40 lines and you can write your own in an afternoon.",
+      a: "Yes. The state core (@canvas-harness/core) is framework-neutral, but rendering and the hooks live in @canvas-harness/react, which lists React ≥18 as a peer dependency. React is the supported target today.",
     },
     {
       q: "How does it differ from React Flow / tldraw / Excalidraw?",
-      a: "Those are products — opinionated UI, baked-in renderers, baked-in node types. canvas-harness is the scaffold underneath one. If you're building a tldraw, this is what you'd build on first.",
+      a: "React Flow is headless and styleless too — but it renders nodes as DOM elements, so it gets sluggish around 1–2k. tldraw and Excalidraw render to a canvas and stay fast, but they hand you their UI and node types: you take their look or fight it. canvas-harness fills the corner that was empty — a canvas renderer that is also headless and styleless. 10k nodes pan at ~80fps, and there's no built-in UI to override. tldraw's performance ceiling, React Flow's freedom.",
     },
     {
       q: "Does it ship a renderer?",
-      a: "It ships four reference ones — DOM, SVG, Canvas2D, WebGL — but the engine doesn't depend on any of them. Subscribe to the visible-set stream and paint however you want.",
+      a: "Yes — that's the whole library. It renders to a canvas with bitmap caching and motion-based level-of-detail. It's styleless, not renderer-agnostic: you own every style token, but the paint path is the canvas, and that's where the speed comes from.",
     },
     {
       q: "Server-side rendering?",
-      a: "Yes. The viewport/hit/history modules are pure and run in Node. Spatial queries against a 50k-node graph take ~12 ms cold start.",
+      a: "The store is plain, serializable state, so you can build and hydrate it on the server. The canvas itself paints on the client — like any canvas, there's nothing to rasterize until it mounts in the browser.",
     },
     {
       q: "License?",
