@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local reference clone of the canvas-harness library (not part of this app)
+/canvas-harness
+
 # debug
 npm-debug.log*
 yarn-debug.log*

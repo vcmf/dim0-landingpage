@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "canvas-harness — the engine behind Dim0",
   description:
-    "canvas-harness is a tiny headless engine for pannable, zoomable node-graph interfaces. It owns viewport math, hit-testing, virtualization, and history — and stays out of your way for everything else. MIT, zero deps, ts-first. Powers Dim0.",
+    "canvas-harness is a canvas-rendered, headless, styleless node-graph library for React — canvas performance (10k nodes at ~80fps) with zero style opinions. It owns camera, hit-testing, history, and spatial queries, and ships no UI. MIT, ts-first. Powers Dim0.",
   // Favicons are auto-detected from app/canvas-harness/icon.png and apple-icon.png
   // (Next.js Metadata Files API). No need to declare them manually.
 };

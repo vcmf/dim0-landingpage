@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 
 type NodeKind = "note" | "tag" | "code";
 
@@ -26,11 +27,11 @@ type DragState =
   | { kind: "node"; id: string; startX: number; startY: number; origin: { x: number; y: number } };
 
 const DEMO_NODES: DemoNode[] = [
-  { id: "n1", x: -160, y: -90, w: 180, h: 96, kind: "note", title: "harness", body: "primitives for an infinite canvas" },
+  { id: "n1", x: -160, y: -90, w: 180, h: 96, kind: "note", title: "board", body: "notes · code · agents, one canvas" },
   { id: "n2", x: 80, y: -110, w: 156, h: 80, kind: "tag", body: "headless" },
-  { id: "n3", x: 110, y: -10, w: 178, h: 70, kind: "tag", body: "framework-agnostic" },
-  { id: "n4", x: -190, y: 40, w: 200, h: 110, kind: "code", body: "viewport.zoom(1.4)\nviewport.pan(dx, dy)" },
-  { id: "n5", x: 70, y: 80, w: 168, h: 80, kind: "tag", body: "60fps · 5k nodes" },
+  { id: "n3", x: 110, y: -10, w: 178, h: 70, kind: "tag", body: "styleless" },
+  { id: "n4", x: -190, y: 40, w: 200, h: 110, kind: "code", body: "store.addNode(node)\nstore.setCamera({ z: 1.4 })" },
+  { id: "n5", x: 70, y: 80, w: 168, h: 80, kind: "tag", body: "canvas-rendered" },
 ];
 
 const EDGES: [string, string][] = [
@@ -138,6 +139,9 @@ export function HeroCanvas() {
 
   return (
     <div className="ch-hero-canvas">
+      <Link href="/canvas-harness/playground" className="ch-hero-canvas-cta">
+        open playground →
+      </Link>
       <div
         ref={wrapRef}
         className="ch-hero-canvas-surface"
