@@ -1,7 +1,7 @@
 const SITE_URL = "https://dim0.net";
 const GH_URL = "https://github.com/vcmf/dim0";
 const DESCRIPTION =
-  "An infinite AI canvas where notes, sketches, code, and agents work on one board. Open source, MIT, 8 models. Free to try — your work stays yours.";
+  "Open-source, real-time collaborative AI canvas. You, your team, and the agent on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 
 const softwareApplication = {
   "@context": "https://schema.org",
@@ -83,10 +83,18 @@ const faqPage = {
     },
     {
       "@type": "Question",
-      name: "Can I collaborate with others?",
+      name: "Can I collaborate with others in real time?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Today Dim0 is built for single-user thinking. Real-time multi-user collaboration is on the roadmap.",
+        text: "Yes. Real-time multi-user collaboration is live — live cursors, presence, edits that sync without merge conflicts, and shared AI agents that work on the same board. Bring your team or work solo; the canvas works the same either way.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does real-time collaboration work under the hood?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Operational transforms with last-write-wins for conflicts — the same approach Figma and Excalidraw use, not CRDT. Every edit becomes a typed operation, transformed against any concurrent edits, applied on the server, then broadcast to everyone live on the board. The canvas engine underneath (canvas-harness) is sync-agnostic — it exposes typed ops with previous-value slices, so OT, CRDT, or any custom protocol all fit.",
       },
     },
     {

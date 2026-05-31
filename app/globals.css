@@ -56,6 +56,20 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
+/* Screen-reader-only utility. Used for SEO/a11y text that shouldn't
+   be visible (e.g. extending an H1 with keyword-rich descriptive text). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* .dim0-page is the wrapper applied by app/(dim0)/layout.tsx.
    All Dim0 theme styles hang off it instead of <body> so the canvas-harness
    route segment (which never wraps with this class) stays untouched. */

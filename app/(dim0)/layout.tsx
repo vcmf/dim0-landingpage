@@ -36,9 +36,9 @@ const shantellSans = Shantell_Sans({
   subsets: ["latin"],
 });
 
-const TITLE = "Dim0 — AI thinking canvas. Notes, code, agents, open source";
+const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, code, agents.";
 const DESCRIPTION =
-  "An infinite AI canvas where notes, sketches, code, and agents work on one board. Open source, MIT, 8 models. Free to try — your work stays yours.";
+  "Open-source, real-time collaborative AI canvas. You, your team, and the agent on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 
 export const metadata: Metadata = {
   title: {
@@ -46,20 +46,29 @@ export const metadata: Metadata = {
     template: "%s | Dim0",
   },
   description: DESCRIPTION,
+  // Canonical defaults to "/" for the home page; /privacy and /terms
+  // override with their own `alternates.canonical` so they're indexed
+  // as distinct documents instead of being consolidated to /.
   alternates: {
     canonical: "/",
   },
   keywords: [
     "AI canvas",
-    "thinking canvas",
+    "collaborative AI canvas",
+    "real-time collaborative whiteboard",
+    "multiplayer canvas",
+    "open source Miro alternative",
+    "Miro alternative",
+    "FigJam alternative",
+    "Notion alternative",
+    "Excalidraw alternative",
     "infinite canvas",
     "AI whiteboard",
     "open source whiteboard",
     "AI agent workspace",
     "AI mindmap generator",
-    "Notion alternative",
-    "Excalidraw alternative",
-    "self-hosted AI canvas",
+    "self-hosted collaborative whiteboard",
+    "thinking canvas",
   ],
   openGraph: {
     title: TITLE,

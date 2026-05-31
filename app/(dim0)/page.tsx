@@ -13,6 +13,7 @@ import {
   ArrowRightIcon,
   ArrowSquareOutIcon,
   ArrowUpIcon,
+  ArrowsClockwiseIcon,
   AtIcon,
   CaretDownIcon,
   CheckIcon,
@@ -28,6 +29,7 @@ import {
   PenNibIcon,
   ShieldCheckIcon,
   SparkleIcon,
+  UsersThreeIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
@@ -208,17 +210,20 @@ function Hero() {
           </a>
         </div>
         <h1 className="hero-headline">
-          Your canvas <em>thinks back.</em>
+          Your canvas <em>thinks back.</em> Together.
+          <span className="visually-hidden">
+            {" "}The open-source, real-time collaborative AI canvas with notes, code, and agents on one infinite board.
+          </span>
         </h1>
         <p className="hero-subtitle">
-          The open-source AI canvas where notes, sketches, code, and agents work together on one infinite board.
+          Notes, code, and agents on one infinite board. Open-source, real-time collaborative — solo or with your team.
         </p>
         <Composer />
         <div className="hero-microcopy">
           <span className="hero-microcopy-dot" />
           <span>Free to start</span>
           <span className="hero-microcopy-sep">·</span>
-          <span>No training on your work</span>
+          <span>Real-time collab</span>
           <span className="hero-microcopy-sep">·</span>
           <span>Open source</span>
           <span className="hero-microcopy-sep">·</span>
@@ -374,6 +379,50 @@ function FeaturesSection() {
   );
 }
 
+function CollaborationSection() {
+  return (
+    <section className="section section-narrow" id="collaboration">
+      <div className="section-eyebrow">— Collaboration</div>
+      <h2 className="section-title">
+        Now <em>multiplayer.</em>
+      </h2>
+      <p className="section-lede">
+        Bring your team onto the same board. Real-time cursors, shared agents, edits that
+        sync without merge conflicts. The canvas works the same for one person or fifty —
+        the open-source Miro alternative you can actually run yourself.
+      </p>
+
+      <div className="trio">
+        <div className="trio-card">
+          <div className="trio-icon"><UsersThreeIcon size={22} /></div>
+          <h3 className="trio-title">Live cursors & presence</h3>
+          <p className="trio-body">
+            See who&apos;s on the board, what they&apos;re selecting, where they&apos;re
+            looking. Names, avatars, colors — the room feels alive.
+          </p>
+        </div>
+        <div className="trio-card">
+          <div className="trio-icon"><SparkleIcon size={22} /></div>
+          <h3 className="trio-title">Shared agents</h3>
+          <p className="trio-body">
+            One person prompts, everyone watches the agent build, anyone refines. The
+            board-aware AI works for the room, not just the prompter.
+          </p>
+        </div>
+        <div className="trio-card">
+          <div className="trio-icon"><ArrowsClockwiseIcon size={22} /></div>
+          <h3 className="trio-title">No merge conflicts</h3>
+          <p className="trio-body">
+            Two people can edit the same note or shape at the same time. Operational
+            transforms with last-write-wins — the same approach Figma and Excalidraw use.
+            No refresh dance, no &quot;reload to see changes&quot;.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function LazyVideo({
   src,
   poster,
@@ -445,6 +494,7 @@ type UseCase = {
   title: string;
   body: string;
   img: string;
+  alt: string;
 };
 
 function UseCasesSection() {
@@ -454,24 +504,28 @@ function UseCasesSection() {
       title: "Turn a question into a map you can walk.",
       body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
       img: "/board-mindmap-deaging.png",
+      alt: "AI-generated mindmap on a Dim0 board — branching topics about brain aging research, connected sticky notes, and explorable subtopics on one infinite canvas",
     },
     {
       tag: "Research",
       title: "Pull benchmarks. Chart them. Annotate.",
       body: "Bring sources, run code, render charts. Compare results side by side without juggling tabs.",
       img: "/board-ai-benchmarks.png",
+      alt: "Dim0 collaborative AI canvas showing model benchmark charts, comparison tables, and annotated research notes arranged side by side",
     },
     {
       tag: "Sketch",
       title: "Rough shapes that the AI understands.",
       body: "Excalidraw-style freehand shapes, system diagrams, flows — drawn by you or generated. The agent reads them as context.",
       img: "/board-api-architecture.png",
+      alt: "Hand-drawn API architecture diagram on a Dim0 board — Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
     },
     {
       tag: "Write",
       title: "Long-form notes, spatially arranged.",
       body: "Notion-grade rich notes — math, code, tags, toggles, sub-pages — sitting wherever you put them on the board.",
       img: "/note-visual-thinking.png",
+      alt: "Long-form rich notes on a Dim0 board — Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
     },
   ];
 
@@ -488,7 +542,7 @@ function UseCasesSection() {
             <div className="use-case-img">
               <Image
                 src={c.img}
-                alt={c.title}
+                alt={c.alt}
                 width={1200}
                 height={760}
                 sizes="(max-width: 820px) 100vw, 540px"
@@ -656,17 +710,17 @@ function OssSection() {
       <div className="trio">
         <div className="trio-card">
           <div className="trio-icon"><EyeIcon size={22} /></div>
-          <h4 className="trio-title">See how it works</h4>
+          <h3 className="trio-title">See how it works</h3>
           <p className="trio-body">Full codebase is public. No black boxes.</p>
         </div>
         <div className="trio-card">
           <div className="trio-icon"><HouseIcon size={22} /></div>
-          <h4 className="trio-title">Run it yourself</h4>
+          <h3 className="trio-title">Run it yourself</h3>
           <p className="trio-body">Self-host for full control over your data.</p>
         </div>
         <div className="trio-card">
           <div className="trio-icon"><ArrowSquareOutIcon size={22} /></div>
-          <h4 className="trio-title">Take it with you</h4>
+          <h3 className="trio-title">Take it with you</h3>
           <p className="trio-body">Notes are pure Markdown. Boards export cleanly. No proprietary format.</p>
         </div>
       </div>
@@ -706,7 +760,8 @@ const PLANS: Plan[] = [
       "Your infrastructure, your data",
       "Bring your own model keys",
       "Notes in plain Markdown",
-      "No limits, no lock-in",
+      "Unlimited live collaborators",
+      "No caps, no lock-in",
     ],
     cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
   },
@@ -718,6 +773,7 @@ const PLANS: Plan[] = [
     features: [
       "40 AI requests / day",
       "5 boards",
+      "Up to 5 live collaborators / board",
       "1 document upload / board",
       "Basic AI actions",
       "Community support",
@@ -734,6 +790,7 @@ const PLANS: Plan[] = [
     features: [
       "Unlimited AI requests",
       "Unlimited boards",
+      "Up to 20 live collaborators / board",
       "Unlimited document uploads",
       "Advanced AI actions",
       "Priority support",
@@ -821,7 +878,7 @@ function PrivacySection() {
       <div className="trio">
         <div className="trio-card">
           <div className="trio-icon"><LockKeyIcon size={22} /></div>
-          <h4 className="trio-title">Encrypted in transit and at rest</h4>
+          <h3 className="trio-title">Encrypted in transit and at rest</h3>
           <p className="trio-body">
             TLS for everything on the wire. At-rest encryption on the database and uploads.
             No plaintext on the network, no plaintext on disk.
@@ -829,7 +886,7 @@ function PrivacySection() {
         </div>
         <div className="trio-card">
           <div className="trio-icon"><ShieldCheckIcon size={22} /></div>
-          <h4 className="trio-title">Never trained on</h4>
+          <h3 className="trio-title">Never trained on</h3>
           <p className="trio-body">
             Your boards are not training data. We don&apos;t use your content to train
             models — ours or anyone else&apos;s. Prompts go only to the provider you pick,
@@ -838,7 +895,7 @@ function PrivacySection() {
         </div>
         <div className="trio-card">
           <div className="trio-icon"><EyeSlashIcon size={22} /></div>
-          <h4 className="trio-title">No telemetry, no profile</h4>
+          <h3 className="trio-title">No telemetry, no profile</h3>
           <p className="trio-body">
             No session replay, no behavioral analytics inside the canvas, no record of what
             you click or where you linger. We make a thinking tool, not an ad business.
@@ -889,8 +946,12 @@ const FAQS = [
     a: "Claude, GPT, Gemini, Mistral, DeepSeek, Qwen, Kimi, GLM. Pick what you trust; switch anytime.",
   },
   {
-    q: "Can I collaborate with others?",
-    a: "Today Dim0 is built for single-user thinking. Real-time multi-user collaboration is on the roadmap.",
+    q: "Can I collaborate with others in real time?",
+    a: "Yes. Real-time multi-user collaboration is live — live cursors, presence, edits that sync without merge conflicts, and shared AI agents that work on the same board. Bring your team or work solo; the canvas works the same either way.",
+  },
+  {
+    q: "How does real-time collaboration work under the hood?",
+    a: "Operational transforms with last-write-wins for conflicts — the same approach Figma and Excalidraw use, not CRDT. Every edit becomes a typed operation, transformed against any concurrent edits, applied on the server, then broadcast to everyone live on the board. The canvas engine underneath (canvas-harness) is sync-agnostic — it exposes typed ops with previous-value slices, so OT, CRDT, or any custom protocol all fit.",
   },
   {
     q: "Is there a desktop or mobile app?",
@@ -997,6 +1058,7 @@ export default function Page() {
       <WhySection />
       <HowSection />
       <FeaturesSection />
+      <CollaborationSection />
       <RichNotesShowcase />
       <UseCasesSection />
       <ThemesSection />
