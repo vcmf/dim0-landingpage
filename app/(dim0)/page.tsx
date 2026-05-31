@@ -215,8 +215,11 @@ function Hero() {
             {" "}The open-source, real-time collaborative AI canvas with notes, code, and agents on one infinite board.
           </span>
         </h1>
+        <p className="hero-tagline">
+          Notes, code, and agents on one infinite board.
+        </p>
         <p className="hero-subtitle">
-          Notes, code, and agents on one infinite board. Open-source, real-time collaborative — solo or with your team.
+          Open-source, real-time collaborative — solo or with your team.
         </p>
         <Composer />
         <div className="hero-microcopy">

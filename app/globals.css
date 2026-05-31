@@ -224,7 +224,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.04;
   letter-spacing: -0.025em;
   font-weight: 500;
-  margin: 0 0 22px;
+  margin: 0 0 40px;
   color: var(--foreground);
 }
 .hero-headline em {
@@ -242,9 +242,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-tagline {
   font-family: var(--font-handwriting);
   font-size: clamp(22px, 2vw, 26px);
-  color: var(--sienna-deep);
+  color: var(--sienna);
   opacity: 1;
-  margin: 0 0 48px;
+  margin: 0 auto 8px;
+  max-width: 720px;
 }
 .hero-eyebrow-link {
   display: inline-flex;
