@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms",
   description:
     "Terms of service for Dim0, the thinking canvas. Learn the basic rules for using the product responsibly and respectfully.",
+  alternates: { canonical: "/terms" },
 };
 
 const sections: LegalSection[] = [

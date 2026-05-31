@@ -22,7 +22,7 @@ function CHNav() {
         <a href="#top" className="ch-brand">
           <Image
             src="/canvas-harness-icon.png"
-            alt=""
+            alt="canvas-harness logo"
             width={26}
             height={26}
             className="ch-brand-mark"
@@ -179,7 +179,7 @@ function CHWhy() {
           <div key={r.n} className="ch-why-row">
             <span className="ch-why-num">{r.n}</span>
             <div>
-              <h4>{r.h}</h4>
+              <h3>{r.h}</h3>
               <p>{r.b}</p>
             </div>
           </div>
@@ -270,8 +270,8 @@ const tools   = opSchemasAsAnthropicTools();               // the agent's write 
           <ul className="ch-beyond-list">
             <li>
               Every mutation is a typed <code>Op</code>. The <code>change</code> event carries
-              an <code>OpBatch</code> with previous-value slices — already shaped for
-              CRDT-style sync.
+              an <code>OpBatch</code> with previous-value slices — shaped for OT, CRDT, or any
+              custom sync strategy.
             </li>
             <li>
               <code>attachSync(store, adapter)</code> wires any transport behind a{" "}
@@ -493,7 +493,7 @@ function CHFooter() {
         <div className="ch-footer-brand">
           <Image
             src="/canvas-harness-icon.png"
-            alt=""
+            alt="canvas-harness logo"
             width={44}
             height={44}
             className="ch-footer-mark"

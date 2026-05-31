@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy",
   description:
     "Privacy policy for Dim0, the thinking canvas. We don't train on your content, we don't sell data, and we run no behavioral telemetry. Self-host for total control.",
+  alternates: { canonical: "/privacy" },
 };
 
 const sections: LegalSection[] = [
