@@ -30,9 +30,9 @@ const shantellSans = Shantell_Sans({
   subsets: ["latin"],
 });
 
-const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, code, agents.";
+const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, mini-apps, agents.";
 const DESCRIPTION =
-  "Open-source, real-time collaborative AI canvas. You, your team, and the agent on one infinite board. MIT, self-hostable, 8 models. Free to start.";
+  "Open-source, real-time collaborative AI canvas — notes, AI mini-apps, and agents on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 
 export const metadata: Metadata = {
   title: {
@@ -63,6 +63,12 @@ export const metadata: Metadata = {
     "AI mindmap generator",
     "self-hosted collaborative whiteboard",
     "thinking canvas",
+    "AI mini-apps",
+    "generative UI",
+    "AI app generator",
+    "AI-generated React apps",
+    "Claude artifacts alternative",
+    "ChatGPT Canvas alternative",
   ],
   openGraph: {
     title: TITLE,
