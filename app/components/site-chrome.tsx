@@ -106,56 +106,6 @@ export function SiteFooter() {
           <Link href="/terms">Terms</Link>
         </div>
       </div>
-      <div className="foot-badges">
-        <a
-          className="foot-badge"
-          href="https://softwareontheweb.com"
-          rel="nofollow sponsored noopener"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://softwareontheweb.com/images/badge.webp?v=1778309154"
-            alt="Featured on Software on the Web"
-            width={200}
-            height={56}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-        <a
-          className="foot-badge"
-          href="https://startupfa.me/s/dim0?utm_source=www.dim0.net"
-          rel="nofollow sponsored noopener"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://startupfa.me/badges/featured-badge-small.webp"
-            alt="Dim0 - Featured on Startup Fame"
-            width={224}
-            height={36}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-        <a
-          className="foot-badge"
-          href="https://fazier.com/launches/www.dim0.net"
-          rel="nofollow sponsored noopener"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light"
-            alt="Fazier badge — Dim0 launch"
-            width={120}
-            height={40}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-      </div>
     </div>
   );
 }
