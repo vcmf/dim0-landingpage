@@ -238,7 +238,7 @@ export function GraphBackground() {
       >
         <defs>
           <pattern id="dotgrid" width="24" height="24" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1" fill="currentColor" opacity="0.35" />
+            <circle cx="1" cy="1" r="1" fill="currentColor" opacity="0.42" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#dotgrid)" color="var(--border)" />
@@ -262,7 +262,7 @@ export function GraphBackground() {
               key={i}
               d={`M ${n1.x} ${n1.y} Q ${cpx} ${cpy} ${n2.x} ${n2.y}`}
               stroke="var(--muted-foreground)"
-              strokeOpacity="0.25"
+              strokeOpacity="0.33"
               strokeWidth="1"
               fill="none"
               strokeLinecap="round"
@@ -309,7 +309,7 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
           height: nh,
           borderRadius: "50%",
           background: color,
-          opacity: 0.55,
+          opacity: 0.7,
         }}
         onPointerDown={onPointerDown}
       />
@@ -326,7 +326,7 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
           borderRadius: label === "" && nw === nh ? "16px" : "12px",
           background: "transparent",
           border: `1.5px solid ${color}`,
-          opacity: 0.45,
+          opacity: 0.62,
         }}
         onPointerDown={onPointerDown}
       />
@@ -340,12 +340,12 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
           ...baseStyle,
           padding: "4px 10px",
           borderRadius: "999px",
-          background: `color-mix(in oklab, ${color} 16%, var(--card))`,
+          background: `color-mix(in oklab, ${color} 20%, var(--card))`,
           color,
           fontFamily: "var(--font-mono)",
           fontSize: 12,
-          border: `1px solid color-mix(in oklab, ${color} 30%, var(--border))`,
-          opacity: 0.75,
+          border: `1px solid color-mix(in oklab, ${color} 46%, var(--border))`,
+          opacity: 0.88,
         }}
         onPointerDown={onPointerDown}
       >
@@ -366,7 +366,7 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
           border: "1px solid var(--border)",
           boxShadow: "var(--shadow-sm)",
           padding: "8px 10px",
-          opacity: 0.85,
+          opacity: 0.92,
         }}
         onPointerDown={onPointerDown}
       >
@@ -398,7 +398,7 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
           fontFamily: "var(--font-handwriting)",
           fontSize: 14,
           color,
-          opacity: 0.85,
+          opacity: 0.92,
         }}
         onPointerDown={onPointerDown}
       >
@@ -415,11 +415,11 @@ function GraphNode({ node, isDragging, onPointerDown }: GraphNodeProps) {
         width: nw,
         height: nh,
         borderRadius: 6,
-        background: `color-mix(in oklab, ${color} 22%, var(--card))`,
-        border: `1px solid color-mix(in oklab, ${color} 40%, transparent)`,
+        background: `color-mix(in oklab, ${color} 26%, var(--card))`,
+        border: `1px solid color-mix(in oklab, ${color} 54%, transparent)`,
         boxShadow: "0 4px 10px -4px hsl(32 28% 30% / 0.18)",
         padding: "8px 10px",
-        opacity: 0.82,
+        opacity: 0.9,
       }}
       onPointerDown={onPointerDown}
     >
