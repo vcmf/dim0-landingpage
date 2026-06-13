@@ -117,7 +117,7 @@ export function ArtAgent() {
         <circle r="26" fill="color-mix(in oklab, var(--sienna) 18%, var(--card))" stroke="var(--sienna)" strokeOpacity="0.5" strokeWidth="1.2" />
         <circle r="40" fill="none" stroke="var(--sienna)" strokeOpacity="0.18" strokeWidth="1" strokeDasharray="2 3" />
         <circle r="56" fill="none" stroke="var(--sienna)" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="2 4" />
-        <text y="5" textAnchor="middle" fontFamily="var(--font-serif)" fontStyle="italic" fontWeight="600" fontSize="18" fill="var(--sienna-deep)">D</text>
+        <text y="5" textAnchor="middle" fontFamily="var(--font-sans)" fontWeight="700" fontSize="18" fill="var(--sienna-deep)">D</text>
       </g>
 
       <g opacity="0.9">
@@ -214,7 +214,7 @@ export function ArtMedia() {
       <g transform="translate(262 108)">
         <rect width="92" height="56" rx="5" fill="color-mix(in oklab, var(--sidebar-icon-1) 12%, var(--card))" stroke="var(--sidebar-icon-1)" strokeOpacity="0.35" strokeWidth="0.8" />
         <text x="8" y="14" fontFamily="var(--font-mono)" fontSize="7" fill="var(--sidebar-icon-1)">timer · live</text>
-        <text x="10" y="38" fontFamily="var(--font-serif)" fontSize="18" fontWeight="500" fill="var(--sidebar-icon-1)">00:24</text>
+        <text x="10" y="38" fontFamily="var(--font-sans)" fontSize="18" fontWeight="600" fill="var(--sidebar-icon-1)">00:24</text>
         <circle cx="78" cy="34" r="3" fill="var(--sidebar-icon-1)" opacity="0.7" className="heart-pulse" />
       </g>
 

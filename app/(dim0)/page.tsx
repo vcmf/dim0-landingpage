@@ -242,7 +242,7 @@ function ProductShot() {
   return (
     <section className="product-shot-section" id="product">
       <div className="product-shot-eyebrow">
-        <span>— A real Dim0 board</span>
+        <span>A real Dim0 board</span>
       </div>
       <a
         className="product-shot-frame"
@@ -278,7 +278,7 @@ function ProductShot() {
 function WhySection() {
   return (
     <section className="section" id="why">
-      <div className="section-eyebrow">— The problem</div>
+      <div className="section-eyebrow">The problem</div>
       <h2 className="section-title">One idea, five tabs.</h2>
       <p className="section-lede">
         Browse, note, sketch, ask AI, paste back. By the time you move forward, your thinking is spread across tools that never talk to each other.
@@ -293,7 +293,7 @@ function WhySection() {
 function HowSection() {
   return (
     <section className="section" id="how">
-      <div className="section-eyebrow">— How it works</div>
+      <div className="section-eyebrow">How it works</div>
       <h2 className="section-title">One prompt, work on the canvas.</h2>
       <p className="section-lede">
         The agent reads what&apos;s on your board, goes out and does the work, and drops the result where you&apos;re already thinking.
@@ -301,19 +301,19 @@ function HowSection() {
 
       <div className="steps">
         <div className="step">
-          <div className="step-num">01 · READ</div>
+          <div className="step-num">01 · Read</div>
           <div className="step-icon"><GraphIcon size={20} /></div>
           <h3 className="step-title">Reads the board</h3>
           <p className="step-body">Starts from your actual workspace, not a blank chat thread.</p>
         </div>
         <div className="step">
-          <div className="step-num">02 · ACT</div>
+          <div className="step-num">02 · Act</div>
           <div className="step-icon"><MagnifyingGlassIcon size={20} /></div>
           <h3 className="step-title">Searches, synthesizes, runs code</h3>
           <p className="step-body">Parallel reasoning across sources. No tab switching.</p>
         </div>
         <div className="step">
-          <div className="step-num">03 · WRITE</div>
+          <div className="step-num">03 · Write</div>
           <div className="step-icon"><PenNibIcon size={20} /></div>
           <h3 className="step-title">Builds on your board</h3>
           <p className="step-body">Nodes appear next to your notes. Editable, connected, live.</p>
@@ -360,7 +360,7 @@ function FeaturesSection() {
 
   return (
     <section className="section" id="features">
-      <div className="section-eyebrow">— Features</div>
+      <div className="section-eyebrow">Features</div>
       <h2 className="section-title">Built canvas-first. Agent native.</h2>
       <p className="section-lede">
         Most tools bolt AI onto a doc. Dim0 is built the other way around — the canvas is the interface.
@@ -385,7 +385,7 @@ function FeaturesSection() {
 function CollaborationSection() {
   return (
     <section className="section section-narrow" id="collaboration">
-      <div className="section-eyebrow">— Collaboration</div>
+      <div className="section-eyebrow">Collaboration</div>
       <h2 className="section-title">
         Now <em>multiplayer.</em>
       </h2>
@@ -476,7 +476,7 @@ function LazyVideo({
 function RichNotesShowcase() {
   return (
     <section className="section section-narrow" id="rich-notes">
-      <div className="section-eyebrow">— Rich notes</div>
+      <div className="section-eyebrow">Rich notes</div>
       <h2 className="section-title">Notion-grade notes. Drawn on a canvas.</h2>
       <p className="section-lede">
         Tags, math, toggles, sub-pages, references, code. Edit by hand — or ask AI to draft and revise the note in place.
@@ -534,7 +534,7 @@ function UseCasesSection() {
 
   return (
     <section className="section" id="use-cases">
-      <div className="section-eyebrow">— Use cases</div>
+      <div className="section-eyebrow">Use cases</div>
       <h2 className="section-title">What it feels like to think on Dim0.</h2>
       <p className="section-lede">
         Four shapes of work that get faster the moment your tools share a canvas.
@@ -644,7 +644,7 @@ function ThemeMockup({ palette }: { palette: ThemePalette }) {
 function ThemesSection() {
   return (
     <section className="section" id="themes">
-      <div className="section-eyebrow">— Themes</div>
+      <div className="section-eyebrow">Themes</div>
       <h2 className="section-title">Six themes. Light and dark.</h2>
       <p className="section-lede">
         Parchment, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine — pick the one that makes you want to open the app.
@@ -681,7 +681,7 @@ function ModelsSection() {
 
   return (
     <section className="section section-narrow" id="models">
-      <div className="section-eyebrow">— Models</div>
+      <div className="section-eyebrow">Models</div>
       <h2 className="section-title">Your model. Your choice.</h2>
       <p className="section-lede">
         Bring whichever you trust. Switch as the landscape shifts. The workflow stays the same.
@@ -704,7 +704,7 @@ function ModelsSection() {
 function OssSection() {
   return (
     <section className="section section-narrow">
-      <div className="section-eyebrow">— Open source · MIT · self-hostable</div>
+      <div className="section-eyebrow">Open source · MIT · self-hostable</div>
       <h2 className="section-title">Nothing is trapped.</h2>
       <p className="section-lede">
         An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
@@ -806,7 +806,7 @@ const PLANS: Plan[] = [
 function PricingSection() {
   return (
     <section className="section section-narrow" id="pricing">
-      <div className="section-eyebrow">— Pricing</div>
+      <div className="section-eyebrow">Pricing</div>
       <h2 className="section-title">
         Start free. <em>Upgrade if you love it.</em>
       </h2>
@@ -868,7 +868,7 @@ const NEVERS = [
 function PrivacySection() {
   return (
     <section className="section section-narrow" id="privacy">
-      <div className="section-eyebrow">— Privacy</div>
+      <div className="section-eyebrow">Privacy</div>
       <h2 className="section-title">
         Your data <em>stays yours.</em>
       </h2>
@@ -913,7 +913,7 @@ function PrivacySection() {
       </p>
 
       <div className="never-strip">
-        <div className="never-strip-eyebrow">— What Dim0 will never do</div>
+        <div className="never-strip-eyebrow">What Dim0 will never do</div>
         <ul className="never-strip-list">
           {NEVERS.map((n) => (
             <li key={n}>
@@ -994,7 +994,7 @@ function FAQ() {
   const [open, setOpen] = useState(0);
   return (
     <section className="section section-narrow" id="faq">
-      <div className="section-eyebrow">— FAQ</div>
+      <div className="section-eyebrow">FAQ</div>
       <h2 className="section-title">Questions, short answers.</h2>
 
       <div className="faq-list">

@@ -2,7 +2,6 @@ import {
   Architects_Daughter,
   Atkinson_Hyperlegible_Next,
   Inconsolata,
-  Lora,
   Shantell_Sans,
 } from "next/font/google";
 import type { Metadata } from "next";
@@ -12,11 +11,6 @@ import { StructuredData } from "./structured-data";
 
 const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const lora = Lora({
-  variable: "--font-serif",
   subsets: ["latin"],
 });
 
@@ -103,7 +97,7 @@ export const metadata: Metadata = {
 export default function Dim0Layout({ children }: { children: ReactNode }) {
   return (
     <div
-      className={`dim0-page ${atkinson.variable} ${lora.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
+      className={`dim0-page ${atkinson.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
     >
       <StructuredData />
       {children}
