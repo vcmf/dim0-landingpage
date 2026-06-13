@@ -266,7 +266,7 @@ function ProductShot() {
         </span>
       </a>
       <p className="product-shot-caption">
-        Sticky notes, code, math, charts, sketches, and an AI agent — all on one board.
+        Sticky notes, code, mini-apps, math, charts, sketches, and an AI agent — all on one board.
       </p>
       <p className="product-shot-engine">
         Rendered with <a href="/canvas-harness">canvas-harness</a> — our open-source canvas engine.
