@@ -2,7 +2,6 @@ import {
   Architects_Daughter,
   Atkinson_Hyperlegible_Next,
   Inconsolata,
-  Lora,
   Shantell_Sans,
 } from "next/font/google";
 import type { Metadata } from "next";
@@ -12,11 +11,6 @@ import { StructuredData } from "./structured-data";
 
 const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const lora = Lora({
-  variable: "--font-serif",
   subsets: ["latin"],
 });
 
@@ -36,9 +30,9 @@ const shantellSans = Shantell_Sans({
   subsets: ["latin"],
 });
 
-const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, code, agents.";
+const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, mini-apps, agents.";
 const DESCRIPTION =
-  "Open-source, real-time collaborative AI canvas. You, your team, and the agent on one infinite board. MIT, self-hostable, 8 models. Free to start.";
+  "Open-source, real-time collaborative AI canvas — notes, AI mini-apps, and agents on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 
 export const metadata: Metadata = {
   title: {
@@ -69,6 +63,12 @@ export const metadata: Metadata = {
     "AI mindmap generator",
     "self-hosted collaborative whiteboard",
     "thinking canvas",
+    "AI mini-apps",
+    "generative UI",
+    "AI app generator",
+    "AI-generated React apps",
+    "Claude artifacts alternative",
+    "ChatGPT Canvas alternative",
   ],
   openGraph: {
     title: TITLE,
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
 export default function Dim0Layout({ children }: { children: ReactNode }) {
   return (
     <div
-      className={`dim0-page ${atkinson.variable} ${lora.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
+      className={`dim0-page ${atkinson.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
     >
       <StructuredData />
       {children}

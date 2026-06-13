@@ -212,11 +212,11 @@ function Hero() {
         <h1 className="hero-headline">
           Your canvas <em>thinks back.</em> Together.
           <span className="visually-hidden">
-            {" "}The open-source, real-time collaborative AI canvas with notes, code, and agents on one infinite board.
+            {" "}The open-source, real-time collaborative AI canvas with notes, mini-apps, and agents on one infinite board.
           </span>
         </h1>
         <p className="hero-tagline">
-          Notes, code, and agents on one infinite board.
+          Notes, mini-apps, and agents on one infinite board.
         </p>
         <p className="hero-subtitle">
           Open-source, real-time collaborative — solo or with your team.
@@ -224,7 +224,7 @@ function Hero() {
         <Composer />
         <div className="hero-microcopy">
           <span className="hero-microcopy-dot" />
-          <span>Free to start</span>
+          <span>AI mini-apps</span>
           <span className="hero-microcopy-sep">·</span>
           <span>Real-time collab</span>
           <span className="hero-microcopy-sep">·</span>
@@ -242,7 +242,7 @@ function ProductShot() {
   return (
     <section className="product-shot-section" id="product">
       <div className="product-shot-eyebrow">
-        <span>— A real Dim0 board</span>
+        <span>A real Dim0 board</span>
       </div>
       <a
         className="product-shot-frame"
@@ -252,11 +252,11 @@ function ProductShot() {
         aria-label="Open Dim0"
       >
         <Image
-          src="/board-worldmodel-light.png"
+          src="/main-screen.png"
           alt="A Dim0 board showing nested research, sticky notes, code, charts, and an AI agent panel"
           className="product-shot-img"
-          width={2400}
-          height={1500}
+          width={3785}
+          height={1918}
           sizes="(max-width: 1240px) 100vw, 1240px"
         />
         <span className="product-shot-tag">
@@ -278,7 +278,7 @@ function ProductShot() {
 function WhySection() {
   return (
     <section className="section" id="why">
-      <div className="section-eyebrow">— The problem</div>
+      <div className="section-eyebrow">The problem</div>
       <h2 className="section-title">One idea, five tabs.</h2>
       <p className="section-lede">
         Browse, note, sketch, ask AI, paste back. By the time you move forward, your thinking is spread across tools that never talk to each other.
@@ -293,7 +293,7 @@ function WhySection() {
 function HowSection() {
   return (
     <section className="section" id="how">
-      <div className="section-eyebrow">— How it works</div>
+      <div className="section-eyebrow">How it works</div>
       <h2 className="section-title">One prompt, work on the canvas.</h2>
       <p className="section-lede">
         The agent reads what&apos;s on your board, goes out and does the work, and drops the result where you&apos;re already thinking.
@@ -301,19 +301,19 @@ function HowSection() {
 
       <div className="steps">
         <div className="step">
-          <div className="step-num">01 · READ</div>
+          <div className="step-num">01 · Read</div>
           <div className="step-icon"><GraphIcon size={20} /></div>
           <h3 className="step-title">Reads the board</h3>
           <p className="step-body">Starts from your actual workspace, not a blank chat thread.</p>
         </div>
         <div className="step">
-          <div className="step-num">02 · ACT</div>
+          <div className="step-num">02 · Act</div>
           <div className="step-icon"><MagnifyingGlassIcon size={20} /></div>
           <h3 className="step-title">Searches, synthesizes, runs code</h3>
           <p className="step-body">Parallel reasoning across sources. No tab switching.</p>
         </div>
         <div className="step">
-          <div className="step-num">03 · WRITE</div>
+          <div className="step-num">03 · Write</div>
           <div className="step-icon"><PenNibIcon size={20} /></div>
           <h3 className="step-title">Builds on your board</h3>
           <p className="step-body">Nodes appear next to your notes. Editable, connected, live.</p>
@@ -360,7 +360,7 @@ function FeaturesSection() {
 
   return (
     <section className="section" id="features">
-      <div className="section-eyebrow">— Features</div>
+      <div className="section-eyebrow">Features</div>
       <h2 className="section-title">Built canvas-first. Agent native.</h2>
       <p className="section-lede">
         Most tools bolt AI onto a doc. Dim0 is built the other way around — the canvas is the interface.
@@ -382,10 +382,81 @@ function FeaturesSection() {
   );
 }
 
+const MINIAPP_EXAMPLES = [
+  "a tip calculator",
+  "a chart from your data",
+  "a sorting visualizer",
+  "a flashcard quiz",
+  "a regex tester",
+  "a pros & cons weigher",
+];
+
+function MiniAppsShowcase() {
+  return (
+    <section className="section section-narrow" id="mini-apps">
+      <div className="section-eyebrow">Mini-apps</div>
+      <h2 className="section-title">
+        Spin up a <em>little app.</em> Right on the canvas.
+      </h2>
+      <p className="section-lede">
+        Describe a calculator, a chart, a visualizer, a quiz — Dim0 conjures a
+        real, interactive app and drops it on your board in seconds. Focused,
+        instant, and wired to the notes around it. Made to think with, not to ship.
+      </p>
+
+      <div className="miniapp-layout">
+        <div className="miniapp-copy">
+          <ul className="miniapp-points">
+            <li>
+              <span className="miniapp-mark" />
+              Lives on the board — not buried in a chat thread.
+            </li>
+            <li>
+              <span className="miniapp-mark" />
+              Reads the notes and data sitting right next to it.
+            </li>
+            <li>
+              <span className="miniapp-mark" />
+              Your whole team uses it live, on the same board.
+            </li>
+            <li>
+              <span className="miniapp-mark" />
+              Real React — open it, edit it, export it.
+            </li>
+          </ul>
+
+          <div className="miniapp-chips">
+            {MINIAPP_EXAMPLES.map((ex) => (
+              <span className="miniapp-chip" key={ex}>
+                <span className="miniapp-chip-caret">›</span> {ex}
+              </span>
+            ))}
+          </div>
+
+          <p className="miniapp-note">
+            Best for focused, single-purpose tools — spun up in seconds, as fast
+            as a sentence.
+          </p>
+        </div>
+
+        <div className="miniapp-shot">
+          <Image
+            src="/mini-app.png"
+            alt="An AI-generated interactive mini-app running as a node on a Dim0 canvas"
+            width={1795}
+            height={1933}
+            sizes="(max-width: 820px) 100vw, 460px"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CollaborationSection() {
   return (
     <section className="section section-narrow" id="collaboration">
-      <div className="section-eyebrow">— Collaboration</div>
+      <div className="section-eyebrow">Collaboration</div>
       <h2 className="section-title">
         Now <em>multiplayer.</em>
       </h2>
@@ -476,7 +547,7 @@ function LazyVideo({
 function RichNotesShowcase() {
   return (
     <section className="section section-narrow" id="rich-notes">
-      <div className="section-eyebrow">— Rich notes</div>
+      <div className="section-eyebrow">Rich notes</div>
       <h2 className="section-title">Notion-grade notes. Drawn on a canvas.</h2>
       <p className="section-lede">
         Tags, math, toggles, sub-pages, references, code. Edit by hand — or ask AI to draft and revise the note in place.
@@ -534,7 +605,7 @@ function UseCasesSection() {
 
   return (
     <section className="section" id="use-cases">
-      <div className="section-eyebrow">— Use cases</div>
+      <div className="section-eyebrow">Use cases</div>
       <h2 className="section-title">What it feels like to think on Dim0.</h2>
       <p className="section-lede">
         Four shapes of work that get faster the moment your tools share a canvas.
@@ -584,6 +655,16 @@ const THEMES: Theme[] = [
     dark:  { bg: "#2b231b", surface: "#3b2f25", text: "#efe0c8", accent: "#d97548", border: "#4a3c30" },
   },
   {
+    name: "Matcha",
+    light: { bg: "#f8f5ec", surface: "#fcfaf3", text: "#293027", accent: "#357a3a", border: "#d8d8cf" },
+    dark:  { bg: "#1d241e", surface: "#28302a", text: "#e3e2d9", accent: "#9ecd8e", border: "#434a44" },
+  },
+  {
+    name: "Noir",
+    light: { bg: "#f6f7f8", surface: "#fbfcfc", text: "#191b1c", accent: "#a34945", border: "#d9dbdd" },
+    dark:  { bg: "#202224", surface: "#2d2e30", text: "#e7e8ea", accent: "#b14e49", border: "#46484a" },
+  },
+  {
     name: "Catppuccin",
     light: { bg: "#eff1f5", surface: "#e6e9ef", text: "#4c4f69", accent: "#8839ef", border: "#dce0e8" },
     dark:  { bg: "#1e1e2e", surface: "#313244", text: "#cdd6f4", accent: "#cba6f7", border: "#45475a" },
@@ -620,22 +701,10 @@ function ThemeMockup({ palette }: { palette: ThemePalette }) {
   } as React.CSSProperties;
   return (
     <div className="theme-half" style={style}>
-      <div className="theme-mock-sidebar">
-        <span className="theme-mock-sidebar-line" />
-        <span className="theme-mock-sidebar-line" />
-        <span className="theme-mock-sidebar-line" />
-      </div>
-      <div className="theme-mock-board">
-        <div className="theme-mock-title" />
-        <div className="theme-mock-line" />
-        <div className="theme-mock-note">
-          <span className="theme-mock-note-dot" />
-          <span className="theme-mock-note-line" />
-          <span className="theme-mock-note-line theme-mock-note-line-short" />
-        </div>
-        <div className="theme-mock-pill">
-          <span className="theme-mock-pill-dot" />
-        </div>
+      <div className="theme-mock-card">
+        <span className="theme-mock-dot" />
+        <span className="theme-mock-bar" />
+        <span className="theme-mock-bar theme-mock-bar-short" />
       </div>
     </div>
   );
@@ -644,10 +713,10 @@ function ThemeMockup({ palette }: { palette: ThemePalette }) {
 function ThemesSection() {
   return (
     <section className="section" id="themes">
-      <div className="section-eyebrow">— Themes</div>
-      <h2 className="section-title">Six themes. Light and dark.</h2>
+      <div className="section-eyebrow">Themes</div>
+      <h2 className="section-title">Eight themes. Light and dark.</h2>
       <p className="section-lede">
-        Parchment, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine — pick the one that makes you want to open the app.
+        Parchment, Matcha, Noir, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine — pick the one that makes you want to open the app.
       </p>
       <div className="themes-grid">
         {THEMES.map((t) => (
@@ -681,7 +750,7 @@ function ModelsSection() {
 
   return (
     <section className="section section-narrow" id="models">
-      <div className="section-eyebrow">— Models</div>
+      <div className="section-eyebrow">Models</div>
       <h2 className="section-title">Your model. Your choice.</h2>
       <p className="section-lede">
         Bring whichever you trust. Switch as the landscape shifts. The workflow stays the same.
@@ -704,7 +773,7 @@ function ModelsSection() {
 function OssSection() {
   return (
     <section className="section section-narrow">
-      <div className="section-eyebrow">— Open source · MIT · self-hostable</div>
+      <div className="section-eyebrow">Open source · MIT · self-hostable</div>
       <h2 className="section-title">Nothing is trapped.</h2>
       <p className="section-lede">
         An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
@@ -778,7 +847,7 @@ const PLANS: Plan[] = [
       "5 boards",
       "Up to 5 live collaborators / board",
       "1 document upload / board",
-      "Basic AI actions",
+      "Basic AI actions + a few mini-apps",
       "Community support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "primary" },
@@ -795,7 +864,7 @@ const PLANS: Plan[] = [
       "Unlimited boards",
       "Up to 20 live collaborators / board",
       "Unlimited document uploads",
-      "Advanced AI actions",
+      "Unlimited mini-apps + advanced AI",
       "Priority support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "sienna" },
@@ -806,7 +875,7 @@ const PLANS: Plan[] = [
 function PricingSection() {
   return (
     <section className="section section-narrow" id="pricing">
-      <div className="section-eyebrow">— Pricing</div>
+      <div className="section-eyebrow">Pricing</div>
       <h2 className="section-title">
         Start free. <em>Upgrade if you love it.</em>
       </h2>
@@ -868,7 +937,7 @@ const NEVERS = [
 function PrivacySection() {
   return (
     <section className="section section-narrow" id="privacy">
-      <div className="section-eyebrow">— Privacy</div>
+      <div className="section-eyebrow">Privacy</div>
       <h2 className="section-title">
         Your data <em>stays yours.</em>
       </h2>
@@ -913,7 +982,7 @@ function PrivacySection() {
       </p>
 
       <div className="never-strip">
-        <div className="never-strip-eyebrow">— What Dim0 will never do</div>
+        <div className="never-strip-eyebrow">What Dim0 will never do</div>
         <ul className="never-strip-list">
           {NEVERS.map((n) => (
             <li key={n}>
@@ -969,6 +1038,10 @@ const FAQS = [
     a: "Read selected context, search the web, run code, and generate nodes, widgets, charts, or summaries directly on the board.",
   },
   {
+    q: "Can Dim0 generate interactive apps, like ChatGPT apps or Claude artifacts?",
+    a: "Yes — we call them mini-apps. Describe what you want and Dim0 generates a real, interactive React app right on your canvas. Unlike an artifact trapped in a chat thread, a mini-app is a node on your board: it persists, your team can use it live, it can read the notes and data next to it, and you can open the code, edit it, or export it. They work best as focused, single-purpose tools — calculators, charts, visualizers, quizzes — spun up in seconds.",
+  },
+  {
     q: "How big can boards get?",
     a: (
       <>
@@ -994,7 +1067,7 @@ function FAQ() {
   const [open, setOpen] = useState(0);
   return (
     <section className="section section-narrow" id="faq">
-      <div className="section-eyebrow">— FAQ</div>
+      <div className="section-eyebrow">FAQ</div>
       <h2 className="section-title">Questions, short answers.</h2>
 
       <div className="faq-list">
@@ -1061,6 +1134,7 @@ export default function Page() {
       <WhySection />
       <HowSection />
       <FeaturesSection />
+      <MiniAppsShowcase />
       <CollaborationSection />
       <RichNotesShowcase />
       <UseCasesSection />

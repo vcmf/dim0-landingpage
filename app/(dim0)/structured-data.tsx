@@ -1,7 +1,7 @@
 const SITE_URL = "https://dim0.net";
 const GH_URL = "https://github.com/vcmf/dim0";
 const DESCRIPTION =
-  "Open-source, real-time collaborative AI canvas. You, your team, and the agent on one infinite board. MIT, self-hostable, 8 models. Free to start.";
+  "Open-source, real-time collaborative AI canvas — notes, AI mini-apps, and agents on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 
 const softwareApplication = {
   "@context": "https://schema.org",
@@ -12,6 +12,16 @@ const softwareApplication = {
   applicationCategory: "ProductivityApplication",
   operatingSystem: "Web",
   image: `${SITE_URL}/board-mindmap-deaging.png`,
+  featureList: [
+    "Real-time collaborative infinite canvas",
+    "AI mini-apps — interactive React apps generated on the canvas",
+    "Board-aware AI agent (reads context, searches, runs code)",
+    "Notion-grade rich notes",
+    "Freehand sketching and diagrams",
+    "Code nodes, charts, and document uploads",
+    "8 AI models (Claude, GPT, Gemini, and more)",
+    "Open source, MIT-licensed, self-hostable",
+  ],
   offers: {
     "@type": "Offer",
     price: "0",
@@ -119,6 +129,14 @@ const faqPage = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Read selected context, search the web, run code, and generate nodes, widgets, charts, or summaries directly on the board.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can Dim0 generate interactive apps, like ChatGPT apps or Claude artifacts?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — we call them mini-apps. Describe what you want and Dim0 generates a real, interactive React app right on your canvas. Unlike an artifact trapped in a chat thread, a mini-app is a node on your board: it persists, your team can use it live, it can read the notes and data next to it, and you can open the code, edit it, or export it. They work best as focused, single-purpose tools — calculators, charts, visualizers, quizzes — spun up in seconds.",
       },
     },
     {

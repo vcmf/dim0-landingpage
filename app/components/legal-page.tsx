@@ -20,7 +20,7 @@ export function LegalPage({ eyebrow, title, effective, sections }: LegalPageProp
       <SiteNav />
       <article className="legal">
         <div className="legal-inner">
-          <div className="legal-eyebrow">— {eyebrow}</div>
+          <div className="legal-eyebrow">{eyebrow}</div>
           <h1 className="legal-title">{title}</h1>
           <p className="legal-effective">
             <span className="mono">Effective</span> · {effective}
