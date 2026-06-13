@@ -36,10 +36,10 @@
   --sienna-deep:           oklch(0.30 0.006 260);
   --sienna-tint:           oklch(0.93 0.003 260);
 
-  --sidebar-icon-1:        oklch(0.42 0.06 260);   /* slate */
-  --sidebar-icon-2:        oklch(0.42 0.05 160);   /* sage */
-  --sidebar-icon-3:        oklch(0.42 0.05 80);    /* sand */
-  --sidebar-icon-4:        oklch(0.42 0.06 20);    /* clay */
+  --sidebar-icon-1:        oklch(0.48 0.12 260);   /* blue-slate */
+  --sidebar-icon-2:        oklch(0.50 0.11 160);   /* sage */
+  --sidebar-icon-3:        oklch(0.52 0.11 80);    /* amber-sand */
+  --sidebar-icon-4:        oklch(0.50 0.14 20);    /* clay */
 
   --highlight-default:     oklch(0.95 0.04 95);
   --link:                  oklch(0.45 0.07 250);

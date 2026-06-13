@@ -31,6 +31,8 @@ type GraphNodeData = Archetype & {
 };
 
 const ARCHETYPES: Archetype[] = [
+  { type: "idea", color: "var(--sidebar-icon-1)", w: 104, h: 52, label: "mini-app" },
+  { type: "note", color: "var(--sidebar-icon-2)", w: 92, h: 60, label: "open\nquestions" },
   { type: "note", color: "var(--sidebar-icon-3)", w: 88, h: 58, label: "phase\ntransitions" },
   { type: "note", color: "var(--sidebar-icon-2)", w: 96, h: 62, label: "sources" },
   { type: "note", color: "var(--sidebar-icon-1)", w: 90, h: 56, label: "working\nhypothesis" },
