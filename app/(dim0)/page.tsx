@@ -252,11 +252,11 @@ function ProductShot() {
         aria-label="Open Dim0"
       >
         <Image
-          src="/board-worldmodel-light.png"
+          src="/main-screen.png"
           alt="A Dim0 board showing nested research, sticky notes, code, charts, and an AI agent panel"
           className="product-shot-img"
-          width={2400}
-          height={1500}
+          width={3785}
+          height={1918}
           sizes="(max-width: 1240px) 100vw, 1240px"
         />
         <span className="product-shot-tag">
