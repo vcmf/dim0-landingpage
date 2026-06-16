@@ -12,8 +12,8 @@ const sections: LegalSection[] = [
   {
     heading: "Our approach",
     body: [
-      "Your work is yours. Dim0 is built to help you think, not to mine what you create — and that applies in the cloud, not just on self-hosted setups.",
-      "Cloud Dim0 is privacy-first by design: encrypted in transit and at rest, no behavioral telemetry, no training on your content, no profiling for ads. The same boards you make on app.dim0.net are protected by the same principles the open-source code enforces. Self-hosting is supported on top of that, for teams who want total custody — but you don’t have to leave the hosted product to get strong privacy.",
+      "Your work is yours. Dim0 is built to help you think, not to mine what you create, and that applies in the cloud, not just on self-hosted setups.",
+      "Cloud Dim0 is privacy-first by design: encrypted in transit and at rest, no behavioral telemetry, no training on your content, no profiling for ads. The same boards you make on app.dim0.net are protected by the same principles the open-source code enforces. Self-hosting is supported on top of that, for teams who want total custody. But you don’t have to leave the hosted product to get strong privacy.",
     ],
   },
   {
@@ -28,8 +28,8 @@ const sections: LegalSection[] = [
   {
     heading: "Encryption",
     body: [
-      "Everything between your browser and Dim0 travels over TLS — there is no plaintext leg on the network. Inside the cloud, your boards, notes, uploads, and database records sit on storage that encrypts data at rest by default.",
-      "We don’t currently offer customer-held keys (BYOK) or zero-knowledge end-to-end encryption — if you need either, self-hosting puts the keys and the storage entirely in your control.",
+      "Everything between your browser and Dim0 travels over TLS, so there is no plaintext leg on the network. Inside the cloud, your boards, notes, uploads, and database records sit on storage that encrypts data at rest by default.",
+      "We don’t currently offer customer-held keys (BYOK) or zero-knowledge end-to-end encryption. If you need either, self-hosting puts the keys and the storage entirely in your control.",
     ],
   },
   {
@@ -56,7 +56,7 @@ const sections: LegalSection[] = [
   {
     heading: "Self-hosting",
     body: [
-      "Self-hosting is for teams who want total custody — regulated industries, air-gapped environments, or anyone who prefers to keep keys and storage under their own roof. It is not the only way to use Dim0 privately; the hosted product is privacy-first too.",
+      "Self-hosting is for teams who want total custody: regulated industries, air-gapped environments, or anyone who prefers to keep keys and storage under their own roof. It is not the only way to use Dim0 privately; the hosted product is privacy-first too.",
       "When you self-host, your content stays on your infrastructure: local Postgres, a local vector database, your own model keys, no calls back to us. Privacy, retention, and encryption in that mode depend entirely on how you deploy and configure the system.",
     ],
   },
@@ -64,7 +64,7 @@ const sections: LegalSection[] = [
     heading: "Telemetry",
     body: [
       "We do not run behavioral analytics, session replay, or activity tracking inside the canvas. We do not build a profile of how you use Dim0.",
-      "We do operate the minimum logging needed to keep the service running and secure — for example, error reports and basic request logs. Those logs are not used for advertising or profiling.",
+      "We do operate the minimum logging needed to keep the service running and secure, like error reports and basic request logs. Those logs are not used for advertising or profiling.",
     ],
   },
   {

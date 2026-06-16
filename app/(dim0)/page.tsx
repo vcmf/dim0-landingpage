@@ -219,7 +219,7 @@ function Hero() {
           Notes, mini-apps, and agents on one infinite board.
         </p>
         <p className="hero-subtitle">
-          Open-source, real-time collaborative — solo or with your team.
+          Open-source, real-time collaborative. Solo or with your team.
         </p>
         <Composer />
         <div className="hero-microcopy">
@@ -266,10 +266,10 @@ function ProductShot() {
         </span>
       </a>
       <p className="product-shot-caption">
-        Sticky notes, code, mini-apps, math, charts, sketches, and an AI agent — all on one board.
+        Sticky notes, code, mini-apps, math, charts, sketches, and an AI agent. All on one board.
       </p>
       <p className="product-shot-engine">
-        Rendered with <a href="/canvas-harness">canvas-harness</a> — our open-source canvas engine.
+        Rendered with <a href="/canvas-harness">canvas-harness</a>, our open-source canvas engine.
       </p>
     </section>
   );
@@ -409,7 +409,7 @@ function MiniAppsShowcase() {
           <ul className="miniapp-points">
             <li>
               <span className="miniapp-mark" />
-              Lives on the board — not buried in a chat thread.
+              Lives on the board, not buried in a chat thread.
             </li>
             <li>
               <span className="miniapp-mark" />
@@ -421,7 +421,7 @@ function MiniAppsShowcase() {
             </li>
             <li>
               <span className="miniapp-mark" />
-              Real React — open it, edit it, export it.
+              Real React: open it, edit it, export it.
             </li>
           </ul>
 
@@ -434,7 +434,7 @@ function MiniAppsShowcase() {
           </div>
 
           <p className="miniapp-note">
-            Best for focused, single-purpose tools — spun up in seconds, as fast
+            Best for focused, single-purpose tools. Spun up in seconds, as fast
             as a sentence.
           </p>
         </div>
@@ -462,8 +462,8 @@ function CollaborationSection() {
       </h2>
       <p className="section-lede">
         Bring your team onto the same board. Real-time cursors, shared agents, edits that
-        sync without merge conflicts. The canvas works the same for one person or fifty —
-        the open-source Miro alternative you can actually run yourself.
+        sync without merge conflicts. The canvas works the same for one person or fifty.
+        It&apos;s the open-source Miro alternative you can actually run yourself.
       </p>
 
       <div className="trio">
@@ -472,7 +472,7 @@ function CollaborationSection() {
           <h3 className="trio-title">Live cursors & presence</h3>
           <p className="trio-body">
             See who&apos;s on the board, what they&apos;re selecting, where they&apos;re
-            looking. Names, avatars, colors — the room feels alive.
+            looking. Names, avatars, colors. The room feels alive.
           </p>
         </div>
         <div className="trio-card">
@@ -488,7 +488,7 @@ function CollaborationSection() {
           <h3 className="trio-title">No merge conflicts</h3>
           <p className="trio-body">
             Two people can edit the same note or shape at the same time. Operational
-            transforms with last-write-wins — the same approach Figma and Excalidraw use.
+            transforms with last-write-wins, the same approach Figma and Excalidraw use.
             No refresh dance, no &quot;reload to see changes&quot;.
           </p>
         </div>
@@ -550,7 +550,7 @@ function RichNotesShowcase() {
       <div className="section-eyebrow">Rich notes</div>
       <h2 className="section-title">Notion-grade notes. Drawn on a canvas.</h2>
       <p className="section-lede">
-        Tags, math, toggles, sub-pages, references, code. Edit by hand — or ask AI to draft and revise the note in place.
+        Tags, math, toggles, sub-pages, references, code. Edit by hand, or ask AI to draft and revise the note in place.
       </p>
       <div className="rich-video-frame">
         <LazyVideo
@@ -590,14 +590,14 @@ function UseCasesSection() {
     {
       tag: "Sketch",
       title: "Rough shapes that the AI understands.",
-      body: "Excalidraw-style freehand shapes, system diagrams, flows — drawn by you or generated. The agent reads them as context.",
+      body: "Excalidraw-style freehand shapes, system diagrams, flows, drawn by you or generated. The agent reads them as context.",
       img: "/board-api-architecture.png",
       alt: "Hand-drawn API architecture diagram on a Dim0 board — Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
     },
     {
       tag: "Write",
       title: "Long-form notes, spatially arranged.",
-      body: "Notion-grade rich notes — math, code, tags, toggles, sub-pages — sitting wherever you put them on the board.",
+      body: "Notion-grade rich notes (math, code, tags, toggles, sub-pages) sitting wherever you put them on the board.",
       img: "/note-visual-thinking.png",
       alt: "Long-form rich notes on a Dim0 board — Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
     },
@@ -716,7 +716,7 @@ function ThemesSection() {
       <div className="section-eyebrow">Themes</div>
       <h2 className="section-title">Eight themes. Light and dark.</h2>
       <p className="section-lede">
-        Parchment, Matcha, Noir, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine — pick the one that makes you want to open the app.
+        Parchment, Matcha, Noir, Catppuccin, Tokyo Night, Gruvbox, Monokai Pro, Rosé Pine. Pick the one that makes you want to open the app.
       </p>
       <div className="themes-grid">
         {THEMES.map((t) => (
@@ -851,7 +851,7 @@ const PLANS: Plan[] = [
       "Community support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "primary" },
-    note: "Free is limited while we run on a small budget — we’re making it more usable over time.",
+    note: "Free is limited while we run on a small budget. We’re making it more usable over time.",
     featured: true,
   },
   {
@@ -868,7 +868,7 @@ const PLANS: Plan[] = [
       "Priority support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "sienna" },
-    note: "Upgrade any time from your account — no card needed to start.",
+    note: "Upgrade any time from your account. No card needed to start.",
   },
 ];
 
@@ -881,7 +881,7 @@ function PricingSection() {
       </h2>
       <p className="section-lede">
         Run it yourself for free, or use the cloud with nothing to set up. No card
-        required to start — upgrade any time from your account.
+        required to start, and you can upgrade any time from your account.
       </p>
 
       <div className="pricing-grid">
@@ -942,7 +942,7 @@ function PrivacySection() {
         Your data <em>stays yours.</em>
       </h2>
       <p className="section-lede">
-        Cloud Dim0 is private by design — not just because you can self-host. Encrypted in
+        Cloud Dim0 is private by design, not just because you can self-host. Encrypted in
         transit and at rest, never trained on, no behavioral telemetry. The hosted product
         respects you the same way the open-source code does.
       </p>
@@ -961,7 +961,7 @@ function PrivacySection() {
           <h3 className="trio-title">Never trained on</h3>
           <p className="trio-body">
             Your boards are not training data. We don&apos;t use your content to train
-            models — ours or anyone else&apos;s. Prompts go only to the provider you pick,
+            models, ours or anyone else&apos;s. Prompts go only to the provider you pick,
             for the request you sent.
           </p>
         </div>
@@ -976,7 +976,7 @@ function PrivacySection() {
       </div>
 
       <p className="privacy-footnote">
-        Want absolute custody? Dim0 is MIT and self-hostable — local Postgres, local vector
+        Want absolute custody? Dim0 is MIT and self-hostable: local Postgres, local vector
         DB, your own model keys, nothing leaves your infrastructure.{" "}
         <Link className="faq-link" href="/privacy">Read the full policy →</Link>
       </p>
@@ -999,19 +999,19 @@ function PrivacySection() {
 const FAQS = [
   {
     q: "What is Dim0, exactly?",
-    a: "A thinking canvas where notes, docs, code, widgets, and AI agents live on one board together. Rich notes like Notion, freehand shapes like Excalidraw, agents that act on the board — same surface.",
+    a: "A thinking canvas where notes, docs, code, widgets, and AI agents live on one board together. Rich notes like Notion, freehand shapes like Excalidraw, agents that act on the board, all on the same surface.",
   },
   {
     q: "Is Dim0 a Notion or Excalidraw alternative?",
-    a: "Yes — Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board — and the agent reads the surrounding context before it acts.",
+    a: "Yes. Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board, and the agent reads the surrounding context before it acts.",
   },
   {
     q: "Is it free?",
-    a: "Yes, free to use during early access at app.dim0.net. The product is also open source — fork it, self-host it, bring your own model keys.",
+    a: "Yes, free to use during early access at app.dim0.net. The product is also open source: fork it, self-host it, bring your own model keys.",
   },
   {
     q: "Is it open source?",
-    a: "Yes. Inspect it, fork it, self-host it — it’s all on GitHub.",
+    a: "Yes. Inspect it, fork it, self-host it. It’s all on GitHub.",
   },
   {
     q: "Which AI models?",
@@ -1019,11 +1019,11 @@ const FAQS = [
   },
   {
     q: "Can I collaborate with others in real time?",
-    a: "Yes. Real-time multi-user collaboration is live — live cursors, presence, edits that sync without merge conflicts, and shared AI agents that work on the same board. Bring your team or work solo; the canvas works the same either way.",
+    a: "Yes. Real-time multi-user collaboration is live: live cursors, presence, edits that sync without merge conflicts, and shared AI agents that work on the same board. Bring your team or work solo; the canvas works the same either way.",
   },
   {
     q: "How does real-time collaboration work under the hood?",
-    a: "Operational transforms with last-write-wins for conflicts — the same approach Figma and Excalidraw use, not CRDT. Every edit becomes a typed operation, transformed against any concurrent edits, applied on the server, then broadcast to everyone live on the board. The canvas engine underneath (canvas-harness) is sync-agnostic — it exposes typed ops with previous-value slices, so OT, CRDT, or any custom protocol all fit.",
+    a: "Operational transforms with last-write-wins for conflicts, the same approach Figma and Excalidraw use, not CRDT. Every edit becomes a typed operation, transformed against any concurrent edits, applied on the server, then broadcast to everyone live on the board. The canvas engine underneath (canvas-harness) is sync-agnostic: it exposes typed ops with previous-value slices, so OT, CRDT, or any custom protocol all fit.",
   },
   {
     q: "Is there a desktop or mobile app?",
@@ -1039,14 +1039,14 @@ const FAQS = [
   },
   {
     q: "Can Dim0 generate interactive apps, like ChatGPT apps or Claude artifacts?",
-    a: "Yes — we call them mini-apps. Describe what you want and Dim0 generates a real, interactive React app right on your canvas. Unlike an artifact trapped in a chat thread, a mini-app is a node on your board: it persists, your team can use it live, it can read the notes and data next to it, and you can open the code, edit it, or export it. They work best as focused, single-purpose tools — calculators, charts, visualizers, quizzes — spun up in seconds.",
+    a: "Yes, we call them mini-apps. Describe what you want and Dim0 generates a real, interactive React app right on your canvas. Unlike an artifact trapped in a chat thread, a mini-app is a node on your board: it persists, your team can use it live, it can read the notes and data next to it, and you can open the code, edit it, or export it. They work best as focused, single-purpose tools like calculators, charts, visualizers, and quizzes, spun up in seconds.",
   },
   {
     q: "How big can boards get?",
     a: (
       <>
-        Thousands. We built our own canvas engine —{" "}
-        <a className="faq-link" href="/canvas-harness">canvas-harness</a> — 10k
+        Thousands. We built our own canvas engine,{" "}
+        <a className="faq-link" href="/canvas-harness">canvas-harness</a>: 10k
         visible nodes pan at ~80 fps on an M1, idle stays at ~120 fps. Same league as
         Excalidraw and tldraw. Most boards live in the hundreds; the ceiling is there
         if you need it.
@@ -1055,11 +1055,11 @@ const FAQS = [
   },
   {
     q: "How is my data used?",
-    a: "On the cloud at app.dim0.net: prompts and board context are sent only to the model provider that produces the answer (Anthropic, OpenAI, Google, etc.) under their terms. We don’t train on your content, we don’t sell data, we don’t profile you for ads, and we run no behavioral telemetry on your boards. Self-host: everything stays on your infrastructure — local Postgres and vector DB, your own model keys, no calls back to us.",
+    a: "On the cloud at app.dim0.net: prompts and board context are sent only to the model provider that produces the answer (Anthropic, OpenAI, Google, etc.) under their terms. We don’t train on your content, we don’t sell data, we don’t profile you for ads, and we run no behavioral telemetry on your boards. Self-host: everything stays on your infrastructure. Local Postgres and vector DB, your own model keys, no calls back to us.",
   },
   {
     q: "What format are my notes stored in?",
-    a: "Pure Markdown. Download any note and paste it into any other editor — Obsidian, VS Code, plain text. Boards export cleanly too. No proprietary blocks, no vendor format you can’t walk away from.",
+    a: "Pure Markdown. Download any note and paste it into any other editor: Obsidian, VS Code, plain text. Boards export cleanly too. No proprietary blocks, no vendor format you can’t walk away from.",
   },
 ];
 
