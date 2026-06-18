@@ -176,14 +176,14 @@ function HeroVideo() {
           playsInline
           preload="metadata"
           poster="/board-mindmap-deaging.png"
-          aria-label="A user asks a question on the Dim0 canvas; the agent answers with a mindmap."
+          aria-label="A walkthrough of Dim0: notes, mini-apps, sketches, and an AI agent working together on one canvas."
         >
-          <source src="/video-query-to-mindmap.mp4" type="video/mp4" />
+          <source src="/compressed-full-demo-dark-theme.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="hero-video-caption">
         <span className="hero-video-dot" />
-        <span>Ask a question · the agent builds a mindmap right on your canvas</span>
+        <span>A quick tour · everything on one canvas</span>
       </div>
     </div>
   );
@@ -252,11 +252,11 @@ function ProductShot() {
         aria-label="Open Dim0"
       >
         <Image
-          src="/main-screen.png"
+          src="/home-screenshot-2.png"
           alt="A Dim0 board showing nested research, sticky notes, code, charts, and an AI agent panel"
           className="product-shot-img"
-          width={3785}
-          height={1918}
+          width={1919}
+          height={974}
           sizes="(max-width: 1240px) 100vw, 1240px"
         />
         <span className="product-shot-tag">
