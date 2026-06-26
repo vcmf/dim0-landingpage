@@ -823,36 +823,39 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    name: "Self-host",
-    tagline: "Run it yourself, own everything",
-    price: "Free",
-    period: "MIT licensed",
-    features: [
-      "Full source on GitHub",
-      "Your infrastructure, your data",
-      "Bring your own model keys",
-      "Notes in plain Markdown",
-      "Unlimited live collaborators",
-      "No caps, no lock-in",
-    ],
-    cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
-  },
-  {
     name: "Free",
     tagline: "For personal exploration",
     price: "€0",
     period: "forever",
     features: [
-      "40 AI requests / day",
+      "50 AI requests / day",
+      "750 AI requests / month",
       "5 boards",
-      "Up to 5 live collaborators / board",
-      "1 document upload / board",
-      "Basic AI actions + a few mini-apps",
+      "Up to 5 collaborators / board",
+      "3 documents / board",
+      "10 mini-apps / board",
+      "Lite models only",
       "Community support",
     ],
-    cta: { label: "Start free", href: APP_URL, variant: "primary" },
+    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
     note: "Free is limited while we run on a small budget. We’re making it more usable over time.",
-    featured: true,
+  },
+  {
+    name: "Basic",
+    tagline: "For steady, everyday use",
+    price: "€6.99",
+    period: "/ month",
+    features: [
+      "150 AI requests / day",
+      "3,000 AI requests / month",
+      "Unlimited boards",
+      "Up to 10 collaborators / board",
+      "10 documents / board",
+      "20 mini-apps / board",
+      "Lite models (no top-tier AI)",
+      "Standard support",
+    ],
+    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
   },
   {
     name: "Plus",
@@ -862,20 +865,35 @@ const PLANS: Plan[] = [
     features: [
       "Unlimited AI requests",
       "Unlimited boards",
-      "Up to 20 live collaborators / board",
-      "Unlimited document uploads",
-      "Unlimited mini-apps",
+      "Up to 20 collaborators / board",
+      "25 documents / board",
+      "100 mini-apps / board",
       "Frontier models: GPT, Claude, Gemini, and more",
       "Priority support",
     ],
-    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
+    cta: { label: "Start free", href: APP_URL, variant: "primary" },
     note: "Upgrade any time from your account. No card needed to start.",
+    featured: true,
+  },
+  {
+    name: "Self-host",
+    tagline: "Run it yourself, own everything",
+    price: "Free",
+    period: "MIT licensed",
+    features: [
+      "Full source on GitHub",
+      "Your infrastructure, your data",
+      "Bring your own model keys",
+      "Unlimited collaborators",
+      "No caps, no lock-in",
+    ],
+    cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
   },
 ];
 
 function PricingSection() {
   return (
-    <section className="section section-narrow" id="pricing">
+    <section className="section" id="pricing">
       <div className="section-eyebrow">Pricing</div>
       <h2 className="section-title">
         Start free. <em>Upgrade if you love it.</em>
@@ -885,13 +903,18 @@ function PricingSection() {
         required to start, and you can upgrade any time from your account.
       </p>
 
+      <p className="pricing-anchor">
+        Miro, Notion, and ChatGPT on one canvas, from <strong>€6.99</strong> a month.
+        Plus still costs less than a single ChatGPT Plus seat.
+      </p>
+
       <div className="pricing-grid">
         {PLANS.map((plan) => (
           <div
             key={plan.name}
             className={`price-card ${plan.featured ? "price-card-featured" : ""}`}
           >
-            {plan.featured && <div className="price-card-tag">Start here</div>}
+            {plan.featured && <div className="price-card-tag">Most popular</div>}
             <div className="price-card-head">
               <h3 className="price-card-name">{plan.name}</h3>
               <p className="price-card-tagline">{plan.tagline}</p>

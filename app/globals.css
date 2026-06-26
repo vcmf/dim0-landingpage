@@ -1316,14 +1316,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ---------- PRICING ---------- */
+.pricing-anchor {
+  margin: 18px 0 0;
+  max-width: 640px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+.pricing-anchor strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 40px;
   align-items: start;
 }
-@media (max-width: 860px) {
+@media (max-width: 1000px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
   .pricing-grid { grid-template-columns: 1fr; }
 }
 .price-card {
