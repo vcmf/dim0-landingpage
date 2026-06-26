@@ -756,7 +756,7 @@ function ModelsSection() {
     { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color },
     { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color },
     { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color },
-    { name: "Kimi", vendor: "Moonshot", Icon: Kimi.Color },
+    { name: "Kimi", vendor: "Moonshot", Icon: Kimi },
     { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color },
   ];
 
