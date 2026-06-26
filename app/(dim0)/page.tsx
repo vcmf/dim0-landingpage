@@ -905,7 +905,7 @@ function PricingSection() {
 
       <p className="pricing-anchor">
         Miro, Notion, and ChatGPT on one canvas, from <strong>€6.99</strong> a month.
-        Plus still costs less than a single ChatGPT Plus seat.
+        <strong>Plus</strong> still costs less than a single ChatGPT Plus seat.
       </p>
 
       <div className="pricing-grid">
@@ -923,6 +923,9 @@ function PricingSection() {
               <span className="price-amount">{plan.price}</span>
               <span className="price-period">{plan.period}</span>
             </div>
+            {plan.featured && (
+              <p className="price-hand-note">≈ one coffee a week</p>
+            )}
             <ul className="price-features">
               {plan.features.map((f) => (
                 <li key={f}>

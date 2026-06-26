@@ -1400,6 +1400,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 13px;
   color: var(--muted-foreground);
 }
+.price-hand-note {
+  font-family: var(--font-handwriting);
+  font-size: 14.5px;
+  color: var(--sienna);
+  margin: -8px 0 18px;
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
 .price-features {
   list-style: none;
   padding: 0;
