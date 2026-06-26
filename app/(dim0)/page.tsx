@@ -32,6 +32,16 @@ import {
   UsersThreeIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import {
+  ChatGLM,
+  Claude,
+  DeepSeek,
+  Gemini,
+  Kimi,
+  Mistral,
+  OpenAI,
+  Qwen,
+} from "@lobehub/icons";
 import Link from "next/link";
 import { GraphBackground } from "../components/graph-background";
 import {
@@ -736,16 +746,18 @@ function ThemesSection() {
   );
 }
 
+type ModelChip = { name: string; vendor: string; Icon: ComponentType<{ size?: number }> };
+
 function ModelsSection() {
-  const models = [
-    { name: "Claude", vendor: "Anthropic", c: "var(--sidebar-icon-3)" },
-    { name: "GPT", vendor: "OpenAI", c: "var(--sidebar-icon-2)" },
-    { name: "Gemini", vendor: "Google", c: "var(--sidebar-icon-1)" },
-    { name: "Mistral", vendor: "Mistral", c: "var(--sidebar-icon-4)" },
-    { name: "DeepSeek", vendor: "DeepSeek", c: "var(--sidebar-icon-1)" },
-    { name: "Qwen", vendor: "Alibaba", c: "var(--sidebar-icon-3)" },
-    { name: "Kimi", vendor: "Moonshot", c: "var(--sidebar-icon-2)" },
-    { name: "GLM", vendor: "Z.ai", c: "var(--sidebar-icon-4)" },
+  const models: ModelChip[] = [
+    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color },
+    { name: "GPT", vendor: "OpenAI", Icon: OpenAI },
+    { name: "Gemini", vendor: "Google", Icon: Gemini.Color },
+    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color },
+    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color },
+    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color },
+    { name: "Kimi", vendor: "Moonshot", Icon: Kimi.Color },
+    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color },
   ];
 
   return (
@@ -758,7 +770,7 @@ function ModelsSection() {
       <div className="models">
         {models.map((m) => (
           <span key={m.name} className="model-chip">
-            <span className="dot" style={{ background: m.c }} />
+            <m.Icon size={16} />
             {m.name} <span style={{ color: "var(--border)" }}>·</span>
             <span style={{ color: "color-mix(in oklab, var(--muted-foreground) 80%, transparent)" }}>
               {m.vendor}
