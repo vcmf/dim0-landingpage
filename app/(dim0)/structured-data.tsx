@@ -23,9 +23,17 @@ const softwareApplication = {
     "Open source, MIT-licensed, self-hostable",
   ],
   offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
+    "@type": "AggregateOffer",
+    priceCurrency: "EUR",
+    lowPrice: "0",
+    highPrice: "11.99",
+    offerCount: "4",
+    offers: [
+      { "@type": "Offer", name: "Free", price: "0", priceCurrency: "EUR" },
+      { "@type": "Offer", name: "Basic", price: "6.99", priceCurrency: "EUR" },
+      { "@type": "Offer", name: "Plus", price: "11.99", priceCurrency: "EUR" },
+      { "@type": "Offer", name: "Self-host", price: "0", priceCurrency: "EUR" },
+    ],
   },
   publisher: {
     "@type": "Organization",

@@ -17,6 +17,7 @@ import {
   AtIcon,
   CaretDownIcon,
   CheckIcon,
+  CoffeeIcon,
   CommandIcon,
   EyeIcon,
   EyeSlashIcon,
@@ -32,6 +33,16 @@ import {
   UsersThreeIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import {
+  ChatGLM,
+  Claude,
+  DeepSeek,
+  Gemini,
+  Kimi,
+  Mistral,
+  OpenAI,
+  Qwen,
+} from "@lobehub/icons";
 import Link from "next/link";
 import { GraphBackground } from "../components/graph-background";
 import {
@@ -736,16 +747,18 @@ function ThemesSection() {
   );
 }
 
+type ModelChip = { name: string; vendor: string; Icon: ComponentType<{ size?: number }> };
+
 function ModelsSection() {
-  const models = [
-    { name: "Claude", vendor: "Anthropic", c: "var(--sidebar-icon-3)" },
-    { name: "GPT", vendor: "OpenAI", c: "var(--sidebar-icon-2)" },
-    { name: "Gemini", vendor: "Google", c: "var(--sidebar-icon-1)" },
-    { name: "Mistral", vendor: "Mistral", c: "var(--sidebar-icon-4)" },
-    { name: "DeepSeek", vendor: "DeepSeek", c: "var(--sidebar-icon-1)" },
-    { name: "Qwen", vendor: "Alibaba", c: "var(--sidebar-icon-3)" },
-    { name: "Kimi", vendor: "Moonshot", c: "var(--sidebar-icon-2)" },
-    { name: "GLM", vendor: "Z.ai", c: "var(--sidebar-icon-4)" },
+  const models: ModelChip[] = [
+    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color },
+    { name: "GPT", vendor: "OpenAI", Icon: OpenAI },
+    { name: "Gemini", vendor: "Google", Icon: Gemini.Color },
+    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color },
+    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color },
+    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color },
+    { name: "Kimi", vendor: "Moonshot", Icon: Kimi },
+    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color },
   ];
 
   return (
@@ -758,7 +771,7 @@ function ModelsSection() {
       <div className="models">
         {models.map((m) => (
           <span key={m.name} className="model-chip">
-            <span className="dot" style={{ background: m.c }} />
+            <m.Icon size={16} />
             {m.name} <span style={{ color: "var(--border)" }}>·</span>
             <span style={{ color: "color-mix(in oklab, var(--muted-foreground) 80%, transparent)" }}>
               {m.vendor}
@@ -819,40 +832,46 @@ type Plan = {
   cta: { label: string; href: string; variant: "ghost" | "primary" | "sienna"; external?: boolean };
   note?: string;
   featured?: boolean;
+  // playful price anchor: rendered as "≈ {pre} ☕ coffee {post}"
+  handNote?: { pre: string; post: string };
 };
 
 const PLANS: Plan[] = [
-  {
-    name: "Self-host",
-    tagline: "Run it yourself, own everything",
-    price: "Free",
-    period: "MIT licensed",
-    features: [
-      "Full source on GitHub",
-      "Your infrastructure, your data",
-      "Bring your own model keys",
-      "Notes in plain Markdown",
-      "Unlimited live collaborators",
-      "No caps, no lock-in",
-    ],
-    cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
-  },
   {
     name: "Free",
     tagline: "For personal exploration",
     price: "€0",
     period: "forever",
     features: [
-      "40 AI requests / day",
+      "50 AI requests / day",
+      "750 AI requests / month",
       "5 boards",
-      "Up to 5 live collaborators / board",
-      "1 document upload / board",
-      "Basic AI actions + a few mini-apps",
+      "Up to 5 collaborators / board",
+      "3 documents / board",
+      "10 mini-apps / board",
+      "Lite models only",
       "Community support",
     ],
-    cta: { label: "Start free", href: APP_URL, variant: "primary" },
+    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
     note: "Free is limited while we run on a small budget. We’re making it more usable over time.",
-    featured: true,
+  },
+  {
+    name: "Basic",
+    tagline: "For steady, everyday use",
+    price: "€6.99",
+    period: "/ month",
+    features: [
+      "150 AI requests / day",
+      "3,000 AI requests / month",
+      "Unlimited boards",
+      "Up to 10 collaborators / board",
+      "10 documents / board",
+      "20 mini-apps / board",
+      "Lite models (no top-tier AI)",
+      "Standard support",
+    ],
+    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
+    handNote: { pre: "one", post: "every 2 weeks" },
   },
   {
     name: "Plus",
@@ -862,20 +881,36 @@ const PLANS: Plan[] = [
     features: [
       "Unlimited AI requests",
       "Unlimited boards",
-      "Up to 20 live collaborators / board",
-      "Unlimited document uploads",
-      "Unlimited mini-apps",
+      "Up to 20 collaborators / board",
+      "25 documents / board",
+      "100 mini-apps / board",
       "Frontier models: GPT, Claude, Gemini, and more",
       "Priority support",
     ],
-    cta: { label: "Start free", href: APP_URL, variant: "sienna" },
+    cta: { label: "Start free", href: APP_URL, variant: "primary" },
     note: "Upgrade any time from your account. No card needed to start.",
+    featured: true,
+    handNote: { pre: "one", post: "a week" },
+  },
+  {
+    name: "Self-host",
+    tagline: "Run it yourself, own everything",
+    price: "Free",
+    period: "MIT licensed",
+    features: [
+      "Full source on GitHub",
+      "Your infrastructure, your data",
+      "Bring your own model keys",
+      "Unlimited collaborators",
+      "No caps, no lock-in",
+    ],
+    cta: { label: "Get the code", href: GH_URL, variant: "ghost", external: true },
   },
 ];
 
 function PricingSection() {
   return (
-    <section className="section section-narrow" id="pricing">
+    <section className="section" id="pricing">
       <div className="section-eyebrow">Pricing</div>
       <h2 className="section-title">
         Start free. <em>Upgrade if you love it.</em>
@@ -885,20 +920,34 @@ function PricingSection() {
         required to start, and you can upgrade any time from your account.
       </p>
 
+      <p className="pricing-anchor">
+        Miro, Notion, and ChatGPT on one canvas, from <strong>€6.99</strong> a month.{" "}
+        <strong>Plus</strong> still costs less than a single ChatGPT Plus seat.
+      </p>
+
       <div className="pricing-grid">
         {PLANS.map((plan) => (
           <div
             key={plan.name}
             className={`price-card ${plan.featured ? "price-card-featured" : ""}`}
           >
-            {plan.featured && <div className="price-card-tag">Start here</div>}
+            {plan.featured && <div className="price-card-tag">Most popular</div>}
             <div className="price-card-head">
               <h3 className="price-card-name">{plan.name}</h3>
               <p className="price-card-tagline">{plan.tagline}</p>
             </div>
-            <div className="price-card-price">
-              <span className="price-amount">{plan.price}</span>
-              <span className="price-period">{plan.period}</span>
+            <div className="price-card-price-wrap">
+              <div className="price-card-price">
+                <span className="price-amount">{plan.price}</span>
+                <span className="price-period">{plan.period}</span>
+              </div>
+              {plan.handNote && (
+                <p className="price-hand-note">
+                  ≈ {plan.handNote.pre}{" "}
+                  <CoffeeIcon size={15} weight="fill" className="price-hand-icon" />{" "}
+                  {plan.handNote.post}
+                </p>
+              )}
             </div>
             <ul className="price-features">
               {plan.features.map((f) => (

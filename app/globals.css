@@ -1316,14 +1316,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ---------- PRICING ---------- */
+.pricing-anchor {
+  margin: 18px 0 0;
+  max-width: 640px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+.pricing-anchor strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 40px;
   align-items: start;
 }
-@media (max-width: 860px) {
+@media (max-width: 1000px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
   .pricing-grid { grid-template-columns: 1fr; }
 }
 .price-card {
@@ -1367,13 +1381,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
   margin: 0 0 20px;
 }
+.price-card-price-wrap {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
 .price-card-price {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 22px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
 }
 .price-amount {
   font-family: var(--font-sans);
@@ -1385,6 +1401,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .price-period {
   font-size: 13px;
   color: var(--muted-foreground);
+}
+.price-hand-note {
+  font-family: var(--font-handwriting);
+  font-size: 15px;
+  color: var(--muted-foreground);
+  margin: 10px 0 0;
+  white-space: nowrap;
+}
+.price-hand-icon {
+  display: inline-block;
+  color: var(--sidebar-icon-3);
+  vertical-align: -3px;
+  margin: 0 1px;
 }
 .price-features {
   list-style: none;
