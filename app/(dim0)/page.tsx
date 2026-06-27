@@ -871,7 +871,7 @@ const PLANS: Plan[] = [
       "Standard support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "sienna" },
-    handNote: { pre: "a", post: "every two weeks" },
+    handNote: { pre: "one", post: "every 2 weeks" },
   },
   {
     name: "Plus",
@@ -944,7 +944,7 @@ function PricingSection() {
               {plan.handNote && (
                 <p className="price-hand-note">
                   ≈ {plan.handNote.pre}{" "}
-                  <CoffeeIcon size={15} weight="fill" className="price-hand-icon" /> coffee{" "}
+                  <CoffeeIcon size={15} weight="fill" className="price-hand-icon" />{" "}
                   {plan.handNote.post}
                 </p>
               )}

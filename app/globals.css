@@ -1404,15 +1404,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .price-hand-note {
   font-family: var(--font-handwriting);
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--muted-foreground);
   margin: 10px 0 0;
-  transform: rotate(-1.5deg);
-  transform-origin: left center;
+  white-space: nowrap;
 }
 .price-hand-icon {
   color: var(--sidebar-icon-3);
-  vertical-align: -2px;
+  vertical-align: -3px;
   margin: 0 1px;
 }
 .price-features {
