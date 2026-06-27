@@ -825,6 +825,104 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0;
 }
 
+/* ---------- COLLABORATION (live multiplayer stage) ---------- */
+.section-collab {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 660px;
+}
+.collab-content {
+  position: relative;
+  z-index: 2;
+}
+/* frosted cards float over the live board behind them */
+.section-collab .trio-card {
+  background: color-mix(in oklab, var(--card) 84%, transparent);
+  backdrop-filter: blur(5px) saturate(1.1);
+  -webkit-backdrop-filter: blur(5px) saturate(1.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.collab-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.collab-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--muted-foreground) 28%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+.collab-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    var(--background) 0%,
+    color-mix(in oklab, var(--background) 80%, transparent) 16%,
+    color-mix(in oklab, var(--background) 32%, transparent) 38%,
+    color-mix(in oklab, var(--background) 32%, transparent) 62%,
+    var(--background) 100%
+  );
+}
+
+.collab-note {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 7px 11px;
+  border: 1px solid;
+  border-radius: 7px;
+  font-family: var(--font-handwriting);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--foreground);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s ease;
+  will-change: left, top;
+}
+.collab-note.held {
+  box-shadow: var(--shadow-md);
+}
+.collab-cursor {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  z-index: 1;
+  will-change: left, top;
+}
+.collab-cursor svg {
+  display: block;
+  filter: drop-shadow(0 1px 1px hsl(0 0% 0% / 0.25));
+}
+.collab-cursor-label {
+  margin: 11px 0 0 -3px;
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+.collab-marquee {
+  position: absolute;
+  border: 1.5px solid;
+  border-radius: 3px;
+}
+@media (max-width: 720px) {
+  .section-collab { min-height: 0; }
+  .collab-canvas, .collab-vignette { display: none; }
+}
+
 /* ---------- FAQ ---------- */
 .faq-list {
   margin-top: 36px;
