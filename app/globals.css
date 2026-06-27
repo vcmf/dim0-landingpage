@@ -1410,6 +1410,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   white-space: nowrap;
 }
 .price-hand-icon {
+  display: inline-block;
   color: var(--sidebar-icon-3);
   vertical-align: -3px;
   margin: 0 1px;
