@@ -54,7 +54,7 @@ const organization = {
 };
 
 // Plain-text mirror of the FAQ rendered on the page. Keep in sync with FAQS in
-// app/(dim0)/page.tsx — order and questions must match.
+// app/(dim0)/page.tsx; order and questions must match.
 const faqPage = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
