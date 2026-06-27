@@ -421,6 +421,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative;
   height: 30px;
   line-height: 30px;
+  overflow: hidden;
 }
 .composer-input-real {
   position: relative;
@@ -446,6 +447,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   white-space: pre;
   user-select: none;
   z-index: 1;
+  -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+  mask-image: linear-gradient(to right, #000 88%, transparent);
 }
 .tw-text {
   white-space: pre;
@@ -1412,6 +1415,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-foreground);
+}
+/* Compact palette dots, shown only on narrow screens in place of the preview */
+.theme-dots {
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
+.theme-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, black 14%, transparent);
+}
+.theme-dot-sep {
+  width: 1px;
+  height: 13px;
+  background: var(--border);
+  margin: 0 3px;
+}
+@media (max-width: 600px) {
+  .themes-grid { grid-template-columns: 1fr; gap: 10px; }
+  .theme-card .theme-preview { display: none; }
+  .theme-card .theme-card-modes { display: none; }
+  .theme-card .theme-dots { display: inline-flex; }
+  .theme-card-meta { padding: 14px 16px; }
 }
 
 /* ---------- PRICING ---------- */
