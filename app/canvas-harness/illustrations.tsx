@@ -111,7 +111,7 @@ export function MiniRender() {
   );
 }
 
-// Warm-parchment Dim0 board mini-mock — the cute contrast moment.
+// Warm-parchment Dim0 board mini-mock, the cute contrast moment.
 // Hard-coded warm colours so it stays warm even inside the cold engine page.
 export function BuiltOnDim0() {
   return (
@@ -132,7 +132,7 @@ export function BuiltOnDim0() {
       <circle cx="230" cy="76" r="22" fill="none" stroke="#3a2d1a" strokeWidth="1" />
       <path d="M 215 86 Q 230 60 245 86" fill="none" stroke="#3a2d1a" strokeWidth="1" />
       <rect x="60" y="120" width="180" height="56" rx="4" fill="#FBF5E5" stroke="#3a2d1a" strokeWidth="1.1" />
-      <text x="70" y="138" fontSize="9" fontFamily="var(--ch-font-mono)" fill="#3a2d1a">— the canvas thinks back.</text>
+      <text x="70" y="138" fontSize="9" fontFamily="var(--ch-font-mono)" fill="#3a2d1a">the canvas thinks back.</text>
       <line x1="78" y1="148" x2="220" y2="148" stroke="#3a2d1a" strokeWidth="0.5" />
       <line x1="78" y1="158" x2="200" y2="158" stroke="#3a2d1a" strokeWidth="0.5" />
       <line x1="78" y1="168" x2="170" y2="168" stroke="#3a2d1a" strokeWidth="0.5" />

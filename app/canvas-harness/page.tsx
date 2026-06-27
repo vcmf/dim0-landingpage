@@ -56,14 +56,14 @@ function CHHero() {
   return (
     <section className="ch-hero" id="top">
       <div>
-        <div className="ch-eyebrow">— a canvas engine for React</div>
+        <div className="ch-eyebrow">a canvas engine for React</div>
         <h1 className="ch-hero-title">
           Canvas performance, <em>zero style opinions.</em>
         </h1>
         <p className="ch-hero-lede">
           <strong>canvas-harness</strong> is a node-graph library for React that renders
-          on a canvas instead of the DOM — so 10k nodes pan at ~80fps. It owns the hard
-          parts — camera, hit-testing, history, spatial queries — and ships no UI and no
+          on a canvas instead of the DOM, so 10k nodes pan at ~80fps. It owns the hard
+          parts (camera, hit-testing, history, spatial queries) and ships no UI and no
           styles. Every color, font, and corner radius is yours.
         </p>
         <div className="ch-hero-cta-row">
@@ -87,7 +87,7 @@ function CHHero() {
       <div>
         <HeroCanvas />
         <div className="ch-hero-visual-caption">
-          live · the same engine behind dim0.net — painted on a canvas, not the DOM
+          live · the same engine behind dim0.net, painted on a canvas, not the DOM
         </div>
       </div>
     </section>
@@ -134,7 +134,7 @@ function CHProof() {
   return (
     <section className="ch-band" id="proof">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— see for yourself</div>
+        <div className="ch-eyebrow">see for yourself</div>
         <h2>10k nodes, <em>panning live.</em></h2>
       </div>
       <div className="ch-proof">
@@ -147,7 +147,7 @@ function CHProof() {
         </div>
         <p className="ch-proof-caption">
           <strong>canvas-harness, 10,000 plain rects</strong> (top) vs{" "}
-          <strong>Excalidraw, 8,000</strong> (bottom) — live pan and zoom on a MacBook M1.
+          <strong>Excalidraw, 8,000</strong> (bottom), live pan and zoom on a MacBook M1.
           Excalidraw is canvas-rendered and excellent; this is just where bitmap caching and
           viewport culling pull ahead at scale. Numbers vary on other hardware.
         </p>
@@ -159,16 +159,16 @@ function CHProof() {
 function CHWhy() {
   const rows = [
     { n: "01", h: "Coordinate spaces", b: "Screen, world, and node-local coordinates, converted correctly at any zoom or pan." },
-    { n: "02", h: "Hit testing", b: "A uniform-grid spatial index backs querySpatial — point, rect, and marquee hits without walking the node list." },
-    { n: "03", h: "Render virtualization", b: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps on an M1." },
+    { n: "02", h: "Hit testing", b: "A uniform-grid spatial index backs querySpatial, point, rect, and marquee hits without walking the node list." },
+    { n: "03", h: "Render virtualization", b: "Visibility culling paints only the nodes in view, 10k visible nodes pan at ~80fps on an M1." },
     { n: "04", h: "Gesture choreography", b: "Pan, zoom, marquee-select, and drag-to-move come wired, switchable through the canvas tool prop." },
-    { n: "05", h: "History", b: "Undo and redo over a typed operation log — the same log that drives collaboration through a SyncAdapter." },
-    { n: "06", h: "Canvas-rendered, styleless", b: "It paints every node to a canvas — bitmap-cached, with motion-based LOD — and ships zero styles, so the look is entirely yours." },
+    { n: "05", h: "History", b: "Undo and redo over a typed operation log, the same log that drives collaboration through a SyncAdapter." },
+    { n: "06", h: "Canvas-rendered, styleless", b: "It paints every node to a canvas, bitmap-cached, with motion-based LOD, and ships zero styles, so the look is entirely yours." },
   ];
   return (
     <section className="ch-band" id="why">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— why a harness</div>
+        <div className="ch-eyebrow">why a harness</div>
         <h2>
           Every canvas-shaped product re-solves the same six problems.
           <em> Stop re-solving them.</em>
@@ -191,17 +191,17 @@ function CHWhy() {
 
 function CHWhat() {
   const cards: { tag: string; title: string; body: string; mini: ReactNode }[] = [
-    { tag: "camera", title: "The camera, as a value.", body: "A 3-number state — x, y, z — with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
+    { tag: "camera", title: "The camera, as a value.", body: "A 3-number state, x, y, z, with helpers for pan, zoom-to-fit, zoom-to-cursor, animated transitions, and frame-perfect screen↔world conversion.", mini: <MiniViewport /> },
     { tag: "hit", title: "Hit-test anything.", body: "A uniform-grid spatial index. Point, rect, and marquee queries run through querySpatial without walking the node list.", mini: <MiniHit /> },
-    { tag: "virtual", title: "Render only what's visible.", body: "Visibility culling paints only the nodes in view — 10k visible nodes pan at ~80fps. The same index powers the Minimap.", mini: <MiniVirtual /> },
-    { tag: "select", title: "Selection, the boring parts done.", body: "Multi-select, shift-add, marquee, group-bounds, transform handles, keyboard nudging, and clipboard — all driven from the store and surfaced through React hooks.", mini: <MiniSelect /> },
+    { tag: "virtual", title: "Render only what's visible.", body: "Visibility culling paints only the nodes in view, 10k visible nodes pan at ~80fps. The same index powers the Minimap.", mini: <MiniVirtual /> },
+    { tag: "select", title: "Selection, the boring parts done.", body: "Multi-select, shift-add, marquee, group-bounds, transform handles, keyboard nudging, and clipboard, all driven from the store and surfaced through React hooks.", mini: <MiniSelect /> },
     { tag: "history", title: "History that doesn't bite.", body: "Undo and redo over a typed operation log, with coalescing. The same log syncs to collaborators through a SyncAdapter.", mini: <MiniHistory /> },
-    { tag: "styleless", title: "Bring your own look.", body: "Nodes paint to a canvas with bitmap caching and LOD. Styling is theme tokens you define — there's no bundled UI to fight.", mini: <MiniRender /> },
+    { tag: "styleless", title: "Bring your own look.", body: "Nodes paint to a canvas with bitmap caching and LOD. Styling is theme tokens you define. There's no bundled UI to fight.", mini: <MiniRender /> },
   ];
   return (
     <section className="ch-band ch-band-paper" id="what">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— what&apos;s in the box</div>
+        <div className="ch-eyebrow">what&apos;s in the box</div>
         <h2>Six primitives. <em>Compose to taste.</em></h2>
       </div>
       <div className="ch-what-grid">
@@ -227,7 +227,7 @@ function CHBeyond() {
   return (
     <section className="ch-band" id="beyond">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— beyond rendering</div>
+        <div className="ch-eyebrow">beyond rendering</div>
         <h2>Made for <em>agents and multiplayer.</em></h2>
       </div>
       <div className="ch-beyond-grid">
@@ -236,15 +236,15 @@ function CHBeyond() {
           <h3>A canvas your agent can see, read, and write.</h3>
           <ul className="ch-beyond-list">
             <li>
-              <strong>See</strong> — <code>exportSelection()</code> /{" "}
+              <strong>See</strong>: <code>exportSelection()</code> /{" "}
               <code>exportViewport()</code> return a PNG of the board for a vision model.
             </li>
             <li>
-              <strong>Read</strong> — <code>{'getContext(store, { format: "markdown" })'}</code>{" "}
+              <strong>Read</strong>: <code>{'getContext(store, { format: "markdown" })'}</code>{" "}
               serializes the scene straight into a prompt.
             </li>
             <li>
-              <strong>Write</strong> — <code>opSchemasAsAnthropicTools()</code> hands the
+              <strong>Write</strong>: <code>opSchemasAsAnthropicTools()</code> hands the
               agent the op log as tool definitions; it mutates the board through tool calls.
             </li>
           </ul>
@@ -270,12 +270,12 @@ const tools   = opSchemasAsAnthropicTools();               // the agent's write 
           <ul className="ch-beyond-list">
             <li>
               Every mutation is a typed <code>Op</code>. The <code>change</code> event carries
-              an <code>OpBatch</code> with previous-value slices — shaped for OT, CRDT, or any
+              an <code>OpBatch</code> with previous-value slices, shaped for OT, CRDT, or any
               custom sync strategy.
             </li>
             <li>
               <code>attachSync(store, adapter)</code> wires any transport behind a{" "}
-              <code>SyncAdapter</code>. Ships none — bring Yjs, WebSocket, or BroadcastChannel.
+              <code>SyncAdapter</code>. Ships none. Bring Yjs, WebSocket, or BroadcastChannel.
             </li>
             <li>
               Presence is built in: <code>store.presence</code>, <code>useLocalPresence()</code>{" "}
@@ -285,14 +285,14 @@ const tools   = opSchemasAsAnthropicTools();               // the agent's write 
           <CodeBlock>{`import { attachSync } from "@canvas-harness/core";
 import { createBroadcastSyncAdapter } from "@canvas-harness/sync-broadcast";
 
-// every mutation is a typed op — wire any transport behind a SyncAdapter
+// every mutation is a typed op, wire any transport behind a SyncAdapter
 const detach = attachSync(
   store,
   createBroadcastSyncAdapter({ channelName: "board-42", clientId: store.clientId }),
 );`}</CodeBlock>
           <p className="ch-beyond-foot">
             A ready BroadcastChannel adapter ships as{" "}
-            <code>@canvas-harness/sync-broadcast</code> — multiplayer across tabs in three lines.
+            <code>@canvas-harness/sync-broadcast</code>, multiplayer across tabs in three lines.
           </p>
         </div>
       </div>
@@ -316,7 +316,7 @@ function CHQuickStart() {
   return (
     <section className="ch-band" id="start">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— quick start</div>
+        <div className="ch-eyebrow">quick start</div>
         <h2>Hello, infinite canvas.</h2>
       </div>
       <div className="ch-qs">
@@ -362,9 +362,9 @@ function CHApi() {
   const rows: [string, string, string][] = [
     ["createCanvasStore(opts?)", "CanvasStore", "create the store holding nodes, edges, camera, and selection"],
     ["<CanvasProvider store={...}>", "JSX", "put a store in context for the canvas and hooks below it"],
-    ["<Canvas tool=\"select\" />", "JSX", "the canvas surface — paints nodes, handles pan / zoom / tools"],
+    ["<Canvas tool=\"select\" />", "JSX", "the canvas surface, paints nodes, handles pan / zoom / tools"],
     ["useSelection()", "string[]", "the selected node ids, reactive"],
-    ["useCamera()", "Camera", "the live camera — position and zoom"],
+    ["useCamera()", "Camera", "the live camera, position and zoom"],
     ["useCanUndo() / useCanRedo()", "boolean", "whether undo / redo is currently available"],
     ["store.undo() / store.redo()", "void", "step history backward or forward"],
     ["store.querySpatial(rect)", "Node[]", "spatial query against the uniform-grid index"],
@@ -372,7 +372,7 @@ function CHApi() {
   return (
     <section className="ch-band ch-band-paper" id="api">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— api at a glance</div>
+        <div className="ch-eyebrow">api at a glance</div>
         <h2>The whole surface fits on one page.</h2>
       </div>
       <div className="ch-api-table">
@@ -396,7 +396,7 @@ function CHBuiltOn() {
   return (
     <section className="ch-band" id="built-on">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— built on it</div>
+        <div className="ch-eyebrow">built on it</div>
         <h2>Built to power a real product.</h2>
       </div>
       <div className="ch-built-on-row">
@@ -404,7 +404,7 @@ function CHBuiltOn() {
           <div className="ch-built-card-tile ch-built-card-tile-shot">
             <Image
               src="/board-worldmodel-light.png"
-              alt="A dim0 board — notes, code, charts, and an AI agent on one canvas"
+              alt="A dim0 board, notes, code, charts, and an AI agent on one canvas"
               fill
               sizes="(max-width: 940px) 100vw, 560px"
               className="ch-built-shot"
@@ -413,7 +413,7 @@ function CHBuiltOn() {
           <div className="ch-built-card-meta">
             <div className="ch-built-card-name">dim0.net</div>
             <div className="ch-built-card-blurb">
-              An AI thinking canvas — notes, code, sketches, and agents on one infinite
+              An AI thinking canvas, notes, code, sketches, and agents on one infinite
               board. It&apos;s the product canvas-harness was built for, and{" "}
               <em>the reason it exists</em>.
             </div>
@@ -439,19 +439,19 @@ function CHFaq() {
     },
     {
       q: "How does it differ from React Flow / tldraw / Excalidraw?",
-      a: "React Flow is headless and styleless too — but it renders nodes as DOM elements, so it gets sluggish around 1–2k. tldraw and Excalidraw render to a canvas and stay fast, but they hand you their UI and node types: you take their look or fight it. canvas-harness fills the corner that was empty — a canvas renderer that is also headless and styleless. 10k nodes pan at ~80fps, and there's no built-in UI to override. tldraw's performance ceiling, React Flow's freedom.",
+      a: "React Flow is headless and styleless too, but it renders nodes as DOM elements, so it gets sluggish around 1–2k. tldraw and Excalidraw render to a canvas and stay fast, but they hand you their UI and node types: you take their look or fight it. canvas-harness fills the corner that was empty, a canvas renderer that is also headless and styleless. 10k nodes pan at ~80fps, and there's no built-in UI to override. tldraw's performance ceiling, React Flow's freedom.",
     },
     {
       q: "Is anyone using it in production?",
-      a: "Yes — dim0.net, an AI thinking canvas, is built on it: notes, code, sketches, and agents on one board. canvas-harness is the engine extracted from that product.",
+      a: "Yes, dim0.net, an AI thinking canvas, is built on it: notes, code, sketches, and agents on one board. canvas-harness is the engine extracted from that product.",
     },
     {
       q: "Does it ship a renderer?",
-      a: "Yes — that's the whole library. It renders to a canvas with bitmap caching and motion-based level-of-detail. It's styleless, not renderer-agnostic: you own every style token, but the paint path is the canvas, and that's where the speed comes from.",
+      a: "Yes, that's the whole library. It renders to a canvas with bitmap caching and motion-based level-of-detail. It's styleless, not renderer-agnostic: you own every style token, but the paint path is the canvas, and that's where the speed comes from.",
     },
     {
       q: "Server-side rendering?",
-      a: "The store is plain, serializable state, so you can build and hydrate it on the server. The canvas itself paints on the client — like any canvas, there's nothing to rasterize until it mounts in the browser.",
+      a: "The store is plain, serializable state, so you can build and hydrate it on the server. The canvas itself paints on the client. Like any canvas, there's nothing to rasterize until it mounts in the browser.",
     },
     {
       q: "License?",
@@ -462,7 +462,7 @@ function CHFaq() {
   return (
     <section className="ch-band" id="faq">
       <div className="ch-band-head">
-        <div className="ch-eyebrow">— frequently asked</div>
+        <div className="ch-eyebrow">frequently asked</div>
         <h2>Common questions.</h2>
       </div>
       <div className="ch-faq">
