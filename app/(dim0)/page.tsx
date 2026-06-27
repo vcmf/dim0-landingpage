@@ -45,6 +45,7 @@ import {
   Qwen,
 } from "@lobehub/icons";
 import Link from "next/link";
+import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
 import {
   ArtAgent,
@@ -467,7 +468,10 @@ function MiniAppsShowcase() {
 
 function CollaborationSection() {
   return (
-    <section className="section section-narrow" id="collaboration">
+    <section className="section section-collab" id="collaboration">
+      <CollabCanvas />
+      <div className="collab-vignette" aria-hidden="true" />
+      <div className="collab-content">
       <div className="section-eyebrow">Collaboration</div>
       <h2 className="section-title">
         Now <em>multiplayer.</em>
@@ -504,6 +508,7 @@ function CollaborationSection() {
             No refresh dance, no &quot;reload to see changes&quot;.
           </p>
         </div>
+      </div>
       </div>
     </section>
   );
