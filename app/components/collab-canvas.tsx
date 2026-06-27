@@ -88,7 +88,7 @@ export function CollabCanvas() {
       y: ry(),
       tx: rx(),
       ty: ry(),
-      speed: 0.5 + Math.random() * 0.35, // px per frame (~30-50 px/s)
+      speed: 1.4 + Math.random() * 0.7, // px per frame (~85-125 px/s)
       phase: "roam",
       targetNote: null,
       held: null,
