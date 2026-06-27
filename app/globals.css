@@ -164,10 +164,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .btn-ghost:hover { background: var(--card); }
 .btn-sienna {
-  background: var(--sienna-tint);
-  color: var(--sienna-deep);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-sm);
 }
-.btn-sienna:hover { background: color-mix(in oklab, var(--sienna-tint) 70%, var(--sienna) 30%); color: white; }
+.btn-sienna:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
 /* ---------- GRAPH CANVAS ---------- */
 .graph-bg {

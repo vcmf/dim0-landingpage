@@ -163,7 +163,7 @@ function Composer({ size = "default" }: { size?: "default" | "large" }) {
         <button type="button" className="composer-btn" title="Mention" tabIndex={-1}><AtIcon size={14} /></button>
         <button type="button" className="composer-btn" title="Slash command" tabIndex={-1}><CommandIcon size={14} /></button>
         <span style={{ marginLeft: 8, fontFamily: "var(--font-mono)", fontSize: 11 }}>
-          Claude Sonnet 4.5
+          Claude Sonnet 4.6
         </span>
         <CaretDownIcon size={9} style={{ marginLeft: 2 }} />
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
