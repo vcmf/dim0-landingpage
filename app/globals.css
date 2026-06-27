@@ -1403,9 +1403,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
 }
 .price-hand-note {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-family: var(--font-handwriting);
   font-size: 14.5px;
   color: var(--muted-foreground);
@@ -1415,7 +1412,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .price-hand-icon {
   color: var(--sidebar-icon-3);
-  flex-shrink: 0;
+  vertical-align: -2px;
+  margin: 0 1px;
 }
 .price-features {
   list-style: none;
