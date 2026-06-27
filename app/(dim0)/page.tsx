@@ -940,7 +940,7 @@ function PricingSection() {
               {plan.featured && (
                 <p className="price-hand-note">
                   <CoffeeIcon size={15} weight="fill" className="price-hand-icon" />
-                  one coffee a week
+                  ≈ one coffee a week
                 </p>
               )}
             </div>
