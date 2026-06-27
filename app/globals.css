@@ -1381,13 +1381,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
   margin: 0 0 20px;
 }
+.price-card-price-wrap {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
 .price-card-price {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 22px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
 }
 .price-amount {
   font-family: var(--font-sans);
@@ -1401,12 +1403,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--muted-foreground);
 }
 .price-hand-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-handwriting);
   font-size: 14.5px;
-  color: var(--sienna);
-  margin: -8px 0 18px;
+  color: var(--muted-foreground);
+  margin: 10px 0 0;
   transform: rotate(-1.5deg);
   transform-origin: left center;
+}
+.price-hand-icon {
+  color: var(--sidebar-icon-3);
+  flex-shrink: 0;
 }
 .price-features {
   list-style: none;

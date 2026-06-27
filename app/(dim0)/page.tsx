@@ -17,6 +17,7 @@ import {
   AtIcon,
   CaretDownIcon,
   CheckIcon,
+  CoffeeIcon,
   CommandIcon,
   EyeIcon,
   EyeSlashIcon,
@@ -916,7 +917,7 @@ function PricingSection() {
       </p>
 
       <p className="pricing-anchor">
-        Miro, Notion, and ChatGPT on one canvas, from <strong>€6.99</strong> a month.
+        Miro, Notion, and ChatGPT on one canvas, from <strong>€6.99</strong> a month.{" "}
         <strong>Plus</strong> still costs less than a single ChatGPT Plus seat.
       </p>
 
@@ -931,13 +932,18 @@ function PricingSection() {
               <h3 className="price-card-name">{plan.name}</h3>
               <p className="price-card-tagline">{plan.tagline}</p>
             </div>
-            <div className="price-card-price">
-              <span className="price-amount">{plan.price}</span>
-              <span className="price-period">{plan.period}</span>
+            <div className="price-card-price-wrap">
+              <div className="price-card-price">
+                <span className="price-amount">{plan.price}</span>
+                <span className="price-period">{plan.period}</span>
+              </div>
+              {plan.featured && (
+                <p className="price-hand-note">
+                  <CoffeeIcon size={15} weight="fill" className="price-hand-icon" />
+                  one coffee a week
+                </p>
+              )}
             </div>
-            {plan.featured && (
-              <p className="price-hand-note">≈ one coffee a week</p>
-            )}
             <ul className="price-features">
               {plan.features.map((f) => (
                 <li key={f}>
