@@ -88,7 +88,7 @@ export function CollabCanvas() {
       y: ry(),
       tx: rx(),
       ty: ry(),
-      speed: 0.016 + Math.random() * 0.01,
+      speed: 0.009 + Math.random() * 0.006,
       phase: "roam",
       targetNote: null,
       held: null,
