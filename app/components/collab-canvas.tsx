@@ -88,7 +88,7 @@ export function CollabCanvas() {
       y: ry(),
       tx: rx(),
       ty: ry(),
-      speed: 0.009 + Math.random() * 0.006,
+      speed: 0.5 + Math.random() * 0.35, // px per frame (~30-50 px/s)
       phase: "roam",
       targetNote: null,
       held: null,
@@ -143,8 +143,16 @@ export function CollabCanvas() {
       for (const c of cursors) {
         const dx = c.tx - c.x;
         const dy = c.ty - c.y;
-        c.x += dx * c.speed;
-        c.y += dy * c.speed;
+        const dist = Math.hypot(dx, dy);
+        // constant-velocity glide: move a fixed px/frame toward the target
+        const arrived = dist <= c.speed;
+        if (arrived) {
+          c.x = c.tx;
+          c.y = c.ty;
+        } else {
+          c.x += (dx / dist) * c.speed;
+          c.y += (dy / dist) * c.speed;
+        }
         if (c.held != null) {
           const n = notes[c.held];
           n.x = c.x + 4;
@@ -154,7 +162,7 @@ export function CollabCanvas() {
           mq.x2 = c.x;
           mq.y2 = c.y;
         }
-        if (Math.hypot(dx, dy) < 5) {
+        if (arrived) {
           if (c.phase === "toNote") {
             const n = c.targetNote != null ? notes[c.targetNote] : null;
             if (n && n.heldBy == null) {
