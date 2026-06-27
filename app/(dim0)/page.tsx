@@ -832,6 +832,8 @@ type Plan = {
   cta: { label: string; href: string; variant: "ghost" | "primary" | "sienna"; external?: boolean };
   note?: string;
   featured?: boolean;
+  // playful price anchor: rendered as "≈ {pre} ☕ coffee {post}"
+  handNote?: { pre: string; post: string };
 };
 
 const PLANS: Plan[] = [
@@ -869,6 +871,7 @@ const PLANS: Plan[] = [
       "Standard support",
     ],
     cta: { label: "Start free", href: APP_URL, variant: "sienna" },
+    handNote: { pre: "a", post: "every two weeks" },
   },
   {
     name: "Plus",
@@ -887,6 +890,7 @@ const PLANS: Plan[] = [
     cta: { label: "Start free", href: APP_URL, variant: "primary" },
     note: "Upgrade any time from your account. No card needed to start.",
     featured: true,
+    handNote: { pre: "one", post: "a week" },
   },
   {
     name: "Self-host",
@@ -937,9 +941,11 @@ function PricingSection() {
                 <span className="price-amount">{plan.price}</span>
                 <span className="price-period">{plan.period}</span>
               </div>
-              {plan.featured && (
+              {plan.handNote && (
                 <p className="price-hand-note">
-                  ≈ one <CoffeeIcon size={15} weight="fill" className="price-hand-icon" /> coffee a week
+                  ≈ {plan.handNote.pre}{" "}
+                  <CoffeeIcon size={15} weight="fill" className="price-hand-icon" /> coffee{" "}
+                  {plan.handNote.post}
                 </p>
               )}
             </div>
