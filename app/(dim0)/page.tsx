@@ -744,6 +744,15 @@ function ThemesSection() {
             </div>
             <div className="theme-card-meta">
               <span className="theme-card-name">{t.name}</span>
+              <span className="theme-dots" aria-hidden="true">
+                <span className="theme-dot" style={{ background: t.light.bg }} />
+                <span className="theme-dot" style={{ background: t.light.accent }} />
+                <span className="theme-dot" style={{ background: t.light.text }} />
+                <span className="theme-dot-sep" />
+                <span className="theme-dot" style={{ background: t.dark.bg }} />
+                <span className="theme-dot" style={{ background: t.dark.accent }} />
+                <span className="theme-dot" style={{ background: t.dark.text }} />
+              </span>
               <span className="theme-card-modes">light · dark</span>
             </div>
           </article>
