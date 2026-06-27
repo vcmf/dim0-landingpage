@@ -30,7 +30,7 @@ const shantellSans = Shantell_Sans({
   subsets: ["latin"],
 });
 
-const TITLE = "Dim0 — Open-source collaborative AI canvas. Notes, mini-apps, agents.";
+const TITLE = "Dim0: Open-source collaborative AI canvas. Notes, mini-apps, agents.";
 const DESCRIPTION =
   "Open-source, real-time collaborative AI canvas. Notes, AI mini-apps, and agents on one infinite board. MIT, self-hostable, 8 models. Free to start.";
 

@@ -18,9 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const CH_TITLE = "canvas-harness — the engine behind Dim0";
+const CH_TITLE = "canvas-harness: the engine behind Dim0";
 const CH_DESCRIPTION =
-  "canvas-harness is a canvas-rendered, headless, styleless node-graph library for React — canvas performance (10k nodes at ~80fps) with zero style opinions. It owns camera, hit-testing, history, and spatial queries, and ships no UI. MIT, ts-first. Powers Dim0.";
+  "canvas-harness is a canvas-rendered, headless, styleless node-graph library for React, canvas performance (10k nodes at ~80fps) with zero style opinions. It owns camera, hit-testing, history, and spatial queries, and ships no UI. MIT, ts-first. Powers Dim0.";
 
 export const metadata: Metadata = {
   title: CH_TITLE,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: CH_TITLE,
     description:
-      "Canvas-rendered React node-graph library. 10k nodes at ~80fps. Camera, hit-testing, history, presence — headless and styleless. MIT.",
+      "Canvas-rendered React node-graph library. 10k nodes at ~80fps. Camera, hit-testing, history, presence, headless and styleless. MIT.",
     url: "https://dim0.net/canvas-harness",
     siteName: "canvas-harness",
     type: "website",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: "/canvas-harness-icon.png",
         width: 180,
         height: 180,
-        alt: "canvas-harness logo — a small tree, a sturdy trunk",
+        alt: "canvas-harness logo, a small tree, a sturdy trunk",
       },
     ],
   },

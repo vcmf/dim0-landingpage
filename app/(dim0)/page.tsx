@@ -30,6 +30,7 @@ import {
   PenNibIcon,
   ShieldCheckIcon,
   SparkleIcon,
+  StarIcon,
   UsersThreeIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
@@ -374,7 +375,7 @@ function FeaturesSection() {
       <div className="section-eyebrow">Features</div>
       <h2 className="section-title">Built canvas-first. Agent native.</h2>
       <p className="section-lede">
-        Most tools bolt AI onto a doc. Dim0 is built the other way around — the canvas is the interface.
+        Most tools bolt AI onto a doc. Dim0 is built the other way around. The canvas is the interface.
       </p>
 
       <div className="pillars">
@@ -410,7 +411,7 @@ function MiniAppsShowcase() {
         Spin up a <em>little app.</em> Right on the canvas.
       </h2>
       <p className="section-lede">
-        Describe a calculator, a chart, a visualizer, a quiz — Dim0 conjures a
+        Describe a calculator, a chart, a visualizer, a quiz. Dim0 conjures a
         real, interactive app and drops it on your board in seconds. Focused,
         instant, and wired to the notes around it. Made to think with, not to ship.
       </p>
@@ -589,7 +590,7 @@ function UseCasesSection() {
       title: "Turn a question into a map you can walk.",
       body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
       img: "/board-mindmap-deaging.png",
-      alt: "AI-generated mindmap on a Dim0 board — branching topics about brain aging research, connected sticky notes, and explorable subtopics on one infinite canvas",
+      alt: "AI-generated mindmap on a Dim0 board: branching topics about brain aging research, connected sticky notes, and explorable subtopics on one infinite canvas",
     },
     {
       tag: "Research",
@@ -603,14 +604,14 @@ function UseCasesSection() {
       title: "Rough shapes that the AI understands.",
       body: "Excalidraw-style freehand shapes, system diagrams, flows, drawn by you or generated. The agent reads them as context.",
       img: "/board-api-architecture.png",
-      alt: "Hand-drawn API architecture diagram on a Dim0 board — Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
+      alt: "Hand-drawn API architecture diagram on a Dim0 board: Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
     },
     {
       tag: "Write",
       title: "Long-form notes, spatially arranged.",
       body: "Notion-grade rich notes (math, code, tags, toggles, sub-pages) sitting wherever you put them on the board.",
       img: "/note-visual-thinking.png",
-      alt: "Long-form rich notes on a Dim0 board — Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
+      alt: "Long-form rich notes on a Dim0 board: Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
     },
   ];
 
@@ -810,9 +811,14 @@ function OssSection() {
         </div>
       </div>
 
+      <p className="oss-open-note">
+        Dim0 is built in the open. If it&apos;s useful to you, a star on GitHub
+        helps more people find it.
+      </p>
+
       <div className="oss-actions">
         <a className="btn btn-ghost" href={GH_URL} target="_blank" rel="noreferrer">
-          <GithubLogoIcon size={15} /> View on GitHub
+          <StarIcon size={15} weight="fill" style={{ color: "var(--sidebar-icon-3)" }} /> Star on GitHub
         </a>
         <a className="btn btn-sienna" href={APP_URL}>
           Start with Dim0 Cloud <ArrowRightIcon size={14} />
