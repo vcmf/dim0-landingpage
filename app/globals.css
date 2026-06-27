@@ -854,9 +854,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .collab-dots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, color-mix(in oklab, var(--muted-foreground) 28%, transparent) 1px, transparent 1px);
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--muted-foreground) 50%, transparent) 1.3px, transparent 1.3px);
   background-size: 24px 24px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .collab-vignette {
   position: absolute;
