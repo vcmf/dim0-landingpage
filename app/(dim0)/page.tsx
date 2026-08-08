@@ -56,7 +56,7 @@ import {
 } from "../components/illustrations";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
 
-const APP_URL = "https://app.dim0.net";
+const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
 
 const PROMPTS = [
@@ -114,9 +114,7 @@ function Composer({ size = "default" }: { size?: "default" | "large" }) {
 
   const submit = (e?: FormEvent | React.MouseEvent) => {
     if (e) e.preventDefault();
-    const q = value.trim();
-    const url = q ? `${APP_URL}/?q=${encodeURIComponent(q)}` : APP_URL;
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(APP_URL, "_blank", "noopener,noreferrer");
   };
 
   const showPlaceholder = !focused && value.length === 0;

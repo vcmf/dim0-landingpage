@@ -10,7 +10,7 @@ import {
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
-const APP_URL = "https://app.dim0.net";
+const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
 
 const NAV_LINKS = [
