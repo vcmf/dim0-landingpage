@@ -266,8 +266,8 @@ function ProductShot() {
           src="/home-screenshot-2.png"
           alt="A Dim0 board showing nested research, sticky notes, code, charts, and an AI agent panel"
           className="product-shot-img"
-          width={1919}
-          height={974}
+          width={2000}
+          height={1199}
           sizes="(max-width: 1240px) 100vw, 1240px"
         />
         <span className="product-shot-tag">
