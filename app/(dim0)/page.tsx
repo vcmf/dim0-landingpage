@@ -264,10 +264,10 @@ function ProductShot() {
       >
         <Image
           src="/home-screenshot-2.png"
-          alt="A Dim0 board showing nested research, sticky notes, code, charts, and an AI agent panel"
+          alt="A Dim0 board with live collaborators showing nested research, sticky notes, code, charts, and an AI agent panel"
           className="product-shot-img"
-          width={1919}
-          height={974}
+          width={4139}
+          height={2452}
           sizes="(max-width: 1240px) 100vw, 1240px"
         />
         <span className="product-shot-tag">
