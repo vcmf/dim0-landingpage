@@ -246,22 +246,24 @@ function HeroVideo() {
         >
           <source src="/compressed-full-demo-dark-theme.mp4" type="video/mp4" />
         </video>
-        <div className={`hero-video-poster ${playing ? "is-hidden" : ""}`}>
-          <Image
-            src="/home-screenshot-2.png"
-            alt="A Dim0 board with nested research, notes, code, charts, and an AI agent on one canvas"
-            fill
-            sizes="(max-width: 1240px) 100vw, 1200px"
-            className="hero-video-poster-img"
-            priority
-          />
-          <span className="hero-video-play">
-            <PlayIcon size={26} weight="fill" />
-          </span>
-          <span className="hero-video-hint">
-            {ended ? "Replay the tour" : "Watch the tour"}
-          </span>
-        </div>
+        {!playing && (
+          <div className="hero-video-poster">
+            <Image
+              src="/home-screenshot-2.png"
+              alt="A Dim0 board with nested research, notes, code, charts, and an AI agent on one canvas"
+              fill
+              sizes="(max-width: 1320px) 100vw, 1320px"
+              className="hero-video-poster-img"
+              priority
+            />
+            <span className="hero-video-play">
+              <PlayIcon size={26} weight="fill" />
+            </span>
+            <span className="hero-video-hint">
+              {ended ? "Replay the tour" : "Watch the tour"}
+            </span>
+          </div>
+        )}
       </div>
       <div className="hero-video-caption">
         <span>A real Dim0 board · everything on one canvas</span>

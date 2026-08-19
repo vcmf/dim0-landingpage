@@ -372,16 +372,6 @@ a.hero-badge:hover {
   object-fit: cover;
   object-position: center top;
 }
-.hero-video-poster::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    color-mix(in oklab, var(--background) 26%, transparent),
-    color-mix(in oklab, var(--background) 6%, transparent)
-  );
-}
 .hero-video-play {
   position: relative;
   z-index: 1;
