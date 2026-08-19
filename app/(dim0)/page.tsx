@@ -374,27 +374,32 @@ function WhySection() {
           aria-hidden="true"
         >
           <defs>
-            <filter id="vs-rough" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="7" result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+            <filter id="vs-rough" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves="2" seed="7" result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
             </filter>
             <marker
               id="vs-arrow"
-              viewBox="0 0 12 12"
-              refX="8.5"
-              refY="6"
-              markerWidth="4.6"
-              markerHeight="4.6"
+              viewBox="0 0 14 14"
+              refX="11"
+              refY="7"
+              markerWidth="5.2"
+              markerHeight="5.2"
               orient="auto"
-              markerUnits="userSpaceOnUse"
             >
               <path
-                d="M2.5,2.5 L9.5,6 L2.5,9.5"
+                d="M2,2 Q8.5,4.5 11.5,7"
                 fill="none"
                 stroke="context-stroke"
-                strokeWidth="1.8"
+                strokeWidth="2.4"
                 strokeLinecap="round"
-                strokeLinejoin="round"
+              />
+              <path
+                d="M2,12 Q8.5,9.5 11.5,7"
+                fill="none"
+                stroke="context-stroke"
+                strokeWidth="2.4"
+                strokeLinecap="round"
               />
             </marker>
           </defs>
