@@ -264,7 +264,6 @@ function HeroVideo() {
         </div>
       </div>
       <div className="hero-video-caption">
-        <span className="hero-video-dot" />
         <span>A real Dim0 board · everything on one canvas</span>
       </div>
       <p className="hero-video-engine">
@@ -306,7 +305,6 @@ function Hero() {
         </p>
         <Composer />
         <div className="hero-microcopy">
-          <span className="hero-microcopy-dot" />
           <span>AI mini-apps</span>
           <span className="hero-microcopy-sep">·</span>
           <span>Real-time collab</span>
@@ -455,7 +453,7 @@ function CapabilitiesSection() {
             />
           </div>
           <div className="bento-body">
-            <div className="bento-tag"><span className="bar" /> Board-aware AI</div>
+            <div className="bento-tag">Board-aware AI</div>
             <h3 className="bento-title">Reads first. Acts second.</h3>
             <p className="bento-desc">
               The agent reads your whole board before it acts, then searches, runs
@@ -475,7 +473,7 @@ function CapabilitiesSection() {
             />
           </div>
           <div className="bento-body">
-            <div className="bento-tag"><span className="bar" /> Mini-apps</div>
+            <div className="bento-tag">Mini-apps</div>
             <h3 className="bento-title">Spin up a little app, right on the canvas.</h3>
             <p className="bento-desc">
               Describe a calculator, chart, or quiz and Dim0 drops a real,
@@ -494,7 +492,7 @@ function CapabilitiesSection() {
             />
           </div>
           <div className="bento-body">
-            <div className="bento-tag"><span className="bar" /> Rich notes</div>
+            <div className="bento-tag">Rich notes</div>
             <h3 className="bento-title">Notion-grade notes, drawn on the canvas.</h3>
             <p className="bento-desc">
               Tags, math, toggles, sub-pages, code, sitting wherever you put them.
@@ -1278,7 +1276,6 @@ function CTA() {
             <Composer size="large" />
           </div>
           <div className="cta-canvas-hint">
-            <span className="cta-canvas-dot" />
             <span>Free to start</span>
             <span className="cta-canvas-sep">·</span>
             <span>Open source</span>

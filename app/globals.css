@@ -698,29 +698,16 @@ a.hero-badge:hover {
 /* Eyebrows — sentence-case sans with a small node dot (replaces the
    uppercase-mono "— LABEL" pattern). The dot nods to the canvas/graph. */
 .section-eyebrow,
-.product-shot-eyebrow,
 .legal-eyebrow,
 .never-strip-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--muted-foreground);
-}
-.section-eyebrow::before,
-.product-shot-eyebrow::before,
-.legal-eyebrow::before,
-.never-strip-eyebrow::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--sienna);
-  flex-shrink: 0;
 }
 .section-eyebrow {
   margin-bottom: 16px;
@@ -2189,14 +2176,11 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 .bento-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted-foreground);
-}
-.bento-tag .bar {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--sienna);
 }
 .bento-icon {
   display: inline-flex;
