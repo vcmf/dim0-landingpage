@@ -313,8 +313,8 @@ function Hero() {
           <span className="hero-microcopy-sep">·</span>
           <span>8 AI models</span>
         </div>
-        <HeroVideo />
       </div>
+      <HeroVideo />
     </section>
   );
 }

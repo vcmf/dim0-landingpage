@@ -305,11 +305,13 @@ a.hero-badge:hover {
 
 /* ---------- HERO VIDEO ---------- */
 .hero-video-wrap {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  margin: 8px auto 0;
+  margin: 40px auto 0;
   max-width: 1320px;
 }
 .hero-video-engine {
