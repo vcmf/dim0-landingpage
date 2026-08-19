@@ -1918,9 +1918,9 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 }
 .vs-edge {
   fill: none;
-  stroke-width: 1.5;
+  stroke-width: 1.9;
   stroke-linecap: round;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .vs-node {

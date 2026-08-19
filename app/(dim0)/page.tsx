@@ -375,27 +375,27 @@ function WhySection() {
         >
           <defs>
             <filter id="vs-rough" x="-25%" y="-25%" width="150%" height="150%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves="2" seed="7" result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="7" result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="0.9" xChannelSelector="R" yChannelSelector="G" />
             </filter>
             <marker
               id="vs-arrow"
-              viewBox="0 0 14 14"
-              refX="11"
-              refY="7"
-              markerWidth="5.2"
-              markerHeight="5.2"
+              viewBox="0 0 28 28"
+              refX="20"
+              refY="14"
+              markerWidth="9"
+              markerHeight="9"
               orient="auto"
             >
               <path
-                d="M2,2 Q8.5,4.5 11.5,7"
+                d="M3,3 Q16,7 21,14"
                 fill="none"
                 stroke="context-stroke"
                 strokeWidth="2.4"
                 strokeLinecap="round"
               />
               <path
-                d="M2,12 Q8.5,9.5 11.5,7"
+                d="M6,25 Q17,19 21,14"
                 fill="none"
                 stroke="context-stroke"
                 strokeWidth="2.4"
@@ -415,18 +415,6 @@ function WhySection() {
               />
             ))}
           </g>
-          {nodes.map((n, i) => (
-            <circle
-              key={n.name}
-              className="vs-pkt"
-              r="1.3"
-              style={{ fill: n.clr, filter: `drop-shadow(0 0 3px ${n.clr})` }}
-            >
-              <animateMotion dur="2.8s" begin={n.begin} repeatCount="indefinite">
-                <mpath href={`#vsedge-${i}`} />
-              </animateMotion>
-            </circle>
-          ))}
         </svg>
 
         {nodes.map((n) => (
