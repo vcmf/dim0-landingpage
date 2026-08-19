@@ -142,6 +142,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav-link:hover { color: var(--foreground); background: var(--muted); }
 .nav-cta { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.nav-star-count {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-left: 2px; padding-left: 8px;
+  border-left: 1px solid var(--border);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px; font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.nav-star-count svg { color: var(--sidebar-icon-3, #e0a458); }
 
 /* ---------- BUTTONS ---------- */
 .btn {
@@ -661,14 +670,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: color-mix(in oklab, var(--border) 80%, var(--sienna));
 }
 .divider svg { width: 100%; height: 20px; opacity: 0.5; }
-
-/* ---------- FRAGMENTED TABS (section 2) ---------- */
-.fragment-hero {
-  margin-top: 56px;
-  position: relative;
-  height: 280px;
-  display: flex; align-items: center; justify-content: center;
-}
 
 /* ---------- 4 PILLARS GRID ---------- */
 .pillars {
@@ -1217,7 +1218,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-bottom: 1px solid var(--border);
   position: relative;
 }
-.use-case-img img {
+.use-case-img img,
+.use-case-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1827,4 +1829,231 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   }
 
   .legal { padding: 56px 20px 72px; }
+}
+
+/* ============================================================
+   VS — three tools into one board
+   ============================================================ */
+.vs-merge {
+  max-width: 760px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vs-sources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+.vs-source {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--card) 50%, transparent);
+  padding: 22px 16px 18px;
+  text-align: center;
+  opacity: 0.7;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.vs-source:hover { opacity: 1; transform: translateY(-2px); }
+.vs-source-icon {
+  display: inline-flex;
+  color: var(--muted-foreground);
+  margin-bottom: 10px;
+}
+.vs-source-name { font-weight: 600; font-size: 15px; color: var(--foreground); }
+.vs-source-cap { font-size: 13px; color: var(--muted-foreground); margin-top: 3px; }
+.vs-source-gap {
+  font-size: 12px;
+  margin-top: 10px;
+  font-style: italic;
+  color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+}
+
+.vs-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 46px;
+  justify-content: center;
+}
+.vs-connector-line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(var(--border), var(--sienna));
+}
+.vs-connector-node {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--sienna);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--sienna) 20%, transparent);
+  margin: 3px 0;
+  flex-shrink: 0;
+}
+
+.vs-target {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid color-mix(in oklab, var(--sienna) 40%, var(--border));
+  border-radius: var(--radius-md);
+  background: var(--card);
+  padding: 22px 24px;
+  box-shadow: 0 24px 60px -34px color-mix(in oklab, var(--sienna) 35%, transparent);
+}
+.vs-target-mark {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  background: var(--sienna-tint);
+  border: 1px solid color-mix(in oklab, var(--sienna) 25%, var(--border));
+}
+.vs-target-name { font-weight: 700; font-size: 17px; color: var(--foreground); }
+.vs-target-copy {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .vs-sources { grid-template-columns: 1fr; gap: 12px; }
+  .vs-target { flex-direction: column; text-align: center; gap: 12px; }
+}
+
+/* ============================================================
+   TESTIMONIALS — floating marquee
+   ============================================================ */
+.tm-marquee {
+  margin: 40px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.tm-row { overflow: hidden; }
+.tm-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding: 4px 8px;
+  animation: tm-scroll var(--tm-dur, 60s) linear infinite;
+}
+.tm-track-rev { animation-direction: reverse; }
+.tm-marquee:hover .tm-track { animation-play-state: paused; }
+@keyframes tm-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 8px)); }
+}
+.tm-chip {
+  flex-shrink: 0;
+  width: 340px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--card) 65%, transparent);
+  transition: border-color .18s ease;
+}
+.tm-chip:hover { border-color: color-mix(in oklab, var(--sienna) 30%, var(--border)); }
+.tm-chip blockquote {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+.tm-chip figcaption {
+  display: flex; align-items: center; gap: 9px;
+  margin-top: 14px;
+}
+.tm-stars {
+  display: inline-flex; gap: 2px;
+  color: var(--sidebar-icon-3, #e0a458);
+  margin-bottom: 9px;
+}
+.tm-avatar {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 600;
+  color: var(--sienna-deep);
+  background: var(--sienna-tint);
+  border: 1px solid color-mix(in oklab, var(--sienna) 20%, var(--border));
+}
+.tm-meta { display: flex; flex-direction: column; line-height: 1.2; }
+.tm-handle { font-size: 13px; font-weight: 600; color: var(--foreground); }
+.tm-role { font-size: 11.5px; color: var(--muted-foreground); }
+.tm-aggregate {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  margin: 32px auto 0;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+.tm-aggregate svg { color: var(--sidebar-icon-3, #e0a458); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-track { animation: none; }
+  .tm-row { overflow-x: auto; }
+}
+@media (max-width: 720px) {
+  .tm-chip { width: 280px; }
+}
+
+/* ============================================================
+   TRUST GRID (merged privacy + open-source)
+   ============================================================ */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 44px;
+}
+@media (max-width: 900px) {
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .trust-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   MID-PAGE CTA BAND
+   ============================================================ */
+.mid-cta { padding: 8px 24px; }
+.mid-cta-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 26px 32px;
+  border: 1px solid color-mix(in oklab, var(--sienna) 30%, var(--border));
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--sienna-tint) 60%, var(--card));
+  box-shadow: 0 20px 50px -34px color-mix(in oklab, var(--sienna) 40%, transparent);
+}
+.mid-cta-text { display: flex; flex-direction: column; gap: 4px; }
+.mid-cta-title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+.mid-cta-sub { font-size: 13.5px; color: var(--muted-foreground); }
+.mid-cta-btn { flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .mid-cta-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 16px;
+    padding: 22px 20px;
+  }
+  .mid-cta-btn { justify-content: center; }
 }

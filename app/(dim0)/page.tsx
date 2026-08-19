@@ -16,16 +16,14 @@ import {
   ArrowsClockwiseIcon,
   AtIcon,
   CaretDownIcon,
+  ChatCircleIcon,
   CheckIcon,
   CoffeeIcon,
   CommandIcon,
-  EyeIcon,
-  EyeSlashIcon,
+  NotebookIcon,
   GithubLogoIcon,
-  GraphIcon,
   HouseIcon,
   LockKeyIcon,
-  MagnifyingGlassIcon,
   PaperclipIcon,
   PenNibIcon,
   ShieldCheckIcon,
@@ -49,12 +47,12 @@ import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
 import {
   ArtAgent,
-  ArtFragmentation,
   ArtGesture,
   ArtMedia,
   ArtSpatial,
 } from "../components/illustrations";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
+import { formatStars, useGitHubStars } from "../components/use-github-stars";
 
 const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -201,6 +199,7 @@ function HeroVideo() {
 }
 
 function Hero() {
+  const stars = useGitHubStars();
   return (
     <section className="hero">
       <GraphBackground />
@@ -217,7 +216,15 @@ function Hero() {
             className="hero-eyebrow-link"
           >
             <GithubLogoIcon size={11} />
-            <span className="mono">MIT · v0.3 · privacy-first</span>
+            <span className="mono">
+              {stars !== null && (
+                <>
+                  <StarIcon size={9} weight="fill" style={{ verticalAlign: "-1px" }} />{" "}
+                  {formatStars(stars)} ·{" "}
+                </>
+              )}
+              MIT · privacy-first
+            </span>
           </a>
         </div>
         <h1 className="hero-headline">
@@ -227,7 +234,8 @@ function Hero() {
           </span>
         </h1>
         <p className="hero-tagline">
-          Notes, mini-apps, and agents on one infinite board.
+          Notes, mini-apps, and agents on one infinite board — the AI reads your
+          board <em>before</em> it acts.
         </p>
         <p className="hero-subtitle">
           Open-source, real-time collaborative. Solo or with your team.
@@ -286,48 +294,59 @@ function ProductShot() {
   );
 }
 
+type VsSource = {
+  name: string;
+  capability: string;
+  gap: string;
+  Icon: ComponentType<{ size?: number }>;
+};
+
 function WhySection() {
+  const sources: VsSource[] = [
+    { name: "Notion", capability: "Rich notes", gap: "but no canvas", Icon: NotebookIcon },
+    { name: "Excalidraw", capability: "Infinite canvas", gap: "but no notes or AI", Icon: PenNibIcon },
+    { name: "ChatGPT", capability: "AI answers", gap: "but no spatial workspace", Icon: ChatCircleIcon },
+  ];
+
   return (
     <section className="section" id="why">
       <div className="section-eyebrow">The problem</div>
-      <h2 className="section-title">One idea, five tabs.</h2>
+      <h2 className="section-title">One idea, <em>five tabs.</em></h2>
       <p className="section-lede">
-        Browse, note, sketch, ask AI, paste back. By the time you move forward, your thinking is spread across tools that never talk to each other.
-      </p>
-      <div className="fragment-hero">
-        <ArtFragmentation />
-      </div>
-    </section>
-  );
-}
-
-function HowSection() {
-  return (
-    <section className="section" id="how">
-      <div className="section-eyebrow">How it works</div>
-      <h2 className="section-title">One prompt, work on the canvas.</h2>
-      <p className="section-lede">
-        The agent reads what&apos;s on your board, goes out and does the work, and drops the result where you&apos;re already thinking.
+        Browse, note, sketch, ask AI, paste back. By the time you move forward, your
+        thinking is spread across tools that never talk to each other. Dim0 is all
+        three on one canvas — and the agent reads the whole board before it acts.
       </p>
 
-      <div className="steps">
-        <div className="step">
-          <div className="step-num">01 · Read</div>
-          <div className="step-icon"><GraphIcon size={20} /></div>
-          <h3 className="step-title">Reads the board</h3>
-          <p className="step-body">Starts from your actual workspace, not a blank chat thread.</p>
+      <div className="vs-merge">
+        <div className="vs-sources">
+          {sources.map((s) => (
+            <div className="vs-source" key={s.name}>
+              <div className="vs-source-icon"><s.Icon size={20} /></div>
+              <div className="vs-source-name">{s.name}</div>
+              <div className="vs-source-cap">{s.capability}</div>
+              <div className="vs-source-gap">{s.gap}</div>
+            </div>
+          ))}
         </div>
-        <div className="step">
-          <div className="step-num">02 · Act</div>
-          <div className="step-icon"><MagnifyingGlassIcon size={20} /></div>
-          <h3 className="step-title">Searches, synthesizes, runs code</h3>
-          <p className="step-body">Parallel reasoning across sources. No tab switching.</p>
+
+        <div className="vs-connector" aria-hidden="true">
+          <span className="vs-connector-line" />
+          <span className="vs-connector-node" />
+          <span className="vs-connector-line" />
         </div>
-        <div className="step">
-          <div className="step-num">03 · Write</div>
-          <div className="step-icon"><PenNibIcon size={20} /></div>
-          <h3 className="step-title">Builds on your board</h3>
-          <p className="step-body">Nodes appear next to your notes. Editable, connected, live.</p>
+
+        <div className="vs-target">
+          <div className="vs-target-mark">
+            <Image src="/dim0.svg" alt="" width={26} height={26} />
+          </div>
+          <div className="vs-target-body">
+            <div className="vs-target-name">Dim0</div>
+            <p className="vs-target-copy">
+              Rich notes, an infinite canvas, and a board-aware agent — all on one
+              surface. Nothing to copy-paste between, nothing that loses your context.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -512,6 +531,24 @@ function CollaborationSection() {
   );
 }
 
+function MidCTA() {
+  return (
+    <section className="mid-cta" aria-label="Start using Dim0">
+      <div className="mid-cta-inner">
+        <div className="mid-cta-text">
+          <span className="mid-cta-title">Convinced? Start on the canvas.</span>
+          <span className="mid-cta-sub">
+            Free to start · nothing to set up · your data stays yours
+          </span>
+        </div>
+        <a className="btn btn-sienna mid-cta-btn" href={APP_URL}>
+          Start free <ArrowRightIcon size={14} />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function LazyVideo({
   src,
   poster,
@@ -559,31 +596,14 @@ function LazyVideo({
   );
 }
 
-function RichNotesShowcase() {
-  return (
-    <section className="section section-narrow" id="rich-notes">
-      <div className="section-eyebrow">Rich notes</div>
-      <h2 className="section-title">Notion-grade notes. Drawn on a canvas.</h2>
-      <p className="section-lede">
-        Tags, math, toggles, sub-pages, references, code. Edit by hand, or ask AI to draft and revise the note in place.
-      </p>
-      <div className="rich-video-frame">
-        <LazyVideo
-          src="/video-rich-canvas-notes.mp4"
-          poster="/note-visual-thinking.png"
-          ariaLabel="A rich Dim0 note with tags, math, toggles, and AI editing on a canvas"
-        />
-      </div>
-    </section>
-  );
-}
-
 type UseCase = {
   tag: string;
   title: string;
   body: string;
   img: string;
   alt: string;
+  video?: string;
+  poster?: string;
 };
 
 function UseCasesSection() {
@@ -611,10 +631,12 @@ function UseCasesSection() {
     },
     {
       tag: "Write",
-      title: "Long-form notes, spatially arranged.",
-      body: "Notion-grade rich notes (math, code, tags, toggles, sub-pages) sitting wherever you put them on the board.",
+      title: "Notion-grade notes, drawn on the canvas.",
+      body: "Tags, math, toggles, sub-pages, code — sitting wherever you put them. Edit by hand, or ask AI to draft and revise the note in place.",
       img: "/note-visual-thinking.png",
       alt: "Long-form rich notes on a Dim0 board: Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
+      video: "/video-rich-canvas-notes.mp4",
+      poster: "/note-visual-thinking.png",
     },
   ];
 
@@ -629,13 +651,21 @@ function UseCasesSection() {
         {cases.map((c) => (
           <article className="use-case" key={c.tag}>
             <div className="use-case-img">
-              <Image
-                src={c.img}
-                alt={c.alt}
-                width={1200}
-                height={760}
-                sizes="(max-width: 820px) 100vw, 540px"
-              />
+              {c.video ? (
+                <LazyVideo
+                  src={c.video}
+                  poster={c.poster ?? c.img}
+                  ariaLabel={c.alt}
+                />
+              ) : (
+                <Image
+                  src={c.img}
+                  alt={c.alt}
+                  width={1200}
+                  height={760}
+                  sizes="(max-width: 820px) 100vw, 540px"
+                />
+              )}
             </div>
             <div className="use-case-tag">
               <span className="bar" /> {c.tag}
@@ -796,37 +826,77 @@ function ModelsSection() {
   );
 }
 
-function OssSection() {
+const NEVERS = [
+  "Train on your content",
+  "Sell your data",
+  "Profile you for ads",
+  "Run session replay on your canvas",
+  "Lock your boards in",
+];
+
+type TrustCard = {
+  Icon: ComponentType<{ size?: number }>;
+  title: string;
+  body: string;
+};
+
+function TrustSection() {
+  const cards: TrustCard[] = [
+    {
+      Icon: LockKeyIcon,
+      title: "Encrypted, always",
+      body: "TLS on the wire, at-rest encryption on the database and uploads. No plaintext on the network, none on disk.",
+    },
+    {
+      Icon: ShieldCheckIcon,
+      title: "Never trained on",
+      body: "Your boards aren't training data. Prompts go only to the provider you pick, for the request you sent, and no telemetry watches your canvas.",
+    },
+    {
+      Icon: HouseIcon,
+      title: "Run it yourself",
+      body: "MIT-licensed and self-hostable. Local Postgres, local vector DB, your own model keys, nothing leaves your infrastructure.",
+    },
+    {
+      Icon: ArrowSquareOutIcon,
+      title: "Take it with you",
+      body: "Notes are pure Markdown, boards export cleanly. No proprietary format, no lock-in. Walk away anytime with everything.",
+    },
+  ];
+
   return (
-    <section className="section section-narrow">
-      <div className="section-eyebrow">Open source · MIT · self-hostable</div>
-      <h2 className="section-title">Nothing is trapped.</h2>
+    <section className="section" id="trust">
+      <div className="section-eyebrow">Open source · Private · MIT</div>
+      <h2 className="section-title">
+        Yours. <em>And it stays yours.</em>
+      </h2>
       <p className="section-lede">
-        An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
+        The codebase is public and self-hostable, and the cloud respects you the same
+        way. Encrypted, never trained on, no behavioral telemetry. Walk away anytime
+        with everything you made.
       </p>
 
-      <div className="trio">
-        <div className="trio-card">
-          <div className="trio-icon"><EyeIcon size={22} /></div>
-          <h3 className="trio-title">See how it works</h3>
-          <p className="trio-body">Full codebase is public. No black boxes.</p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><HouseIcon size={22} /></div>
-          <h3 className="trio-title">Run it yourself</h3>
-          <p className="trio-body">Self-host for full control over your data.</p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><ArrowSquareOutIcon size={22} /></div>
-          <h3 className="trio-title">Take it with you</h3>
-          <p className="trio-body">Notes are pure Markdown. Boards export cleanly. No proprietary format.</p>
-        </div>
+      <div className="trust-grid">
+        {cards.map((c) => (
+          <div className="trio-card" key={c.title}>
+            <div className="trio-icon"><c.Icon size={22} /></div>
+            <h3 className="trio-title">{c.title}</h3>
+            <p className="trio-body">{c.body}</p>
+          </div>
+        ))}
       </div>
 
-      <p className="oss-open-note">
-        Dim0 is built in the open. If it&apos;s useful to you, a star on GitHub
-        helps more people find it.
-      </p>
+      <div className="never-strip">
+        <div className="never-strip-eyebrow">What Dim0 will never do</div>
+        <ul className="never-strip-list">
+          {NEVERS.map((n) => (
+            <li key={n}>
+              <span className="never-icon"><XIcon size={11} weight="bold" /></span>
+              <span>{n}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="oss-actions">
         <a className="btn btn-ghost" href={GH_URL} target="_blank" rel="noreferrer">
@@ -836,6 +906,163 @@ function OssSection() {
           Start with Dim0 Cloud <ArrowRightIcon size={14} />
         </a>
       </div>
+
+      <p className="privacy-footnote">
+        <Link className="faq-link" href="/privacy">Read the full privacy policy →</Link>
+      </p>
+    </section>
+  );
+}
+
+type Testimonial = {
+  handle: string;
+  role?: string;
+  quote: string;
+  stars?: number;
+};
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    handle: "@shopiahomedesign",
+    quote:
+      "Placing agent output directly on the board as nodes instead of a chat sidebar is the detail that sells this. Spatial context survives, chat history doesn't.",
+  },
+  {
+    handle: "@omribenshoham",
+    quote:
+      "The spatial design of this canvas is really elegant. Being able to place AI outputs directly as nodes instead of chat history is a clever insight.",
+  },
+  {
+    handle: "@m2721",
+    quote: "I am a poweruser of Miro and must say very well done :-)!",
+  },
+  {
+    handle: "Christian Carestia",
+    quote: "Great idea, definitely something missing in the market.",
+  },
+  {
+    handle: "@erdemgulen",
+    stars: 5,
+    quote: "Great design and ease to use, collaboration makes it more productive.",
+  },
+  {
+    handle: "@supahmation",
+    quote: "Great product!",
+  },
+  {
+    handle: "cerebrixos",
+    quote: "Good for visualising.",
+  },
+  {
+    handle: "Tomas Jones",
+    quote:
+      "The “everything on one canvas” angle is compelling, and making the AI write directly as nodes feels native rather than bolted on. Open source is a good trust signal.",
+  },
+  {
+    handle: "lianbo zhou",
+    quote:
+      "The interface is beautiful and elegant. The canvas-based approach makes the tools truly useful.",
+  },
+  {
+    handle: "@viciousse",
+    stars: 5,
+    quote: "I like the idea, the multiplayer and the design!",
+  },
+  {
+    handle: "Jacky zeng",
+    role: "NextJS Developer",
+    quote: "This tool is very nice.",
+  },
+  {
+    handle: "@WurtApp",
+    quote: "Brilliant work right here, keep it up.",
+  },
+  {
+    handle: "Jnanesh Bekal",
+    quote: "Very good overall.",
+  },
+];
+
+function TestimonialAvatar({ handle }: { handle: string }) {
+  const letter = handle.replace(/^@/, "").charAt(0).toUpperCase();
+  return <span className="tm-avatar" aria-hidden="true">{letter}</span>;
+}
+
+function Stars({ n }: { n: number }) {
+  return (
+    <span className="tm-stars" aria-label={`${n} out of 5 stars`}>
+      {Array.from({ length: n }).map((_, i) => (
+        <StarIcon key={i} size={12} weight="fill" />
+      ))}
+    </span>
+  );
+}
+
+function TestimonialChip({ t }: { t: Testimonial }) {
+  return (
+    <figure className="tm-chip">
+      {t.stars ? <Stars n={t.stars} /> : null}
+      <blockquote>{t.quote}</blockquote>
+      <figcaption>
+        <TestimonialAvatar handle={t.handle} />
+        <span className="tm-meta">
+          <span className="tm-handle">{t.handle}</span>
+          {t.role && <span className="tm-role">{t.role}</span>}
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
+function MarqueeRow({
+  items,
+  reverse,
+  duration,
+}: {
+  items: Testimonial[];
+  reverse?: boolean;
+  duration: number;
+}) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="tm-row">
+      <div
+        className={`tm-track ${reverse ? "tm-track-rev" : ""}`}
+        style={{ "--tm-dur": `${duration}s` } as React.CSSProperties}
+      >
+        {doubled.map((t, i) => (
+          <TestimonialChip key={`${t.handle}-${i}`} t={t} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TestimonialsSection() {
+  const stars = useGitHubStars();
+  const row1 = TESTIMONIALS.slice(0, 7);
+  const row2 = TESTIMONIALS.slice(7);
+  return (
+    <section className="section section-testimonials" id="testimonials">
+      <div className="section-eyebrow">Loved by early users</div>
+      <h2 className="section-title">What people are saying.</h2>
+      <p className="section-lede">
+        Real, unedited comments from public AI directories and GitHub — the detail
+        people keep pointing at: AI output lands on the board as nodes, not in a
+        throwaway chat thread.
+      </p>
+
+      <div className="tm-marquee">
+        <MarqueeRow items={row1} duration={64} />
+        <MarqueeRow items={row2} reverse duration={56} />
+      </div>
+
+      {stars !== null && (
+        <p className="tm-aggregate">
+          <StarIcon size={14} weight="fill" /> {formatStars(stars)} stars on GitHub
+          {" "}· join the people building on Dim0
+        </p>
+      )}
     </section>
   );
 }
@@ -994,76 +1221,6 @@ function PricingSection() {
   );
 }
 
-const NEVERS = [
-  "Train on your content",
-  "Sell your data",
-  "Profile you for ads",
-  "Run session replay on your canvas",
-  "Lock your boards in",
-];
-
-function PrivacySection() {
-  return (
-    <section className="section section-narrow" id="privacy">
-      <div className="section-eyebrow">Privacy</div>
-      <h2 className="section-title">
-        Your data <em>stays yours.</em>
-      </h2>
-      <p className="section-lede">
-        Cloud Dim0 is private by design, not just because you can self-host. Encrypted in
-        transit and at rest, never trained on, no behavioral telemetry. The hosted product
-        respects you the same way the open-source code does.
-      </p>
-
-      <div className="trio">
-        <div className="trio-card">
-          <div className="trio-icon"><LockKeyIcon size={22} /></div>
-          <h3 className="trio-title">Encrypted in transit and at rest</h3>
-          <p className="trio-body">
-            TLS for everything on the wire. At-rest encryption on the database and uploads.
-            No plaintext on the network, no plaintext on disk.
-          </p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><ShieldCheckIcon size={22} /></div>
-          <h3 className="trio-title">Never trained on</h3>
-          <p className="trio-body">
-            Your boards are not training data. We don&apos;t use your content to train
-            models, ours or anyone else&apos;s. Prompts go only to the provider you pick,
-            for the request you sent.
-          </p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><EyeSlashIcon size={22} /></div>
-          <h3 className="trio-title">No telemetry, no profile</h3>
-          <p className="trio-body">
-            No session replay, no behavioral analytics inside the canvas, no record of what
-            you click or where you linger. We make a thinking tool, not an ad business.
-          </p>
-        </div>
-      </div>
-
-      <p className="privacy-footnote">
-        Want absolute custody? Dim0 is MIT and self-hostable: local Postgres, local vector
-        DB, your own model keys, nothing leaves your infrastructure.{" "}
-        <Link className="faq-link" href="/privacy">Read the full policy →</Link>
-      </p>
-
-      <div className="never-strip">
-        <div className="never-strip-eyebrow">What Dim0 will never do</div>
-        <ul className="never-strip-list">
-          {NEVERS.map((n) => (
-            <li key={n}>
-              <span className="never-icon"><XIcon size={11} weight="bold" /></span>
-              <span>{n}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
 const FAQS = [
   {
     q: "What is Dim0, exactly?",
@@ -1200,16 +1357,15 @@ export default function Page() {
       <Hero />
       <ProductShot />
       <WhySection />
-      <HowSection />
       <FeaturesSection />
       <MiniAppsShowcase />
       <CollaborationSection />
-      <RichNotesShowcase />
+      <MidCTA />
       <UseCasesSection />
       <ThemesSection />
       <ModelsSection />
-      <PrivacySection />
-      <OssSection />
+      <TrustSection />
+      <TestimonialsSection />
       <PricingSection />
       <FAQ />
       <CTA />
