@@ -26,6 +26,7 @@ import {
   LockKeyIcon,
   PaperclipIcon,
   PenNibIcon,
+  PlayIcon,
   ShieldCheckIcon,
   SparkleIcon,
   StarIcon,
@@ -174,21 +175,97 @@ function Composer({ size = "default" }: { size?: "default" | "large" }) {
 }
 
 function HeroVideo() {
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const autoPlayed = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      if (v.ended || (v.duration && v.currentTime >= v.duration)) v.currentTime = 0;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  };
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap || !("IntersectionObserver" in window)) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.intersectionRatio >= 0.75 && !autoPlayed.current) {
+            autoPlayed.current = true;
+            videoRef.current?.play().catch(() => {});
+          }
+        });
+      },
+      { threshold: [0, 0.5, 0.75, 1] },
+    );
+    obs.observe(wrap);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="hero-video-wrap">
-      <div className="hero-video-frame">
+    <div className="hero-video-wrap" ref={wrapRef}>
+      <div
+        className={`hero-video-frame ${playing ? "is-playing" : ""}`}
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={
+          playing
+            ? "Pause the Dim0 tour"
+            : ended
+              ? "Replay the Dim0 tour"
+              : "Play the Dim0 tour"
+        }
+      >
         <video
+          ref={videoRef}
           className="hero-video"
-          autoPlay
           muted
-          loop
           playsInline
           preload="metadata"
-          poster="/board-mindmap-deaging.png"
-          aria-label="A walkthrough of Dim0: notes, mini-apps, sketches, and an AI agent working together on one canvas."
+          poster="/home-screenshot-2.png"
+          onPlay={() => {
+            setPlaying(true);
+            setEnded(false);
+          }}
+          onPause={() => setPlaying(false)}
+          onEnded={() => {
+            setPlaying(false);
+            setEnded(true);
+          }}
         >
           <source src="/compressed-full-demo-dark-theme.mp4" type="video/mp4" />
         </video>
+        <div className={`hero-video-poster ${playing ? "is-hidden" : ""}`}>
+          <Image
+            src="/home-screenshot-2.png"
+            alt="A Dim0 board with nested research, notes, code, charts, and an AI agent on one canvas"
+            fill
+            sizes="(max-width: 1240px) 100vw, 1200px"
+            className="hero-video-poster-img"
+            priority
+          />
+          <span className="hero-video-play">
+            <PlayIcon size={26} weight="fill" />
+          </span>
+          <span className="hero-video-hint">
+            {ended ? "Replay the tour" : "Watch the tour"}
+          </span>
+        </div>
       </div>
       <div className="hero-video-caption">
         <span className="hero-video-dot" />
