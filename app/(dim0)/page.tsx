@@ -50,7 +50,6 @@ import Link from "next/link";
 import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
-import { formatStars, useGitHubStars } from "../components/use-github-stars";
 
 const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -277,33 +276,20 @@ function HeroVideo() {
 }
 
 function Hero() {
-  const stars = useGitHubStars();
   return (
     <section className="hero">
       <GraphBackground />
       <div className="hero-vignette" />
       <div className="hero-inner">
         <div className="hero-eyebrow">
-          <span className="dot" />
-          <span>Dim0 · the thinking canvas</span>
-          <span style={{ color: "var(--border)" }}>·</span>
-          <a
-            href={GH_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-eyebrow-link"
-          >
-            <GithubLogoIcon size={11} />
-            <span className="mono">
-              {stars !== null && (
-                <>
-                  <StarIcon size={9} weight="fill" style={{ verticalAlign: "-1px" }} />{" "}
-                  {formatStars(stars)} ·{" "}
-                </>
-              )}
-              MIT · privacy-first
-            </span>
+          <a className="hero-badge" href={GH_URL} target="_blank" rel="noreferrer">
+            <GithubLogoIcon size={12} />
+            <span>Open source · MIT</span>
           </a>
+          <Link className="hero-badge" href="/privacy">
+            <ShieldCheckIcon size={12} />
+            <span>Privacy-first</span>
+          </Link>
         </div>
         <h1 className="hero-headline">
           Your canvas <em>thinks back.</em> Together.
@@ -1005,7 +991,6 @@ function MarqueeRow({
 }
 
 function TestimonialsSection() {
-  const stars = useGitHubStars();
   const row1 = TESTIMONIALS.slice(0, 7);
   const row2 = TESTIMONIALS.slice(7);
   return (
@@ -1022,13 +1007,6 @@ function TestimonialsSection() {
         <MarqueeRow items={row1} duration={64} />
         <MarqueeRow items={row2} reverse duration={56} />
       </div>
-
-      {stars !== null && (
-        <p className="tm-aggregate">
-          <StarIcon size={14} weight="fill" /> {formatStars(stars)} stars on GitHub
-          {" "}· join the people building on Dim0
-        </p>
-      )}
     </section>
   );
 }
