@@ -340,19 +340,19 @@ function WhySection() {
       name: "Notion", cap: "Rich notes", gap: "no canvas",
       Icon: NotebookIcon, clr: "#d4823f",
       x: "16%", y: "30%", rot: "-3deg",
-      edge: "M26,42 C26,58 76,56 80,64", begin: "0s",
+      edge: "M26,42 C26,56 58,57 63,62", begin: "0s",
     },
     {
       name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI",
       Icon: PenNibIcon, clr: "#7168e8",
       x: "50%", y: "19%", rot: "2deg",
-      edge: "M80,31 C80,48 80,52 80,64", begin: "0.9s",
+      edge: "M80,31 C80,47 80,55 80,62", begin: "0.9s",
     },
     {
       name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace",
       Icon: ChatCircleIcon, clr: "#12a594",
       x: "84%", y: "31%", rot: "3deg",
-      edge: "M134,43 C134,58 84,56 80,64", begin: "1.7s",
+      edge: "M134,43 C134,56 102,57 97,62", begin: "1.7s",
     },
   ];
 
@@ -373,15 +373,43 @@ function WhySection() {
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          {nodes.map((n, i) => (
-            <path
-              key={n.name}
-              id={`vsedge-${i}`}
-              className="vs-edge"
-              style={{ stroke: n.clr }}
-              d={n.edge}
-            />
-          ))}
+          <defs>
+            <filter id="vs-rough" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="7" result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <marker
+              id="vs-arrow"
+              viewBox="0 0 12 12"
+              refX="8.5"
+              refY="6"
+              markerWidth="4.6"
+              markerHeight="4.6"
+              orient="auto"
+              markerUnits="userSpaceOnUse"
+            >
+              <path
+                d="M2.5,2.5 L9.5,6 L2.5,9.5"
+                fill="none"
+                stroke="context-stroke"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </marker>
+          </defs>
+          <g filter="url(#vs-rough)">
+            {nodes.map((n, i) => (
+              <path
+                key={n.name}
+                id={`vsedge-${i}`}
+                className="vs-edge"
+                style={{ stroke: n.clr }}
+                markerEnd="url(#vs-arrow)"
+                d={n.edge}
+              />
+            ))}
+          </g>
           {nodes.map((n, i) => (
             <circle
               key={n.name}
