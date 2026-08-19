@@ -1892,101 +1892,126 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 /* ============================================================
    VS — three tools into one board
    ============================================================ */
-.vs-merge {
-  max-width: 780px;
-  margin: 48px auto 0;
+.vs-board {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: 52px auto 0;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--card) 40%, transparent);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--muted-foreground) 22%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+.vs-board-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.vs-edge {
+  fill: none;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+.vs-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  z-index: 1;
+  width: 172px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-}
-.vs-sources {
-  display: flex;
-  gap: 48px;
-  width: 100%;
-}
-.vs-source {
-  position: relative;
-  flex: 1;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 14px 16px;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--card) 55%, transparent);
-  padding: 22px 16px 18px;
-  text-align: center;
-  transition: border-color .2s ease, transform .2s ease;
+  box-shadow: 0 12px 32px -18px color-mix(in oklab, var(--clr, var(--sienna)) 45%, transparent);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.vs-source:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--sienna) 25%, var(--border));
+.vs-node:hover {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.03);
+  z-index: 3;
 }
-.vs-source:not(:first-child)::before {
-  content: "+";
-  position: absolute;
-  left: -27px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1;
-  color: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+.vs-node-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in oklab, var(--clr) 15%, var(--card));
+  color: var(--clr);
+  margin-bottom: 8px;
 }
-.vs-source-icon {
-  display: inline-flex;
-  color: var(--muted-foreground);
-  margin-bottom: 10px;
-}
-.vs-source-name { font-weight: 600; font-size: 15px; color: var(--foreground); }
-.vs-source-cap { font-size: 13px; color: var(--muted-foreground); margin-top: 3px; }
-.vs-source-gap {
-  font-size: 12px;
-  margin-top: 10px;
+.vs-node-name { font-weight: 600; font-size: 14px; color: var(--foreground); }
+.vs-node-cap { font-size: 12.5px; color: var(--muted-foreground); }
+.vs-node-gap {
+  font-size: 11.5px;
   font-style: italic;
+  margin-top: 2px;
   color: color-mix(in oklab, var(--muted-foreground) 65%, transparent);
 }
 
-.vs-eq {
-  align-self: center;
-  margin: 14px 0;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1;
-  color: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
-}
-
-.vs-target {
-  width: 100%;
-  display: flex;
+.vs-node-dim0 {
+  width: 300px;
+  flex-direction: row;
   align-items: center;
-  gap: 18px;
-  border: 1px solid color-mix(in oklab, var(--sienna) 45%, var(--border));
-  border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--sienna-tint) 35%, var(--card));
-  padding: 22px 24px;
-  box-shadow: 0 24px 60px -34px color-mix(in oklab, var(--sienna) 30%, transparent);
+  gap: 13px;
+  z-index: 2;
+  border-color: color-mix(in oklab, var(--sienna) 45%, var(--border));
+  background: color-mix(in oklab, var(--sienna-tint) 45%, var(--card));
+  box-shadow: 0 18px 46px -22px color-mix(in oklab, var(--sienna) 40%, transparent);
 }
-.vs-target-mark {
+.vs-node-mark {
   flex-shrink: 0;
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  display: grid; place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
   background: var(--card);
   border: 1px solid color-mix(in oklab, var(--sienna) 25%, var(--border));
 }
-.vs-target-name { font-weight: 700; font-size: 17px; color: var(--foreground); }
-.vs-target-copy {
-  font-size: 14px;
-  line-height: 1.5;
+.vs-node-dim0-body { display: flex; flex-direction: column; gap: 3px; }
+.vs-node-dim0-copy {
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--muted-foreground);
-  margin-top: 4px;
 }
 
-@media (max-width: 720px) {
-  .vs-sources { flex-direction: column; gap: 34px; }
-  .vs-source:not(:first-child)::before {
-    left: 50%;
-    top: -23px;
-    transform: translateX(-50%);
+@media (prefers-reduced-motion: reduce) {
+  .vs-pkt { display: none; }
+}
+@media (max-width: 680px) {
+  .vs-board {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    background-image: none;
   }
-  .vs-target { flex-direction: column; text-align: center; gap: 12px; }
+  .vs-board-edges { display: none; }
+  .vs-node {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+  .vs-node:hover { transform: scale(1.02); }
+  .vs-node-dim0 { width: 100%; }
 }
 
 /* ============================================================

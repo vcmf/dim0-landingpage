@@ -321,18 +321,39 @@ function Hero() {
   );
 }
 
-type VsSource = {
+type VsNode = {
   name: string;
-  capability: string;
+  cap: string;
   gap: string;
-  Icon: ComponentType<{ size?: number }>;
+  Icon: ComponentType<{ size?: number; weight?: "fill" }>;
+  clr: string;
+  x: string;
+  y: string;
+  rot: string;
+  edge: string;
+  begin: string;
 };
 
 function WhySection() {
-  const sources: VsSource[] = [
-    { name: "Notion", capability: "Rich notes", gap: "but no canvas", Icon: NotebookIcon },
-    { name: "Excalidraw", capability: "Infinite canvas", gap: "but no notes or AI", Icon: PenNibIcon },
-    { name: "ChatGPT", capability: "AI answers", gap: "but no spatial workspace", Icon: ChatCircleIcon },
+  const nodes: VsNode[] = [
+    {
+      name: "Notion", cap: "Rich notes", gap: "no canvas",
+      Icon: NotebookIcon, clr: "#d4823f",
+      x: "16%", y: "30%", rot: "-3deg",
+      edge: "M26,42 C26,58 76,56 80,64", begin: "0s",
+    },
+    {
+      name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI",
+      Icon: PenNibIcon, clr: "#7168e8",
+      x: "50%", y: "19%", rot: "2deg",
+      edge: "M80,31 C80,48 80,52 80,64", begin: "0.9s",
+    },
+    {
+      name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace",
+      Icon: ChatCircleIcon, clr: "#12a594",
+      x: "84%", y: "31%", rot: "3deg",
+      edge: "M134,43 C134,58 84,56 80,64", begin: "1.7s",
+    },
   ];
 
   return (
@@ -345,30 +366,61 @@ function WhySection() {
         three on one canvas — and the agent reads the whole board before it acts.
       </p>
 
-      <div className="vs-merge">
-        <div className="vs-sources">
-          {sources.map((s) => (
-            <div className="vs-source" key={s.name}>
-              <div className="vs-source-icon"><s.Icon size={20} /></div>
-              <div className="vs-source-name">{s.name}</div>
-              <div className="vs-source-cap">{s.capability}</div>
-              <div className="vs-source-gap">{s.gap}</div>
-            </div>
+      <div className="vs-board">
+        <svg
+          className="vs-board-edges"
+          viewBox="0 0 160 90"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {nodes.map((n, i) => (
+            <path
+              key={n.name}
+              id={`vsedge-${i}`}
+              className="vs-edge"
+              style={{ stroke: n.clr }}
+              d={n.edge}
+            />
           ))}
-        </div>
+          {nodes.map((n, i) => (
+            <circle
+              key={n.name}
+              className="vs-pkt"
+              r="1.3"
+              style={{ fill: n.clr, filter: `drop-shadow(0 0 3px ${n.clr})` }}
+            >
+              <animateMotion dur="2.8s" begin={n.begin} repeatCount="indefinite">
+                <mpath href={`#vsedge-${i}`} />
+              </animateMotion>
+            </circle>
+          ))}
+        </svg>
 
-        <div className="vs-eq" aria-hidden="true">=</div>
-
-        <div className="vs-target">
-          <div className="vs-target-mark">
-            <Image src="/dim0.svg" alt="" width={26} height={26} />
+        {nodes.map((n) => (
+          <div
+            key={n.name}
+            className="vs-node"
+            style={{ "--x": n.x, "--y": n.y, "--rot": n.rot, "--clr": n.clr } as React.CSSProperties}
+          >
+            <span className="vs-node-chip"><n.Icon size={18} weight="fill" /></span>
+            <span className="vs-node-name">{n.name}</span>
+            <span className="vs-node-cap">{n.cap}</span>
+            <span className="vs-node-gap">but {n.gap}</span>
           </div>
-          <div className="vs-target-body">
-            <div className="vs-target-name">Dim0</div>
-            <p className="vs-target-copy">
-              Rich notes, an infinite canvas, and a board-aware agent — all on one
-              surface. Nothing to copy-paste between, nothing that loses your context.
-            </p>
+        ))}
+
+        <div
+          className="vs-node vs-node-dim0"
+          style={{ "--x": "50%", "--y": "80%" } as React.CSSProperties}
+        >
+          <span className="vs-node-mark">
+            <Image src="/dim0.svg" alt="" width={24} height={24} />
+          </span>
+          <div className="vs-node-dim0-body">
+            <span className="vs-node-name">Dim0</span>
+            <span className="vs-node-dim0-copy">
+              All three on one surface — notes, an infinite canvas, and a board-aware agent.
+            </span>
           </div>
         </div>
       </div>
