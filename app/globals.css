@@ -2128,6 +2128,112 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 }
 
 /* ============================================================
+   CAPABILITIES BENTO
+   ============================================================ */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 44px;
+}
+.bento-big { grid-column: span 2; }
+.bento-wide { grid-column: span 4; }
+.bento-small { grid-column: span 1; }
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.bento-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--sienna) 30%, var(--border));
+  box-shadow: 0 24px 60px -34px color-mix(in oklab, var(--sienna) 30%, transparent);
+}
+.bento-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--background) 55%, var(--card));
+}
+.bento-media img,
+.bento-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.bento-body { padding: 18px 20px 20px; }
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+}
+.bento-tag .bar {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--sienna);
+}
+.bento-icon {
+  display: inline-flex;
+  color: var(--foreground);
+  margin-bottom: 12px;
+}
+.bento-title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 6px;
+  color: var(--foreground);
+}
+.bento-title-sm { font-size: 16px; margin-top: 0; }
+.bento-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  margin-top: 6px;
+}
+
+/* wide card: media beside text on desktop */
+.bento-wide { flex-direction: row; }
+.bento-wide .bento-media {
+  width: 60%;
+  aspect-ratio: 16 / 9;
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+}
+.bento-wide .bento-body { align-self: center; flex: 1; }
+
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .bento-big,
+  .bento-wide { grid-column: span 2; }
+  .bento-small { grid-column: span 1; }
+  .bento-wide { flex-direction: column; }
+  .bento-wide .bento-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+@media (max-width: 560px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento-big,
+  .bento-wide,
+  .bento-small { grid-column: span 1; }
+}
+
+/* ============================================================
    MID-PAGE CTA BAND
    ============================================================ */
 .mid-cta { padding: 8px 24px; }

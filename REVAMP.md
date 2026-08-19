@@ -58,7 +58,22 @@ Ranked compaction moves (each is independent — pick any):
    *declined for now.*
 4. **Reconsider ProductShot** — *declined for now.*
 
-Moves still on the table if you want more compaction later: 1 and 3.
+Moves still on the table if you want more compaction later: move 1 (Themes+Models).
+
+### Later additions (round 3)
+
+- ✅ **Merge visual animated** — static connector replaced with flowing canvas edges
+  (curved SVG paths, glowing packets streaming into the Dim0 node). On-brand, GPU-cheap.
+- ✅ **Hero video reworked** — app screenshot as poster, bigger frame (aspect-locked,
+  no crop), plays once on 75%-in-view or click (no loop), poster returns on end.
+- ✅ **Features + Mini-apps + Use-cases → one "One board. Everything on it." bento**
+  (`#features`). 2 big cards (Board-aware AI, Mini-apps), 1 wide media card (Rich
+  notes video), 4 small capability cards. Notion-style hierarchy; 3 sections → 1.
+
+**Tooling note:** Playwright MCP is added but shows "Pending approval" — approve it
+once in an interactive `claude` session to enable native browser screenshots/perf.
+Chrome DevTools MCP for perf: `claude mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest`
+(verify package name; the earlier suggested Anthropic-hosted URL was unverified).
 
 **Note:** Turbopack occasionally serves stale CSS after appending rules to
 globals.css — if new styles don't appear, `rm -rf .next` + restart `npm run dev`.

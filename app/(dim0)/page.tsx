@@ -18,9 +18,12 @@ import {
   CaretDownIcon,
   ChatCircleIcon,
   CheckIcon,
+  CodeIcon,
   CoffeeIcon,
   CommandIcon,
+  InfinityIcon,
   NotebookIcon,
+  TreeStructureIcon,
   GithubLogoIcon,
   HouseIcon,
   LockKeyIcon,
@@ -46,12 +49,6 @@ import {
 import Link from "next/link";
 import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
-import {
-  ArtAgent,
-  ArtGesture,
-  ArtMedia,
-  ArtSpatial,
-} from "../components/illustrations";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
 import { formatStars, useGitHubStars } from "../components/use-github-stars";
 
@@ -452,131 +449,116 @@ function WhySection() {
   );
 }
 
-type Pillar = {
-  tag: string;
+type BentoSmall = {
+  Icon: ComponentType<{ size?: number }>;
   title: string;
   body: string;
-  Art: ComponentType;
 };
 
-function FeaturesSection() {
-  const pillars: Pillar[] = [
-    {
-      tag: "Infinite canvas",
-      title: "Thinking, laid out in space.",
-      body: "Notes, code, math, and shapes on one infinite canvas. Nested boards keep big projects structured without losing the view.",
-      Art: ArtSpatial,
-    },
-    {
-      tag: "Mapify",
-      title: "Notes become structure.",
-      body: "Select any notes and turn them into mind maps, schemas, or diagrams in one gesture. Mapify. Drawify. Schemify.",
-      Art: ArtGesture,
-    },
-    {
-      tag: "Board-aware AI",
-      title: "Reads first. Acts second.",
-      body: "The agent reads your board before it acts. Searches, runs code, writes results back as nodes you can edit and connect.",
-      Art: ArtAgent,
-    },
-    {
-      tag: "Code, charts, docs",
-      title: "Every kind of node, one canvas.",
-      body: "Sandboxed code nodes. Live widgets. Uploaded documents. Everything stays connected to the thinking that produced it.",
-      Art: ArtMedia,
-    },
-  ];
-
-  return (
-    <section className="section" id="features">
-      <div className="section-eyebrow">Features</div>
-      <h2 className="section-title">Built canvas-first. Agent native.</h2>
-      <p className="section-lede">
-        Most tools bolt AI onto a doc. Dim0 is built the other way around. The canvas is the interface.
-      </p>
-
-      <div className="pillars">
-        {pillars.map((p) => (
-          <article className="pillar" key={p.tag}>
-            <div className="pillar-art"><p.Art /></div>
-            <div className="pillar-tag">
-              <span className="bar" /> {p.tag}
-            </div>
-            <h3 className="pillar-title">{p.title}</h3>
-            <p className="pillar-body">{p.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-const MINIAPP_EXAMPLES = [
-  "a tip calculator",
-  "a chart from your data",
-  "a sorting visualizer",
-  "a flashcard quiz",
-  "a regex tester",
-  "a pros & cons weigher",
+const BENTO_SMALL: BentoSmall[] = [
+  {
+    Icon: InfinityIcon,
+    title: "Infinite canvas",
+    body: "Notes, code, math, and shapes on one endless surface. Nested boards keep big projects structured without losing the view.",
+  },
+  {
+    Icon: TreeStructureIcon,
+    title: "Mapify",
+    body: "Select any notes and turn them into mind maps, schemas, or diagrams in one gesture. Mapify. Drawify. Schemify.",
+  },
+  {
+    Icon: PenNibIcon,
+    title: "Freehand sketch",
+    body: "Excalidraw-style shapes, flows, and system diagrams, drawn by you or generated. The agent reads them as context.",
+  },
+  {
+    Icon: CodeIcon,
+    title: "Code, charts & docs",
+    body: "Sandboxed code nodes, live widgets, and uploaded documents, all connected to the thinking that produced them.",
+  },
 ];
 
-function MiniAppsShowcase() {
+function CapabilitiesSection() {
   return (
-    <section className="section section-narrow" id="mini-apps">
-      <div className="section-eyebrow">Mini-apps</div>
+    <section className="section" id="features">
+      <div className="section-eyebrow">What you can do</div>
       <h2 className="section-title">
-        Spin up a <em>little app.</em> Right on the canvas.
+        One board. <em>Everything on it.</em>
       </h2>
       <p className="section-lede">
-        Describe a calculator, a chart, a visualizer, a quiz. Dim0 conjures a
-        real, interactive app and drops it on your board in seconds. Focused,
-        instant, and wired to the notes around it. Made to think with, not to ship.
+        Most tools bolt AI onto a doc. Dim0 is built the other way around, so the
+        canvas is the interface and every kind of node lives on it.
       </p>
 
-      <div className="miniapp-layout">
-        <div className="miniapp-copy">
-          <ul className="miniapp-points">
-            <li>
-              <span className="miniapp-mark" />
-              Lives on the board, not buried in a chat thread.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Reads the notes and data sitting right next to it.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Your whole team uses it live, on the same board.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Real React: open it, edit it, export it.
-            </li>
-          </ul>
-
-          <div className="miniapp-chips">
-            {MINIAPP_EXAMPLES.map((ex) => (
-              <span className="miniapp-chip" key={ex}>
-                <span className="miniapp-chip-caret">›</span> {ex}
-              </span>
-            ))}
+      <div className="bento">
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <Image
+              src="/board-ai-benchmarks.png"
+              alt="A Dim0 board where the AI agent has produced benchmark charts and annotated research as nodes"
+              width={1200}
+              height={760}
+              sizes="(max-width: 900px) 100vw, 560px"
+            />
           </div>
+          <div className="bento-body">
+            <div className="bento-tag"><span className="bar" /> Board-aware AI</div>
+            <h3 className="bento-title">Reads first. Acts second.</h3>
+            <p className="bento-desc">
+              The agent reads your whole board before it acts, then searches, runs
+              code, and writes results back as nodes you can edit and connect.
+            </p>
+          </div>
+        </article>
 
-          <p className="miniapp-note">
-            Best for focused, single-purpose tools. Spun up in seconds, as fast
-            as a sentence.
-          </p>
-        </div>
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <Image
+              src="/mini-app.png"
+              alt="An AI-generated interactive mini-app running as a node on a Dim0 canvas"
+              width={1795}
+              height={1933}
+              sizes="(max-width: 900px) 100vw, 560px"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag"><span className="bar" /> Mini-apps</div>
+            <h3 className="bento-title">Spin up a little app, right on the canvas.</h3>
+            <p className="bento-desc">
+              Describe a calculator, chart, or quiz and Dim0 drops a real,
+              interactive React app on your board, reading the notes next to it.
+              Open it, edit it, export it.
+            </p>
+          </div>
+        </article>
 
-        <div className="miniapp-shot">
-          <Image
-            src="/mini-app.png"
-            alt="An AI-generated interactive mini-app running as a node on a Dim0 canvas"
-            width={1795}
-            height={1933}
-            sizes="(max-width: 820px) 100vw, 460px"
-          />
-        </div>
+        <article className="bento-card bento-wide">
+          <div className="bento-media">
+            <LazyVideo
+              src="/video-rich-canvas-notes.mp4"
+              poster="/note-visual-thinking.png"
+              ariaLabel="A rich Dim0 note with tags, math, toggles, and AI editing on a canvas"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag"><span className="bar" /> Rich notes</div>
+            <h3 className="bento-title">Notion-grade notes, drawn on the canvas.</h3>
+            <p className="bento-desc">
+              Tags, math, toggles, sub-pages, code, sitting wherever you put them.
+              Edit by hand, or ask AI to draft and revise the note in place.
+            </p>
+          </div>
+        </article>
+
+        {BENTO_SMALL.map((c) => (
+          <article className="bento-card bento-small" key={c.title}>
+            <div className="bento-body">
+              <span className="bento-icon"><c.Icon size={22} /></span>
+              <h3 className="bento-title bento-title-sm">{c.title}</h3>
+              <p className="bento-desc">{c.body}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -695,88 +677,6 @@ function LazyVideo({
   );
 }
 
-type UseCase = {
-  tag: string;
-  title: string;
-  body: string;
-  img: string;
-  alt: string;
-  video?: string;
-  poster?: string;
-};
-
-function UseCasesSection() {
-  const cases: UseCase[] = [
-    {
-      tag: "Learn",
-      title: "Turn a question into a map you can walk.",
-      body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
-      img: "/board-mindmap-deaging.png",
-      alt: "AI-generated mindmap on a Dim0 board: branching topics about brain aging research, connected sticky notes, and explorable subtopics on one infinite canvas",
-    },
-    {
-      tag: "Research",
-      title: "Pull benchmarks. Chart them. Annotate.",
-      body: "Bring sources, run code, render charts. Compare results side by side without juggling tabs.",
-      img: "/board-ai-benchmarks.png",
-      alt: "Dim0 collaborative AI canvas showing model benchmark charts, comparison tables, and annotated research notes arranged side by side",
-    },
-    {
-      tag: "Sketch",
-      title: "Rough shapes that the AI understands.",
-      body: "Excalidraw-style freehand shapes, system diagrams, flows, drawn by you or generated. The agent reads them as context.",
-      img: "/board-api-architecture.png",
-      alt: "Hand-drawn API architecture diagram on a Dim0 board: Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
-    },
-    {
-      tag: "Write",
-      title: "Notion-grade notes, drawn on the canvas.",
-      body: "Tags, math, toggles, sub-pages, code — sitting wherever you put them. Edit by hand, or ask AI to draft and revise the note in place.",
-      img: "/note-visual-thinking.png",
-      alt: "Long-form rich notes on a Dim0 board: Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
-      video: "/video-rich-canvas-notes.mp4",
-      poster: "/note-visual-thinking.png",
-    },
-  ];
-
-  return (
-    <section className="section" id="use-cases">
-      <div className="section-eyebrow">Use cases</div>
-      <h2 className="section-title">What it feels like to think on Dim0.</h2>
-      <p className="section-lede">
-        Four shapes of work that get faster the moment your tools share a canvas.
-      </p>
-      <div className="use-cases">
-        {cases.map((c) => (
-          <article className="use-case" key={c.tag}>
-            <div className="use-case-img">
-              {c.video ? (
-                <LazyVideo
-                  src={c.video}
-                  poster={c.poster ?? c.img}
-                  ariaLabel={c.alt}
-                />
-              ) : (
-                <Image
-                  src={c.img}
-                  alt={c.alt}
-                  width={1200}
-                  height={760}
-                  sizes="(max-width: 820px) 100vw, 540px"
-                />
-              )}
-            </div>
-            <div className="use-case-tag">
-              <span className="bar" /> {c.tag}
-            </div>
-            <h3 className="use-case-title">{c.title}</h3>
-            <p className="use-case-body">{c.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 type ThemePalette = {
   bg: string;
@@ -1456,11 +1356,9 @@ export default function Page() {
       <Hero />
       <ProductShot />
       <WhySection />
-      <FeaturesSection />
-      <MiniAppsShowcase />
+      <CapabilitiesSection />
       <CollaborationSection />
       <MidCTA />
-      <UseCasesSection />
       <ThemesSection />
       <ModelsSection />
       <TrustSection />
