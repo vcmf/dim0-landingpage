@@ -330,10 +330,32 @@ function WhySection() {
           ))}
         </div>
 
-        <div className="vs-connector" aria-hidden="true">
-          <span className="vs-connector-line" />
-          <span className="vs-connector-node" />
-          <span className="vs-connector-line" />
+        <div className="vs-flow" aria-hidden="true">
+          <svg className="vs-flow-svg" viewBox="0 0 760 90" preserveAspectRatio="none">
+            <g className="vs-edges">
+              <path id="vsE1" pathLength="1" d="M126,0 C126,58 380,28 380,90" />
+              <path id="vsE2" pathLength="1" d="M380,0 C380,38 380,52 380,90" />
+              <path id="vsE3" pathLength="1" d="M634,0 C634,58 380,28 380,90" />
+            </g>
+            <g className="vs-pkts">
+              <circle className="vs-pkt" r="4">
+                <animateMotion dur="2.6s" begin="0s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vsE1" />
+                </animateMotion>
+              </circle>
+              <circle className="vs-pkt" r="4">
+                <animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vsE2" />
+                </animateMotion>
+              </circle>
+              <circle className="vs-pkt" r="4">
+                <animateMotion dur="2.6s" begin="1.7s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vsE3" />
+                </animateMotion>
+              </circle>
+            </g>
+          </svg>
+          <span className="vs-flow-node" />
         </div>
 
         <div className="vs-target">

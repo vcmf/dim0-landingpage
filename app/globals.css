@@ -1871,25 +1871,68 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
 }
 
-.vs-connector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 46px;
-  justify-content: center;
+.vs-flow {
+  position: relative;
+  width: 100%;
+  height: 88px;
 }
-.vs-connector-line {
-  width: 2px;
-  flex: 1;
-  background: linear-gradient(var(--border), var(--sienna));
+.vs-flow-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
 }
-.vs-connector-node {
-  width: 9px; height: 9px;
+.vs-edges path {
+  fill: none;
+  stroke: color-mix(in oklab, var(--sienna) 42%, var(--border));
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.vs-pkt {
+  fill: var(--sienna);
+  filter: drop-shadow(0 0 4px color-mix(in oklab, var(--sienna) 80%, transparent));
+}
+.vs-flow-node {
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
   border-radius: 50%;
   background: var(--sienna);
-  box-shadow: 0 0 0 4px color-mix(in oklab, var(--sienna) 20%, transparent);
-  margin: 3px 0;
-  flex-shrink: 0;
+  animation: vs-node-pulse 2.6s ease-out infinite;
+}
+@keyframes vs-node-pulse {
+  0%, 55% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--sienna) 50%, transparent); }
+  80% { box-shadow: 0 0 0 9px color-mix(in oklab, var(--sienna) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--sienna) 0%, transparent); }
+}
+
+/* Dim0 node gently "receives" */
+.vs-target { position: relative; }
+.vs-target-mark { animation: vs-mark-glow 2.6s ease-in-out infinite; }
+@keyframes vs-mark-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--sienna) 0%, transparent); }
+  70% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--sienna) 16%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-pkt { display: none; }
+  .vs-flow-node, .vs-target-mark { animation: none; }
+}
+@media (max-width: 720px) {
+  .vs-flow { height: 42px; }
+  .vs-flow-svg { display: none; }
+  .vs-flow::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 0; bottom: 7px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(var(--border), var(--sienna));
+  }
 }
 
 .vs-target {
