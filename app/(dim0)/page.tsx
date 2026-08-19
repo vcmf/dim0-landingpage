@@ -266,8 +266,12 @@ function HeroVideo() {
       </div>
       <div className="hero-video-caption">
         <span className="hero-video-dot" />
-        <span>A quick tour · everything on one canvas</span>
+        <span>A real Dim0 board · everything on one canvas</span>
       </div>
+      <p className="hero-video-engine">
+        Rendered with <Link href="/canvas-harness">canvas-harness</Link>, our
+        open-source canvas engine.
+      </p>
     </div>
   );
 }
@@ -327,43 +331,6 @@ function Hero() {
         </div>
         <HeroVideo />
       </div>
-    </section>
-  );
-}
-
-function ProductShot() {
-  return (
-    <section className="product-shot-section" id="product">
-      <div className="product-shot-eyebrow">
-        <span>A real Dim0 board</span>
-      </div>
-      <a
-        className="product-shot-frame"
-        href={APP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open Dim0"
-      >
-        <Image
-          src="/home-screenshot-2.png"
-          alt="A Dim0 board with live collaborators showing nested research, sticky notes, code, charts, and an AI agent panel"
-          className="product-shot-img"
-          width={4139}
-          height={2452}
-          sizes="(max-width: 1240px) 100vw, 1240px"
-        />
-        <span className="product-shot-tag">
-          <span className="product-shot-dot" />
-          <span>Open in</span>
-          <span className="mono">app.dim0.net</span>
-        </span>
-      </a>
-      <p className="product-shot-caption">
-        Sticky notes, code, mini-apps, math, charts, sketches, and an AI agent. All on one board.
-      </p>
-      <p className="product-shot-engine">
-        Rendered with <a href="/canvas-harness">canvas-harness</a>, our open-source canvas engine.
-      </p>
     </section>
   );
 }
@@ -1354,7 +1321,6 @@ export default function Page() {
     <>
       <SiteNav />
       <Hero />
-      <ProductShot />
       <WhySection />
       <CapabilitiesSection />
       <CollaborationSection />

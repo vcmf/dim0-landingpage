@@ -306,10 +306,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   margin: 8px auto 0;
-  max-width: 1200px;
+  max-width: 1320px;
 }
+.hero-video-engine {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+.hero-video-engine a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--border);
+}
+.hero-video-engine a:hover { text-decoration-color: var(--sienna); }
 .hero-video-wrap > .hero-video-frame { width: 100%; }
 .hero-video-frame {
   position: relative;
