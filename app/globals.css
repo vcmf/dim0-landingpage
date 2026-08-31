@@ -2067,6 +2067,7 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 }
 .bento-big { grid-column: span 2; }
 .bento-wide { grid-column: span 4; }
+.bento-half { grid-column: span 2; }
 .bento-small { grid-column: span 1; }
 
 .bento-card {
@@ -2143,6 +2144,7 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   .bento { grid-template-columns: repeat(2, 1fr); }
   .bento-big,
   .bento-wide { grid-column: span 2; }
+  .bento-half,
   .bento-small { grid-column: span 1; }
   .bento-wide { flex-direction: column; }
   .bento-wide .bento-media {
@@ -2156,6 +2158,7 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   .bento { grid-template-columns: 1fr; }
   .bento-big,
   .bento-wide,
+  .bento-half,
   .bento-small { grid-column: span 1; }
 }
 

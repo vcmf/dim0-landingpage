@@ -18,12 +18,10 @@ import {
   CaretDownIcon,
   ChatCircleIcon,
   CheckIcon,
-  CodeIcon,
   CoffeeIcon,
   CommandIcon,
   InfinityIcon,
   NotebookIcon,
-  TreeStructureIcon,
   GithubLogoIcon,
   HouseIcon,
   LockKeyIcon,
@@ -385,19 +383,9 @@ const BENTO_SMALL: BentoSmall[] = [
     body: "Notes, code, math, and shapes on one endless surface. Pan and zoom across the whole thing without losing the view.",
   },
   {
-    Icon: TreeStructureIcon,
-    title: "Mapify",
-    body: "Select any notes and turn them into mind maps, schemas, or diagrams in one gesture. Mapify. Drawify. Schemify.",
-  },
-  {
     Icon: PenNibIcon,
     title: "Freehand sketch",
     body: "Excalidraw-style shapes, flows, and system diagrams, drawn by you or generated. The agent reads them as context.",
-  },
-  {
-    Icon: CodeIcon,
-    title: "Code, charts & docs",
-    body: "Sandboxed code nodes, live widgets, and uploaded documents, all connected to the thinking that produced them.",
   },
 ];
 
@@ -491,6 +479,46 @@ function CapabilitiesSection() {
           </div>
         </article>
 
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <Image
+              src="/board-mapify.png"
+              alt="A Dim0 board where notes have been turned into a connected mind map with labelled edges"
+              width={1990}
+              height={1374}
+              sizes="(max-width: 900px) 100vw, 560px"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag">Mapify</div>
+            <h3 className="bento-title">Notes become structure.</h3>
+            <p className="bento-desc">
+              Select any notes and turn them into mind maps, schemas, or diagrams
+              in one gesture. Mapify. Drawify. Schemify.
+            </p>
+          </div>
+        </article>
+
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <Image
+              src="/board-node-types.png"
+              alt="A Dim0 board mixing code snippets, a math formula, hand-drawn shapes, icons, images, and nested folders as nodes"
+              width={2000}
+              height={1098}
+              sizes="(max-width: 900px) 100vw, 560px"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag">Every node type</div>
+            <h3 className="bento-title">One canvas, every kind of node.</h3>
+            <p className="bento-desc">
+              Code, live widgets, math, images, hand-drawn shapes, docs, and nested
+              folders — all first-class nodes, all connected to the thinking around them.
+            </p>
+          </div>
+        </article>
+
         <article className="bento-card bento-wide">
           <div className="bento-media">
             <LazyVideo
@@ -510,7 +538,7 @@ function CapabilitiesSection() {
         </article>
 
         {BENTO_SMALL.map((c) => (
-          <article className="bento-card bento-small" key={c.title}>
+          <article className="bento-card bento-half" key={c.title}>
             <div className="bento-body">
               <span className="bento-icon"><c.Icon size={22} /></span>
               <h3 className="bento-title bento-title-sm">{c.title}</h3>
