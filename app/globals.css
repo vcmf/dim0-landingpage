@@ -27,8 +27,8 @@
   --accent-foreground:     oklch(0.24 0.005 260);
   --destructive:           oklch(0.52 0.12 25);
   --destructive-foreground: oklch(0.98 0.002 260);
-  --border:                oklch(0.89 0.003 260);
-  --input:                 oklch(0.92 0.003 260);
+  --border:                oklch(0.83 0.004 260);
+  --input:                 oklch(0.87 0.004 260);
   --ring:                  oklch(0.50 0.006 260);
 
   /* legacy accent names → neutral slate (no longer terracotta) */
