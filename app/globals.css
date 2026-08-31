@@ -2093,10 +2093,9 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 }
 
 .cap-grid {
-  max-width: 980px;
-  margin: 0 auto 16px;
+  margin: 0 auto 18px;
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 .cap-grid-3 { grid-template-columns: repeat(3, 1fr); margin-top: 44px; }
 .cap-grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -2129,8 +2128,8 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   border-bottom: 1px solid var(--border);
   background: color-mix(in oklab, var(--background) 55%, var(--card));
 }
-.fcard-media { min-height: 190px; }
-.scard-media { min-height: 150px; }
+.fcard-media { min-height: 220px; }
+.scard-media { min-height: 168px; }
 .scard-flip .scard-media { border-bottom: none; border-top: 1px solid var(--border); }
 .fcard-media img, .fcard-media video,
 .scard-media img {
@@ -2153,8 +2152,8 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
     color-mix(in oklab, var(--hue) 8%, var(--card)) 100%
   );
 }
-.fcard-body { padding: 20px 22px 22px; }
-.scard-body { padding: 15px 17px 17px; }
+.fcard-body { padding: 16px 22px 18px; }
+.scard-body { padding: 13px 17px 15px; }
 .fcard-title {
   font-size: 18px;
   font-weight: 600;
