@@ -78,10 +78,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/board-mindmap-deaging.png",
-        width: 1920,
-        height: 1080,
-        alt: "A Dim0 board showing a mindmap generated from a question, with sticky notes, code, charts, and an AI agent panel",
+        url: "/home-screenshot-2.png",
+        width: 4139,
+        height: 2452,
+        alt: "A real Dim0 board with live collaborators: nested research, sticky notes, code, charts, and a board-aware AI agent on one canvas",
       },
     ],
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/board-mindmap-deaging.png"],
+    images: ["/home-screenshot-2.png"],
   },
   robots: {
     index: true,

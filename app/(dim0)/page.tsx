@@ -170,6 +170,7 @@ function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const autoPlayed = useRef(false);
   const [playing, setPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
   const [ended, setEnded] = useState(false);
 
   const toggle = () => {
@@ -204,7 +205,7 @@ function HeroVideo() {
   return (
     <div className="hero-video-wrap" ref={wrapRef}>
       <div
-        className={`hero-video-frame ${playing ? "is-playing" : ""}`}
+        className="hero-video-frame"
         onClick={toggle}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -231,6 +232,7 @@ function HeroVideo() {
           poster="/home-screenshot-2.png"
           onPlay={() => {
             setPlaying(true);
+            setStarted(true);
             setEnded(false);
           }}
           onPause={() => setPlaying(false)}
@@ -241,7 +243,7 @@ function HeroVideo() {
         >
           <source src="/compressed-full-demo-dark-theme.mp4" type="video/mp4" />
         </video>
-        {!playing && (
+        {(!started || ended) && (
           <div className="hero-video-poster">
             <Image
               src="/home-screenshot-2.png"
@@ -377,6 +379,7 @@ type Feat = {
   title: string;
   body: string;
   img?: string;
+  alt?: string;
   w?: number;
   h?: number;
   video?: string;
@@ -392,13 +395,17 @@ const ROW1: Feat[] = [
     tag: "Board-aware AI",
     title: "Reads first. Acts second.",
     body: "The agent reads your whole board before it acts, then searches, runs code, and writes results back as editable nodes.",
-    img: "/board-agent-benchmark.png", w: 2000, h: 1113, hue: "#c2603f",
+    img: "/board-agent-benchmark.png",
+    alt: "A Dim0 board where the AI agent produced a DeepSeek vs GLM benchmark report, a news brief, and a mindmap as connected nodes",
+    w: 2000, h: 1113, hue: "#c2603f",
   },
   {
     tag: "Mini-apps",
     title: "Spin up a little app on the canvas.",
     body: "Describe a calculator, chart, or quiz and Dim0 drops a real, interactive React app on your board, next to the notes.",
-    img: "/mini-app.png", w: 1795, h: 1933, hue: "#d98a2b",
+    img: "/mini-app.png",
+    alt: "An AI-generated interactive mini-app running as a node on a Dim0 canvas",
+    w: 1795, h: 1933, hue: "#d98a2b",
   },
   {
     tag: "Nested boards",
@@ -428,19 +435,25 @@ const SMALLS: Feat[] = [
     tag: "Mapify",
     title: "Notes become structure.",
     body: "Turn any notes into mind maps, schemas, or diagrams in one gesture.",
-    img: "/board-mapify.png", w: 1990, h: 1374, hue: "#d9925c", flip: false,
+    img: "/board-mapify.png",
+    alt: "A Dim0 board where notes were turned into a connected mind map with labelled edges",
+    w: 1990, h: 1374, hue: "#d9925c", flip: false,
   },
   {
     tag: "Every node type",
     title: "One canvas, every kind of node.",
     body: "Code, widgets, math, images, hand-drawn shapes, docs, and nested folders, all first-class nodes the AI can read.",
-    img: "/board-node-types.png", w: 2000, h: 1098, hue: "#7f9a5f", flip: true,
+    img: "/board-node-types.png",
+    alt: "A Dim0 board mixing code snippets, a math formula, hand-drawn shapes, icons, images, and nested folders as nodes",
+    w: 2000, h: 1098, hue: "#7f9a5f", flip: true,
   },
   {
     tag: "Infinite canvas",
     title: "Thinking, laid out in space.",
     body: "Notes, code, math, and shapes on one endless surface. Pan and zoom, never lose the view.",
-    img: "/board-infinite-canvas.png", w: 2000, h: 1096, hue: "#6b8d9c", flip: false,
+    img: "/board-infinite-canvas.png",
+    alt: "A large Dim0 board zoomed out, showing many connected notes and mindmaps across an infinite canvas",
+    w: 2000, h: 1096, hue: "#6b8d9c", flip: false,
   },
 ];
 
@@ -451,7 +464,7 @@ function FeatMedia({ f }: { f: Feat }) {
   return (
     <Image
       src={f.img!}
-      alt={f.title}
+      alt={f.alt ?? f.title}
       width={f.w!}
       height={f.h!}
       sizes="(max-width: 820px) 100vw, 520px"
@@ -502,7 +515,7 @@ function CapabilitiesSection() {
             <div className="scard-media">
               <Image
                 src={f.img!}
-                alt={f.title}
+                alt={f.alt ?? f.title}
                 width={f.w!}
                 height={f.h!}
                 sizes="(max-width: 900px) 50vw, 320px"

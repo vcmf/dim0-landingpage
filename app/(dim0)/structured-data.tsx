@@ -11,7 +11,7 @@ const softwareApplication = {
   url: SITE_URL,
   applicationCategory: "ProductivityApplication",
   operatingSystem: "Web",
-  image: `${SITE_URL}/board-mindmap-deaging.png`,
+  image: `${SITE_URL}/home-screenshot-2.png`,
   featureList: [
     "Real-time collaborative infinite canvas",
     "AI mini-apps: interactive React apps generated on the canvas",
@@ -42,6 +42,30 @@ const softwareApplication = {
   },
   softwareVersion: "0.3",
   license: "https://opensource.org/licenses/MIT",
+  // Only the reviews whose star ratings are visible on the page (testimonials
+  // section). Keep in sync with the rated TESTIMONIALS in page.tsx.
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: "2",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "@erdemgulen" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody:
+        "Great design and ease to use, collaboration makes it more productive.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "@viciousse" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "I like the idea, the multiplayer and the design!",
+    },
+  ],
 };
 
 const organization = {
