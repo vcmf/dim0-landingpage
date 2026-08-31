@@ -7,10 +7,8 @@ import {
   ArrowRightIcon,
   GithubLogoIcon,
   ListIcon,
-  StarIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { formatStars, useGitHubStars } from "./use-github-stars";
 
 const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -25,7 +23,6 @@ const NAV_LINKS = [
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const stars = useGitHubStars();
 
   return (
     <header className="nav">
@@ -51,12 +48,6 @@ export function SiteNav() {
             rel="noreferrer"
           >
             <GithubLogoIcon size={14} /> Open source
-            {stars !== null && (
-              <span className="nav-star-count">
-                <StarIcon size={11} weight="fill" />
-                {formatStars(stars)}
-              </span>
-            )}
           </a>
           <a className="btn btn-primary nav-cta-try" href={APP_URL}>
             Try Dim0 <ArrowRightIcon size={14} />
