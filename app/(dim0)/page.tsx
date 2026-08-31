@@ -20,7 +20,6 @@ import {
   CheckIcon,
   CoffeeIcon,
   CommandIcon,
-  InfinityIcon,
   NotebookIcon,
   GithubLogoIcon,
   HouseIcon,
@@ -370,24 +369,91 @@ function WhySection() {
   );
 }
 
-type BentoSmall = {
-  Icon: ComponentType<{ size?: number }>;
+type Feat = {
+  tag: string;
   title: string;
   body: string;
+  img?: string;
+  w?: number;
+  h?: number;
+  video?: string;
+  poster?: string;
 };
 
-const BENTO_SMALL: BentoSmall[] = [
+const FEATS: Feat[] = [
   {
-    Icon: InfinityIcon,
-    title: "Infinite canvas",
-    body: "Notes, code, math, and shapes on one endless surface. Pan and zoom across the whole thing without losing the view.",
+    tag: "Board-aware AI",
+    title: "Reads first. Acts second.",
+    body: "The agent reads your whole board before it acts, then searches, runs code, and writes results back as nodes you can edit and connect.",
+    img: "/board-agent-benchmark.png", w: 2000, h: 1113,
   },
   {
-    Icon: PenNibIcon,
-    title: "Freehand sketch",
-    body: "Excalidraw-style shapes, flows, and system diagrams, drawn by you or generated. The agent reads them as context.",
+    tag: "Mini-apps",
+    title: "Spin up a little app, right on the canvas.",
+    body: "Describe a calculator, chart, or quiz and Dim0 drops a real, interactive React app on your board, reading the notes next to it. Open it, edit it, export it.",
+    img: "/mini-app.png", w: 1795, h: 1933,
+  },
+  {
+    tag: "Nested boards",
+    title: "A canvas that folds into folders.",
+    body: "Group anything into a nested board and open it like a folder. Big projects stay organized — zoom out to the map, dive in for the detail.",
+    video: "/sub-folders-demo.mp4", poster: "/sub-folders-demo-poster.jpg",
+  },
+  {
+    tag: "Presentation mode",
+    title: "Present straight from the board.",
+    body: "Drop frames around your work and Dim0 turns them into slides. Present from the same canvas you thought on — no export, no rebuilding elsewhere.",
+    video: "/present-mode.mp4", poster: "/present-mode-poster.jpg",
+  },
+  {
+    tag: "Rich notes",
+    title: "Notion-grade notes, drawn on the canvas.",
+    body: "Tags, math, toggles, sub-pages, code, sitting wherever you put them. Edit by hand, or ask AI to draft and revise the note in place.",
+    video: "/rich-text-demo.mp4", poster: "/rich-text-demo-poster.jpg",
   },
 ];
+
+const FEAT_SMALL: Feat[] = [
+  {
+    tag: "Mapify",
+    title: "Notes become structure.",
+    body: "Turn any notes into mind maps, schemas, or diagrams in one gesture.",
+    img: "/board-mapify.png", w: 1990, h: 1374,
+  },
+  {
+    tag: "Every node type",
+    title: "One canvas, every kind of node.",
+    body: "Code, widgets, math, images, shapes, docs, and nested folders — all first-class.",
+    img: "/board-node-types.png", w: 2000, h: 1098,
+  },
+  {
+    tag: "Infinite canvas",
+    title: "Thinking, laid out in space.",
+    body: "Notes, code, math, and shapes on one endless surface. Pan and zoom, never lose the view.",
+    img: "/board-infinite-canvas.png", w: 2000, h: 1096,
+  },
+  {
+    tag: "Freehand sketch",
+    title: "Rough shapes the AI reads.",
+    body: "Excalidraw-style shapes, flows, and diagrams, drawn by you or generated as context.",
+    img: "/board-api-architecture.png", w: 2910, h: 1566,
+  },
+];
+
+function FeatMedia({ f }: { f: Feat }) {
+  if (f.video) {
+    return <LazyVideo src={f.video} poster={f.poster ?? ""} ariaLabel={f.title} />;
+  }
+  return (
+    <Image
+      src={f.img!}
+      alt={f.title}
+      width={f.w!}
+      height={f.h!}
+      sizes="(max-width: 820px) 100vw, 520px"
+    />
+  );
+}
 
 function CapabilitiesSection() {
   return (
@@ -401,148 +467,35 @@ function CapabilitiesSection() {
         canvas is the interface and every kind of node lives on it.
       </p>
 
-      <div className="bento">
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <Image
-              src="/board-agent-benchmark.png"
-              alt="A Dim0 board where the AI agent has produced a DeepSeek vs GLM benchmark report, a news brief, and a mindmap as nodes"
-              width={2000}
-              height={1113}
-              sizes="(max-width: 900px) 100vw, 560px"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Board-aware AI</div>
-            <h3 className="bento-title">Reads first. Acts second.</h3>
-            <p className="bento-desc">
-              The agent reads your whole board before it acts, then searches, runs
-              code, and writes results back as nodes you can edit and connect.
-            </p>
-          </div>
-        </article>
+      <div className="feats">
+        {FEATS.map((f, i) => (
+          <article className={`feat ${i % 2 === 1 ? "feat-rev" : ""}`} key={f.tag}>
+            <div className="feat-media"><FeatMedia f={f} /></div>
+            <div className="feat-body">
+              <div className="feat-tag">{f.tag}</div>
+              <h3 className="feat-title">{f.title}</h3>
+              <p className="feat-desc">{f.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
 
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <Image
-              src="/mini-app.png"
-              alt="An AI-generated interactive mini-app running as a node on a Dim0 canvas"
-              width={1795}
-              height={1933}
-              sizes="(max-width: 900px) 100vw, 560px"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Mini-apps</div>
-            <h3 className="bento-title">Spin up a little app, right on the canvas.</h3>
-            <p className="bento-desc">
-              Describe a calculator, chart, or quiz and Dim0 drops a real,
-              interactive React app on your board, reading the notes next to it.
-              Open it, edit it, export it.
-            </p>
-          </div>
-        </article>
-
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <LazyVideo
-              src="/sub-folders-demo.mp4"
-              poster="/sub-folders-demo-poster.jpg"
-              ariaLabel="Organizing a Dim0 canvas into nested boards that open like folders"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Nested boards</div>
-            <h3 className="bento-title">A canvas that folds into folders.</h3>
-            <p className="bento-desc">
-              Group anything into a nested board and open it like a folder. Big
-              projects stay organized — zoom out to the map, dive in for the detail.
-            </p>
-          </div>
-        </article>
-
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <LazyVideo
-              src="/present-mode.mp4"
-              poster="/present-mode-poster.jpg"
-              ariaLabel="Presenting directly from a Dim0 canvas using frames as slides"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Presentation mode</div>
-            <h3 className="bento-title">Present straight from the board.</h3>
-            <p className="bento-desc">
-              Drop frames around your work and Dim0 turns them into slides. Present
-              from the same canvas you thought on — no export, no rebuilding elsewhere.
-            </p>
-          </div>
-        </article>
-
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <Image
-              src="/board-mapify.png"
-              alt="A Dim0 board where notes have been turned into a connected mind map with labelled edges"
-              width={1990}
-              height={1374}
-              sizes="(max-width: 900px) 100vw, 560px"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Mapify</div>
-            <h3 className="bento-title">Notes become structure.</h3>
-            <p className="bento-desc">
-              Select any notes and turn them into mind maps, schemas, or diagrams
-              in one gesture. Mapify. Drawify. Schemify.
-            </p>
-          </div>
-        </article>
-
-        <article className="bento-card bento-big">
-          <div className="bento-media">
-            <Image
-              src="/board-node-types.png"
-              alt="A Dim0 board mixing code snippets, a math formula, hand-drawn shapes, icons, images, and nested folders as nodes"
-              width={2000}
-              height={1098}
-              sizes="(max-width: 900px) 100vw, 560px"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Every node type</div>
-            <h3 className="bento-title">One canvas, every kind of node.</h3>
-            <p className="bento-desc">
-              Code, live widgets, math, images, hand-drawn shapes, docs, and nested
-              folders — all first-class nodes, all connected to the thinking around them.
-            </p>
-          </div>
-        </article>
-
-        <article className="bento-card bento-wide">
-          <div className="bento-media">
-            <LazyVideo
-              src="/rich-text-demo.mp4"
-              poster="/rich-text-demo-poster.jpg"
-              ariaLabel="A rich Dim0 note with tags, math, toggles, and AI editing on a canvas"
-            />
-          </div>
-          <div className="bento-body">
-            <div className="bento-tag">Rich notes</div>
-            <h3 className="bento-title">Notion-grade notes, drawn on the canvas.</h3>
-            <p className="bento-desc">
-              Tags, math, toggles, sub-pages, code, sitting wherever you put them.
-              Edit by hand, or ask AI to draft and revise the note in place.
-            </p>
-          </div>
-        </article>
-
-        {BENTO_SMALL.map((c) => (
-          <article className="bento-card bento-half" key={c.title}>
-            <div className="bento-body">
-              <span className="bento-icon"><c.Icon size={22} /></span>
-              <h3 className="bento-title bento-title-sm">{c.title}</h3>
-              <p className="bento-desc">{c.body}</p>
+      <div className="feat-grid">
+        {FEAT_SMALL.map((f) => (
+          <article className="feat-sm" key={f.tag}>
+            <div className="feat-sm-media">
+              <Image
+                src={f.img!}
+                alt={f.title}
+                width={f.w!}
+                height={f.h!}
+                sizes="(max-width: 900px) 50vw, 250px"
+              />
+            </div>
+            <div className="feat-sm-body">
+              <div className="feat-tag">{f.tag}</div>
+              <h3 className="feat-sm-title">{f.title}</h3>
+              <p className="feat-desc">{f.body}</p>
             </div>
           </article>
         ))}
