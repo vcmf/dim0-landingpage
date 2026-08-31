@@ -321,39 +321,18 @@ function Hero() {
   );
 }
 
-type VsNode = {
+type VsCard = {
   name: string;
   cap: string;
   gap: string;
-  Icon: ComponentType<{ size?: number; weight?: "fill" }>;
-  clr: string;
-  x: string;
-  y: string;
-  rot: string;
-  edge: string;
-  begin: string;
+  Icon: ComponentType<{ size?: number }>;
 };
 
 function WhySection() {
-  const nodes: VsNode[] = [
-    {
-      name: "Notion", cap: "Rich notes", gap: "no canvas",
-      Icon: NotebookIcon, clr: "#d4823f",
-      x: "16%", y: "30%", rot: "-3deg",
-      edge: "M26,42 C26,56 58,57 63,62", begin: "0s",
-    },
-    {
-      name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI",
-      Icon: PenNibIcon, clr: "#7168e8",
-      x: "50%", y: "19%", rot: "2deg",
-      edge: "M80,31 C80,47 80,55 80,62", begin: "0.9s",
-    },
-    {
-      name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace",
-      Icon: ChatCircleIcon, clr: "#12a594",
-      x: "84%", y: "31%", rot: "3deg",
-      edge: "M134,43 C134,56 102,57 97,62", begin: "1.7s",
-    },
+  const sources: VsCard[] = [
+    { name: "Notion", cap: "Rich notes", gap: "no canvas", Icon: NotebookIcon },
+    { name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI", Icon: PenNibIcon },
+    { name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace", Icon: ChatCircleIcon },
   ];
 
   return (
@@ -366,83 +345,27 @@ function WhySection() {
         three on one canvas — and the agent reads the whole board before it acts.
       </p>
 
-      <div className="vs-board">
-        <svg
-          className="vs-board-edges"
-          viewBox="0 0 160 90"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <defs>
-            <filter id="vs-rough" x="-25%" y="-25%" width="150%" height="150%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="7" result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="0.9" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-            <marker
-              id="vs-arrow"
-              viewBox="0 0 28 28"
-              refX="20"
-              refY="14"
-              markerWidth="9"
-              markerHeight="9"
-              orient="auto"
-            >
-              <path
-                d="M3,3 Q16,7 21,14"
-                fill="none"
-                stroke="context-stroke"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M6,25 Q17,19 21,14"
-                fill="none"
-                stroke="context-stroke"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-            </marker>
-          </defs>
-          <g filter="url(#vs-rough)">
-            {nodes.map((n, i) => (
-              <path
-                key={n.name}
-                id={`vsedge-${i}`}
-                className="vs-edge"
-                style={{ stroke: n.clr }}
-                markerEnd="url(#vs-arrow)"
-                d={n.edge}
-              />
-            ))}
-          </g>
-        </svg>
-
-        {nodes.map((n) => (
-          <div
-            key={n.name}
-            className="vs-node"
-            style={{ "--x": n.x, "--y": n.y, "--rot": n.rot, "--clr": n.clr } as React.CSSProperties}
-          >
-            <span className="vs-node-chip"><n.Icon size={18} weight="fill" /></span>
-            <span className="vs-node-name">{n.name}</span>
-            <span className="vs-node-cap">{n.cap}</span>
-            <span className="vs-node-gap">but {n.gap}</span>
+      <div className="vs-grid">
+        {sources.map((s) => (
+          <div className="vs-card" key={s.name}>
+            <div className="vs-card-icon"><s.Icon size={22} /></div>
+            <h3 className="vs-card-name">{s.name}</h3>
+            <p className="vs-card-cap">{s.cap}</p>
+            <p className="vs-card-gap">but {s.gap}</p>
           </div>
         ))}
+      </div>
 
-        <div
-          className="vs-node vs-node-dim0"
-          style={{ "--x": "50%", "--y": "80%" } as React.CSSProperties}
-        >
-          <span className="vs-node-mark">
-            <Image src="/dim0.svg" alt="" width={24} height={24} />
-          </span>
-          <div className="vs-node-dim0-body">
-            <span className="vs-node-name">Dim0</span>
-            <span className="vs-node-dim0-copy">
-              All three on one surface — notes, an infinite canvas, and a board-aware agent.
-            </span>
-          </div>
+      <div className="vs-result">
+        <span className="vs-result-mark">
+          <Image src="/dim0.svg" alt="" width={24} height={24} />
+        </span>
+        <div>
+          <div className="vs-result-name">Dim0</div>
+          <p className="vs-result-copy">
+            All three on one surface — notes, an infinite canvas, and a board-aware
+            agent. Nothing to copy-paste between, nothing that loses your context.
+          </p>
         </div>
       </div>
     </section>

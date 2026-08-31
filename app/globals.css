@@ -1892,125 +1892,72 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 /* ============================================================
    VS — three tools into one board
    ============================================================ */
-.vs-board {
-  position: relative;
-  width: 100%;
-  max-width: 860px;
-  margin: 52px auto 0;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background-color: color-mix(in oklab, var(--card) 40%, transparent);
-  background-image: radial-gradient(
-    color-mix(in oklab, var(--muted-foreground) 22%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 22px 22px;
-  overflow: hidden;
+.vs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 820px;
+  margin: 44px auto 16px;
 }
-.vs-board-edges {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-.vs-edge {
-  fill: none;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  opacity: 0.92;
-}
-
-.vs-node {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
-  z-index: 1;
-  width: 172px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  padding: 14px 16px;
-  background: var(--card);
+.vs-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  box-shadow: 0 12px 32px -18px color-mix(in oklab, var(--clr, var(--sienna)) 45%, transparent);
-  transition: transform .2s ease, box-shadow .2s ease;
+  background: var(--card);
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color .18s ease, transform .18s ease;
 }
-.vs-node:hover {
-  transform: translate(-50%, -50%) rotate(0deg) scale(1.03);
-  z-index: 3;
+.vs-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--sienna) 25%, var(--border));
 }
-.vs-node-chip {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  display: grid;
-  place-items: center;
-  background: color-mix(in oklab, var(--clr) 15%, var(--card));
-  color: var(--clr);
-  margin-bottom: 8px;
+.vs-card-icon {
+  display: inline-flex;
+  color: var(--muted-foreground);
+  margin-bottom: 10px;
 }
-.vs-node-name { font-weight: 600; font-size: 14px; color: var(--foreground); }
-.vs-node-cap { font-size: 12.5px; color: var(--muted-foreground); }
-.vs-node-gap {
-  font-size: 11.5px;
+.vs-card-name { font-weight: 600; font-size: 15px; color: var(--foreground); }
+.vs-card-cap { font-size: 13px; color: var(--muted-foreground); margin-top: 3px; }
+.vs-card-gap {
+  font-size: 12px;
   font-style: italic;
-  margin-top: 2px;
+  margin-top: 10px;
   color: color-mix(in oklab, var(--muted-foreground) 65%, transparent);
 }
 
-.vs-node-dim0 {
-  width: 300px;
-  flex-direction: row;
+.vs-result {
+  display: flex;
   align-items: center;
-  gap: 13px;
-  z-index: 2;
-  border-color: color-mix(in oklab, var(--sienna) 45%, var(--border));
-  background: color-mix(in oklab, var(--sienna-tint) 45%, var(--card));
-  box-shadow: 0 18px 46px -22px color-mix(in oklab, var(--sienna) 40%, transparent);
+  gap: 16px;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  border: 1px solid color-mix(in oklab, var(--sienna) 40%, var(--border));
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--sienna-tint) 35%, var(--card));
+  box-shadow: 0 20px 50px -34px color-mix(in oklab, var(--sienna) 30%, transparent);
 }
-.vs-node-mark {
+.vs-result-mark {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   display: grid;
   place-items: center;
   background: var(--card);
   border: 1px solid color-mix(in oklab, var(--sienna) 25%, var(--border));
 }
-.vs-node-dim0-body { display: flex; flex-direction: column; gap: 3px; }
-.vs-node-dim0-copy {
-  font-size: 12.5px;
-  line-height: 1.45;
+.vs-result-name { font-weight: 700; font-size: 16px; color: var(--foreground); }
+.vs-result-copy {
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--muted-foreground);
+  margin-top: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .vs-pkt { display: none; }
-}
-@media (max-width: 680px) {
-  .vs-board {
-    aspect-ratio: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 20px;
-    background-image: none;
-  }
-  .vs-board-edges { display: none; }
-  .vs-node {
-    position: static;
-    transform: none;
-    width: 100%;
-  }
-  .vs-node:hover { transform: scale(1.02); }
-  .vs-node-dim0 { width: 100%; }
+@media (max-width: 640px) {
+  .vs-grid { grid-template-columns: 1fr; }
+  .vs-result { flex-direction: column; text-align: center; }
 }
 
 /* ============================================================
