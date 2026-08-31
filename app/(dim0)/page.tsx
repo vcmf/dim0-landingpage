@@ -294,7 +294,7 @@ function Hero() {
           </span>
         </h1>
         <p className="hero-tagline">
-          Notes, mini-apps, and agents on one infinite board — the AI reads your
+          Notes, mini-apps, and agents on one infinite board. The AI reads your
           board <em>before</em> it acts.
         </p>
         <p className="hero-subtitle">
@@ -342,7 +342,7 @@ function WhySection() {
       <p className="section-lede">
         Browse, note, sketch, ask AI, paste back. By the time you move forward, your
         thinking is spread across tools that never talk to each other. Dim0 is all
-        three on one canvas — and the agent reads the whole board before it acts.
+        three on one canvas, and the agent reads the whole board before it acts.
       </p>
 
       <div className="vs-grid">
@@ -363,7 +363,7 @@ function WhySection() {
         <div>
           <div className="vs-result-name">Dim0</div>
           <p className="vs-result-copy">
-            All three on one surface — notes, an infinite canvas, and a board-aware
+            All three on one surface: notes, an infinite canvas, and a board-aware
             agent. Nothing to copy-paste between, nothing that loses your context.
           </p>
         </div>
@@ -403,7 +403,7 @@ const ROW1: Feat[] = [
   {
     tag: "Nested boards",
     title: "A canvas that folds into folders.",
-    body: "Group anything into a nested board and open it like a folder. Big projects stay organized — zoom out, dive in.",
+    body: "Group anything into a nested board and open it like a folder. Big projects stay organized. Zoom out, dive in.",
     video: "/sub-folders-demo.mp4", poster: "/sub-folders-demo-poster.jpg", hue: "#869a52",
   },
 ];
@@ -412,7 +412,7 @@ const ROW2: Feat[] = [
   {
     tag: "Presentation mode",
     title: "Present straight from the board.",
-    body: "Drop frames around your work and Dim0 turns them into slides. Present from the same canvas you thought on — no export, no rebuilding.",
+    body: "Drop frames around your work and Dim0 turns them into slides. Present from the same canvas you thought on. No export, no rebuilding.",
     video: "/present-mode.mp4", poster: "/present-mode-poster.jpg", hue: "#6f8f9e",
   },
   {
@@ -433,7 +433,7 @@ const SMALLS: Feat[] = [
   {
     tag: "Every node type",
     title: "One canvas, every kind of node.",
-    body: "Code, widgets, math, images, hand-drawn shapes, docs, and nested folders — all first-class nodes the AI can read.",
+    body: "Code, widgets, math, images, hand-drawn shapes, docs, and nested folders, all first-class nodes the AI can read.",
     img: "/board-node-types.png", w: 2000, h: 1098, hue: "#7f9a5f", flip: true,
   },
   {
@@ -1001,7 +1001,7 @@ function TestimonialsSection() {
       <div className="section-eyebrow">Loved by early users</div>
       <h2 className="section-title">What people are saying.</h2>
       <p className="section-lede">
-        Real, unedited comments from public AI directories and GitHub — the detail
+        Real, unedited comments from public AI directories and GitHub. The detail
         people keep pointing at: AI output lands on the board as nodes, not in a
         throwaway chat thread.
       </p>
