@@ -382,7 +382,7 @@ const BENTO_SMALL: BentoSmall[] = [
   {
     Icon: InfinityIcon,
     title: "Infinite canvas",
-    body: "Notes, code, math, and shapes on one endless surface. Nested boards keep big projects structured without losing the view.",
+    body: "Notes, code, math, and shapes on one endless surface. Pan and zoom across the whole thing without losing the view.",
   },
   {
     Icon: TreeStructureIcon,
@@ -417,10 +417,10 @@ function CapabilitiesSection() {
         <article className="bento-card bento-big">
           <div className="bento-media">
             <Image
-              src="/board-ai-benchmarks.png"
-              alt="A Dim0 board where the AI agent has produced benchmark charts and annotated research as nodes"
-              width={1200}
-              height={760}
+              src="/board-agent-benchmark.png"
+              alt="A Dim0 board where the AI agent has produced a DeepSeek vs GLM benchmark report, a news brief, and a mindmap as nodes"
+              width={2000}
+              height={1113}
               sizes="(max-width: 900px) 100vw, 560px"
             />
           </div>
@@ -455,11 +455,47 @@ function CapabilitiesSection() {
           </div>
         </article>
 
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <LazyVideo
+              src="/sub-folders-demo.mp4"
+              poster="/sub-folders-demo-poster.jpg"
+              ariaLabel="Organizing a Dim0 canvas into nested boards that open like folders"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag">Nested boards</div>
+            <h3 className="bento-title">A canvas that folds into folders.</h3>
+            <p className="bento-desc">
+              Group anything into a nested board and open it like a folder. Big
+              projects stay organized — zoom out to the map, dive in for the detail.
+            </p>
+          </div>
+        </article>
+
+        <article className="bento-card bento-big">
+          <div className="bento-media">
+            <LazyVideo
+              src="/present-mode.mp4"
+              poster="/present-mode-poster.jpg"
+              ariaLabel="Presenting directly from a Dim0 canvas using frames as slides"
+            />
+          </div>
+          <div className="bento-body">
+            <div className="bento-tag">Presentation mode</div>
+            <h3 className="bento-title">Present straight from the board.</h3>
+            <p className="bento-desc">
+              Drop frames around your work and Dim0 turns them into slides. Present
+              from the same canvas you thought on — no export, no rebuilding elsewhere.
+            </p>
+          </div>
+        </article>
+
         <article className="bento-card bento-wide">
           <div className="bento-media">
             <LazyVideo
-              src="/video-rich-canvas-notes.mp4"
-              poster="/note-visual-thinking.png"
+              src="/rich-text-demo.mp4"
+              poster="/rich-text-demo-poster.jpg"
               ariaLabel="A rich Dim0 note with tags, math, toggles, and AI editing on a canvas"
             />
           </div>
