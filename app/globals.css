@@ -1902,18 +1902,22 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 .vs-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--card);
+  background: linear-gradient(
+    158deg,
+    color-mix(in oklab, var(--hue) 18%, var(--card)) 0%,
+    color-mix(in oklab, var(--hue) 5%, var(--card)) 100%
+  );
   padding: 24px 20px;
   text-align: center;
   transition: border-color .18s ease, transform .18s ease;
 }
 .vs-card:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--sienna) 25%, var(--border));
+  border-color: color-mix(in oklab, var(--hue) 35%, var(--border));
 }
 .vs-card-icon {
   display: inline-flex;
-  color: var(--muted-foreground);
+  color: var(--foreground);
   margin-bottom: 10px;
 }
 .vs-card-name { font-weight: 600; font-size: 15px; color: var(--foreground); }
@@ -1932,10 +1936,14 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   max-width: 820px;
   margin: 0 auto;
   padding: 20px 24px;
-  border: 1px solid color-mix(in oklab, var(--sienna) 40%, var(--border));
+  border: 1px solid color-mix(in oklab, var(--hue) 45%, var(--border));
   border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--sienna-tint) 35%, var(--card));
-  box-shadow: 0 20px 50px -34px color-mix(in oklab, var(--sienna) 30%, transparent);
+  background: linear-gradient(
+    158deg,
+    color-mix(in oklab, var(--hue) 22%, var(--card)) 0%,
+    color-mix(in oklab, var(--hue) 8%, var(--card)) 100%
+  );
+  box-shadow: 0 20px 50px -34px color-mix(in oklab, var(--hue) 32%, transparent);
 }
 .vs-result-mark {
   flex-shrink: 0;
@@ -1945,7 +1953,7 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   display: grid;
   place-items: center;
   background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--sienna) 25%, var(--border));
+  border: 1px solid color-mix(in oklab, var(--hue) 32%, var(--border));
 }
 .vs-result-name { font-weight: 700; font-size: 16px; color: var(--foreground); }
 .vs-result-copy {

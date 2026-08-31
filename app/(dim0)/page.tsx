@@ -16,16 +16,13 @@ import {
   ArrowsClockwiseIcon,
   AtIcon,
   CaretDownIcon,
-  ChatCircleIcon,
   CheckIcon,
   CoffeeIcon,
   CommandIcon,
-  NotebookIcon,
   GithubLogoIcon,
   HouseIcon,
   LockKeyIcon,
   PaperclipIcon,
-  PenNibIcon,
   PlayIcon,
   ShieldCheckIcon,
   SparkleIcon,
@@ -40,6 +37,7 @@ import {
   Gemini,
   Kimi,
   Mistral,
+  Notion,
   OpenAI,
   Qwen,
 } from "@lobehub/icons";
@@ -323,13 +321,27 @@ type VsCard = {
   cap: string;
   gap: string;
   Icon: ComponentType<{ size?: number }>;
+  hue: string;
 };
+
+// Excalidraw's logo isn't in the icon set — a sketch-style mark in its brand violet.
+function ExcalidrawMark({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4.3 6.7c3-1.4 12.5-1.4 15.4.2.6 3.1.4 8.1-.4 11.1-4.3 1.3-11.4 1.4-14.8.2-.8-3.9-.7-8.5-.2-11.5Z"
+        stroke="#6a5cf0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+      />
+      <path d="M8 12.2c2-1.4 4.8 1.5 7.7-.6" stroke="#6a5cf0" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 function WhySection() {
   const sources: VsCard[] = [
-    { name: "Notion", cap: "Rich notes", gap: "no canvas", Icon: NotebookIcon },
-    { name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI", Icon: PenNibIcon },
-    { name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace", Icon: ChatCircleIcon },
+    { name: "Notion", cap: "Rich notes", gap: "no canvas", Icon: Notion, hue: "#8a8378" },
+    { name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI", Icon: ExcalidrawMark, hue: "#8b82e0" },
+    { name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace", Icon: OpenAI, hue: "#4fa88f" },
   ];
 
   return (
@@ -344,8 +356,8 @@ function WhySection() {
 
       <div className="vs-grid">
         {sources.map((s) => (
-          <div className="vs-card" key={s.name}>
-            <div className="vs-card-icon"><s.Icon size={22} /></div>
+          <div className="vs-card" key={s.name} style={{ "--hue": s.hue } as React.CSSProperties}>
+            <div className="vs-card-icon"><s.Icon size={24} /></div>
             <h3 className="vs-card-name">{s.name}</h3>
             <p className="vs-card-cap">{s.cap}</p>
             <p className="vs-card-gap">but {s.gap}</p>
@@ -353,7 +365,7 @@ function WhySection() {
         ))}
       </div>
 
-      <div className="vs-result">
+      <div className="vs-result" style={{ "--hue": "#e0863f" } as React.CSSProperties}>
         <span className="vs-result-mark">
           <Image src="/dim0.svg" alt="" width={24} height={24} />
         </span>
