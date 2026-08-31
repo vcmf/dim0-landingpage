@@ -324,17 +324,8 @@ type VsCard = {
   hue: string;
 };
 
-// Excalidraw's logo isn't in the icon set — a sketch-style mark in its brand violet.
 function ExcalidrawMark({ size = 22 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4.3 6.7c3-1.4 12.5-1.4 15.4.2.6 3.1.4 8.1-.4 11.1-4.3 1.3-11.4 1.4-14.8.2-.8-3.9-.7-8.5-.2-11.5Z"
-        stroke="#6a5cf0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-      />
-      <path d="M8 12.2c2-1.4 4.8 1.5 7.7-.6" stroke="#6a5cf0" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
+  return <Image src="/excalidraw.png" alt="" width={size} height={size} />;
 }
 
 function WhySection() {
