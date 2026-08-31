@@ -382,66 +382,62 @@ type Feat = {
   flip?: boolean;
 };
 
-// hue = a warm tone loosely echoing each image's dominant color (kept warm),
-// used as a light wash behind the card's text.
-const MEDIUMS: Feat[] = [
+// hue = a warm tone loosely echoing each image (warm-leaning, incl. some green /
+// blue for variety), used as a light wash behind the card's text.
+const ROW1: Feat[] = [
   {
     tag: "Board-aware AI",
     title: "Reads first. Acts second.",
-    body: "The agent reads your whole board before it acts, then searches, runs code, and writes results back as nodes you can edit and connect.",
+    body: "The agent reads your whole board before it acts, then searches, runs code, and writes results back as editable nodes.",
     img: "/board-agent-benchmark.png", w: 2000, h: 1113, hue: "#c2603f",
   },
   {
     tag: "Mini-apps",
     title: "Spin up a little app on the canvas.",
-    body: "Describe a calculator, chart, or quiz and Dim0 drops a real, interactive React app on your board, reading the notes next to it.",
+    body: "Describe a calculator, chart, or quiz and Dim0 drops a real, interactive React app on your board, next to the notes.",
     img: "/mini-app.png", w: 1795, h: 1933, hue: "#d98a2b",
   },
   {
     tag: "Nested boards",
     title: "A canvas that folds into folders.",
-    body: "Group anything into a nested board and open it like a folder. Big projects stay organized — zoom out to the map, dive in for the detail.",
-    video: "/sub-folders-demo.mp4", poster: "/sub-folders-demo-poster.jpg", hue: "#cf7a3a",
+    body: "Group anything into a nested board and open it like a folder. Big projects stay organized — zoom out, dive in.",
+    video: "/sub-folders-demo.mp4", poster: "/sub-folders-demo-poster.jpg", hue: "#869a52",
   },
+];
+
+const ROW2: Feat[] = [
   {
     tag: "Presentation mode",
     title: "Present straight from the board.",
     body: "Drop frames around your work and Dim0 turns them into slides. Present from the same canvas you thought on — no export, no rebuilding.",
-    video: "/present-mode.mp4", poster: "/present-mode-poster.jpg", hue: "#d9925c",
+    video: "/present-mode.mp4", poster: "/present-mode-poster.jpg", hue: "#6f8f9e",
+  },
+  {
+    tag: "Rich notes",
+    title: "Notion-grade notes, drawn on the canvas.",
+    body: "Tags, math, toggles, sub-pages, code, sitting wherever you put them. Edit by hand, or ask AI to draft and revise in place.",
+    video: "/rich-text-demo.mp4", poster: "/rich-text-demo-poster.jpg", hue: "#cc6f6a",
   },
 ];
-
-const BIG: Feat = {
-  tag: "Rich notes",
-  title: "Notion-grade notes, drawn on the canvas.",
-  body: "Tags, math, toggles, sub-pages, code, sitting wherever you put them. Edit by hand, or ask AI to draft and revise the note in place.",
-  video: "/rich-text-demo.mp4", poster: "/rich-text-demo-poster.jpg", hue: "#cf8a3c",
-};
 
 const SMALLS: Feat[] = [
   {
     tag: "Mapify",
     title: "Notes become structure.",
     body: "Turn any notes into mind maps, schemas, or diagrams in one gesture.",
-    img: "/board-mapify.png", w: 1990, h: 1374, hue: "#cc6f6a", flip: false,
+    img: "/board-mapify.png", w: 1990, h: 1374, hue: "#d9925c", flip: false,
   },
   {
     tag: "Every node type",
     title: "One canvas, every kind of node.",
-    body: "Code, widgets, math, images, shapes, docs, and nested folders — all first-class.",
-    img: "/board-node-types.png", w: 2000, h: 1098, hue: "#c98a3e", flip: true,
+    body: "Code, widgets, math, images, hand-drawn shapes, docs, and nested folders — all first-class nodes the AI can read.",
+    img: "/board-node-types.png", w: 2000, h: 1098, hue: "#7f9a5f", flip: true,
   },
   {
     tag: "Infinite canvas",
     title: "Thinking, laid out in space.",
     body: "Notes, code, math, and shapes on one endless surface. Pan and zoom, never lose the view.",
-    img: "/board-infinite-canvas.png", w: 2000, h: 1096, hue: "#c46b4a", flip: true,
-  },
-  {
-    tag: "Freehand sketch",
-    title: "Rough shapes the AI reads.",
-    body: "Excalidraw-style shapes, flows, and diagrams, drawn by you or generated as context.",
-    img: "/board-api-architecture.png", w: 2910, h: 1566, hue: "#d18a6a", flip: false,
+    img: "/board-infinite-canvas.png", w: 2000, h: 1096, hue: "#6b8d9c", flip: false,
   },
 ];
 
@@ -460,6 +456,19 @@ function FeatMedia({ f }: { f: Feat }) {
   );
 }
 
+function Fcard({ f }: { f: Feat }) {
+  return (
+    <article className="fcard" style={{ "--hue": f.hue } as React.CSSProperties}>
+      <div className="fcard-media"><FeatMedia f={f} /></div>
+      <div className="fcard-body">
+        <div className="feat-tag">{f.tag}</div>
+        <h3 className="fcard-title">{f.title}</h3>
+        <p className="feat-desc">{f.body}</p>
+      </div>
+    </article>
+  );
+}
+
 function CapabilitiesSection() {
   return (
     <section className="section" id="features">
@@ -472,29 +481,15 @@ function CapabilitiesSection() {
         canvas is the interface and every kind of node lives on it.
       </p>
 
-      <div className="cap-mediums">
-        {MEDIUMS.map((f) => (
-          <article className="mcard" key={f.tag} style={{ "--hue": f.hue } as React.CSSProperties}>
-            <div className="mcard-media"><FeatMedia f={f} /></div>
-            <div className="mcard-body">
-              <div className="feat-tag">{f.tag}</div>
-              <h3 className="mcard-title">{f.title}</h3>
-              <p className="feat-desc">{f.body}</p>
-            </div>
-          </article>
-        ))}
+      <div className="cap-grid cap-grid-3">
+        {ROW1.map((f) => <Fcard f={f} key={f.tag} />)}
       </div>
 
-      <article className="feat-big" style={{ "--hue": BIG.hue } as React.CSSProperties}>
-        <div className="feat-media"><FeatMedia f={BIG} /></div>
-        <div className="feat-body">
-          <div className="feat-tag">{BIG.tag}</div>
-          <h3 className="feat-title">{BIG.title}</h3>
-          <p className="feat-desc">{BIG.body}</p>
-        </div>
-      </article>
+      <div className="cap-grid cap-grid-2">
+        {ROW2.map((f) => <Fcard f={f} key={f.tag} />)}
+      </div>
 
-      <div className="cap-smalls">
+      <div className="cap-grid cap-smalls">
         {SMALLS.map((f) => (
           <article
             className={`scard ${f.flip ? "scard-flip" : ""}`}
@@ -507,7 +502,7 @@ function CapabilitiesSection() {
                 alt={f.title}
                 width={f.w!}
                 height={f.h!}
-                sizes="(max-width: 900px) 50vw, 240px"
+                sizes="(max-width: 900px) 50vw, 320px"
               />
             </div>
             <div className="scard-body">
