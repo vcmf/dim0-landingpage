@@ -745,37 +745,48 @@ function ThemesSection() {
   );
 }
 
-type ModelChip = { name: string; vendor: string; Icon: ComponentType<{ size?: number }> };
+type ModelChip = {
+  name: string;
+  vendor: string;
+  Icon: ComponentType<{ size?: number }>;
+  hue: string;
+};
 
 function ModelsSection() {
   const models: ModelChip[] = [
-    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color },
-    { name: "GPT", vendor: "OpenAI", Icon: OpenAI },
-    { name: "Gemini", vendor: "Google", Icon: Gemini.Color },
-    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color },
-    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color },
-    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color },
-    { name: "Kimi", vendor: "Moonshot", Icon: Kimi },
-    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color },
+    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color, hue: "#d97757" },
+    { name: "GPT", vendor: "OpenAI", Icon: OpenAI, hue: "#10a37f" },
+    { name: "Gemini", vendor: "Google", Icon: Gemini.Color, hue: "#4285f4" },
+    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color, hue: "#fa520f" },
+    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color, hue: "#4d6bfe" },
+    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color, hue: "#615ced" },
+    { name: "Kimi", vendor: "Moonshot", Icon: Kimi, hue: "#6b6f76" },
+    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color, hue: "#3b82f6" },
   ];
+  const doubled = [...models, ...models];
 
   return (
-    <section className="section section-narrow" id="models">
+    <section className="section" id="models">
       <div className="section-eyebrow">Models</div>
       <h2 className="section-title">Your model. Your choice.</h2>
       <p className="section-lede">
         Bring whichever you trust. Switch as the landscape shifts. The workflow stays the same.
       </p>
-      <div className="models">
-        {models.map((m) => (
-          <span key={m.name} className="model-chip">
-            <m.Icon size={16} />
-            {m.name} <span style={{ color: "var(--border)" }}>·</span>
-            <span style={{ color: "color-mix(in oklab, var(--muted-foreground) 80%, transparent)" }}>
-              {m.vendor}
+      <div className="models-marquee" aria-label="Supported AI models">
+        <div className="models-track">
+          {doubled.map((m, i) => (
+            <span
+              key={`${m.name}-${i}`}
+              className="model-chip"
+              style={{ "--hue": m.hue } as React.CSSProperties}
+            >
+              <m.Icon size={18} />
+              <span className="model-chip-name">{m.name}</span>
+              <span className="model-chip-sep">·</span>
+              <span className="model-chip-vendor">{m.vendor}</span>
             </span>
-          </span>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1238,7 +1249,7 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState(0);
   return (
-    <section className="section section-narrow" id="faq">
+    <section className="section" id="faq">
       <div className="section-eyebrow">FAQ</div>
       <h2 className="section-title">Questions, short answers.</h2>
 
