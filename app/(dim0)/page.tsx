@@ -19,15 +19,11 @@ import {
   CheckIcon,
   CoffeeIcon,
   CommandIcon,
-  EyeIcon,
-  EyeSlashIcon,
   GithubLogoIcon,
-  GraphIcon,
   HouseIcon,
   LockKeyIcon,
-  MagnifyingGlassIcon,
   PaperclipIcon,
-  PenNibIcon,
+  PlayIcon,
   ShieldCheckIcon,
   SparkleIcon,
   StarIcon,
@@ -41,19 +37,13 @@ import {
   Gemini,
   Kimi,
   Mistral,
+  Notion,
   OpenAI,
   Qwen,
 } from "@lobehub/icons";
 import Link from "next/link";
 import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
-import {
-  ArtAgent,
-  ArtFragmentation,
-  ArtGesture,
-  ArtMedia,
-  ArtSpatial,
-} from "../components/illustrations";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
 
 const APP_URL = "https://app.dim0.net/signin";
@@ -176,26 +166,109 @@ function Composer({ size = "default" }: { size?: "default" | "large" }) {
 }
 
 function HeroVideo() {
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const autoPlayed = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [ended, setEnded] = useState(false);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      if (v.ended || (v.duration && v.currentTime >= v.duration)) v.currentTime = 0;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  };
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap || !("IntersectionObserver" in window)) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.intersectionRatio >= 0.75 && !autoPlayed.current) {
+            autoPlayed.current = true;
+            videoRef.current?.play().catch(() => {});
+          }
+        });
+      },
+      { threshold: [0, 0.5, 0.75, 1] },
+    );
+    obs.observe(wrap);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="hero-video-wrap">
-      <div className="hero-video-frame">
+    <div className="hero-video-wrap" ref={wrapRef}>
+      <div
+        className="hero-video-frame"
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={
+          playing
+            ? "Pause the Dim0 tour"
+            : ended
+              ? "Replay the Dim0 tour"
+              : "Play the Dim0 tour"
+        }
+      >
         <video
+          ref={videoRef}
           className="hero-video"
-          autoPlay
           muted
-          loop
           playsInline
           preload="metadata"
-          poster="/board-mindmap-deaging.png"
-          aria-label="A walkthrough of Dim0: notes, mini-apps, sketches, and an AI agent working together on one canvas."
+          poster="/home-screenshot-2.png"
+          onPlay={() => {
+            setPlaying(true);
+            setStarted(true);
+            setEnded(false);
+          }}
+          onPause={() => setPlaying(false)}
+          onEnded={() => {
+            setPlaying(false);
+            setEnded(true);
+          }}
         >
           <source src="/compressed-full-demo-dark-theme.mp4" type="video/mp4" />
         </video>
+        {(!started || ended) && (
+          <div className="hero-video-poster">
+            <Image
+              src="/home-screenshot-2.png"
+              alt="A Dim0 board with nested research, notes, code, charts, and an AI agent on one canvas"
+              fill
+              sizes="(max-width: 1320px) 100vw, 1320px"
+              className="hero-video-poster-img"
+              priority
+            />
+            <span className="hero-video-play">
+              <PlayIcon size={26} weight="fill" />
+            </span>
+            <span className="hero-video-hint">
+              {ended ? "Replay the tour" : "Watch the tour"}
+            </span>
+          </div>
+        )}
       </div>
       <div className="hero-video-caption">
-        <span className="hero-video-dot" />
-        <span>A quick tour · everything on one canvas</span>
+        <span>A real Dim0 board · everything on one canvas</span>
       </div>
+      <p className="hero-video-engine">
+        Rendered with <Link href="/canvas-harness">canvas-harness</Link>, our
+        open-source canvas engine.
+      </p>
     </div>
   );
 }
@@ -207,18 +280,14 @@ function Hero() {
       <div className="hero-vignette" />
       <div className="hero-inner">
         <div className="hero-eyebrow">
-          <span className="dot" />
-          <span>Dim0 · the thinking canvas</span>
-          <span style={{ color: "var(--border)" }}>·</span>
-          <a
-            href={GH_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-eyebrow-link"
-          >
-            <GithubLogoIcon size={11} />
-            <span className="mono">MIT · v0.3 · privacy-first</span>
+          <a className="hero-badge" href={GH_URL} target="_blank" rel="noreferrer">
+            <GithubLogoIcon size={12} />
+            <span>Open source · MIT</span>
           </a>
+          <Link className="hero-badge" href="/privacy">
+            <ShieldCheckIcon size={12} />
+            <span>Privacy-first</span>
+          </Link>
         </div>
         <h1 className="hero-headline">
           Your canvas <em>thinks back.</em> Together.
@@ -227,14 +296,14 @@ function Hero() {
           </span>
         </h1>
         <p className="hero-tagline">
-          Notes, mini-apps, and agents on one infinite board.
+          Notes, mini-apps, and agents on one infinite board. The AI reads your
+          board <em>before</em> it acts.
         </p>
         <p className="hero-subtitle">
           Open-source, real-time collaborative. Solo or with your team.
         </p>
         <Composer />
         <div className="hero-microcopy">
-          <span className="hero-microcopy-dot" />
           <span>AI mini-apps</span>
           <span className="hero-microcopy-sep">·</span>
           <span>Real-time collab</span>
@@ -243,222 +312,222 @@ function Hero() {
           <span className="hero-microcopy-sep">·</span>
           <span>8 AI models</span>
         </div>
-        <HeroVideo />
       </div>
+      <HeroVideo />
     </section>
   );
 }
 
-function ProductShot() {
-  return (
-    <section className="product-shot-section" id="product">
-      <div className="product-shot-eyebrow">
-        <span>A real Dim0 board</span>
-      </div>
-      <a
-        className="product-shot-frame"
-        href={APP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open Dim0"
-      >
-        <Image
-          src="/home-screenshot-2.png"
-          alt="A Dim0 board with live collaborators showing nested research, sticky notes, code, charts, and an AI agent panel"
-          className="product-shot-img"
-          width={4139}
-          height={2452}
-          sizes="(max-width: 1240px) 100vw, 1240px"
-        />
-        <span className="product-shot-tag">
-          <span className="product-shot-dot" />
-          <span>Open in</span>
-          <span className="mono">app.dim0.net</span>
-        </span>
-      </a>
-      <p className="product-shot-caption">
-        Sticky notes, code, mini-apps, math, charts, sketches, and an AI agent. All on one board.
-      </p>
-      <p className="product-shot-engine">
-        Rendered with <a href="/canvas-harness">canvas-harness</a>, our open-source canvas engine.
-      </p>
-    </section>
-  );
+type VsCard = {
+  name: string;
+  cap: string;
+  gap: string;
+  Icon: ComponentType<{ size?: number }>;
+  hue: string;
+};
+
+function ExcalidrawMark({ size = 22 }: { size?: number }) {
+  return <Image src="/excalidraw.png" alt="" width={size} height={size} />;
 }
 
 function WhySection() {
-  return (
-    <section className="section" id="why">
-      <div className="section-eyebrow">The problem</div>
-      <h2 className="section-title">One idea, five tabs.</h2>
-      <p className="section-lede">
-        Browse, note, sketch, ask AI, paste back. By the time you move forward, your thinking is spread across tools that never talk to each other.
-      </p>
-      <div className="fragment-hero">
-        <ArtFragmentation />
-      </div>
-    </section>
-  );
-}
-
-function HowSection() {
-  return (
-    <section className="section" id="how">
-      <div className="section-eyebrow">How it works</div>
-      <h2 className="section-title">One prompt, work on the canvas.</h2>
-      <p className="section-lede">
-        The agent reads what&apos;s on your board, goes out and does the work, and drops the result where you&apos;re already thinking.
-      </p>
-
-      <div className="steps">
-        <div className="step">
-          <div className="step-num">01 · Read</div>
-          <div className="step-icon"><GraphIcon size={20} /></div>
-          <h3 className="step-title">Reads the board</h3>
-          <p className="step-body">Starts from your actual workspace, not a blank chat thread.</p>
-        </div>
-        <div className="step">
-          <div className="step-num">02 · Act</div>
-          <div className="step-icon"><MagnifyingGlassIcon size={20} /></div>
-          <h3 className="step-title">Searches, synthesizes, runs code</h3>
-          <p className="step-body">Parallel reasoning across sources. No tab switching.</p>
-        </div>
-        <div className="step">
-          <div className="step-num">03 · Write</div>
-          <div className="step-icon"><PenNibIcon size={20} /></div>
-          <h3 className="step-title">Builds on your board</h3>
-          <p className="step-body">Nodes appear next to your notes. Editable, connected, live.</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-type Pillar = {
-  tag: string;
-  title: string;
-  body: string;
-  Art: ComponentType;
-};
-
-function FeaturesSection() {
-  const pillars: Pillar[] = [
-    {
-      tag: "Infinite canvas",
-      title: "Thinking, laid out in space.",
-      body: "Notes, code, math, and shapes on one infinite canvas. Nested boards keep big projects structured without losing the view.",
-      Art: ArtSpatial,
-    },
-    {
-      tag: "Mapify",
-      title: "Notes become structure.",
-      body: "Select any notes and turn them into mind maps, schemas, or diagrams in one gesture. Mapify. Drawify. Schemify.",
-      Art: ArtGesture,
-    },
-    {
-      tag: "Board-aware AI",
-      title: "Reads first. Acts second.",
-      body: "The agent reads your board before it acts. Searches, runs code, writes results back as nodes you can edit and connect.",
-      Art: ArtAgent,
-    },
-    {
-      tag: "Code, charts, docs",
-      title: "Every kind of node, one canvas.",
-      body: "Sandboxed code nodes. Live widgets. Uploaded documents. Everything stays connected to the thinking that produced it.",
-      Art: ArtMedia,
-    },
+  const sources: VsCard[] = [
+    { name: "Notion", cap: "Rich notes", gap: "no canvas", Icon: Notion, hue: "#8a8378" },
+    { name: "Excalidraw", cap: "Infinite canvas", gap: "no notes or AI", Icon: ExcalidrawMark, hue: "#8b82e0" },
+    { name: "ChatGPT", cap: "AI answers", gap: "no spatial workspace", Icon: OpenAI, hue: "#4fa88f" },
   ];
 
   return (
-    <section className="section" id="features">
-      <div className="section-eyebrow">Features</div>
-      <h2 className="section-title">Built canvas-first. Agent native.</h2>
+    <section className="section" id="why">
+      <div className="section-eyebrow">The problem</div>
+      <h2 className="section-title">One idea, <em>five tabs.</em></h2>
       <p className="section-lede">
-        Most tools bolt AI onto a doc. Dim0 is built the other way around. The canvas is the interface.
+        Browse, note, sketch, ask AI, paste back. By the time you move forward, your
+        thinking is spread across tools that never talk to each other. Dim0 is all
+        three on one canvas, and the agent reads the whole board before it acts.
       </p>
 
-      <div className="pillars">
-        {pillars.map((p) => (
-          <article className="pillar" key={p.tag}>
-            <div className="pillar-art"><p.Art /></div>
-            <div className="pillar-tag">
-              <span className="bar" /> {p.tag}
-            </div>
-            <h3 className="pillar-title">{p.title}</h3>
-            <p className="pillar-body">{p.body}</p>
-          </article>
+      <div className="vs-grid">
+        {sources.map((s) => (
+          <div className="vs-card" key={s.name} style={{ "--hue": s.hue } as React.CSSProperties}>
+            <div className="vs-card-icon"><s.Icon size={24} /></div>
+            <h3 className="vs-card-name">{s.name}</h3>
+            <p className="vs-card-cap">{s.cap}</p>
+            <p className="vs-card-gap">but {s.gap}</p>
+          </div>
         ))}
+      </div>
+
+      <div className="vs-result" style={{ "--hue": "#e0863f" } as React.CSSProperties}>
+        <span className="vs-result-mark">
+          <Image src="/dim0.svg" alt="" width={24} height={24} />
+        </span>
+        <div>
+          <div className="vs-result-name">Dim0</div>
+          <p className="vs-result-copy">
+            All three on one surface: notes, an infinite canvas, and a board-aware
+            agent. Nothing to copy-paste between, nothing that loses your context.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
-const MINIAPP_EXAMPLES = [
-  "a tip calculator",
-  "a chart from your data",
-  "a sorting visualizer",
-  "a flashcard quiz",
-  "a regex tester",
-  "a pros & cons weigher",
+type Feat = {
+  tag: string;
+  title: string;
+  body: string;
+  img?: string;
+  alt?: string;
+  w?: number;
+  h?: number;
+  video?: string;
+  poster?: string;
+  hue: string;
+  flip?: boolean;
+};
+
+// hue = a warm tone loosely echoing each image (warm-leaning, incl. some green /
+// blue for variety), used as a light wash behind the card's text.
+const ROW1: Feat[] = [
+  {
+    tag: "Board-aware AI",
+    title: "Reads first. Acts second.",
+    body: "The agent reads your whole board before it acts, then searches, runs code, and writes results back as editable nodes.",
+    img: "/board-agent-benchmark.png",
+    alt: "A Dim0 board where the AI agent produced a DeepSeek vs GLM benchmark report, a news brief, and a mindmap as connected nodes",
+    w: 2000, h: 1113, hue: "#c2603f",
+  },
+  {
+    tag: "Mini-apps",
+    title: "Spin up a little app on the canvas.",
+    body: "Describe a calculator, chart, or quiz and Dim0 drops a real, interactive React app on your board, next to the notes.",
+    img: "/mini-app.png",
+    alt: "An AI-generated interactive mini-app running as a node on a Dim0 canvas",
+    w: 1795, h: 1933, hue: "#d98a2b",
+  },
+  {
+    tag: "Nested boards",
+    title: "A canvas that folds into folders.",
+    body: "Group anything into a nested board and open it like a folder. Big projects stay organized. Zoom out, dive in.",
+    video: "/sub-folders-demo.mp4", poster: "/sub-folders-demo-poster.jpg", hue: "#869a52",
+  },
 ];
 
-function MiniAppsShowcase() {
+const ROW2: Feat[] = [
+  {
+    tag: "Presentation mode",
+    title: "Present straight from the board.",
+    body: "Drop frames around your work and Dim0 turns them into slides. Present from the same canvas you thought on. No export, no rebuilding.",
+    video: "/present-mode.mp4", poster: "/present-mode-poster.jpg", hue: "#6f8f9e",
+  },
+  {
+    tag: "Rich notes",
+    title: "Notion-grade notes, drawn on the canvas.",
+    body: "Tags, math, toggles, sub-pages, code, sitting wherever you put them. Edit by hand, or ask AI to draft and revise in place.",
+    video: "/rich-text-demo.mp4", poster: "/rich-text-demo-poster.jpg", hue: "#cc6f6a",
+  },
+];
+
+const SMALLS: Feat[] = [
+  {
+    tag: "Mapify",
+    title: "Notes become structure.",
+    body: "Turn any notes into mind maps, schemas, or diagrams in one gesture.",
+    img: "/board-mapify.png",
+    alt: "A Dim0 board where notes were turned into a connected mind map with labelled edges",
+    w: 1990, h: 1374, hue: "#d9925c", flip: false,
+  },
+  {
+    tag: "Every node type",
+    title: "One canvas, every kind of node.",
+    body: "Code, widgets, math, images, hand-drawn shapes, docs, and nested folders, all first-class nodes the AI can read.",
+    img: "/board-node-types.png",
+    alt: "A Dim0 board mixing code snippets, a math formula, hand-drawn shapes, icons, images, and nested folders as nodes",
+    w: 2000, h: 1098, hue: "#7f9a5f", flip: true,
+  },
+  {
+    tag: "Infinite canvas",
+    title: "Thinking, laid out in space.",
+    body: "Notes, code, math, and shapes on one endless surface. Pan and zoom, never lose the view.",
+    img: "/board-infinite-canvas.png",
+    alt: "A large Dim0 board zoomed out, showing many connected notes and mindmaps across an infinite canvas",
+    w: 2000, h: 1096, hue: "#6b8d9c", flip: false,
+  },
+];
+
+function FeatMedia({ f }: { f: Feat }) {
+  if (f.video) {
+    return <LazyVideo src={f.video} poster={f.poster ?? ""} ariaLabel={f.title} />;
+  }
   return (
-    <section className="section section-narrow" id="mini-apps">
-      <div className="section-eyebrow">Mini-apps</div>
+    <Image
+      src={f.img!}
+      alt={f.alt ?? f.title}
+      width={f.w!}
+      height={f.h!}
+      sizes="(max-width: 820px) 100vw, 520px"
+    />
+  );
+}
+
+function Fcard({ f }: { f: Feat }) {
+  return (
+    <article className="fcard" style={{ "--hue": f.hue } as React.CSSProperties}>
+      <div className="fcard-media"><FeatMedia f={f} /></div>
+      <div className="fcard-body">
+        <div className="feat-tag">{f.tag}</div>
+        <h3 className="fcard-title">{f.title}</h3>
+        <p className="feat-desc">{f.body}</p>
+      </div>
+    </article>
+  );
+}
+
+function CapabilitiesSection() {
+  return (
+    <section className="section" id="features">
+      <div className="section-eyebrow">What you can do</div>
       <h2 className="section-title">
-        Spin up a <em>little app.</em> Right on the canvas.
+        One board. <em>Everything on it.</em>
       </h2>
       <p className="section-lede">
-        Describe a calculator, a chart, a visualizer, a quiz. Dim0 conjures a
-        real, interactive app and drops it on your board in seconds. Focused,
-        instant, and wired to the notes around it. Made to think with, not to ship.
+        Most tools bolt AI onto a doc. Dim0 is built the other way around, so the
+        canvas is the interface and every kind of node lives on it.
       </p>
 
-      <div className="miniapp-layout">
-        <div className="miniapp-copy">
-          <ul className="miniapp-points">
-            <li>
-              <span className="miniapp-mark" />
-              Lives on the board, not buried in a chat thread.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Reads the notes and data sitting right next to it.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Your whole team uses it live, on the same board.
-            </li>
-            <li>
-              <span className="miniapp-mark" />
-              Real React: open it, edit it, export it.
-            </li>
-          </ul>
+      <div className="cap-grid cap-grid-3">
+        {ROW1.map((f) => <Fcard f={f} key={f.tag} />)}
+      </div>
 
-          <div className="miniapp-chips">
-            {MINIAPP_EXAMPLES.map((ex) => (
-              <span className="miniapp-chip" key={ex}>
-                <span className="miniapp-chip-caret">›</span> {ex}
-              </span>
-            ))}
-          </div>
+      <div className="cap-grid cap-grid-2">
+        {ROW2.map((f) => <Fcard f={f} key={f.tag} />)}
+      </div>
 
-          <p className="miniapp-note">
-            Best for focused, single-purpose tools. Spun up in seconds, as fast
-            as a sentence.
-          </p>
-        </div>
-
-        <div className="miniapp-shot">
-          <Image
-            src="/mini-app.png"
-            alt="An AI-generated interactive mini-app running as a node on a Dim0 canvas"
-            width={1795}
-            height={1933}
-            sizes="(max-width: 820px) 100vw, 460px"
-          />
-        </div>
+      <div className="cap-grid cap-smalls">
+        {SMALLS.map((f) => (
+          <article
+            className={`scard ${f.flip ? "scard-flip" : ""}`}
+            key={f.tag}
+            style={{ "--hue": f.hue } as React.CSSProperties}
+          >
+            <div className="scard-media">
+              <Image
+                src={f.img!}
+                alt={f.alt ?? f.title}
+                width={f.w!}
+                height={f.h!}
+                sizes="(max-width: 900px) 50vw, 320px"
+              />
+            </div>
+            <div className="scard-body">
+              <div className="feat-tag">{f.tag}</div>
+              <h3 className="scard-title">{f.title}</h3>
+              <p className="feat-desc">{f.body}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -512,6 +581,24 @@ function CollaborationSection() {
   );
 }
 
+function MidCTA() {
+  return (
+    <section className="mid-cta" aria-label="Start using Dim0">
+      <div className="mid-cta-inner">
+        <div className="mid-cta-text">
+          <span className="mid-cta-title">Convinced? Start on the canvas.</span>
+          <span className="mid-cta-sub">
+            Free to start · nothing to set up · your data stays yours
+          </span>
+        </div>
+        <a className="btn btn-sienna mid-cta-btn" href={APP_URL}>
+          Start free <ArrowRightIcon size={14} />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function LazyVideo({
   src,
   poster,
@@ -559,95 +646,6 @@ function LazyVideo({
   );
 }
 
-function RichNotesShowcase() {
-  return (
-    <section className="section section-narrow" id="rich-notes">
-      <div className="section-eyebrow">Rich notes</div>
-      <h2 className="section-title">Notion-grade notes. Drawn on a canvas.</h2>
-      <p className="section-lede">
-        Tags, math, toggles, sub-pages, references, code. Edit by hand, or ask AI to draft and revise the note in place.
-      </p>
-      <div className="rich-video-frame">
-        <LazyVideo
-          src="/video-rich-canvas-notes.mp4"
-          poster="/note-visual-thinking.png"
-          ariaLabel="A rich Dim0 note with tags, math, toggles, and AI editing on a canvas"
-        />
-      </div>
-    </section>
-  );
-}
-
-type UseCase = {
-  tag: string;
-  title: string;
-  body: string;
-  img: string;
-  alt: string;
-};
-
-function UseCasesSection() {
-  const cases: UseCase[] = [
-    {
-      tag: "Learn",
-      title: "Turn a question into a map you can walk.",
-      body: "Ask anything. The AI mindmap generator builds a structured map on your canvas. Follow threads, keep your map, never lose where you were.",
-      img: "/board-mindmap-deaging.png",
-      alt: "AI-generated mindmap on a Dim0 board: branching topics about brain aging research, connected sticky notes, and explorable subtopics on one infinite canvas",
-    },
-    {
-      tag: "Research",
-      title: "Pull benchmarks. Chart them. Annotate.",
-      body: "Bring sources, run code, render charts. Compare results side by side without juggling tabs.",
-      img: "/board-ai-benchmarks.png",
-      alt: "Dim0 collaborative AI canvas showing model benchmark charts, comparison tables, and annotated research notes arranged side by side",
-    },
-    {
-      tag: "Sketch",
-      title: "Rough shapes that the AI understands.",
-      body: "Excalidraw-style freehand shapes, system diagrams, flows, drawn by you or generated. The agent reads them as context.",
-      img: "/board-api-architecture.png",
-      alt: "Hand-drawn API architecture diagram on a Dim0 board: Excalidraw-style freehand shapes, system flows, and components the AI agent can read as context",
-    },
-    {
-      tag: "Write",
-      title: "Long-form notes, spatially arranged.",
-      body: "Notion-grade rich notes (math, code, tags, toggles, sub-pages) sitting wherever you put them on the board.",
-      img: "/note-visual-thinking.png",
-      alt: "Long-form rich notes on a Dim0 board: Notion-grade text with code blocks, math, tags, and sub-pages arranged spatially across the canvas",
-    },
-  ];
-
-  return (
-    <section className="section" id="use-cases">
-      <div className="section-eyebrow">Use cases</div>
-      <h2 className="section-title">What it feels like to think on Dim0.</h2>
-      <p className="section-lede">
-        Four shapes of work that get faster the moment your tools share a canvas.
-      </p>
-      <div className="use-cases">
-        {cases.map((c) => (
-          <article className="use-case" key={c.tag}>
-            <div className="use-case-img">
-              <Image
-                src={c.img}
-                alt={c.alt}
-                width={1200}
-                height={760}
-                sizes="(max-width: 820px) 100vw, 540px"
-              />
-            </div>
-            <div className="use-case-tag">
-              <span className="bar" /> {c.tag}
-            </div>
-            <h3 className="use-case-title">{c.title}</h3>
-            <p className="use-case-body">{c.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 type ThemePalette = {
   bg: string;
@@ -760,73 +758,124 @@ function ThemesSection() {
   );
 }
 
-type ModelChip = { name: string; vendor: string; Icon: ComponentType<{ size?: number }> };
+type ModelChip = {
+  name: string;
+  vendor: string;
+  Icon: ComponentType<{ size?: number }>;
+  hue: string;
+};
 
 function ModelsSection() {
   const models: ModelChip[] = [
-    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color },
-    { name: "GPT", vendor: "OpenAI", Icon: OpenAI },
-    { name: "Gemini", vendor: "Google", Icon: Gemini.Color },
-    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color },
-    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color },
-    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color },
-    { name: "Kimi", vendor: "Moonshot", Icon: Kimi },
-    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color },
+    { name: "Claude", vendor: "Anthropic", Icon: Claude.Color, hue: "#d97757" },
+    { name: "GPT", vendor: "OpenAI", Icon: OpenAI, hue: "#10a37f" },
+    { name: "Gemini", vendor: "Google", Icon: Gemini.Color, hue: "#4285f4" },
+    { name: "Mistral", vendor: "Mistral", Icon: Mistral.Color, hue: "#fa520f" },
+    { name: "DeepSeek", vendor: "DeepSeek", Icon: DeepSeek.Color, hue: "#4d6bfe" },
+    { name: "Qwen", vendor: "Alibaba", Icon: Qwen.Color, hue: "#615ced" },
+    { name: "Kimi", vendor: "Moonshot", Icon: Kimi, hue: "#6b6f76" },
+    { name: "GLM", vendor: "Z.ai", Icon: ChatGLM.Color, hue: "#3b82f6" },
   ];
+  const doubled = [...models, ...models];
 
   return (
-    <section className="section section-narrow" id="models">
+    <section className="section" id="models">
       <div className="section-eyebrow">Models</div>
       <h2 className="section-title">Your model. Your choice.</h2>
       <p className="section-lede">
         Bring whichever you trust. Switch as the landscape shifts. The workflow stays the same.
       </p>
-      <div className="models">
-        {models.map((m) => (
-          <span key={m.name} className="model-chip">
-            <m.Icon size={16} />
-            {m.name} <span style={{ color: "var(--border)" }}>·</span>
-            <span style={{ color: "color-mix(in oklab, var(--muted-foreground) 80%, transparent)" }}>
-              {m.vendor}
+      <div className="models-marquee" aria-label="Supported AI models">
+        <div className="models-track">
+          {doubled.map((m, i) => (
+            <span
+              key={`${m.name}-${i}`}
+              className="model-chip"
+              style={{ "--hue": m.hue } as React.CSSProperties}
+            >
+              <m.Icon size={18} />
+              <span className="model-chip-name">{m.name}</span>
+              <span className="model-chip-sep">·</span>
+              <span className="model-chip-vendor">{m.vendor}</span>
             </span>
-          </span>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function OssSection() {
+const NEVERS = [
+  "Train on your content",
+  "Sell your data",
+  "Profile you for ads",
+  "Run session replay on your canvas",
+  "Lock your boards in",
+];
+
+type TrustCard = {
+  Icon: ComponentType<{ size?: number }>;
+  title: string;
+  body: string;
+};
+
+function TrustSection() {
+  const cards: TrustCard[] = [
+    {
+      Icon: LockKeyIcon,
+      title: "Encrypted, always",
+      body: "TLS on the wire, at-rest encryption on the database and uploads. No plaintext on the network, none on disk.",
+    },
+    {
+      Icon: ShieldCheckIcon,
+      title: "Never trained on",
+      body: "Your boards aren't training data. Prompts go only to the provider you pick, for the request you sent, and no telemetry watches your canvas.",
+    },
+    {
+      Icon: HouseIcon,
+      title: "Run it yourself",
+      body: "MIT-licensed and self-hostable. Local Postgres, local vector DB, your own model keys, nothing leaves your infrastructure.",
+    },
+    {
+      Icon: ArrowSquareOutIcon,
+      title: "Take it with you",
+      body: "Notes are pure Markdown, boards export cleanly. No proprietary format, no lock-in. Walk away anytime with everything.",
+    },
+  ];
+
   return (
-    <section className="section section-narrow">
-      <div className="section-eyebrow">Open source · MIT · self-hostable</div>
-      <h2 className="section-title">Nothing is trapped.</h2>
+    <section className="section" id="trust">
+      <div className="section-eyebrow">Open source · Private · MIT</div>
+      <h2 className="section-title">
+        Yours. <em>And it stays yours.</em>
+      </h2>
       <p className="section-lede">
-        An open-source AI whiteboard you can self-host. The codebase is public. Run it yourself. Walk away anytime with everything you made.
+        The codebase is public and self-hostable, and the cloud respects you the same
+        way. Encrypted, never trained on, no behavioral telemetry. Walk away anytime
+        with everything you made.
       </p>
 
-      <div className="trio">
-        <div className="trio-card">
-          <div className="trio-icon"><EyeIcon size={22} /></div>
-          <h3 className="trio-title">See how it works</h3>
-          <p className="trio-body">Full codebase is public. No black boxes.</p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><HouseIcon size={22} /></div>
-          <h3 className="trio-title">Run it yourself</h3>
-          <p className="trio-body">Self-host for full control over your data.</p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><ArrowSquareOutIcon size={22} /></div>
-          <h3 className="trio-title">Take it with you</h3>
-          <p className="trio-body">Notes are pure Markdown. Boards export cleanly. No proprietary format.</p>
-        </div>
+      <div className="trust-grid">
+        {cards.map((c) => (
+          <div className="trio-card" key={c.title}>
+            <div className="trio-icon"><c.Icon size={22} /></div>
+            <h3 className="trio-title">{c.title}</h3>
+            <p className="trio-body">{c.body}</p>
+          </div>
+        ))}
       </div>
 
-      <p className="oss-open-note">
-        Dim0 is built in the open. If it&apos;s useful to you, a star on GitHub
-        helps more people find it.
-      </p>
+      <div className="never-strip">
+        <div className="never-strip-eyebrow">What Dim0 will never do</div>
+        <ul className="never-strip-list">
+          {NEVERS.map((n) => (
+            <li key={n}>
+              <span className="never-icon"><XIcon size={11} weight="bold" /></span>
+              <span>{n}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="oss-actions">
         <a className="btn btn-ghost" href={GH_URL} target="_blank" rel="noreferrer">
@@ -835,6 +884,155 @@ function OssSection() {
         <a className="btn btn-sienna" href={APP_URL}>
           Start with Dim0 Cloud <ArrowRightIcon size={14} />
         </a>
+      </div>
+
+      <p className="privacy-footnote">
+        <Link className="faq-link" href="/privacy">Read the full privacy policy →</Link>
+      </p>
+    </section>
+  );
+}
+
+type Testimonial = {
+  handle: string;
+  role?: string;
+  quote: string;
+  stars?: number;
+};
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    handle: "@shopiahomedesign",
+    quote:
+      "Placing agent output directly on the board as nodes instead of a chat sidebar is the detail that sells this. Spatial context survives, chat history doesn't.",
+  },
+  {
+    handle: "@omribenshoham",
+    quote:
+      "The spatial design of this canvas is really elegant. Being able to place AI outputs directly as nodes instead of chat history is a clever insight.",
+  },
+  {
+    handle: "@m2721",
+    quote: "I am a poweruser of Miro and must say very well done :-)!",
+  },
+  {
+    handle: "Christian Carestia",
+    quote: "Great idea, definitely something missing in the market.",
+  },
+  {
+    handle: "@erdemgulen",
+    stars: 5,
+    quote: "Great design and ease to use, collaboration makes it more productive.",
+  },
+  {
+    handle: "@supahmation",
+    quote: "Great product!",
+  },
+  {
+    handle: "cerebrixos",
+    quote: "Good for visualising.",
+  },
+  {
+    handle: "Tomas Jones",
+    quote:
+      "The “everything on one canvas” angle is compelling, and making the AI write directly as nodes feels native rather than bolted on. Open source is a good trust signal.",
+  },
+  {
+    handle: "lianbo zhou",
+    quote:
+      "The interface is beautiful and elegant. The canvas-based approach makes the tools truly useful.",
+  },
+  {
+    handle: "@viciousse",
+    stars: 5,
+    quote: "I like the idea, the multiplayer and the design!",
+  },
+  {
+    handle: "Jacky zeng",
+    role: "NextJS Developer",
+    quote: "This tool is very nice.",
+  },
+  {
+    handle: "@WurtApp",
+    quote: "Brilliant work right here, keep it up.",
+  },
+  {
+    handle: "Jnanesh Bekal",
+    quote: "Very good overall.",
+  },
+];
+
+function TestimonialAvatar({ handle }: { handle: string }) {
+  const letter = handle.replace(/^@/, "").charAt(0).toUpperCase();
+  return <span className="tm-avatar" aria-hidden="true">{letter}</span>;
+}
+
+function Stars({ n }: { n: number }) {
+  return (
+    <span className="tm-stars" aria-label={`${n} out of 5 stars`}>
+      {Array.from({ length: n }).map((_, i) => (
+        <StarIcon key={i} size={12} weight="fill" />
+      ))}
+    </span>
+  );
+}
+
+function TestimonialChip({ t }: { t: Testimonial }) {
+  return (
+    <figure className="tm-chip">
+      {t.stars ? <Stars n={t.stars} /> : null}
+      <blockquote>{t.quote}</blockquote>
+      <figcaption>
+        <TestimonialAvatar handle={t.handle} />
+        <span className="tm-meta">
+          <span className="tm-handle">{t.handle}</span>
+          {t.role && <span className="tm-role">{t.role}</span>}
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
+function MarqueeRow({
+  items,
+  reverse,
+  duration,
+}: {
+  items: Testimonial[];
+  reverse?: boolean;
+  duration: number;
+}) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="tm-row">
+      <div
+        className={`tm-track ${reverse ? "tm-track-rev" : ""}`}
+        style={{ "--tm-dur": `${duration}s` } as React.CSSProperties}
+      >
+        {doubled.map((t, i) => (
+          <TestimonialChip key={`${t.handle}-${i}`} t={t} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TestimonialsSection() {
+  const row1 = TESTIMONIALS.slice(0, 7);
+  const row2 = TESTIMONIALS.slice(7);
+  return (
+    <section className="section section-testimonials" id="testimonials">
+      <div className="section-eyebrow">Loved by early users</div>
+      <h2 className="section-title">What people are saying.</h2>
+      <p className="section-lede">
+        Real, unedited comments from public AI directories and GitHub. The detail
+        people keep pointing at: AI output lands on the board as nodes, not in a
+        throwaway chat thread.
+      </p>
+
+      <div className="tm-marquee">
+        <MarqueeRow items={row1} duration={64} />
+        <MarqueeRow items={row2} reverse duration={56} />
       </div>
     </section>
   );
@@ -994,76 +1192,6 @@ function PricingSection() {
   );
 }
 
-const NEVERS = [
-  "Train on your content",
-  "Sell your data",
-  "Profile you for ads",
-  "Run session replay on your canvas",
-  "Lock your boards in",
-];
-
-function PrivacySection() {
-  return (
-    <section className="section section-narrow" id="privacy">
-      <div className="section-eyebrow">Privacy</div>
-      <h2 className="section-title">
-        Your data <em>stays yours.</em>
-      </h2>
-      <p className="section-lede">
-        Cloud Dim0 is private by design, not just because you can self-host. Encrypted in
-        transit and at rest, never trained on, no behavioral telemetry. The hosted product
-        respects you the same way the open-source code does.
-      </p>
-
-      <div className="trio">
-        <div className="trio-card">
-          <div className="trio-icon"><LockKeyIcon size={22} /></div>
-          <h3 className="trio-title">Encrypted in transit and at rest</h3>
-          <p className="trio-body">
-            TLS for everything on the wire. At-rest encryption on the database and uploads.
-            No plaintext on the network, no plaintext on disk.
-          </p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><ShieldCheckIcon size={22} /></div>
-          <h3 className="trio-title">Never trained on</h3>
-          <p className="trio-body">
-            Your boards are not training data. We don&apos;t use your content to train
-            models, ours or anyone else&apos;s. Prompts go only to the provider you pick,
-            for the request you sent.
-          </p>
-        </div>
-        <div className="trio-card">
-          <div className="trio-icon"><EyeSlashIcon size={22} /></div>
-          <h3 className="trio-title">No telemetry, no profile</h3>
-          <p className="trio-body">
-            No session replay, no behavioral analytics inside the canvas, no record of what
-            you click or where you linger. We make a thinking tool, not an ad business.
-          </p>
-        </div>
-      </div>
-
-      <p className="privacy-footnote">
-        Want absolute custody? Dim0 is MIT and self-hostable: local Postgres, local vector
-        DB, your own model keys, nothing leaves your infrastructure.{" "}
-        <Link className="faq-link" href="/privacy">Read the full policy →</Link>
-      </p>
-
-      <div className="never-strip">
-        <div className="never-strip-eyebrow">What Dim0 will never do</div>
-        <ul className="never-strip-list">
-          {NEVERS.map((n) => (
-            <li key={n}>
-              <span className="never-icon"><XIcon size={11} weight="bold" /></span>
-              <span>{n}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
 const FAQS = [
   {
     q: "What is Dim0, exactly?",
@@ -1134,7 +1262,7 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState(0);
   return (
-    <section className="section section-narrow" id="faq">
+    <section className="section" id="faq">
       <div className="section-eyebrow">FAQ</div>
       <h2 className="section-title">Questions, short answers.</h2>
 
@@ -1177,7 +1305,6 @@ function CTA() {
             <Composer size="large" />
           </div>
           <div className="cta-canvas-hint">
-            <span className="cta-canvas-dot" />
             <span>Free to start</span>
             <span className="cta-canvas-sep">·</span>
             <span>Open source</span>
@@ -1198,18 +1325,14 @@ export default function Page() {
     <>
       <SiteNav />
       <Hero />
-      <ProductShot />
       <WhySection />
-      <HowSection />
-      <FeaturesSection />
-      <MiniAppsShowcase />
+      <CapabilitiesSection />
       <CollaborationSection />
-      <RichNotesShowcase />
-      <UseCasesSection />
+      <MidCTA />
       <ThemesSection />
       <ModelsSection />
-      <PrivacySection />
-      <OssSection />
+      <TrustSection />
+      <TestimonialsSection />
       <PricingSection />
       <FAQ />
       <CTA />
