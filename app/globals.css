@@ -1057,6 +1057,15 @@ a.hero-badge:hover {
   color: var(--link-foreground);
   border-bottom-color: var(--link-foreground);
 }
+.lede-link {
+  color: var(--link);
+  border-bottom: 1px solid color-mix(in oklab, var(--link) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.lede-link:hover {
+  color: var(--link-foreground);
+  border-bottom-color: var(--link-foreground);
+}
 .faq-item.open .faq-a {
   max-height: 220px;
   padding: 0 4px 20px;
@@ -2188,4 +2197,300 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 .theme-card:hover,
 .tm-chip:hover {
   box-shadow: var(--shadow-card-hover);
+}
+
+/* ============================================================
+   BLOG — index cards + article prose
+   ============================================================ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 44px;
+}
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.blog-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--sienna) 30%, var(--border));
+  box-shadow: var(--shadow-card-hover);
+}
+.blog-card-body { padding: 20px 24px 22px; }
+
+/* versus cover: soft brand tint, logos sit directly on it (no chip) */
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  background: color-mix(in oklab, var(--cover) 15%, var(--card));
+}
+.cover img,
+.cover svg { display: block; }
+.cover-card { height: 132px; }
+.cover-hero {
+  height: 212px;
+  margin-top: 26px;
+  border-radius: var(--radius-lg);
+}
+.cover-vs {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-style: italic;
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
+}
+.cover-mono {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--foreground);
+}
+.cover-card .cover-vs { font-size: 24px; }
+.cover-card .cover-mono { font-size: 46px; }
+.cover-hero { gap: 34px; }
+.cover-hero .cover-vs { font-size: 32px; }
+.cover-hero .cover-mono { font-size: 60px; }
+.blog-card-title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--foreground);
+}
+.blog-card-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  margin: 10px 0 0;
+}
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+.blog-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+/* ---------- article ---------- */
+.article { max-width: 760px; }
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color .15s;
+}
+.article-back:hover { color: var(--foreground); }
+.article-tag {
+  display: block;
+  margin-top: 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.article-title {
+  font-family: var(--font-sans);
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  margin: 28px 0 0;
+  color: var(--foreground);
+}
+.article-desc {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  margin: 16px 0 0;
+  max-width: 640px;
+}
+.article-meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin: 18px 0 0;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}
+
+/* prose */
+.article-body {
+  margin-top: 32px;
+  font-size: 17px;
+  line-height: 1.72;
+  color: color-mix(in oklab, var(--foreground) 92%, var(--muted-foreground));
+}
+.article-body > *:first-child { margin-top: 0; }
+.article-body h2 {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--foreground);
+  margin: 44px 0 14px;
+}
+.article-body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin: 30px 0 10px;
+}
+.article-body p { margin: 0 0 18px; }
+.article-body strong { font-weight: 600; color: var(--foreground); }
+.article-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in oklab, var(--link) 35%, transparent);
+}
+.article-body a:hover { text-decoration-color: var(--link); }
+.article-body ul,
+.article-body ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+.article-body li { margin: 0 0 8px; }
+.article-body li::marker { color: var(--muted-foreground); }
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 34px 0;
+}
+.article-body code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+.article-body pre {
+  overflow-x: auto;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  margin: 0 0 20px;
+}
+.article-body pre code { background: none; border: none; padding: 0; }
+.article-body blockquote {
+  margin: 26px 0;
+  padding: 16px 20px;
+  border-left: 3px solid color-mix(in oklab, var(--sienna) 45%, var(--border));
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: color-mix(in oklab, var(--sienna-tint) 40%, var(--card));
+  color: var(--foreground);
+}
+.article-body blockquote p { margin: 0; }
+
+/* comparison tables */
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 15px;
+  display: block;
+  overflow-x: auto;
+}
+.article-body thead th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.article-body th,
+.article-body td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+.article-body tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--muted) 45%, transparent);
+}
+.article-body td:first-child { color: var(--foreground); font-weight: 500; }
+
+.article-more { padding-top: 40px; }
+
+.compare-note {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+/* pillar hub callouts */
+.pillar-note {
+  display: block;
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--muted) 55%, transparent);
+  font-size: 15px;
+  color: var(--muted-foreground);
+}
+.pillar-note a {
+  color: var(--link);
+  border-bottom: 1px solid color-mix(in oklab, var(--link) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.pillar-note a:hover {
+  color: var(--link-foreground);
+  border-bottom-color: var(--link-foreground);
+}
+.pillar-note--feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 4px 0 28px;
+  color: var(--foreground);
+  font-weight: 500;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+.pillar-note--feature:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: color-mix(in oklab, var(--border) 60%, var(--foreground));
+}
+.pillar-note--feature svg { flex-shrink: 0; }
+
+.pillar-cta { text-align: center; }
+.pillar-cta .section-lede { margin-left: auto; margin-right: auto; }
+.pillar-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+@media (max-width: 720px) {
+  .blog-grid { grid-template-columns: 1fr; }
+  .article-body { font-size: 16px; }
 }

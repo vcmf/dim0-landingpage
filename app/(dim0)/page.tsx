@@ -45,6 +45,7 @@ import Link from "next/link";
 import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
+import { StructuredData } from "./structured-data";
 
 const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -546,7 +547,11 @@ function CollaborationSection() {
       <p className="section-lede">
         Bring your team onto the same board. Real-time cursors, shared agents, edits that
         sync without merge conflicts. The canvas works the same for one person or fifty.
-        It&apos;s the open-source Miro alternative you can actually run yourself.
+        It&apos;s the{" "}
+        <Link className="lede-link" href="/blog/dim0-vs-miro">
+          open-source Miro alternative
+        </Link>{" "}
+        you can actually run yourself.
       </p>
 
       <div className="trio">
@@ -1194,7 +1199,26 @@ const FAQS = [
   },
   {
     q: "Is Dim0 a Notion or Excalidraw alternative?",
-    a: "Yes. Dim0 is a Notion alternative and an Excalidraw alternative on one canvas, with a board-aware AI agent on top. Notion has rich notes but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas has AI but no spatial workspace. Dim0 has all three on one board, and the agent reads the surrounding context before it acts.",
+    a: (
+      <>
+        Yes. Dim0 is a{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-notion">
+          Notion alternative
+        </Link>{" "}
+        and an{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-excalidraw">
+          Excalidraw alternative
+        </Link>{" "}
+        on one canvas, with a board-aware AI agent on top. Notion has rich notes
+        but no canvas. Excalidraw has a canvas but no notes or AI. ChatGPT Canvas
+        has AI but no spatial workspace. Dim0 has all three on one board, and the
+        agent reads the surrounding context before it acts. Full comparisons:{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-notion">Notion</Link>,{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-miro">Miro</Link>,{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-excalidraw">Excalidraw</Link>, and{" "}
+        <Link className="faq-link" href="/blog/dim0-vs-obsidian">Obsidian</Link>.
+      </>
+    ),
   },
   {
     q: "Is it free?",
@@ -1318,6 +1342,7 @@ function CTA() {
 export default function Page() {
   return (
     <>
+      <StructuredData />
       <SiteNav />
       <Hero />
       <WhySection />
