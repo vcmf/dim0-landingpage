@@ -1024,11 +1024,6 @@ function TestimonialsSection() {
     <section className="section section-testimonials" id="testimonials">
       <div className="section-eyebrow">Loved by early users</div>
       <h2 className="section-title">What people are saying.</h2>
-      <p className="section-lede">
-        Real, unedited comments from public AI directories and GitHub. The detail
-        people keep pointing at: AI output lands on the board as nodes, not in a
-        throwaway chat thread.
-      </p>
 
       <div className="tm-marquee">
         <MarqueeRow items={row1} duration={64} />
