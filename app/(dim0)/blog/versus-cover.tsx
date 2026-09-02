@@ -16,7 +16,7 @@ const CONF: Record<string, Conf> = {
   Miro: {
     color: "#ffd23f",
     fg: "#1c1c1c",
-    icon: () => <span className="cover-mono" style={{ color: "#ff5c00" }}>M</span>,
+    icon: (px) => <Image src="/miro.png" alt="" width={px} height={px} />,
   },
   Excalidraw: {
     color: "#6a5cf0",
