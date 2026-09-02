@@ -2438,6 +2438,58 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
 
 .article-more { padding-top: 40px; }
 
+.compare-note {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+/* pillar hub callouts */
+.pillar-note {
+  display: block;
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--muted) 55%, transparent);
+  font-size: 15px;
+  color: var(--muted-foreground);
+}
+.pillar-note a {
+  color: var(--link);
+  border-bottom: 1px solid color-mix(in oklab, var(--link) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.pillar-note a:hover {
+  color: var(--link-foreground);
+  border-bottom-color: var(--link-foreground);
+}
+.pillar-note--feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 4px 0 28px;
+  color: var(--foreground);
+  font-weight: 500;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+.pillar-note--feature:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: color-mix(in oklab, var(--border) 60%, var(--foreground));
+}
+.pillar-note--feature svg { flex-shrink: 0; }
+
+.pillar-cta { text-align: center; }
+.pillar-cta .section-lede { margin-left: auto; margin-right: auto; }
+.pillar-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
 @media (max-width: 720px) {
   .blog-grid { grid-template-columns: 1fr; }
   .article-body { font-size: 16px; }

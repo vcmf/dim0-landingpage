@@ -27,6 +27,12 @@ export default function BlogIndex() {
       <main className="section blog-index">
         <h1 className="section-title">Blog</h1>
 
+        <Link href="/blog/alternatives" className="pillar-note pillar-note--feature">
+          Start here: the open-source alternative to Notion, Miro, Excalidraw &amp;
+          Obsidian
+          <ArrowRightIcon size={14} weight="bold" />
+        </Link>
+
         <div className="blog-grid">
           {posts.map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`} className="blog-card">

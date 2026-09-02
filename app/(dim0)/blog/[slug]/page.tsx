@@ -142,6 +142,15 @@ export default async function ArticlePage({ params }: Params) {
           className="article-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
+
+        <aside className="pillar-note">
+          New to Dim0? Start with the overview:{" "}
+          <Link href="/blog/alternatives">
+            the open-source alternative to Notion, Miro, Excalidraw &amp;
+            Obsidian
+          </Link>
+          .
+        </aside>
       </article>
 
       {others.length > 0 && (
