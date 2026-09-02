@@ -45,6 +45,7 @@ import Link from "next/link";
 import { CollabCanvas } from "../components/collab-canvas";
 import { GraphBackground } from "../components/graph-background";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
+import { StructuredData } from "./structured-data";
 
 const APP_URL = "https://app.dim0.net/signin";
 const GH_URL = "https://github.com/vcmf/dim0";
@@ -1323,6 +1324,7 @@ function CTA() {
 export default function Page() {
   return (
     <>
+      <StructuredData />
       <SiteNav />
       <Hero />
       <WhySection />

@@ -7,7 +7,6 @@ import {
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "../globals.css";
-import { StructuredData } from "./structured-data";
 
 const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-sans",
@@ -105,7 +104,6 @@ export default function Dim0Layout({ children }: { children: ReactNode }) {
     <div
       className={`dim0-page ${atkinson.variable} ${inconsolata.variable} ${architectsDaughter.variable} ${shantellSans.variable}`}
     >
-      <StructuredData />
       {children}
     </div>
   );

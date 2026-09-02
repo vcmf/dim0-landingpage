@@ -16,6 +16,7 @@ const GH_URL = "https://github.com/vcmf/dim0";
 const NAV_LINKS = [
   { href: "/#features", label: "Features" },
   { href: "/#pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
   { href: "/canvas-harness", label: "Engine" },
   { href: "/#faq", label: "FAQ" },
 ];
