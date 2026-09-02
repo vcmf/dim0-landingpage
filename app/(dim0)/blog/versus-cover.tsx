@@ -43,19 +43,17 @@ export function VersusCover({
       fg: "#ffffff",
       icon: () => <span className="cover-mono">{competitor.charAt(0)}</span>,
     };
-  const px = size === "hero" ? 46 : 36;
+  const px = size === "hero" ? 76 : 52;
 
   return (
     <div
       className={`cover cover-${size}`}
-      style={{ "--cover": c.color, "--cover-fg": c.fg } as React.CSSProperties}
+      style={{ "--cover": c.color } as React.CSSProperties}
       aria-hidden="true"
     >
-      <span className="cover-chip">
-        <Image src="/dim0.svg" alt="" width={px} height={px} />
-      </span>
+      <Image src="/dim0.svg" alt="" width={px} height={px} />
       <span className="cover-vs">vs</span>
-      <span className="cover-chip">{c.icon(px)}</span>
+      {c.icon(px)}
     </div>
   );
 }

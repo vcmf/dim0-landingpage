@@ -116,7 +116,6 @@ export default async function ArticlePage({ params }: Params) {
               <Link key={p.slug} href={`/blog/${p.slug}`} className="blog-card">
                 <VersusCover competitor={p.competitor} />
                 <div className="blog-card-body">
-                  <div className="blog-card-tag">Dim0 vs {p.competitor}</div>
                   <h2 className="blog-card-title">{p.title}</h2>
                   <p className="blog-card-desc">{p.description}</p>
                   <div className="blog-card-meta">

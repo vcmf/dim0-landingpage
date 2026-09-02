@@ -2215,70 +2215,46 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   box-shadow: var(--shadow-card-hover);
 }
 .blog-card-body { padding: 20px 24px 22px; }
-.blog-card-tag {
-  align-self: flex-start;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--muted);
-}
 
-/* versus cover (solid brand color + Dim0 / competitor logos) */
+/* versus cover: soft brand tint, logos sit directly on it (no chip) */
 .cover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  background: var(--cover);
-  color: var(--cover-fg);
+  gap: 26px;
+  background: color-mix(in oklab, var(--cover) 15%, var(--card));
 }
-.cover-card { height: 128px; }
+.cover img,
+.cover svg { display: block; }
+.cover-card { height: 132px; }
 .cover-hero {
-  height: 208px;
+  height: 212px;
   margin-top: 26px;
   border-radius: var(--radius-lg);
 }
-.cover-chip {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 62px;
-  height: 62px;
-  border-radius: 16px;
-  background: #ffffff;
-  color: #1c1c1e;
-  box-shadow: 0 6px 18px rgba(20, 22, 30, 0.16);
-}
-.cover-chip img { display: block; }
 .cover-vs {
   font-family: var(--font-sans);
   font-weight: 700;
   font-style: italic;
-  font-size: 23px;
-  color: var(--cover-fg);
-  opacity: 0.92;
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
 }
 .cover-mono {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: 34px;
   line-height: 1;
+  color: var(--foreground);
 }
-.cover-hero { gap: 30px; }
-.cover-hero .cover-chip { width: 84px; height: 84px; border-radius: 20px; }
-.cover-hero .cover-vs { font-size: 30px; }
-.cover-hero .cover-mono { font-size: 46px; }
+.cover-card .cover-vs { font-size: 24px; }
+.cover-card .cover-mono { font-size: 46px; }
+.cover-hero { gap: 34px; }
+.cover-hero .cover-vs { font-size: 32px; }
+.cover-hero .cover-mono { font-size: 60px; }
 .blog-card-title {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 16px 0 0;
+  margin: 0;
   color: var(--foreground);
 }
 .blog-card-desc {
