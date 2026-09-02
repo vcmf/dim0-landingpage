@@ -32,14 +32,7 @@ export default function BlogIndex() {
     <>
       <SiteNav />
       <main className="section blog-index">
-        <div className="section-eyebrow">Blog</div>
-        <h1 className="section-title">
-          Comparisons, <em>honestly done.</em>
-        </h1>
-        <p className="section-lede">
-          Up-to-date comparisons of Dim0 against the tools you already use. Where
-          we win, where they win, and which one to reach for.
-        </p>
+        <h1 className="section-title">Blog</h1>
 
         <div className="blog-grid">
           {posts.map((p) => (
