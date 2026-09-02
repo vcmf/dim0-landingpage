@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { SiteFooter, SiteNav } from "../../../components/site-chrome";
 import { getAllPosts, getPost, getSlugs } from "../posts";
+import { VersusCover } from "../versus-cover";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -94,7 +95,7 @@ export default async function ArticlePage({ params }: Params) {
         <Link href="/blog" className="article-back">
           <ArrowLeftIcon size={13} weight="bold" /> All comparisons
         </Link>
-        <div className="article-tag">Dim0 vs {post.competitor}</div>
+        <VersusCover competitor={post.competitor} size="hero" />
         <h1 className="article-title">{post.title}</h1>
         <p className="article-desc">{post.description}</p>
         <div className="article-meta">
@@ -113,14 +114,17 @@ export default async function ArticlePage({ params }: Params) {
           <div className="blog-grid">
             {others.map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="blog-card">
-                <div className="blog-card-tag">Dim0 vs {p.competitor}</div>
-                <h2 className="blog-card-title">{p.title}</h2>
-                <p className="blog-card-desc">{p.description}</p>
-                <div className="blog-card-meta">
-                  <span>{p.readingMinutes} min read</span>
-                  <span className="blog-card-arrow">
-                    Read <ArrowRightIcon size={13} weight="bold" />
-                  </span>
+                <VersusCover competitor={p.competitor} />
+                <div className="blog-card-body">
+                  <div className="blog-card-tag">Dim0 vs {p.competitor}</div>
+                  <h2 className="blog-card-title">{p.title}</h2>
+                  <p className="blog-card-desc">{p.description}</p>
+                  <div className="blog-card-meta">
+                    <span>{p.readingMinutes} min read</span>
+                    <span className="blog-card-arrow">
+                      Read <ArrowRightIcon size={13} weight="bold" />
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

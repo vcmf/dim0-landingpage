@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { SiteFooter, SiteNav } from "../../components/site-chrome";
 import { getAllPosts } from "./posts";
+import { VersusCover } from "./versus-cover";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -19,13 +20,6 @@ export const metadata: Metadata = {
   },
 };
 
-const HUES: Record<string, string> = {
-  Notion: "#8a8378",
-  Miro: "#e0b23f",
-  Excalidraw: "#8b82e0",
-  Obsidian: "#9a7fd8",
-};
-
 export default function BlogIndex() {
   const posts = getAllPosts();
   return (
@@ -36,20 +30,18 @@ export default function BlogIndex() {
 
         <div className="blog-grid">
           {posts.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/blog/${p.slug}`}
-              className="blog-card"
-              style={{ "--hue": HUES[p.competitor] ?? "#c2603f" } as React.CSSProperties}
-            >
-              <div className="blog-card-tag">Dim0 vs {p.competitor}</div>
-              <h2 className="blog-card-title">{p.title}</h2>
-              <p className="blog-card-desc">{p.description}</p>
-              <div className="blog-card-meta">
-                <span>{p.readingMinutes} min read</span>
-                <span className="blog-card-arrow">
-                  Read <ArrowRightIcon size={13} weight="bold" />
-                </span>
+            <Link key={p.slug} href={`/blog/${p.slug}`} className="blog-card">
+              <VersusCover competitor={p.competitor} />
+              <div className="blog-card-body">
+                <div className="blog-card-tag">Dim0 vs {p.competitor}</div>
+                <h2 className="blog-card-title">{p.title}</h2>
+                <p className="blog-card-desc">{p.description}</p>
+                <div className="blog-card-meta">
+                  <span>{p.readingMinutes} min read</span>
+                  <span className="blog-card-arrow">
+                    Read <ArrowRightIcon size={13} weight="bold" />
+                  </span>
+                </div>
               </div>
             </Link>
           ))}
