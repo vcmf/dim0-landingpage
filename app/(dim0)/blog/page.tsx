@@ -16,7 +16,6 @@ export const metadata: Metadata = {
       "Honest comparisons of Dim0 vs Notion, Miro, Excalidraw, and Obsidian.",
     url: "https://dim0.net/blog",
     type: "website",
-    images: ["/home-screenshot-2.png"],
   },
 };
 

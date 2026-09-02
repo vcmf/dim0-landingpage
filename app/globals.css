@@ -1057,6 +1057,15 @@ a.hero-badge:hover {
   color: var(--link-foreground);
   border-bottom-color: var(--link-foreground);
 }
+.lede-link {
+  color: var(--link);
+  border-bottom: 1px solid color-mix(in oklab, var(--link) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+.lede-link:hover {
+  color: var(--link-foreground);
+  border-bottom-color: var(--link-foreground);
+}
 .faq-item.open .faq-a {
   max-height: 220px;
   padding: 0 4px 20px;
@@ -2317,6 +2326,9 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
   max-width: 640px;
 }
 .article-meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
   margin: 18px 0 0;
   padding-bottom: 26px;
   border-bottom: 1px solid var(--border);

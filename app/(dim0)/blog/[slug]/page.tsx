@@ -27,15 +27,48 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description: post.description,
       url: `${SITE}/blog/${slug}`,
       type: "article",
-      images: ["/home-screenshot-2.png"],
+      publishedTime: post.date,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: ["/home-screenshot-2.png"],
     },
   };
+}
+
+const DATE_FMT = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? iso : DATE_FMT.format(d);
+}
+
+function BreadcrumbJsonLd({ slug, title }: { slug: string; title: string }) {
+  const json = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}/blog` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: title,
+        item: `${SITE}/blog/${slug}`,
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+    />
+  );
 }
 
 function BlogPostingJsonLd({
@@ -89,6 +122,7 @@ export default async function ArticlePage({ params }: Params) {
         description={post.description}
         date={post.date}
       />
+      <BreadcrumbJsonLd slug={post.slug} title={post.title} />
       <SiteNav />
 
       <article className="section article">
@@ -99,6 +133,8 @@ export default async function ArticlePage({ params }: Params) {
         <h1 className="article-title">{post.title}</h1>
         <p className="article-desc">{post.description}</p>
         <div className="article-meta">
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span aria-hidden="true">·</span>
           <span>{post.readingMinutes} min read</span>
         </div>
 
