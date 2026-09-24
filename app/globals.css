@@ -1177,6 +1177,10 @@ a.hero-badge:hover {
 }
 .foot-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
 .foot-links a:hover { color: var(--sienna); }
+.foot-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+.foot-badges a { display: inline-flex; opacity: 0.85; transition: opacity 0.15s; }
+.foot-badges a:hover { opacity: 1; }
+.foot-badges img { height: auto; }
 
 /* ============================================================
    LEGAL PAGES (Privacy, Terms)
@@ -1855,7 +1859,8 @@ html:hover::-webkit-scrollbar-thumb:hover, body:hover::-webkit-scrollbar-thumb:h
     margin-top: 56px;
     text-align: center;
   }
-  .foot-meta {
+  .foot-meta,
+  .foot-badges {
     justify-content: center;
   }
   .foot-links {

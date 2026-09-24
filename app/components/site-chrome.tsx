@@ -95,6 +95,22 @@ export function SiteNav() {
 export function SiteFooter() {
   return (
     <div className="foot">
+      <div className="foot-badges">
+        <a
+          href="https://theresanaiforthat.com/ai/dim0/?ref=featured&v=10559306"
+          target="_blank"
+          rel="nofollow noopener"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://media.theresanaiforthat.com/featured-on-taaft.png?width=600"
+            alt="Featured on There's An AI For That"
+            width={200}
+            height={42}
+            loading="lazy"
+          />
+        </a>
+      </div>
       <div className="foot-meta">
         <span>© 2026 Dim0 · The thinking canvas · Paris, France</span>
         <div className="foot-links">
