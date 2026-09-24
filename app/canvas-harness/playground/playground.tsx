@@ -2,7 +2,6 @@
 
 import {
   type CanvasBackground,
-  type CanvasStore,
   type EdgeId,
   type NodeId,
   asNodeId,
@@ -19,7 +18,7 @@ import {
   useCanvasStore,
 } from "@canvas-harness/react";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StylePanel } from "./style-panel";
 
 // Shape tools map 1:1 to built-in node types. "Edge" is the library's
@@ -71,9 +70,7 @@ const BACKGROUND: CanvasBackground = { color: "#F6F9FC", pattern: "dots", gap: 2
 
 export function Playground() {
   // One store for the lifetime of the page.
-  const storeRef = useRef<CanvasStore | null>(null);
-  if (!storeRef.current) storeRef.current = createCanvasStore();
-  const store = storeRef.current;
+  const [store] = useState(createCanvasStore);
 
   const [tool, setTool] = useState<Tool>("select");
 
