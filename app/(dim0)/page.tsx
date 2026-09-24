@@ -80,12 +80,13 @@ function useTypewriter(prompts: string[], paused: boolean) {
     } else if (phase === "holding") {
       t = setTimeout(() => setPhase("deleting"), 900);
     } else if (phase === "deleting") {
-      if (text.length > 0) {
-        t = setTimeout(() => setText(text.slice(0, -1)), 18);
-      } else {
-        setIdx((i) => (i + 1) % prompts.length);
-        setPhase("typing");
-      }
+      t = setTimeout(() => {
+        setText(text.slice(0, -1));
+        if (text.length <= 1) {
+          setIdx((i) => (i + 1) % prompts.length);
+          setPhase("typing");
+        }
+      }, 18);
     }
     return () => {
       if (t) clearTimeout(t);
@@ -907,6 +908,12 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
+    handle: "@roki55",
+    stars: 5,
+    quote:
+      "The combination of real-time collaboration, instant mini-apps, and open-source flexibility is fantastic.",
+  },
+  {
     handle: "@shopiahomedesign",
     quote:
       "Placing agent output directly on the board as nodes instead of a chat sidebar is the detail that sells this. Spatial context survives, chat history doesn't.",
@@ -932,6 +939,12 @@ const TESTIMONIALS: Testimonial[] = [
   {
     handle: "@supahmation",
     quote: "Great product!",
+  },
+  {
+    handle: "@chris258",
+    stars: 5,
+    quote:
+      "I spent the last half hour playing around with this, it's amazing! I can't wait to replace Obsidian with this!",
   },
   {
     handle: "cerebrixos",
