@@ -80,12 +80,13 @@ function useTypewriter(prompts: string[], paused: boolean) {
     } else if (phase === "holding") {
       t = setTimeout(() => setPhase("deleting"), 900);
     } else if (phase === "deleting") {
-      if (text.length > 0) {
-        t = setTimeout(() => setText(text.slice(0, -1)), 18);
-      } else {
-        setIdx((i) => (i + 1) % prompts.length);
-        setPhase("typing");
-      }
+      t = setTimeout(() => {
+        setText(text.slice(0, -1));
+        if (text.length <= 1) {
+          setIdx((i) => (i + 1) % prompts.length);
+          setPhase("typing");
+        }
+      }, 18);
     }
     return () => {
       if (t) clearTimeout(t);
