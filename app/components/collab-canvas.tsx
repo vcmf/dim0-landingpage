@@ -36,6 +36,22 @@ type Marquee = {
   y2: number;
 };
 
+type Frame = {
+  notes: Note[];
+  cursors: Cursor[];
+  marquee: Marquee;
+};
+
+// Copy the mutable simulation state into a render-safe snapshot, so the JSX
+// reads React state instead of refs.
+const snapshot = (notes: Note[], cursors: Cursor[], marquee: Marquee): Frame => ({
+  notes: notes.map((n) => ({ ...n })),
+  cursors: cursors.map((c) => ({ ...c })),
+  marquee: { ...marquee },
+});
+
+const IDLE_MARQUEE: Marquee = { active: false, owner: 0, x1: 0, y1: 0, x2: 0, y2: 0 };
+
 const NOTE_DEFS = [
   { label: "kickoff", color: "var(--sidebar-icon-1)" },
   { label: "research", color: "var(--sidebar-icon-2)" },
@@ -58,9 +74,9 @@ export function CollabCanvas() {
   const raf = useRef<number | null>(null);
   const notesRef = useRef<Note[]>([]);
   const cursorsRef = useRef<Cursor[]>([]);
-  const marqueeRef = useRef<Marquee>({ active: false, owner: 0, x1: 0, y1: 0, x2: 0, y2: 0 });
+  const marqueeRef = useRef<Marquee>({ ...IDLE_MARQUEE });
   const [size, setSize] = useState({ w: 1120, h: 640 });
-  const [, tick] = useState(0);
+  const [frame, setFrame] = useState<Frame>({ notes: [], cursors: [], marquee: IDLE_MARQUEE });
 
   // Place notes + cursors once we know the box size.
   useEffect(() => {
@@ -93,7 +109,7 @@ export function CollabCanvas() {
       targetNote: null,
       held: null,
     }));
-    tick((x) => x + 1);
+    setFrame(snapshot(notesRef.current, cursorsRef.current, marqueeRef.current));
   }, []);
 
   useEffect(() => {
@@ -216,7 +232,7 @@ export function CollabCanvas() {
           }
         }
       }
-      tick((x) => (x + 1) % 1_000_000);
+      setFrame(snapshot(notes, cursors, mq));
       raf.current = requestAnimationFrame(loop);
     };
 
@@ -231,9 +247,7 @@ export function CollabCanvas() {
     };
   }, [size.w, size.h]);
 
-  const notes = notesRef.current;
-  const cursors = cursorsRef.current;
-  const mq = marqueeRef.current;
+  const { notes, cursors, marquee: mq } = frame;
   const owner = cursors[mq.owner];
 
   return (
