@@ -907,6 +907,12 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
+    handle: "@roki55",
+    stars: 5,
+    quote:
+      "The combination of real-time collaboration, instant mini-apps, and open-source flexibility is fantastic.",
+  },
+  {
     handle: "@shopiahomedesign",
     quote:
       "Placing agent output directly on the board as nodes instead of a chat sidebar is the detail that sells this. Spatial context survives, chat history doesn't.",
@@ -934,8 +940,10 @@ const TESTIMONIALS: Testimonial[] = [
     quote: "Great product!",
   },
   {
-    handle: "cerebrixos",
-    quote: "Good for visualising.",
+    handle: "@chris258",
+    stars: 5,
+    quote:
+      "I spent the last half hour playing around with this, it's amazing! I can't wait to replace Obsidian with this!",
   },
   {
     handle: "Tomas Jones",
@@ -960,10 +968,6 @@ const TESTIMONIALS: Testimonial[] = [
   {
     handle: "@WurtApp",
     quote: "Brilliant work right here, keep it up.",
-  },
-  {
-    handle: "Jnanesh Bekal",
-    quote: "Very good overall.",
   },
 ];
 
