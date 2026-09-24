@@ -946,6 +946,10 @@ const TESTIMONIALS: Testimonial[] = [
       "I spent the last half hour playing around with this, it's amazing! I can't wait to replace Obsidian with this!",
   },
   {
+    handle: "cerebrixos",
+    quote: "Good for visualising.",
+  },
+  {
     handle: "Tomas Jones",
     quote:
       "The “everything on one canvas” angle is compelling, and making the AI write directly as nodes feels native rather than bolted on. Open source is a good trust signal.",
@@ -968,6 +972,10 @@ const TESTIMONIALS: Testimonial[] = [
   {
     handle: "@WurtApp",
     quote: "Brilliant work right here, keep it up.",
+  },
+  {
+    handle: "Jnanesh Bekal",
+    quote: "Very good overall.",
   },
 ];
 
