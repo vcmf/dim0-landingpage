@@ -30,6 +30,24 @@ type GraphNodeData = Archetype & {
   rot: number;
 };
 
+type Frame = {
+  nodes: GraphNodeData[];
+  edges: [number, number][];
+  dragId: number | null;
+};
+
+// Copy the mutable simulation state into a render-safe snapshot, so the JSX
+// reads React state instead of refs.
+const snapshot = (
+  nodes: GraphNodeData[],
+  edges: [number, number][],
+  drag: { id: number } | null,
+): Frame => ({
+  nodes: nodes.map((n) => ({ ...n })),
+  edges,
+  dragId: drag?.id ?? null,
+});
+
 const ARCHETYPES: Archetype[] = [
   { type: "idea", color: "var(--sidebar-icon-1)", w: 104, h: 52, label: "mini-app" },
   { type: "note", color: "var(--sidebar-icon-2)", w: 92, h: 60, label: "open\nquestions" },
@@ -55,7 +73,7 @@ export function GraphBackground() {
   const nodesRef = useRef<GraphNodeData[]>([]);
   const edgesRef = useRef<[number, number][]>([]);
   const dragRef = useRef<{ id: number; x: number; y: number } | null>(null);
-  const [, forceUpdate] = useState(0);
+  const [frame, setFrame] = useState<Frame>({ nodes: [], edges: [], dragId: null });
   const [size, setSize] = useState({ w: 1200, h: 760 });
 
   // Build initial graph
@@ -71,7 +89,7 @@ export function GraphBackground() {
     if (w < 720) {
       nodesRef.current = [];
       edgesRef.current = [];
-      forceUpdate((x) => x + 1);
+      setFrame(snapshot([], [], null));
       return;
     }
 
@@ -118,7 +136,7 @@ export function GraphBackground() {
       });
     });
     edgesRef.current = edges;
-    forceUpdate((x) => x + 1);
+    setFrame(snapshot(placed, edges, null));
   }, []);
 
   // Resize handler
@@ -173,7 +191,7 @@ export function GraphBackground() {
         n.y += n.vy;
       });
 
-      forceUpdate((v) => (v + 1) % 1_000_000);
+      setFrame(snapshot(nodes, edges, drag));
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
@@ -226,10 +244,8 @@ export function GraphBackground() {
     [],
   );
 
-  const nodes = nodesRef.current;
-  const edges = edgesRef.current;
+  const { nodes, edges, dragId } = frame;
   const { w, h } = size;
-  const drag = dragRef.current;
 
   return (
     <div className="graph-bg" ref={containerRef}>
@@ -277,7 +293,7 @@ export function GraphBackground() {
         <GraphNode
           key={n.id}
           node={n}
-          isDragging={drag?.id === n.id}
+          isDragging={dragId === n.id}
           onPointerDown={(e) => onPointerDown(e, n.id)}
         />
       ))}
