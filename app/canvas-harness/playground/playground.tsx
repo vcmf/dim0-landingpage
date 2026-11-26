@@ -11,6 +11,7 @@ import {
   type ArrowToolDefaults,
   type CanvasCreateDragEvent,
   type CanvasPointerEvent,
+  type InkToolDefaults,
   Canvas,
   CanvasProvider,
   useCanRedo,
@@ -18,13 +19,15 @@ import {
   useCanvasStore,
 } from "@canvas-harness/react";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { DEFAULT_INK, type InkSettings, InkPanel } from "./ink-panel";
 import { StylePanel } from "./style-panel";
 
 // Shape tools map 1:1 to built-in node types. "Edge" is the library's
-// built-in arrow tool; select/pan/text are handled below.
+// built-in arrow tool; "ink"/"eraser" are the library's built-in pen and
+// whole-stroke eraser; select/pan/text are handled below.
 type ShapeTool = "rect" | "ellipse" | "diamond";
-type Tool = "select" | "pan" | ShapeTool | "arrow" | "text";
+type Tool = "select" | "pan" | ShapeTool | "arrow" | "text" | "ink" | "eraser";
 
 const SHAPE_TOOLS = new Set<Tool>(["rect", "ellipse", "diamond"]);
 
@@ -36,6 +39,8 @@ const TOOLS: { id: Tool; label: string; key: string }[] = [
   { id: "diamond", label: "Diamond", key: "D" },
   { id: "arrow", label: "Edge", key: "A" },
   { id: "text", label: "Text", key: "T" },
+  { id: "ink", label: "Pen", key: "P" },
+  { id: "eraser", label: "Eraser", key: "E" },
 ];
 
 const KEY_TO_TOOL: Record<string, Tool> = {
@@ -46,7 +51,15 @@ const KEY_TO_TOOL: Record<string, Tool> = {
   d: "diamond",
   a: "arrow",
   t: "text",
+  p: "ink",
+  e: "eraser",
 };
+
+const HINTS: Partial<Record<Tool, string>> = {
+  ink: "draw · pressure-aware with a stylus · E to erase",
+  eraser: "drag across strokes to erase",
+};
+const DEFAULT_HINT = "drag to add · scroll to zoom · space-drag to pan";
 
 // Cold-palette defaults so new shapes match the rest of the site.
 const NODE_STROKE = "#0F1B2D";
@@ -73,17 +86,16 @@ export function Playground() {
   const [store] = useState(createCanvasStore);
 
   const [tool, setTool] = useState<Tool>("select");
+  const [ink, setInk] = useState<InkSettings>(DEFAULT_INK);
 
   return (
     <CanvasProvider store={store}>
       <div className="ch-pg">
         <PlaygroundBar tool={tool} onTool={setTool} />
         <div className="ch-pg-stage">
-          <Stage tool={tool} setTool={setTool} />
-          <StylePanel />
-          <div className="ch-pg-hint">
-            drag to add · scroll to zoom · space-drag to pan
-          </div>
+          <Stage tool={tool} setTool={setTool} ink={ink} />
+          {tool === "ink" ? <InkPanel value={ink} onChange={setInk} /> : <StylePanel />}
+          <div className="ch-pg-hint">{HINTS[tool] ?? DEFAULT_HINT}</div>
           <a
             className="ch-pg-credit"
             href="https://dim0.net"
@@ -98,8 +110,20 @@ export function Playground() {
   );
 }
 
-function Stage({ tool, setTool }: { tool: Tool; setTool: (t: Tool) => void }) {
+function Stage({
+  tool,
+  setTool,
+  ink,
+}: {
+  tool: Tool;
+  setTool: (t: Tool) => void;
+  ink: InkSettings;
+}) {
   const store = useCanvasStore();
+
+  // The library resolves inkDefaults at each gesture start, so panel edits
+  // apply to the very next stroke.
+  const inkDefaults = useMemo<InkToolDefaults>(() => ({ ...ink }), [ink]);
 
   const createShape = useCallback(
     (type: ShapeTool, x: number, y: number, w: number, h: number) => {
@@ -212,6 +236,7 @@ function Stage({ tool, setTool }: { tool: Tool; setTool: (t: Tool) => void }) {
       onClick={handleClick}
       onCreateDrag={handleCreateDrag}
       arrowDefaults={ARROW_DEFAULTS}
+      inkDefaults={inkDefaults}
       background={BACKGROUND}
       selectionColor={ACCENT}
     />

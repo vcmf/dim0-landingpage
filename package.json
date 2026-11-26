@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@canvas-harness/core": "^0.1.24",
-    "@canvas-harness/react": "^0.1.24",
+    "@canvas-harness/core": "^0.2.1",
+    "@canvas-harness/react": "^0.2.1",
     "@lobehub/icons": "^5.10.0",
     "@phosphor-icons/react": "^2.1.10",
     "@vercel/analytics": "^2.0.1",
