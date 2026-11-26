@@ -72,6 +72,10 @@ export function StylePanel() {
   if (nodeIds.length + edgeIds.length === 0) return null;
 
   const nodesOnly = edgeIds.length === 0;
+  // Ink strokes render from strokeColor + opacity only; hide the rest.
+  const inkCount = nodeIds.filter((id) => store.getNode(id)?.type === "ink").length;
+  const inkOnly = nodesOnly && inkCount === nodeIds.length;
+  const shapeCount = nodeIds.length - inkCount;
   const edgesOnly = nodeIds.length === 0;
   const sampleNode = nodeIds[0] ? store.getNode(nodeIds[0]) : null;
   const sampleEdge = edgeIds[0] ? store.getEdge(edgeIds[0]) : null;
@@ -109,43 +113,57 @@ export function StylePanel() {
     <aside className="ch-pg-panel">
       <div className="ch-pg-panel-head">
         <span>
-          {nodeIds.length > 0 && `${nodeIds.length} shape${nodeIds.length > 1 ? "s" : ""}`}
-          {nodeIds.length > 0 && edgeIds.length > 0 && " · "}
-          {edgeIds.length > 0 && `${edgeIds.length} edge${edgeIds.length > 1 ? "s" : ""}`}
+          {[
+            shapeCount > 0 && `${shapeCount} shape${shapeCount > 1 ? "s" : ""}`,
+            inkCount > 0 && `${inkCount} stroke${inkCount > 1 ? "s" : ""}`,
+            edgeIds.length > 0 && `${edgeIds.length} edge${edgeIds.length > 1 ? "s" : ""}`,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
         </span>
         <button type="button" className="ch-pg-del" onClick={removeSel} title="Delete (⌫)">
           delete
         </button>
       </div>
 
-      {nodesOnly && (
+      {nodesOnly && !inkOnly && (
         <Field label="Fill">
           <Swatches colors={FILL} value={s.backgroundColor} onPick={(c) => applyNode({ backgroundColor: c })} />
         </Field>
       )}
 
       <Field label="Stroke">
-        <Swatches colors={STROKE} value={s.strokeColor} onPick={(c) => applyAll({ strokeColor: c })} />
+        <Swatches
+          colors={inkOnly ? STROKE.filter((c) => c !== "#00000000") : STROKE}
+          value={s.strokeColor} onPick={(c) => applyAll({ strokeColor: c })} />
       </Field>
 
-      <Field label="Width">
-        <Seg options={WIDTHS} value={s.strokeWidth ?? 2} onPick={(w) => applyAll({ strokeWidth: w })} />
-      </Field>
+      {!inkOnly && (
+        <>
+          <Field label="Width">
+            <Seg options={WIDTHS} value={s.strokeWidth ?? 2} onPick={(w) => applyAll({ strokeWidth: w })} />
+          </Field>
 
-      <Field label="Border">
-        <Seg options={BORDERS} value={s.strokeStyle ?? "solid"} onPick={(v) => applyAll({ strokeStyle: v })} />
-      </Field>
+          <Field label="Border">
+            <Seg
+              options={BORDERS}
+              value={s.strokeStyle ?? "solid"}
+              onPick={(v) => applyAll({ strokeStyle: v })}
+            />
+          </Field>
 
-      <Field label={`Roughness · ${s.roughness ?? 0}`}>
-        <input
-          type="range"
-          min={0}
-          max={2}
-          step={0.5}
-          value={s.roughness ?? 0}
-          onChange={(e) => applyAll({ roughness: Number(e.target.value) })}
-        />
-      </Field>
+          <Field label={`Roughness · ${s.roughness ?? 0}`}>
+            <input
+              type="range"
+              min={0}
+              max={2}
+              step={0.5}
+              value={s.roughness ?? 0}
+              onChange={(e) => applyAll({ roughness: Number(e.target.value) })}
+            />
+          </Field>
+        </>
+      )}
 
       <Field label={`Opacity · ${s.opacity ?? 100}`}>
         <input
@@ -183,7 +201,7 @@ export function StylePanel() {
   );
 }
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
+export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="ch-pg-field">
       <div className="ch-pg-field-label">{label}</div>
@@ -192,7 +210,7 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function Swatches({
+export function Swatches({
   colors,
   value,
   onPick,
@@ -221,7 +239,7 @@ function Swatches({
   );
 }
 
-function Seg<T extends string | number>({
+export function Seg<T extends string | number>({
   options,
   value,
   onPick,
